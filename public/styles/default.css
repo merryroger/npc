@@ -23,6 +23,7 @@
 		width: 100%;
 		justify-content: center;
 		font-size: 15pt;
+		font-family: "Roboto Condensed", sans-serif;
 	}
 
 	div.extra__menu {
@@ -141,6 +142,7 @@
 		width: 100%;
 		justify-content: center;
 		font-size: 15pt;
+		font-family: "Roboto Condensed", sans-serif;
 	}
 
 	div.extra__menu {
@@ -253,11 +255,12 @@
 	.hdr__holder h6 {
 		font-size: 12pt;
 	}
-
+/*
 	nav.mainmenu {
 		width: calc(800px - 50pt);
 		justify-content: space-between;
 		font-size: 15pt;
+		font-family: "Roboto", sans-serif;
 	}
 
 	div.extra__menu {
@@ -294,7 +297,61 @@
 	nav.sq__ctrls {
 		display: none;
 	}
+*/
+nav.mainmenu {
+		position: absolute;
+		top: 140px;
+		left: 8%;
+		padding: 12px 0;
+		flex-direction: column;
+		visibility: hidden;
+		font-size: 13pt;
+		font-family: "Roboto", sans-serif;
+		background-color: var(--blk-clr);
+		border-radius: 8px;
+		box-shadow: 6px 6px 8px rgba(0,0,0,0.75);
+		opacity: .9;
+	}
 
+	.mainmenu > a, .extra__menu > a, .subpanel > a {
+		margin: 5px 0pt;
+		padding: 2px 20pt;
+		color: var(--link-clr);
+		text-decoration: none;
+	}
+
+	.mainmenu > a:hover, .extra__menu > a:hover, .subpanel > a:hover {
+		background-color: var(--smnu-bgr);
+		text-decoration: underline;
+	}
+
+	div.subpanel {
+		padding: 12px 0;
+		background-color: var(--blk-clr);
+		border-radius: 8px;
+		box-shadow: 6px 6px 8px rgba(0,0,0,0.75);
+		opacity: .9;	
+	}
+
+	div.extra__menu {
+		display: flex;
+	}
+
+	nav.sq__ctrls {
+		margin-bottom: 10px;
+		width: 84%;
+		justify-content: flex-start;
+		display: flex;
+	}
+
+	div.sq__mmnu {
+		margin: 0 2pt;
+		width: 25px;
+		height: 25px;
+		border-radius: 3px;
+		background: transparent url("../images/mnu.gif") no-repeat center center;
+		cursor: pointer;
+	}
 	section#mainpad {
 		flex-direction: column;
 		align-items: center;
@@ -390,6 +447,7 @@
 		flex-direction: column;
 		visibility: hidden;
 		font-size: 13pt;
+		font-family: "Roboto", sans-serif;
 		background-color: var(--blk-clr);
 		border-radius: 8px;
 		box-shadow: 6px 6px 8px rgba(0,0,0,0.75);
@@ -565,7 +623,6 @@ div.hdr__holder > * {
 
 nav.mainmenu {
 	margin-bottom: 20px;
-	font-family: "Roboto", sans-serif;
 	display: flex;
 }
 
@@ -706,9 +763,9 @@ div.list__container {
 a.all__news {
 	margin-left: 4px;
 	color: var(--link-clr);
-	font-size: 11pt;
+	font-size: 12pt;
 	font-weight: 400;
-	font-family: "Roboto", sans-serif;	
+	font-family: "Roboto Condensed", sans-serif;	
 }
 
 footer {

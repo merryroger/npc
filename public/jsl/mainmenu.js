@@ -1,6 +1,6 @@
 'use strict';
 
-const treshold = 890;
+const treshold = 1200;//890;
 let menuDepth = -1;
 let isRootMenuFloated = 0;
 
