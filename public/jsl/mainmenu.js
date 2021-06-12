@@ -1,6 +1,6 @@
 'use strict';
 
-const treshold = 1200;//890;
+const treshold = 890;
 let menuDepth = -1;
 let isRootMenuFloated = 0;
 
@@ -84,7 +84,7 @@ function pointerMove(e) {
 }
 
 function hangListenersOn() {
-	ptrMove = document.body.addEventListener("pointermove", pointerMove);
+	ptrMove = document.body.addEventListener("pointerover", pointerMove);
 }
 
 function pickSubmenuPanel(node, level, parent) {
