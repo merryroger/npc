@@ -9,7 +9,8 @@ function toggleSearchPanel(src, idx) {
 	if (!panelVisibleState) {
 		tf.classList.remove('sp__hidden');
 		tf.classList.add('sp__visible');
+		tf.focus();
 	}
 
-	return 0;
+	return false;
 }

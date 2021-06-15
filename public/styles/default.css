@@ -627,9 +627,9 @@ input#search__text, input#search__text2 {
 	height: 31px;
 	width: 150px;
 	padding: 0 15pt 0 8pt;
-	border-top: 1px solid #ddd;
-	border-bottom: 1px solid #ddd;
-	border-left: 1px solid #ddd;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
 	border-right: 0px solid transparent;
 	border-top-left-radius: 31px;
 	border-bottom-left-radius: 31px;
@@ -639,7 +639,7 @@ input#search__text, input#search__text2 {
 a.search__rq__button {
 	width: 31px;
 	height: 31px;
-	border: 1px solid #ddd;
+	border: 1px solid #ccc;
 	border-radius: 31px;
 	background: var(--def-bgr) url("../images/search.png") no-repeat center center;
 	z-index: 10;
