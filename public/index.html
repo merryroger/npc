@@ -7,14 +7,26 @@
 	<link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Roboto&display=swap" rel="stylesheet">
 	<script src="./jsl/common.js" type="text/javascript"></script>
 	<script src="./jsl/mainmenu.js" type="text/javascript"></script>
+	<script src="./jsl/search.js" type="text/javascript"></script>
 </head>
 <body>
 	<header>
-		<section id="title">
-			<div class="hdr__holder">
-				<h1>Научно-производственный центр</h1>
-				<h6>по охране памятников истории и культуры Курганской области</h6>
-			</div>
+		<section id="top__frame">
+			<aside class="haside haside__left"></aside>
+			<section id="title">
+				<div class="hdr__holder">
+					<h1>Научно-производственный центр</h1>
+					<h6>по охране памятников истории и культуры Курганской области</h6>
+				</div>
+			</section>
+			<aside class="haside haside__right">
+				<div id="top__controls">
+					<form id="search" action="/search">
+						<a href="/search" class="search__rq__button" onclick="return toggleSearchPanel(this, '')" title="Поиск"></a>
+						<input type="text" id="search__text" name="search__text" value="" class="search__fields sp__hidden" tabindex="1" autofocus />
+					</form>
+				</div>
+			</aside>
 		</section>
 		<nav class="mainmenu">
 			<a href="/" data-item="1" data-node="1" data-level="0">Деятельность</a>
@@ -39,6 +51,10 @@
 		</nav>
 		<nav class="sq__ctrls">
 			<div class="sq__mmnu" title="Меню" onclick="return call_root_menu(this)"></div>
+			<form id="search2" action="/search">
+				<a href="/search" class="search__rq__button" onclick="return toggleSearchPanel(this, '2')" title="Поиск"></a>
+				<input type="text" id="search__text2" name="search__text" value="" class="search__fields sp__hidden" tabindex="1" autofocus />
+			</form>
 		</nav>
 	</header>
 	<section id="mainpad">
@@ -83,6 +99,10 @@
 					<a href="/" class="news">
 						<div class="news__image"><h6>29.04.2021</h6><img src="./images/news/preview/pamyatnik.jpg" alt="Памятник погибшим в Великой Отечественной войне" /></div>
 						<p>Губернатор Вадим Шумков вместе со школьниками привёл в порядок памятник погибшим в Великой Отечественной войне.</p>
+					</a>
+					<a href="/" class="news extra__news">
+						<div class="news__image"><h6>24.04.2021</h6><img src="./images/news/preview/sad_pamyati.jpg" alt="Сад памяти" /></div>
+						<p>Рядом с Курганом посадили деревья в память о погибших в годы Великой Отечественной войны</p>
 					</a>
 				</div>
 				<a href="/" class="all__news">Все новости</a>
