@@ -1,18 +1,1 @@
-<?php
-
-namespace Database\Seeders;
-
-use Illuminate\Database\Seeder;
-
-class MenuitemSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        //
-    }
-}
+<?phpnamespace Database\Seeders;use Illuminate\Database\Seeder;use Illuminate\Support\Facades;class MenuitemSeeder extends Seeder{    /**     * Run the database seeds.     *     * @return void     */    public function run()    {        $data = [            [                'access_group_id' => 0,                'node' => 1,                'mode' => 1,                'level' => 0,                'parent' => 0,                'order' => 1,                'purpose' => 'main',                'mnemo' => 'home',                'url' => '/',                'section_id' => 1,                'hidden' => 1,                'created_at' => now(),                'updated_at' => now()            ],        ];        foreach ($data as $portion) {            Facades\DB::table('menuitems')->insert($portion);        }    }}

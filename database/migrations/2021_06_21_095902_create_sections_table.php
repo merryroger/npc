@@ -26,7 +26,7 @@ class CreateSectionsTable extends Migration
             $table->unique(['name', 'bip']);
         });
 
-        (new SectionSeeder())->run();
+        (new \Database\Seeders\SectionSeeder())->run();
     }
 
     /**

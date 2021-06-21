@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::name('guest')->group(function() {
+    Route::namespace('App\Http\Controllers\Guests')->group(function() {
+        Route::get('/{section?}', 'PageController@getSections')->name('.lvl1.sections');
+    });
+});
+
+/*
 Route::get('/', function () {
     return view('npc_home');
 });
+*/
