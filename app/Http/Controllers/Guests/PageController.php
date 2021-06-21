@@ -9,6 +9,6 @@ class PageController extends Controller
 {
     public function getSections(Request $request, $section = 'home')
     {
-
+dd($section);
     }
 }
