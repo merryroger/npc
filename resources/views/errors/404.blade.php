@@ -8,7 +8,6 @@
         <link href="/favicon.ico" rel="shortcut icon">
         <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
         <link rel="dns-prefetch" href="https://fonts.gstatic.com/">
-        <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Roboto&display=swap" rel="stylesheet">
         <style>@include('styles/fonts')@include('styles/errors')</style>
     </head>
     <body>

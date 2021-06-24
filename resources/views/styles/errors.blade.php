@@ -54,3 +54,9 @@ section#root {
     justify-content: center;
     display: flex;
 }
+
+acronym {
+    cursor: default;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--p-color);
+}

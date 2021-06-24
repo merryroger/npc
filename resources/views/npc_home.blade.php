@@ -5,8 +5,11 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>НПЦ по охране памятников истории и культуры Курганской области</title>
+        <link href="/favicon.ico" rel="shortcut icon">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com/">
+        <style>@include('styles/fonts')</style>
         <link rel="stylesheet" href="/styles/default.css" type="text/css">
-        <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Roboto&display=swap" rel="stylesheet">
         <script src="/js/common.js" type="text/javascript"></script>
         <script src="/js/mainmenu.js" type="text/javascript"></script>
         <script src="/js/search.js" type="text/javascript"></script>
