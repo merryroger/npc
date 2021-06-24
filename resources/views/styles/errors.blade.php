@@ -19,7 +19,7 @@ html, body {
 
 body {
     background-color: var(--bgr-white);
-    justify-contents: center;
+    justify-content: center;
     align-items: center;
     display: flex;
 }
@@ -45,8 +45,12 @@ section#root {
 }
 
 #root p {
+    margin: 60px 30pt;
     color: var(--p-color);
-    line-height: 15;
+    line-height: 1.7;
     font-size: 10pt;
     font-family: "PT Sans", sans-serif;
+    flex-wrap: wrap;
+    justify-content: center;
+    display: flex;
 }
