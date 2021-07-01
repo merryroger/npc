@@ -40,7 +40,11 @@ class PageController extends Controller
     //    $contents = $docShow->retrieveContents($this->section->template);
     //    $docShow->__destruct();
     //    unset($docShow);
-$contents = '';
+$contents = [
+    'left_aside' => '',
+    'main_sheet' => '',
+    'right_aside' => ''
+];
         return $contents;
     }
 
@@ -53,6 +57,8 @@ $contents = '';
             $menu_tree = $menu['_tree_'];
             $section_ids = $menu['_sids_'];
             unset($menu['_tree_'], $menu['_sids_']);
+
+
 
             $view = $this->section->view;
 

@@ -5,11 +5,15 @@
 @endsection
 
 @section('left_aside')
+    <aside class="page__aside aside__left">
+        {!! $contents['left_aside'] !!}
+    </aside>
 @endsection
 
-@section('contents')
-    {!! $contents !!}
-    <article>
+@section('main_sheet')
+    <section class="main__sheet">
+        {!! $contents['main_sheet'] !!}
+    <!--article>
         <h2>О центре</h2>
         <p>ГКУ «Научно-производственный центр по охране и использованию объектов культурного наследия (памятников
             истории и культуры) Курганской области» является производственной структурой в области охраны объектов
@@ -20,25 +24,29 @@
             ремонтно-реставрационными работами.</p>
         <p>В штате ГКУ НПЦ имеются специалисты по архитектуре и строительству, археологии, гео-информационным
             системам.</p>
-    </article>
-    <section class="zwei__spalte">
-        <article class="photo__collection">
-            <h2>Фотографии</h2>
-            <a href="/photos" class="centered">
-                <div class="photos graphic__contents"></div>
-            </a>
-        </article>
-        <article class="photo__collection">
-            <h2>Видео</h2>
-            <a href="/videos" class="centered">
-                <div class="videos graphic__contents"></div>
-            </a>
-        </article>
+    </article//-->
+
+        <section class="zwei__spalte">
+            <article class="photo__collection">
+                <h2>Фотографии</h2>
+                <a href="/photos" class="centered">
+                    <div class="photos graphic__contents"></div>
+                </a>
+            </article>
+            <article class="photo__collection">
+                <h2>Видео</h2>
+                <a href="/videos" class="centered">
+                    <div class="videos graphic__contents"></div>
+                </a>
+            </article>
+        </section>
     </section>
 @endsection
 
 @section('right_aside')
-    <section id="news">
+    <aside class="page__aside aside__right">
+        {!! $contents['right_aside'] !!}
+    <!--section id="news">
         <h2>Новости</h2>
         <div class="list__container">
             <a href="/" class="news">
@@ -66,5 +74,6 @@
             </a>
         </div>
         <a href="/news" class="all__news">Все новости</a>
-    </section>
+    </section//-->
+    </aside>
 @endsection

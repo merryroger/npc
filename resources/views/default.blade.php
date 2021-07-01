@@ -24,15 +24,9 @@
 <body>
 @include('templates/header')
 <section id="mainpad">
-    <aside class="page__aside aside__left">
-        @yield('left_aside')
-    </aside>
-    <section class="main__sheet">
-        @yield('contents')
-    </section>
-    <aside class="page__aside aside__right">
-        @yield('right_aside')
-    </aside>
+    @yield('left_aside')
+    @yield('main_sheet')
+    @yield('right_aside')
 </section>
 @include('templates/footer', ['menu' => $menu['extra']])
 </body>
