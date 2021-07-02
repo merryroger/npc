@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Guests;
 use App\Http\Controllers\Controller;
 use App\Models\Menuitem;
 use App\Models\Section;
+use ehwas\documents\DocShow;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -36,15 +37,11 @@ class PageController extends Controller
 
     protected function retrieveSectionContents()
     {
-    //    $docShow = new DocShow();
-    //    $contents = $docShow->retrieveContents($this->section->template);
-    //    $docShow->__destruct();
-    //    unset($docShow);
-$contents = [
-    'left_aside' => '',
-    'main_sheet' => '',
-    'right_aside' => ''
-];
+        $docShow = new DocShow();
+        $contents = $docShow->retrieveContents($this->section->template);
+        $docShow->__destruct();
+        unset($docShow);
+
         return $contents;
     }
 

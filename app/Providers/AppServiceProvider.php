@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use ehwas\documents\tyrion\TyrionDocumentProvider;
+use ehwas\documents\tyrion\TyrionReader;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,5 +27,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        app()->bind('tyrion', TyrionDocumentProvider::class);
+        app()->bind(TyrionDocumentProvider::class, function($api) {
+            return new TyrionDocumentProvider(new TyrionReader());
+        });
     }
 }

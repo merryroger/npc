@@ -25,7 +25,13 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "classmap": [
+            "ehwaz/interfaces",
+            "ehwaz/documents",
+            "ehwaz/documents/tyrion",
+            "ehwaz/traits"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
