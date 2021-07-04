@@ -1,0 +1,16 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/</docuri>
+    <returi>/</returi>
+    <docref>m0</docref>
+    <doctopic>Empty document</doctopic>
+    <docname>Empty</docname>
+    <doctype>Text</doctype>
+    <docdate>04.07.2021</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+</page>

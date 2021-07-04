@@ -10,6 +10,7 @@ namespace ehwas\documents;
 class DocShow
 {
     protected const REL_DIR = '/../../resources';
+    protected const HANDLERS_DIR = '/templates/providers';
 
     protected $base_dir;
     protected $config;
@@ -37,20 +38,21 @@ class DocShow
         }
     }
 
-    protected function parseConfig(): void
+    protected function parseConfig($extra_data): void
     {
         if ($this->config == null || !isset($this->config['contents'])) {
             return;
         }
 
         foreach ($this->config['contents'] as $block => $settings) {
-            $this->contents[$block] = $this->buildTemplate($settings);
+            $this->contents[$block] = $this->buildTemplate($settings, $extra_data);
         }
-dd($this->contents);
     }
 
-    protected function buildTemplate($sets): string
+    protected function buildTemplate($sets, $extra_data): string
     {
+        $contents = '';
+
         if (!isset($sets['provider'])) {
             return view($sets['template']);
         }
@@ -59,13 +61,17 @@ return 'temporary nothing';
 }
         $provider = app($sets['provider']);
 
-        return '';
+        if (file_exists($this->base_dir . $this::HANDLERS_DIR . '/' . $sets['provider'] . '.inc')) {
+            include($this->base_dir . $this::HANDLERS_DIR . '/' . $sets['provider'] . '.inc');
+        }
+
+        return $contents;
     }
 
-    public function &retrieveContents($conf_path = ''): array
+    public function &retrieveContents($conf_path = '', $extra_data = []): array
     {
         $this->loadConfig($conf_path);
-        $this->parseConfig();
+        $this->parseConfig($extra_data);
         //   $this->render($page);
 
         return $this->contents;
