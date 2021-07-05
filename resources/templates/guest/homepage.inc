@@ -21,7 +21,7 @@ $this->config = [
             'template' => 'templates.guest.homepage.main'
         ],
         'right_aside' => [
-            'provider' => 'newspreview',
+            'provider' => 'newsline',
             'count' => 4,
             'sortby' => 'desc',
             'hidelast' => 1,

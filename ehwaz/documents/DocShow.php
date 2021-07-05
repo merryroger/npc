@@ -56,9 +56,7 @@ class DocShow
         if (!isset($sets['provider'])) {
             return view($sets['template']);
         }
-if ($sets['provider'] == 'newspreview') {
-return 'temporary nothing';
-}
+
         $provider = app($sets['provider']);
 
         if (file_exists($this->base_dir . $this::HANDLERS_DIR . '/' . $sets['provider'] . '.inc')) {

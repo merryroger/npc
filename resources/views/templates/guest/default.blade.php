@@ -19,8 +19,7 @@
 @section('right_aside')
     <aside class="page__aside aside__right">
         {!! $contents['right_aside'] !!}
-    <!--section id="news">
-        <h2>Новости</h2>
+<!--
         <div class="list__container">
             <a href="/" class="news">
                 <div class="news__image"><h6>21.05.2021</h6><img src="/images/news/preview/savin.jpg"
@@ -47,6 +46,6 @@
             </a>
         </div>
         <a href="/news" class="all__news">Все новости</a>
-    </section//-->
+        //-->
     </aside>
 @endsection

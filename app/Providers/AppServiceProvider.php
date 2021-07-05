@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use ehwas\documents\tyrion\TyrionDocumentProvider;
 use ehwas\documents\tyrion\TyrionReader;
+use ehwas\news\NewslineProvider;
+use ehwas\news\NewslineReader;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,6 +33,11 @@ class AppServiceProvider extends ServiceProvider
         app()->bind('tyrion', TyrionDocumentProvider::class);
         app()->bind(TyrionDocumentProvider::class, function($api) {
             return new TyrionDocumentProvider(new TyrionReader());
+        });
+
+        app()->bind('newsline', NewslineProvider::class);
+        app()->bind(NewslineProvider::class, function($api) {
+            return new NewslineProvider(new NewslineReader());
         });
     }
 }

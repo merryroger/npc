@@ -30,6 +30,7 @@
             "ehwaz/interfaces",
             "ehwaz/documents",
             "ehwaz/documents/tyrion",
+            "ehwaz/news",
             "ehwaz/traits"
         ]
     },
