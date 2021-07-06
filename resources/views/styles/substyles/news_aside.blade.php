@@ -53,7 +53,6 @@ a.all__news {
 
 div.empty__line {
     margin: 5px auto 20px;
-    
     color: var(--hdr-clr);
     font-size: 13pt;
     font-weight: 400;
