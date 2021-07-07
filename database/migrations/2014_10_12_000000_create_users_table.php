@@ -15,13 +15,21 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('name')->default('');
+            $table->string('email')->unique()->default('');
+            $table->string('passhash')->nullable()->default(null);
+            $table->string('checkhash')->unique()->nullable()->default(null);
+            $table->integer('bip')->unsigned()->default(0);
+            $table->string('userdir')->nullable()->default(null);
+            $table->tinyInteger('tries')->unsigned()->default(3);
+            $table->dateTime('valid_till')->default('2000-01-01 00:00:00');
+            $table->enum('status', ['invalid', 'frozen', 'verified'])->default('invalid');
+            $table->boolean('off')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
+
+        //(new UserSeeder())->run();
     }
 
     /**
