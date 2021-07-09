@@ -18,6 +18,8 @@
         @yield('styles')
     </style>
     <script src="/js/common.js" type="text/javascript"></script>
+    <script src="/js/ajax.js" type="text/javascript"></script>
+    <script src="/js/md5.js" type="text/javascript"></script>
     <script src="/js/mainmenu.js" type="text/javascript"></script>
     <script src="/js/search.js" type="text/javascript"></script>
 </head>

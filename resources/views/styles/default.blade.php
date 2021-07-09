@@ -109,6 +109,18 @@ a.search__rq__button {
     outline: none;
 }
 
+a.auth__rq__button {
+    margin-left: 5pt;
+    width: 31px;
+    height: 31px;
+    border: 1px solid var(--sqmnu-brd);
+    border-radius: 31px;
+    background: var(--def-bgr) url("/images/key.gif") no-repeat center center;
+    z-index: 2;
+    display: block;
+    outline: none;
+}
+
 section#title {
     flex-grow: 0;
     flex-direction: column;

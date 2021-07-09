@@ -22,14 +22,13 @@ class CreateUsersTable extends Migration
             $table->integer('bip')->unsigned()->default(0);
             $table->string('userdir')->nullable()->default(null);
             $table->tinyInteger('tries')->unsigned()->default(3);
-            $table->dateTime('valid_till')->default('2000-01-01 00:00:00');
-            $table->enum('status', ['invalid', 'frozen', 'verified'])->default('invalid');
-            $table->boolean('off')->default(true);
+            $table->dateTime('locked_till')->default('2000-01-01 00:00:00');
+            $table->enum('status', ['frozen', 'valid'])->default('frozen');
             $table->timestamps();
             $table->softDeletes();
         });
 
-        //(new UserSeeder())->run();
+        (new \Database\Seeders\UserSeeder())->run();
     }
 
     /**
