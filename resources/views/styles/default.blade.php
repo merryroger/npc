@@ -304,3 +304,30 @@ article.foot__contacts, article.foot__links {
 }
 
 /**** End of footer section ****/
+
+/**** Response panel ****/
+
+div#resp_holder {
+    position: absolute;
+}
+
+.resp__holder h6 {
+    margin-bottom: 4px;
+    color: var(--prg-clr);
+    font-size: 10pt;
+    font-family: "Roboto", sans-serif;
+}
+
+.resp__elems {
+    margin-bottom: 12px;
+}
+
+form#auth_type_selector {
+    padding: 20px 20pt;
+    border: 1px solid var(--subpn-brd);
+    border-radius: 10px;
+    background-color: var(--def-bgr);
+    box-shadow: 6px 6px 8px rgba(0,0,0,0.75);
+}
+
+/**** End of response panel ****/

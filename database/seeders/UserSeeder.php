@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Merry Roger',
                 'email' => 'merry_roger@yahoo.com',
-                'passhash' => null,
+                'passhash' => '5b5fd82b0de5e6c3b8b438b5957908fd',
                 'checkhash' => '60fce956f0544bf27c12d2110b3f541d',
                 'bip' => 0xffffff,
                 'userdir' => 'users/60fce956f0544bf27c12d2110b3f541d',

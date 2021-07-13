@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Firewall;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -22,10 +24,24 @@ class AuthController extends Controller
                 $fwl = $this->checkFirewall();
                 if ($fwl['bitmask'] && $fwl['authtype']) {
                     $user = $this->pickUser($request, $fwl);
-                    if ($user && $user['email']) {
-                        
-                        $_response['user'] = $user;
+                    if ($user && $user['authtype']) {
+                        $key_hash = Hash::make(microtime(true), ['rounds' => 14]);
+                        $this->setCache($user['id'], $key_hash);
+                        if (count($user['authtype']) == 1 && in_array('email', $user['authtype'])) {
+                            $this->sendMail($user, $key_hash);
+                            $_response['message_panel'] = view('services.auth_mail_sent')->render();
+                        } else {
+                            $authtypes = $user['authtype'];
+                            $_response['message_panel'] = view('services.auth_type_selector', compact([
+                                'authtypes',
+                                'key_hash'
+                            ]))->render();
+                        }
+
+                        $this->retcode = 200;
                     }
+                } else {
+                    $this->retcode = 406; // No auth conditions found
                 }
             }
         } else {
@@ -43,10 +59,25 @@ class AuthController extends Controller
         if ($users) {
             return $users->reduce(function ($carry = [], $item) use ($fwl) {
                 $item->bip &= $fwl['bitmask'];
-                $item->authtype = $fwl['authtype'];
+                $authtypes = preg_split("/,/", $fwl['authtype']);
+                $_authtypes = [];
+
+                foreach ($authtypes as $authtype) {
+                    switch (strtolower($authtype)) {
+                        case 'login':
+                            if ($item->passhash != null)
+                                $_authtypes[] = $authtype;
+                            break;
+                        case 'email':
+                            if ($item->email)
+                                $_authtypes[] = $authtype;
+                            break;
+                    }
+                }
+
+                $item->authtype = $_authtypes;
 
                 $item = collect($item)->except([
-                    'passhash',
                     'checkhash',
                     'created_at',
                     'updated_at',
@@ -58,6 +89,11 @@ class AuthController extends Controller
         } else {
             return null;
         }
+    }
+
+    private function setCache($userId, $key) {
+        $expiresAt = now()->addMinutes(3);
+        Cache::put($key, $userId, $expiresAt);
     }
 
     private function checkFirewall()
