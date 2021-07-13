@@ -303,6 +303,10 @@ article.foot__contacts, article.foot__links {
     visibility: hidden;
 }
 
+.h {
+    display: none;
+}
+
 /**** End of footer section ****/
 
 /**** Response panel ****/
@@ -312,14 +316,44 @@ div#resp_holder {
 }
 
 .resp__holder h6 {
-    margin-bottom: 4px;
-    color: var(--prg-clr);
-    font-size: 10pt;
-    font-family: "Roboto", sans-serif;
+    margin-bottom: 6px;
+    color: var(--smnu-bgr);
+    font-size: 11pt;
+    font-family: "PT Sans", sans-serif;
 }
 
 .resp__elems {
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    width: 160px;
+}
+
+select.resp__elems {
+    margin-left: 5pt;
+    padding: 4px 2pt;
+    border: 1px solid var(--ftr-clr);
+    border-radius: 3px;
+    background-color: var(--def-bgr);
+}
+
+input.resp__elems {
+    margin-left: 5pt;
+    padding: 1px 2pt;
+    border: 1px solid var(--ftr-clr);
+    border-radius: 3px;
+    background-color: var(--def-bgr);
+}
+
+div#auth_ctrls {
+    text-align: center;
+}
+
+#auth_ctrls input {
+    padding: 1px 5pt;
+    border: 1px solid var(--ftr-clr);
+    border-radius: 3px;
+    font-size: 10pt;
+    font-family: "Roboto Condensed", sans-serif;
+    cursor: pointer;
 }
 
 form#auth_type_selector {

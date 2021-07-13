@@ -13,6 +13,28 @@ class AuthController extends Controller
 {
     protected $retcode = 404;
 
+    public function authConfirm(Request $request)
+    {
+        $_response = [];
+        $auth_type = $request->request->get('auth_type');
+        $key = base64_decode($request->request->get('keyhash'));
+
+        if (Cache::has($key)) {
+            $user_id = Cache::pull($key);
+            $user_model = User::valid()->find($user_id);
+            $_response['user'] = $user_model;
+
+            switch (strtolower($auth_type)) {
+                case 'login':
+                    break;
+                case 'email':
+                    break;
+            }
+        }
+
+        return response()->json($_response);
+    }
+
     public function listenRequest(Request $request)
     {
         $_response = [];
@@ -91,7 +113,8 @@ class AuthController extends Controller
         }
     }
 
-    private function setCache($userId, $key) {
+    private function setCache($userId, $key)
+    {
         $expiresAt = now()->addMinutes(3);
         Cache::put($key, $userId, $expiresAt);
     }

@@ -33,7 +33,7 @@ function callAuth(src, idx) {
     return false;
 }
 
-function authResponse(resp) {
+function authResponse(resp) { console.log(resp);
     try {
         let response = JSON.parse(resp);
         if (response.retcode == 200) {
@@ -41,6 +41,23 @@ function authResponse(resp) {
         }
     } catch (e) {
     } finally {
+    }
+}
+
+function selectMode(src) {
+    let fm = src.closest("form#auth_type_selector");
+    let pf = fm.querySelector("div#pass_field");
+    let val = src.options[src.selectedIndex].value;
+    if (val == 'login') {
+        if (pf.classList.contains('h')) {
+            pf.classList.remove('h');
+            fm.passwd.required = true;
+        }
+    } else {
+        if (!pf.classList.contains('h')) {
+            pf.classList.add('h');
+            fm.passwd.required = false;
+        }
     }
 }
 
@@ -59,4 +76,21 @@ function showResponsePanel(data) {
     respHolder.style.right = '10px';
     respHolder.style.zIndex = 10;
     respHolder.classList.add('on');
+}
+
+function checkTypeSend(fm) {
+    let sel = fm.auth_type;
+    let pms = [
+        `keyhash=${fm.keyhash.value}`,
+        `_token=${fm._token.value}`,
+        `auth_type=${sel.options[sel.selectedIndex].value}`
+    ];
+
+    if (pms.auth_type == 'login') {
+        pms[pms.length] = `passw=${MD5(fm._token.value + MD5(fm.passwd.value))}`;
+    }
+
+    AJAX.post('/authconf', pms.join('&'), authResponse);
+
+    return false;
 }
