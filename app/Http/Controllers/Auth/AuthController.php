@@ -20,15 +20,24 @@ class AuthController extends Controller
         $key = base64_decode($request->request->get('keyhash'));
 
         if (Cache::has($key)) {
-            $user_id = Cache::pull($key);
-            $user_model = User::valid()->find($user_id);
-            $_response['user'] = $user_model;
+            $user = Cache::pull($key);
+            //$user_model = User::valid()->find($user_id);
 
-            switch (strtolower($auth_type)) {
-                case 'login':
-                    break;
-                case 'email':
-                    break;
+            if ($user != null) {
+                switch (strtolower($auth_type)) {
+                    case 'login':
+                        if (md5($request->request->get('keyhash') . $user['passhash']) == $request->request->get('passw')) {
+                            $session = $request->session();
+                            $this->prepareSession($user, $session);
+                            return redirect()->route('cms');
+                        } else {
+
+                        }
+
+                        break;
+                    case 'email':
+                        break;
+                }
             }
         }
 
@@ -48,7 +57,7 @@ class AuthController extends Controller
                     $user = $this->pickUser($request, $fwl);
                     if ($user && $user['authtype']) {
                         $key_hash = Hash::make(microtime(true), ['rounds' => 14]);
-                        $this->setCache($user['id'], $key_hash);
+                        $this->setCache($user, $key_hash);
                         if (count($user['authtype']) == 1 && in_array('email', $user['authtype'])) {
                             $this->sendMail($user, $key_hash);
                             $_response['message_panel'] = view('services.auth_mail_sent')->render();
@@ -101,6 +110,8 @@ class AuthController extends Controller
 
                 $item = collect($item)->except([
                     'checkhash',
+                    'locked_till',
+                    'status',
                     'created_at',
                     'updated_at',
                     'deleted_at'
@@ -113,15 +124,37 @@ class AuthController extends Controller
         }
     }
 
-    private function setCache($userId, $key)
+    private function setCache(&$user, $key)
     {
         $expiresAt = now()->addMinutes(3);
-        Cache::put($key, $userId, $expiresAt);
+        Cache::put($key, $user, $expiresAt);
+    }
+
+    private function prepareSession(&$user_array, $session)
+    {
+        $user = $user_array->only([
+            'id',
+            'name',
+            'email',
+            'bip',
+            'userdir'
+        ]);
+
+        $session->put('user', $user);
     }
 
     private function checkFirewall()
     {
         return Firewall::scan();
+    }
+
+    public function logoff(Request $request)
+    {
+        if ($request->session()->exists('user')) {
+            $request->session()->forget('user');
+        }
+
+        return redirect()->route('guest.lvl1.sections');
     }
 
 }

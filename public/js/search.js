@@ -86,8 +86,8 @@ function checkTypeSend(fm) {
         `auth_type=${sel.options[sel.selectedIndex].value}`
     ];
 
-    if (pms.auth_type == 'login') {
-        pms[pms.length] = `passw=${MD5(fm._token.value + MD5(fm.passwd.value))}`;
+    if (sel.options[sel.selectedIndex].value == 'login') {
+        pms[pms.length] = `passw=${MD5(fm.keyhash.value + MD5(fm.passwd.value))}`;
     }
 
     AJAX.post('/authconf', pms.join('&'), authResponse);
