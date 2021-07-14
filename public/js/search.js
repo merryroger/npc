@@ -33,11 +33,13 @@ function callAuth(src, idx) {
     return false;
 }
 
-function authResponse(resp) { console.log(resp);
+function authResponse(resp) {
     try {
         let response = JSON.parse(resp);
         if (response.retcode == 200) {
             showResponsePanel(response.message_panel);
+        } else if (response.retcode == 304) {
+            document.location.assign(atob(response.cms_redirect));
         }
     } catch (e) {
     } finally {

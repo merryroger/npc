@@ -8,10 +8,35 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
     protected $retcode = 404;
+
+    public function checkAuthCode(Request $request)
+    {
+        $type = $request->request->get('type');
+        $key = base64_decode($request->request->get('keyhash'));
+
+        if (Cache::has($key)) {                                 // Checking presence of the key in our cache
+            $user = Cache::pull($key);
+            //$user_model = User::valid()->find($user_id);        // Trying to pick user`s data as model
+
+            if ($user != null) {                          // All the next actions for true user only
+                switch (strtolower($type)) {
+                    case 'authentication':
+                        $session = $request->session();
+                        $this->prepareSession($user, $session);
+                        return redirect()->route('desktop');
+                    default:
+                }
+                dd($user);
+            }
+        }
+
+        abort(404);
+    }
 
     public function authConfirm(Request $request)
     {
@@ -29,13 +54,18 @@ class AuthController extends Controller
                         if (md5($request->request->get('keyhash') . $user['passhash']) == $request->request->get('passw')) {
                             $session = $request->session();
                             $this->prepareSession($user, $session);
-                            return redirect()->route('cms');
+                            $_response['retcode'] = 304;
+                            $_response['cms_redirect'] = base64_encode(route('cms'));
                         } else {
 
                         }
 
                         break;
                     case 'email':
+                        $this->setCache($user, $key);
+                        $this->sendMail($user, $key);
+                        $_response['retcode'] = 200;
+                        $_response['message_panel'] = view('services.auth_mail_sent')->render();
                         break;
                 }
             }
@@ -146,6 +176,15 @@ class AuthController extends Controller
     private function checkFirewall()
     {
         return Firewall::scan();
+    }
+
+    protected function sendMail($user, $key)
+    {
+        Mail::send('services.auth_request', ['user' => $user, 'key' => $key], function ($message) use ($user) {
+            $message->from(config('mail.from')['address'], config('mail.from')['name']);
+            $message->to($user['email']);
+            $message->subject(trans('auth.auth_ref', [], 'ru'));
+        });
     }
 
     public function logoff(Request $request)
