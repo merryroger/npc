@@ -15,6 +15,9 @@
         @include('styles/media/between_890_1199')
         @include('styles/media/less_890')
         @include('styles/default')
+        @if ($user)
+            @include('styles/substyles/mcp')
+        @endif
         @yield('styles')
     </style>
     <script src="/js/common.js" type="text/javascript"></script>
@@ -22,6 +25,9 @@
     <script src="/js/md5.js" type="text/javascript"></script>
     <script src="/js/mainmenu.js" type="text/javascript"></script>
     <script src="/js/search.js" type="text/javascript"></script>
+    @if ($user)
+        <script src="/js/cms/mcp.js" type="text/javascript"></script>
+    @endif
 </head>
 <body>
 @include('templates/header')

@@ -5,7 +5,13 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>НПЦ - система управления</title>
+    <style>
+        @include('styles/fonts')
+        @include('styles/substyles/mcp')
+    </style>
+    <script src="/js/cms/mcp.js" type="text/javascript"></script>
 </head>
 <body>
+    @include('templates/cms/mcp', ['user' => $user])
 </body>
 </html>

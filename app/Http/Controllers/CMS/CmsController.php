@@ -9,6 +9,8 @@ class CmsController extends Controller
 {
     public function handle(Request $request)
     {
-        return view('cms.desktop');
+        $user = $request->session()->get('user');
+
+        return view('cms.desktop', compact(['user']));
     }
 }

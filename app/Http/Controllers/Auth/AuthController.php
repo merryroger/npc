@@ -28,7 +28,7 @@ class AuthController extends Controller
                     case 'authentication':
                         $session = $request->session();
                         $this->prepareSession($user, $session);
-                        return redirect()->route('desktop');
+                        return redirect()->route('cms');
                     default:
                 }
                 dd($user);
@@ -62,8 +62,9 @@ class AuthController extends Controller
 
                         break;
                     case 'email':
-                        $this->setCache($user, $key);
-                        $this->sendMail($user, $key);
+                        $key_hash = Hash::make(microtime(true), ['rounds' => 14]);
+                        $this->setCache($user, $key_hash);
+                        $this->sendMail($user, $key_hash);
                         $_response['retcode'] = 200;
                         $_response['message_panel'] = view('services.auth_mail_sent')->render();
                         break;

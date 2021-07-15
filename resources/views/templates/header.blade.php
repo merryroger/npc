@@ -10,7 +10,10 @@
         <aside class="haside haside__right">
             <div id="top__controls">
                 <form id="search" action="/search">
-                    <a href="/auth" class="auth__rq__button" onclick="return callAuth(this, '')" title=""></a>
+                    @if ($user)
+                    @else
+                        <a href="/auth" class="auth__rq__button" onclick="return callAuth(this, '')" title=""></a>
+                    @endif
                     <a href="/search" class="search__rq__button" onclick="return toggleSearchPanel(this, '')"
                        title="Поиск"></a>
                     <input type="text" id="search__text" name="search__text" value="" class="search__fields sp__hidden"
@@ -26,7 +29,10 @@
     <nav class="sq__ctrls">
         <div class="sq__mmnu" title="Меню" onclick="return call_root_menu(this)"></div>
         <form id="search2" action="/search">
-            <a href="/auth" class="auth__rq__button" onclick="return callAuth(this, '2')" title=""></a>
+            @if ($user)
+            @else
+                <a href="/auth" class="auth__rq__button" onclick="return callAuth(this, '2')" title=""></a>
+            @endif
             <a href="/search" class="search__rq__button" onclick="return toggleSearchPanel(this, '2')"
                title="Поиск"></a>
             <input type="text" id="search__text2" name="search__text" value="" class="search__fields sp__hidden"
@@ -34,4 +40,7 @@
             @csrf
         </form>
     </nav>
+    @if ($user)
+        @include('templates/cms/mcp', ['user' => $user])
+    @endif
 </header>

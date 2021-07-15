@@ -11,9 +11,17 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
     protected $section;
+    protected $user;
 
     public function getSections(Request $request, $section = 'home')
+
     {
+        if ($request->session()->exists('user')) {
+            $this->user = $request->session()->get('user');
+        } else {
+            $this->user = [];
+        }
+
         $this->section = $this->getSection($section, true);
 
         return $this->render();
@@ -58,6 +66,7 @@ class PageController extends Controller
 
 
             $view = $this->section->view;
+            $user = $this->user;
 
             /* Section content retrieving */
             $contents = $this->retrieveSectionContents();
@@ -67,7 +76,8 @@ class PageController extends Controller
                 'menu',
                 'menu_tree',
                 'contents',
-                'section_ids'
+                'section_ids',
+                'user'
             ]));
 
         }
