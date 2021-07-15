@@ -15,3 +15,16 @@ function mcpToggle(src) {
 
     return false;
 }
+
+function showUserControlPanel(src) {
+    let ucp = document.body.querySelector('#ucp_pad');
+    let status = ucp.className;
+
+    if (status == 'off') {
+        let scr = getCoordsRect(src);
+        ucp.classList = 'on';
+        ucp.style.top = scr.top + 'px';
+        ucp.style.left = scr.left + scr.width + 10 - ucp.offsetWidth + 'px';
+        ucp.style.zIndex = 11;
+    }
+}

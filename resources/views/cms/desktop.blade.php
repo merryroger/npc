@@ -7,8 +7,11 @@
     <title>НПЦ - система управления</title>
     <style>
         @include('styles/fonts')
+        @include('styles/cms/default')
         @include('styles/substyles/mcp')
     </style>
+    <script src="/js/common.js" type="text/javascript"></script>
+    <script src="/js/ajax.js" type="text/javascript"></script>
     <script src="/js/cms/mcp.js" type="text/javascript"></script>
 </head>
 <body>

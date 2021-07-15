@@ -13,6 +13,7 @@
     --ftr-clr: #bbb;
     --ftr-lnk: #bbccdd;
     --sqmnu-brd: #ccc;
+    --blue-lt: #ccddee;
     --subpn-brd: #ddd;
     --def-bgr: #fff;
 }
