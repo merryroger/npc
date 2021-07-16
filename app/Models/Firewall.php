@@ -13,7 +13,7 @@ class Firewall extends Model
     {
         $conditions = "(INET_ATON(\"{$_SERVER['REMOTE_ADDR']}\") & ip) = ip";
 
-        $fwlSet = $query->whereRaw($conditions)->where('off', 0)->get();
+        $fwlSet = $query->whereRaw($conditions)->where('off', 0)->skip(0)->take(1)->get();
 
         if (!$fwlSet->count()) {
             return ['bitmask' => 0x0, 'authtype' => []];
@@ -27,7 +27,7 @@ class Firewall extends Model
                 ];
             } else {
                 $carry['bitmask'] &= $item['bitmask'];
-                $carry['authtype'] = array_intersect($carry['authtype'], $item['authtype']);
+                $carry['authtype'] = $item['authtype'];
             }
 
             return $carry;
