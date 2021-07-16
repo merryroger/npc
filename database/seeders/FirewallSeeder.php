@@ -22,6 +22,14 @@ class FirewallSeeder extends Seeder
                 'authtype' => 'login,email',
                 'created_at' => now(),
                 'updated_at' => now()
+            ],
+            [
+                'ip' => 0x0,
+                'mask' => 0x0,
+                'bitmask' => 0x00ffffff,
+                'authtype' => 'email',
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ];
 
