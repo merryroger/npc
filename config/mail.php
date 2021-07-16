@@ -84,7 +84,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'oblfin7@kurganobl.ru'),
+        'address' => env('MAIL_FROM_ADDRESS', 'rokin_al@kurganobl.ru'),
         'name' => env('MAIL_FROM_NAME', 'Техническая поддержка сайта npc45'),
     ],
 
