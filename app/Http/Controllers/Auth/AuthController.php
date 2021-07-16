@@ -7,12 +7,14 @@ use App\Models\Firewall;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
     protected $retcode = 404;
+    protected const LOCK_TIME = 5;
 
     public function checkAuthCode(Request $request)
     {
@@ -21,7 +23,6 @@ class AuthController extends Controller
 
         if (Cache::has($key)) {                                 // Checking presence of the key in our cache
             $user = Cache::pull($key);
-            //$user_model = User::valid()->find($user_id);        // Trying to pick user`s data as model
 
             if ($user != null) {                          // All the next actions for true user only
                 switch (strtolower($type)) {
@@ -46,7 +47,6 @@ class AuthController extends Controller
 
         if (Cache::has($key)) {
             $user = Cache::pull($key);
-            //$user_model = User::valid()->find($user_id);
 
             if ($user != null) {
                 switch (strtolower($auth_type)) {
@@ -57,7 +57,34 @@ class AuthController extends Controller
                             $_response['retcode'] = 304;
                             $_response['cms_redirect'] = base64_encode(route('cms'));
                         } else {
+                            $user['tries'] -= 1;
+                            if ($user['tries']) {
+                                $key_hash = Hash::make(microtime(true), ['rounds' => 14]);
+                                $this->setCache($user, $key_hash);
+                                $authtypes = $user['authtype'];
+                                $tries = $user['tries'];
+                                $_response['message_panel'] = view('services.auth_pass_wrong', compact([
+                                    'authtypes',
+                                    'tries',
+                                    'key_hash'
+                                ]))->render();
+                            } else {
+                                $ltm = $this::LOCK_TIME;
+                                $user_model = User::valid()->find($user['id']);
 
+                                DB::table('users')
+                                    ->where('id', '=', $user_model->id)
+                                    ->update([
+                                        'locked_till' => DB::raw("DATE_ADD(NOW(), INTERVAL {$ltm} MINUTE)"),
+                                        'updated_at' => DB::raw("NOW()")
+                                ]);
+
+                                $_response['message_panel'] = view('services.user_locked', compact([
+                                    'ltm'
+                                ]))->render();
+                            }
+
+                            $_response['retcode'] = 200;
                         }
 
                         break;

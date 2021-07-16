@@ -373,4 +373,15 @@ form.resp__holder {
     font-family: "PT Sans", sans-serif;
 }
 
+p.resp__error {
+    margin-bottom: 20px;
+    padding: 5px 5pt;
+    color: #ffff00;
+    background-color: #990000;
+    line-height: 1.2;
+    font-size: 9pt;
+    font-family: "PT Sans", sans-serif;
+}
+
+
 /**** End of response panel ****/
