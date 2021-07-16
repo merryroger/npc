@@ -357,12 +357,20 @@ div#auth_ctrls {
     cursor: pointer;
 }
 
-form#auth_type_selector {
+form.resp__holder {
     padding: 20px 20pt;
+    max-width: 200px;
     border: 1px solid var(--subpn-brd);
     border-radius: 10px;
     background-color: var(--def-bgr);
     box-shadow: 6px 6px 8px rgba(0,0,0,0.75);
+}
+
+.resp__holder p {
+    margin-bottom: 20px;
+    color: var(--smnu-bgr);
+    font-size: 11pt;
+    font-family: "PT Sans", sans-serif;
 }
 
 /**** End of response panel ****/

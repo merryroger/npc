@@ -71,13 +71,19 @@ function showResponsePanel(data) {
         document.body.insertAdjacentElement('beforeEnd', respHolder);
     }
 
-    respHolder.innerHTML = data;
+    respHolder.innerHTML = unamp(data);
 
     respHolder.classList.remove('off');
     respHolder.style.top = '10px';
     respHolder.style.right = '10px';
     respHolder.style.zIndex = 10;
     respHolder.classList.add('on');
+}
+
+function hideResponsePanel() {
+    respHolder.classList.remove('on');
+    respHolder.classList.add('off');
+    respHolder.innerHTML = '';
 }
 
 function checkTypeSend(fm) {

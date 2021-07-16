@@ -33,6 +33,7 @@ div#mcp_pan {
 }
 
 nav.cms__mmnu {
+    margin: 0 10pt;
     flex-grow: 1;
     display: flex;
 }
@@ -57,8 +58,12 @@ div#ucp_pad {
 #mcp_pan p {
     margin: 0 5pt;
     color: var(--def-bgr);
+    cursor: default;
+}
+
+.mcp__ctrls p {
     border-bottom: 1px dotted var(--blue-lt);
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 #ucp_pad a {

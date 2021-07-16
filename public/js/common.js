@@ -25,4 +25,21 @@ function getCoordsRect(elem) {
     return {top: etop, left: eleft, height: cr.height, width: cr.width};
 }
 
+function unamp(text) {
+    let rules = {
+        '&amp;': '&',
+        '&gt;': '>',
+        '&lt;': '<',
+        '&quot;': '"',
+        '&laquo;': '«',
+        '&raquo;': '»'
+    };
+
+    for (let [rule, value] of Object.entries(rules)) {
+        text = text.split(rule).join(value);
+    }
+
+    return text;
+}
+
 onload = __setup;

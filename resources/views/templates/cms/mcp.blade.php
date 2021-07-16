@@ -1,8 +1,16 @@
 <div id="mcp_pad" class="pushed">
     <div id="mcp_pan">
         <nav class="cms__mmnu">
-            <a href="/">Сайт</a>
-            <a href="/cms">CMS</a>
+            @php
+                $route = \Illuminate\Support\Facades\Route::current()->getName();
+            @endphp
+            @if ($route == 'guest.lvl1.sections')
+                <p>Сайт</p>
+                <a href="/cms">CMS</a>
+            @else
+                <a href="/">Сайт</a>
+                <p>CMS</p>
+            @endif
         </nav>
         <div class="mcp__ctrls">
             <p onclick="showUserControlPanel(this)">{!! $user['name'] !!}</p>

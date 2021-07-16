@@ -81,7 +81,8 @@ class AuthController extends Controller
 
         if ($request->method() == 'POST') {
             if ($request->session()->has('user')) {
-
+                $_response['message_panel'] = view('services.auth_already_exists')->render();
+                $this->retcode = 200;
             } elseif (User::valid()->count() > 0) {
                 $fwl = $this->checkFirewall();
                 if ($fwl['bitmask'] && $fwl['authtype']) {
