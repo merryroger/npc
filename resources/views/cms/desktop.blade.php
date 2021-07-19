@@ -12,6 +12,7 @@
     </style>
     <script src="/js/common.js" type="text/javascript"></script>
     <script src="/js/ajax.js" type="text/javascript"></script>
+    <script src="/js/cms/desktop.js" type="text/javascript"></script>
     <script src="/js/cms/mcp.js" type="text/javascript"></script>
 </head>
 <body>

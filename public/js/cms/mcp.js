@@ -26,5 +26,7 @@ function showUserControlPanel(src) {
         ucp.style.top = scr.top + 'px';
         ucp.style.left = scr.left + scr.width + 10 - ucp.offsetWidth + 'px';
         ucp.style.zIndex = 11;
+
+        openMenuLevel(0, 'ucp', ucp);
     }
 }

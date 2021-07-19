@@ -20,6 +20,6 @@
         <div class="tongue" onclick="return mcpToggle(this)"><p class="pushed">︽</p></div>
     </div>
 </div>
-<div id="ucp_pad" class="off">
+<div id="ucp_pad" data-level="0" class="off">
     <a href="/logout">Выйти</a>
 </div>
