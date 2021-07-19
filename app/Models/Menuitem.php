@@ -30,6 +30,11 @@ class Menuitem extends Model
         return $query->where('access_group_id', $access_group)->orderBy('node')->orderBy('level')->orderBy('order');
     }
 
+    public function scopeByLevel($query, $lvl)
+    {
+        return $query->where('level', $lvl);
+    }
+
     public function scopeStructure($query, $access_group, $show_hidden = false)
     {
         $menuset = $query->accessgroup($access_group)->validItems($show_hidden)->get();

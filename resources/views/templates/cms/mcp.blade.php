@@ -9,7 +9,7 @@
                 <a href="/cms">CMS</a>
             @else
                 <a href="/">Сайт</a>
-                <p>CMS</p>
+                <p onpointerover="showCMSMenu(this, 0)">CMS</p>
             @endif
         </nav>
         <div class="mcp__ctrls">
@@ -19,6 +19,9 @@
     <div id="mcp_tng">
         <div class="tongue" onclick="return mcpToggle(this)"><p class="pushed">︽</p></div>
     </div>
+</div>
+<div id="cmm_pad" data-level="0" class="off">
+{!! serialize($menu_collection) !!}
 </div>
 <div id="ucp_pad" data-level="0" class="off">
     <a href="/logout">Выйти</a>

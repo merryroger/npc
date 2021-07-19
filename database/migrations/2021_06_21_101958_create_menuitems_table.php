@@ -24,6 +24,7 @@ class CreateMenuitemsTable extends Migration
             $table->string('purpose')->default('');
             $table->string('mnemo')->default('');
             $table->string('url')->default('');
+            $table->enum('behaviour', ['link', 'folder'])->default('link');
             $table->unsignedInteger('section_id')->nullable()->default(null);
             $table->boolean('hidden')->default(false);
             $table->boolean('off')->default(false);

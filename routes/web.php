@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('authorized')->group(function () {
     Route::name('cms')->group(function () {
         Route::namespace('CMS')->group(function () {
+            Route::get('/cms/{section}', 'CmsController@handleSection')->where('section', '[a-z_]*')->name('.lvl1.sections');
             Route::get('/cms', 'CmsController@handle');
         });
     });

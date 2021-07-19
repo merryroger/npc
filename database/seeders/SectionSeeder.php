@@ -23,7 +23,47 @@ class SectionSeeder extends Seeder
                 'template' => 'templates.guest.homepage',
                 'created_at' => now(),
                 'updated_at' => now()
-            ]
+            ],
+            [
+                'id' => 51,
+                'bip' => 0x00ffffff,
+                'name' => 'photos',
+                'entry_point' => 'templates.cms.default',
+                'gen_view' => 'cms',
+                'template' => 'templates.cms.photos',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 52,
+                'bip' => 0x00ffffff,
+                'name' => 'videos',
+                'entry_point' => 'templates.cms.default',
+                'gen_view' => 'cms',
+                'template' => 'templates.cms.videos',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 53,
+                'bip' => 0x00ffffff,
+                'name' => 'banners',
+                'entry_point' => 'templates.cms.default',
+                'gen_view' => 'cms',
+                'template' => 'templates.cms.banners',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 61,
+                'bip' => 0x00ffffff,
+                'name' => 'news',
+                'entry_point' => 'templates.cms.default',
+                'gen_view' => 'cms',
+                'template' => 'templates.cms.news',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
         ];
 
         foreach ($data as $portion) {
