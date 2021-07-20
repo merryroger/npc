@@ -3,7 +3,8 @@
 let mm_current = null;
 let ptrOver = null;
 let targets = {
-    'ucp': (src) => { return src.closest('#ucp_pad'); }
+    'ucp': (src) => { return src.closest('#ucp_pad'); },
+    'cmm_main': (src) => { return src.closest('#cmm_main'); }
 };
 
 let menuStack = [];
@@ -13,7 +14,7 @@ function initDesktop() {
 }
 
 function hangListeners() {
-    ptrOver = document.body.addEventListener('pointerover', dtPointerOver);
+    ptrOver = document.addEventListener('pointerover', dtPointerOver);
 }
 
 function dtPointerOver(e) {

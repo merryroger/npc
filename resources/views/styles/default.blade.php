@@ -383,5 +383,4 @@ p.resp__error {
     font-family: "PT Sans", sans-serif;
 }
 
-
 /**** End of response panel ****/

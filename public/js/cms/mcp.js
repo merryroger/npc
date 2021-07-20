@@ -30,3 +30,24 @@ function showUserControlPanel(src) {
         openMenuLevel(0, 'ucp', ucp);
     }
 }
+
+function showCMSMenu(src, lvl, purpose) {
+    let cp = document.body.querySelector(`#cmm_${purpose}`);
+    let status = cp.className;
+
+    if (status == 'off') {
+        let scr = getCoordsRect(src);
+        cp.classList = 'on';
+        cp.style.top = scr.top + 'px';
+        cp.style.left = scr.left + 'px';
+        cp.style.zIndex = 10 + +lvl;
+
+        openMenuLevel(+lvl, `cmm_${purpose}`, cp);
+    }
+
+}
+
+function getSubmenu(agrp, node, mode, level, parent) {
+    console.log(agrp, node, mode, level, parent);
+    return false;
+}

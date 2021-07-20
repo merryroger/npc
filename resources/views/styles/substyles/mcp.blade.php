@@ -45,7 +45,7 @@ div.mcp__ctrls {
     display: flex;
 }
 
-div#ucp_pad {
+div#ucp_pad, div#cmm_main {
     position: absolute;
     padding: 10px 0;
     background-color: var(--mmnu-clr);
@@ -53,6 +53,8 @@ div#ucp_pad {
     border-radius: 5px;
     font-size: 11pt;
     font-family: "PT Sans", sans-serif;
+    flex-direction: column;
+    display: flex;
 }
 
 #mcp_pan p {
@@ -64,6 +66,18 @@ div#ucp_pad {
 .mcp__ctrls p {
     border-bottom: 1px dotted var(--blue-lt);
     cursor: pointer !important;
+}
+
+#cmm_main a {
+    margin-bottom: 1px;
+    padding: 5px 15pt;
+    color: var(--mmnu-clr);
+    text-decoration: none;
+    background-color: var(--def-bgr);
+}
+
+#cmm_main a:hover {
+    background-color: var(--xlt-gray);
 }
 
 #ucp_pad a {

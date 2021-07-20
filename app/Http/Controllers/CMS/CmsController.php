@@ -11,8 +11,16 @@ class CmsController extends Controller
     public function handle(Request $request)
     {
         $user = $request->session()->get('user');
-        $menu_collection = Menuitem::validItems()->accessgroup(1)->byLevel(0)->get();
+        $menu = $this->getMainMenu();
+        $mtree = $menu['_tree_'];
 
-        return view('cms.desktop', compact(['user', 'menu_collection']));
+        unset($menu['_tree_']);
+
+        return view('cms.desktop', compact(['user', 'menu']));
     }
+
+    protected function getMainMenu() {
+        return Menuitem::mainCMS(1);
+    }
+
 }

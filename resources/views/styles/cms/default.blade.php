@@ -8,6 +8,7 @@
     --mmnu-abg: #666;
     --ftr-lnk: #bbccdd;
     --blue-lt: #ccddee;
+    --xlt-gray: #eee;
     --def-bgr: #fff;
 }
 

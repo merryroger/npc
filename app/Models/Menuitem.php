@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use function PHPSTORM_META\elementType;
 
 class Menuitem extends Model
 {
@@ -35,6 +36,38 @@ class Menuitem extends Model
         return $query->where('level', $lvl);
     }
 
+    public function scopeByPurpose($query, $purpose)
+    {
+        return $query->where('purpose', $purpose);
+    }
+
+    public function scopeMainCMS($query, $access_group, $purpose = null, $show_hidden = false)
+    {
+        if (isset($purpose)) {
+            $menuset = $query->accessgroup($access_group)->byLevel(0)->byPurpose($purpose)->validItems($show_hidden)->get();
+        } else {
+            $menuset = $query->accessgroup($access_group)->byLevel(0)->validItems($show_hidden)->get();
+        }
+
+        if (!$menuset->count()) {
+            return (isset($purpose)) ? [] : ['main' => [], '_tree_' => []];
+        }
+
+        if (isset($purpose)) {
+            return $menuset->map(function ($item, $key) {
+                return collect($item)->except([
+                    'order',
+                    'purpose',
+                    'off',
+                    'created_at',
+                    'updated_at'
+                ])->all();
+            })->all();
+        } else {
+            return $this->reduceMenuSet($menuset);
+        }
+    }
+
     public function scopeStructure($query, $access_group, $show_hidden = false)
     {
         $menuset = $query->accessgroup($access_group)->validItems($show_hidden)->get();
@@ -43,6 +76,11 @@ class Menuitem extends Model
             return ['main' => [], '_tree_' => []];
         }
 
+        return $this->reduceMenuSet($menuset);
+
+    }
+
+    protected function reduceMenuSet($menuset) {
         return $menuset->reduce(function ($carry, $item) {
             if (!$carry)
                 $carry = [];
@@ -55,6 +93,7 @@ class Menuitem extends Model
                 'parent' => $item->parent,
                 'mnemo' => $item->mnemo,
                 'url' => $item->url,
+                'behaviour' => $item->behaviour,
                 'section_id' => $item->section_id
             ];
 
