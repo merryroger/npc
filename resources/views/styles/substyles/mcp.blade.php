@@ -45,7 +45,7 @@ div.mcp__ctrls {
     display: flex;
 }
 
-div#ucp_pad, div#cmm_main {
+div#ucp_pad, div#cmm_main, div#cmm_sub_lvl_1 {
     position: absolute;
     padding: 10px 0;
     background-color: var(--mmnu-clr);
@@ -55,6 +55,13 @@ div#ucp_pad, div#cmm_main {
     font-family: "PT Sans", sans-serif;
     flex-direction: column;
     display: flex;
+}
+
+div#cmm_sub_lvl_1.sm__await {
+    padding: 10px;
+    width: 41px;
+    height: 41px;
+    background: var(--mmnu-clr) url("/images/accessories/menu_await.gif") center center no-repeat;
 }
 
 #mcp_pan p {

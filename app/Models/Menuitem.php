@@ -31,9 +31,19 @@ class Menuitem extends Model
         return $query->where('access_group_id', $access_group)->orderBy('node')->orderBy('level')->orderBy('order');
     }
 
+    public function scopeByNode($query, $node)
+    {
+        return $query->where('node', $node);
+    }
+
     public function scopeByLevel($query, $lvl)
     {
         return $query->where('level', $lvl);
+    }
+
+    public function scopeByParent($query, $parent)
+    {
+        return $query->where('parent', $parent);
     }
 
     public function scopeByPurpose($query, $purpose)
@@ -80,7 +90,34 @@ class Menuitem extends Model
 
     }
 
-    protected function reduceMenuSet($menuset) {
+    public function scopeSubMenu($query, $params)
+    {
+        $menuset = $query
+            ->accessgroup($params['access_group'])
+            ->byNode($params['node'])
+            ->byLevel($params['level'])
+            ->byParent($params['parent'])
+            ->validItems(false)
+            ->get();
+
+        if (!$menuset->count()) {
+            return [];
+        }
+
+        return $menuset->map(function ($item, $key) {
+            return collect($item)->except([
+                'order',
+                'hidden',
+                'off',
+                'created_at',
+                'updated_at'
+            ])->all();
+        })->all();
+
+    }
+
+    protected function reduceMenuSet($menuset)
+    {
         return $menuset->reduce(function ($carry, $item) {
             if (!$carry)
                 $carry = [];

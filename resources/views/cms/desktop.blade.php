@@ -17,5 +17,8 @@
 </head>
 <body>
     @include('templates/cms/mcp', ['user' => $user])
+    <form id="cms_defaults">
+        @csrf
+    </form>
 </body>
 </html>

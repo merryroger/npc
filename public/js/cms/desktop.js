@@ -1,10 +1,18 @@
 'use strict';
 
+let rq_sent = false;
 let mm_current = null;
 let ptrOver = null;
 let targets = {
-    'ucp': (src) => { return src.closest('#ucp_pad'); },
-    'cmm_main': (src) => { return src.closest('#cmm_main'); }
+    'ucp': (src) => {
+        return src.closest('#ucp_pad');
+    },
+    'cmm_main': (src) => {
+        return src.closest('#cmm_main');
+    },
+    'cmm_sub_lvl_1': (src) => {
+        return src.closest('#cmm_sub_lvl_1');
+    },
 };
 
 let menuStack = [];
@@ -15,6 +23,25 @@ function initDesktop() {
 
 function hangListeners() {
     ptrOver = document.addEventListener('pointerover', dtPointerOver);
+}
+
+function getToken(selector) {
+    return document.body.querySelector(selector)._token.value;
+}
+
+function sendPOSTRequest(url, params, wcbFunc) {
+    if (rq_sent) {
+        return false;
+    }
+
+    let pms = [
+        `_token=${getToken('#cms_defaults')}`
+    ];
+
+    pms = params.concat(pms);
+
+    AJAX.post(url, pms.join('&'), wcbFunc);
+    rq_sent = true;
 }
 
 function dtPointerOver(e) {

@@ -19,7 +19,22 @@ class CmsController extends Controller
         return view('cms.desktop', compact(['user', 'menu']));
     }
 
-    protected function getMainMenu() {
+    public function handleMenuRequest(Request $request)
+    {
+        $params = $request->only([
+            'access_group',
+            'node',
+            'level',
+            'parent'
+        ]);
+
+        $submenu = Menuitem::subMenu($params);
+
+        return response()->json($submenu);
+    }
+
+    protected function getMainMenu()
+    {
         return Menuitem::mainCMS(1);
     }
 
