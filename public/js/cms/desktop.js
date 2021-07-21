@@ -54,7 +54,7 @@ function dtPointerOver(e) {
         mm_current = target;
         handleOverState(e);
     } else if (mm_current != null && target == null) {
-        handleOutState(e);
+        handleOutState(e, true);
         mm_current = target;
     }
 }
@@ -86,9 +86,10 @@ function handleOverState(e) {
 
 }
 
-function handleOutState(e) {
+function handleOutState(e, full_stack = false) {
     if (mm_current !== null) {
-        let level = +mm_current.target.getAttribute('data-level');
+        let level = (full_stack) ? 0 : +mm_current.target.getAttribute('data-level');
+
         closeMenuStack(level - 1);
     }
 }
@@ -117,7 +118,6 @@ function openMenuLevel(lvl, name, target) {
         target: target
     }
 
-    //closeMenuStack(lvl - 1);
     menuStack[lvl] = mItem;
 }
 

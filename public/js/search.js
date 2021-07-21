@@ -54,6 +54,7 @@ function selectMode(src) {
         if (pf.classList.contains('h')) {
             pf.classList.remove('h');
             fm.passwd.required = true;
+            setTimeout(pfFocus, 100);
         }
     } else {
         if (!pf.classList.contains('h')) {
@@ -78,6 +79,14 @@ function showResponsePanel(data) {
     respHolder.style.right = '10px';
     respHolder.style.zIndex = 10;
     respHolder.classList.add('on');
+    pfFocus();
+}
+
+function pfFocus() {
+    let fm = document.body.querySelector("form#auth_type_selector");
+    let mode = fm.auth_type.options[fm.auth_type.selectedIndex].value;
+    if (mode == 'login')
+        fm.passwd.focus();
 }
 
 function hideResponsePanel() {

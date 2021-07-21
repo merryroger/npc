@@ -16,4 +16,10 @@ return [
     'researchist' => 'История исследований',
     'restoration' => 'Реставрация',
     'temples' => 'Храмы',
+    'cms' => [
+        'banners' => 'Баннеры',
+        'news' => 'Новости',
+        'photos' => 'Фото',
+        'videos' => 'Видео'
+    ]
 ];

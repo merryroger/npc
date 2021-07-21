@@ -82,6 +82,7 @@ function showCMSSubMenu(id, lvl, src, data = null) {
 function getSubmenu(agrp, node, mode, level, parent, src) {
     let id = `menuid_${parent}`;
     let subMenu = localStorage.getItem(id);
+    //localStorage.clear();
 
     if (subMenu == null) {
         let pms = [
@@ -95,18 +96,96 @@ function getSubmenu(agrp, node, mode, level, parent, src) {
         sendPOSTRequest('/cms/menu', pms, loadSubmenu);
         showCMSSubMenu(+parent, +level, src);
     } else {
-
+        let sm = JSON.parse(subMenu);
+        let smScheme = selectSubmenuScheme(sm);
+        showCMSSubMenu(+parent, +level, src);
+        buildSubmenu(sm, smScheme);
     }
-
-    //console.log(subMenu);
 
     return false;
 }
 
 function loadSubmenu(resp) {
-    let sm = JSON.parse(resp);
+    try {
+        let sm = JSON.parse(resp);
+        let smScheme = selectSubmenuScheme(sm);
+        let parent = buildSubmenu(sm, smScheme);
+        let id = `menuid_${parent}`;
+        localStorage.setItem(id, resp);
+    } catch(e) {
 
-    for (let i = 0; i < sm.length; i++) {
-        console.log(sm[i]);
+    } finally {
+        rq_sent = false;
     }
+}
+
+function buildSubmenu(sm, scheme) {
+    let holder;
+    let level;
+    let parent;
+    let mItem;
+    let mItems = [];
+    for (let i = 0; i < sm.length; i++) {
+        mItem = document.createElement('a');
+        mItem.id = `smi_id_${sm[i].id}`;
+        mItem.setAttribute("data-id", sm[i].id);
+        mItem.setAttribute("data-agrp", sm[i].access_group_id);
+        mItem.setAttribute("data-node", sm[i].node);
+        mItem.setAttribute("data-mode", sm[i].mode);
+        mItem.setAttribute("data-level", sm[i].level);
+        mItem.setAttribute("data-parent", sm[i].parent);
+        level = +sm[i].level;
+        parent = +sm[i].parent;
+        if (sm[i].behaviour == 'link') {
+            mItem.href = sm[i].url;
+        }
+
+        mItem.innerHTML = sm[i].mnemo;
+        mItem.style.width = (isNaN(scheme.itemWidth)) ? scheme.itemWidth : scheme.itemWidth + 'px';
+
+        mItems[mItems.length] = mItem;
+    }
+
+    holder = document.body.querySelector(`#cmm_sub_lvl_${level}`);
+    if (holder.classList.contains('sm__await')) {
+        holder.classList.remove('sm__await');
+        holder.style.width = 'auto';
+        holder.style.height = 'auto';
+    }
+
+    holder.style.maxWidth = (isNaN(scheme.itemWidth)) ? scheme.holderMaxWidth : scheme.holderMaxWidth + 'px';
+    holder.style.flexDirection = scheme.holderDirection;
+    holder.style.flexWrap = scheme.holderWrap;
+
+    holder.append(...mItems);
+
+    return parent;
+}
+
+function selectSubmenuScheme(sm) {
+    let smScheme = {};
+
+    if (sm.length > 12) {
+        smScheme.itemWidth = 200;
+        smScheme.holderMaxWidth = 4 * smScheme.itemWidth + 30;
+        smScheme.holderDirection = 'row';
+        smScheme.holderWrap = 'wrap';
+    } else if (sm.length > 6) {
+        smScheme.itemWidth = 200;
+        smScheme.holderMaxWidth = 3 * smScheme.itemWidth + 30;
+        smScheme.holderDirection = 'row';
+        smScheme.holderWrap = 'wrap';
+    } else if (sm.length > 3) {
+        smScheme.itemWidth = 200;
+        smScheme.holderMaxWidth = 2 * smScheme.itemWidth + 30;
+        smScheme.holderDirection = 'row';
+        smScheme.holderWrap = 'wrap';
+    } else {
+        smScheme.itemWidth = 'auto';
+        smScheme.holderMaxWidth = 'auto';
+        smScheme.holderDirection = 'column';
+        smScheme.holderWrap = 'wrap';
+    }
+
+    return smScheme;
 }

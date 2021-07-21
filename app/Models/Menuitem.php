@@ -105,6 +105,8 @@ class Menuitem extends Model
         }
 
         return $menuset->map(function ($item, $key) {
+            $item['mnemo'] = trans('menu.cms.' . $item['mnemo']);
+
             return collect($item)->except([
                 'order',
                 'hidden',
@@ -112,6 +114,7 @@ class Menuitem extends Model
                 'created_at',
                 'updated_at'
             ])->all();
+
         })->all();
 
     }
