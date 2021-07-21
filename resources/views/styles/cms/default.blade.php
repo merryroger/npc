@@ -6,6 +6,7 @@
     --blk-clr:  #000;
     --mmnu-clr: #555;
     --mmnu-abg: #666;
+    --blue-br: #3399ff;
     --ftr-lnk: #bbccdd;
     --blue-lt: #ccddee;
     --xlt-gray: #eee;

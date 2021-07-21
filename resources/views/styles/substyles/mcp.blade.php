@@ -87,13 +87,22 @@ div#cmm_sub_lvl_1.sm__await {
     background-color: var(--xlt-gray);
 }
 
-#ucp_pad a {
+#ucp_pad a, #cmm_sub_lvl_1 a {
     padding: 5px 10pt;
     color: var(--ftr-lnk);
 }
 
-#ucp_pad a:hover {
-    background-color: var(--mmnu-abg);
+#ucp_pad a, #cmm_sub_lvl_1 a {
+    text-decoration: none;
+}
+
+#cmm_sub_lvl_1 a:hover > span, #ucp_pad a:hover > span {
+    border-bottom: 1px solid var(--blue-br);
+}
+
+#cmm_sub_lvl_1 a:hover, #ucp_pad a:hover {
+    color: var(--def-bgr);
+    background-color: var(--blk-clr);
 }
 
 #mcp_pan a {

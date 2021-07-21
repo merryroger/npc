@@ -50,6 +50,7 @@ function showCMSMenu(src, lvl, purpose) {
 function showCMSSubMenu(id, lvl, src, data = null) {
     let hid = `cmm_sub_lvl_${lvl}`;
     let holder = document.body.querySelector(`#${hid}`);
+    let scr = getCoordsRect(src);
 
     if (holder == null) {
         holder = document.createElement('div');
@@ -59,15 +60,19 @@ function showCMSSubMenu(id, lvl, src, data = null) {
         document.body.appendChild(holder);
     }
 
-    let status = holder.className;
-
-    if (status == 'off') {
-        let scr = getCoordsRect(src);
+    //let status = holder.className;
+    //if (status == 'off') {
+    //    holder.classList = 'on';
+    //    holder.style.top = scr.top + 'px';
+    //    holder.style.left = scr.left + scr.width - 5 + 'px';
+    //    holder.style.zIndex = 11 + +lvl;
+    //} else {
+        holder.innerHTML = '';
         holder.classList = 'on';
         holder.style.top = scr.top + 'px';
         holder.style.left = scr.left + scr.width - 5 + 'px';
         holder.style.zIndex = 11 + +lvl;
-    }
+    //}
 
     if (data == null) {
         holder.innerHTML = '';
@@ -140,7 +145,7 @@ function buildSubmenu(sm, scheme) {
             mItem.href = sm[i].url;
         }
 
-        mItem.innerHTML = sm[i].mnemo;
+        mItem.innerHTML = `<span>${sm[i].mnemo}</span>`;
         mItem.style.width = (isNaN(scheme.itemWidth)) ? scheme.itemWidth : scheme.itemWidth + 'px';
 
         mItems[mItems.length] = mItem;

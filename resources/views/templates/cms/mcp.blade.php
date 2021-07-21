@@ -35,5 +35,5 @@
     @endforeach
 </div>
 <div id="ucp_pad" data-level="0" class="off">
-    <a href="/logout">Выйти</a>
+    <a href="/logout"><span>Выйти</span></a>
 </div>

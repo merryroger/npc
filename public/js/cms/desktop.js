@@ -2,6 +2,7 @@
 
 let rq_sent = false;
 let mm_current = null;
+let mm_source = null;
 let ptrOver = null;
 let targets = {
     'ucp': (src) => {
@@ -46,16 +47,24 @@ function sendPOSTRequest(url, params, wcbFunc) {
 
 function dtPointerOver(e) {
     let target = checkTargets(e);
+
     if (mm_current == null && target != null) {
         mm_current = target;
+        mm_source = target.src;
         handleOverState(e);
-    } else if (mm_current != null && target != null && mm_current.target != target.target) {
-        handleOutState(e);
-        mm_current = target;
-        handleOverState(e);
+    } else if (mm_current != null && target != null) {
+        if (mm_current.target != target.target) {
+            handleOutState(e);
+            mm_current = target;
+            mm_source = target.src;
+            handleOverState(e);
+        } else if (mm_source != target.src) {
+            mm_source = target.src;
+        }
     } else if (mm_current != null && target == null) {
         handleOutState(e, true);
         mm_current = target;
+        mm_source = null;
     }
 }
 
@@ -68,7 +77,8 @@ function checkTargets(e) {
             _tg = {
                 th: 0,
                 name: key,
-                target: _tgt_
+                target: _tgt_,
+                src: e.target
             };
 
             return _tg;
@@ -98,7 +108,7 @@ function closeMenuStack(floorLevel) {
     let mItem;
     for (let l = menuStack.length - 1; l > floorLevel; l--) {
         mItem = menuStack[l];
-        mItem.th = setTimeout(`shutMenuLevel(${l})`, 100);
+        mItem.th = setTimeout(`shutMenuLevel(${l})`, 10);
     }
 }
 
@@ -133,6 +143,7 @@ function shutMenuLevel(lvl) {
         return;
 
     mItem.target.innerHTML = '';
+
 }
 
 __tasks[__tasks.length] = initDesktop;
