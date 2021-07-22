@@ -29,7 +29,7 @@ class AuthController extends Controller
                     case 'authentication':
                         $session = $request->session();
                         $this->prepareSession($user, $session);
-                        return redirect()->route('cms');
+                        return redirect()->route('cms.root');
                     default:
                 }
                 dd($user);
@@ -55,7 +55,7 @@ class AuthController extends Controller
                             $session = $request->session();
                             $this->prepareSession($user, $session);
                             $_response['retcode'] = 304;
-                            $_response['cms_redirect'] = base64_encode(route('cms'));
+                            $_response['cms_redirect'] = base64_encode(route('cms.root'));
                         } else {
                             $user['tries'] -= 1;
                             if ($user['tries']) {

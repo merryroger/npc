@@ -146,4 +146,8 @@ function shutMenuLevel(lvl) {
 
 }
 
+function raiseFlashError(msg) {
+    alert(msg);
+}
+
 __tasks[__tasks.length] = initDesktop;

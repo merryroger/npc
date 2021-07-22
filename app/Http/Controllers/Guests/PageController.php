@@ -63,8 +63,6 @@ class PageController extends Controller
             $section_ids = $menu['_sids_'];
             unset($menu['_tree_'], $menu['_sids_']);
 
-
-
             $view = $this->section->view;
             $user = $this->user;
 

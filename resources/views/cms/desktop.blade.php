@@ -20,5 +20,9 @@
     <form id="cms_defaults">
         @csrf
     </form>
+    @yield('contents')
+    @if (session()->has('error'))
+        <script>raiseFlashError('{!! session()->get('error') !!}');</script>
+    @endif
 </body>
 </html>

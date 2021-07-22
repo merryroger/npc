@@ -60,19 +60,11 @@ function showCMSSubMenu(id, lvl, src, data = null) {
         document.body.appendChild(holder);
     }
 
-    //let status = holder.className;
-    //if (status == 'off') {
-    //    holder.classList = 'on';
-    //    holder.style.top = scr.top + 'px';
-    //    holder.style.left = scr.left + scr.width - 5 + 'px';
-    //    holder.style.zIndex = 11 + +lvl;
-    //} else {
-        holder.innerHTML = '';
-        holder.classList = 'on';
-        holder.style.top = scr.top + 'px';
-        holder.style.left = scr.left + scr.width - 5 + 'px';
-        holder.style.zIndex = 11 + +lvl;
-    //}
+    holder.innerHTML = '';
+    holder.classList = 'on';
+    holder.style.top = scr.top + 'px';
+    holder.style.left = scr.left + scr.width - 5 + 'px';
+    holder.style.zIndex = 11 + +lvl;
 
     if (data == null) {
         holder.innerHTML = '';
@@ -117,7 +109,7 @@ function loadSubmenu(resp) {
         let parent = buildSubmenu(sm, smScheme);
         let id = `menuid_${parent}`;
         localStorage.setItem(id, resp);
-    } catch(e) {
+    } catch (e) {
 
     } finally {
         rq_sent = false;
