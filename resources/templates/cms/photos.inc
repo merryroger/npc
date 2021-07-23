@@ -8,8 +8,9 @@ $this->config = [
 
     'blocks' => 1,
     'contents' => [
-        'contents' => [
-            'template' => 'templates.empty',
+        'list' => [
+            'provider' => 'photocollector',
+            'template' => 'templates.cms.collections.photos',
         ],
     ],
 

@@ -5,13 +5,14 @@ namespace App\Http\Controllers\CMS;
 use App\Http\Controllers\Controller;
 use App\Models\Menuitem;
 use App\Models\Section;
-use ehwas\documents\DocShow;
+use ehwas\documents\ExtDocShow;
 use Illuminate\Http\Request;
 
 class CmsController extends Controller
 {
     protected $section;
     protected $user;
+    protected $request;
 
     public function handle(Request $request)
     {
@@ -40,6 +41,7 @@ class CmsController extends Controller
 
     public function handleSection(Request $request, $section_name)
     {
+        $this->request = $request->request->all();
         $section = Section::valid(true)->sectionByName($section_name)->get();
 
         if ($section->count()) {
@@ -61,8 +63,11 @@ class CmsController extends Controller
 
     protected function retrieveSectionContents()
     {
-        $docShow = new DocShow();
-        $contents = $docShow->retrieveContents($this->section->get('template'));
+        $mode = (isset($this->request['opcode'])) ? $this->request['opcode'] : 'list';
+        $out = (isset($this->request['out'])) ? $this->request['out'] : null;
+
+        $docShow = new extDocShow();
+        $contents = $docShow->retrieveContents($this->section->get('template'), [], $mode, $out);
         $docShow->__destruct();
         unset($docShow);
 

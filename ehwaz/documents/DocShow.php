@@ -38,7 +38,7 @@ class DocShow
         }
     }
 
-    protected function parseConfig($extra_data): void
+    protected function parseConfig($extra_data, $block_name = null, $out_name = null): void
     {
         if ($this->config == null || !isset($this->config['contents'])) {
             return;
