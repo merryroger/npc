@@ -13,7 +13,7 @@
             @endif
         </nav>
         <div class="mcp__ctrls">
-            <p onclick="showUserControlPanel(this)">{!! $user['name'] !!}</p>
+            <p onpointerover="showUserControlPanel(this)">{!! $user['name'] !!}</p>
         </div>
     </div>
     <div id="mcp_tng">

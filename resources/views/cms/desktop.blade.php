@@ -8,6 +8,7 @@
     <style>
         @include('styles/fonts')
         @include('styles/cms/default')
+        @include('styles/cms/datalist')
         @include('styles/substyles/mcp')
     </style>
     <script src="/js/common.js" type="text/javascript"></script>
