@@ -1,5 +1,7 @@
 'use strict';
 
+const imgURL = '/cms/images';
+
 let formPadLR = null;
 let formPadOn = false;
 
@@ -21,8 +23,29 @@ function getImageAddForm(src) {
         formPadLR.style.zIndex = 6;
         formPadLR.classList.add('on');
 
-        // send data request here
+        let pms = [
+            'opcode=RIAF',
+        ];
+
+        sendPOSTRequest(imgURL, pms, buildImageAddForm);
 
         formPadOn = true;
+    }
+}
+
+function buildImageAddForm(resp) {
+    let rsp = null;
+    try {
+        rsp = JSON.parse(resp);
+        if (rsp.success == 0) {
+            rq_sent = false;
+            setError(rsp);
+        } else {
+            
+        }
+    } catch (e) {
+
+    } finally {
+
     }
 }

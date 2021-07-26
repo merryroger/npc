@@ -10,9 +10,15 @@ use Illuminate\Http\Request;
 
 class CmsController extends Controller
 {
+    //const CMS_ERROR_SET_DIR = __DIR__ . '/../../../../resources/errors';
+
+    const ERR_UNKNOWN_ERROR = 0x00;
+    const ERR_INVALID_SECTION_REQUESTED = 0x01;
+
     protected $section;
     protected $user;
     protected $request;
+    protected $response;
 
     public function handle(Request $request)
     {
@@ -45,7 +51,7 @@ class CmsController extends Controller
         $section = Section::valid(true)->sectionByName($section_name)->get();
 
         if ($section->count()) {
-            $this->section = $section->map(function ($item, $ley) {
+            $this->section = $section->map(function ($item, $key) {
                 return collect($item)->except([
                     'off',
                     'created_at',
@@ -59,6 +65,21 @@ class CmsController extends Controller
         } else {
             return redirect()->route('cms.root')->with('error', @trans('cms.errors.no_section'));
         }
+    }
+
+    protected function handleSectionRequest(Request $request, $section_name)
+    {
+        $this->response = [];
+        $this->request = $request->request->all();
+        $section = Section::valid(true)->sectionByName($section_name . 'di')->first();
+
+        if ($section != null) {
+            $this->response = $section;
+        } else {
+            $this->response = $this->setError($this::ERR_INVALID_SECTION_REQUESTED, 'default');
+        }
+
+        return response()->json($this->response);
     }
 
     protected function retrieveSectionContents()
@@ -99,6 +120,17 @@ class CmsController extends Controller
             'user'
         ]));
 
+    }
+
+    protected function setError($erc, $section, $options = []) {
+        $errresp = [
+            'success' => 0,
+            'errorcode' => $erc,
+            'section' => $section,
+            'options' => $options
+        ];
+
+        return $errresp;
     }
 
 }

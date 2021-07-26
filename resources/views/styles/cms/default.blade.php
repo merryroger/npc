@@ -60,4 +60,14 @@ div#veil {
     background: var(--xlt-gray) url("/images/accessories/veil_await.gif") center center no-repeat;
 }
 
+div#error_veil {
+    position: absolute;
+    background-color: var(--blk-clr);
+    opacity: .85;
+}
+
+.error__veil__await {
+    background: var(--blk-clr) url("/images/accessories/error_veil_await.gif") center center no-repeat;
+}
+
 /**** End of Veil section ****/

@@ -1,5 +1,7 @@
 'use strict';
 
+const errURL = '/cms/errors';
+
 let rq_sent = false;
 let mm_current = null;
 let mm_source = null;
@@ -148,6 +150,24 @@ function shutMenuLevel(lvl) {
 
 function raiseFlashError(msg) {
     alert(msg);
+}
+
+function setError(data) {
+    if (!errVeilOn) {
+        raiseErrorVeil(20, true);
+
+        let pms = [
+            `errorcode=${data.errorcode}`,
+            `section=${data.section}`,
+            `options=${data.options}`,
+        ];
+
+        sendPOSTRequest(errURL, pms, showErrors);
+    }
+}
+
+function showErrors(resp) {
+    console.log(resp);
 }
 
 __tasks[__tasks.length] = initDesktop;
