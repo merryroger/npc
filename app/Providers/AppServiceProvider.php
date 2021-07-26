@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use ehwas\documents\collections\PhotoCollectionProvider;
-use ehwas\documents\collections\PhotoCollector;
+use ehwas\documents\collections\ImageCollectionProvider;
+use ehwas\documents\collections\ImageCollector;
 use ehwas\documents\tyrion\TyrionDocumentProvider;
 use ehwas\documents\tyrion\TyrionReader;
 use ehwas\news\NewslineProvider;
@@ -42,9 +42,9 @@ class AppServiceProvider extends ServiceProvider
             return new NewslineProvider(new NewslineReader());
         });
 
-        app()->bind('photocollector', PhotoCollectionProvider::class);
-        app()->bind(PhotoCollectionProvider::class, function($api) {
-            return new PhotoCollectionProvider(new PhotoCollector());
+        app()->bind('imagecollector', ImageCollectionProvider::class);
+        app()->bind(ImageCollectionProvider::class, function($api) {
+            return new ImageCollectionProvider(new ImageCollector());
         });
     }
 }

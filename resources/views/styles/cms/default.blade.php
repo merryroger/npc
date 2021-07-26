@@ -46,4 +46,18 @@ body {
     display: none;
 }
 
-/*** End of general section ****/
+/**** End of general section ****/
+
+/**** Veil section ****/
+
+div#veil {
+    position: absolute;
+    background-color: var(--xlt-gray);
+    opacity: .92;
+}
+
+.veil__await {
+    background: var(--xlt-gray) url("/images/accessories/veil_await.gif") center center no-repeat;
+}
+
+/**** End of Veil section ****/

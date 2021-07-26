@@ -18,6 +18,7 @@ return [
     'temples' => 'Храмы',
     'cms' => [
         'banners' => 'Баннеры',
+        'images' => 'Изображения',
         'news' => 'Новости',
         'photos' => 'Фото',
         'videos' => 'Видео'

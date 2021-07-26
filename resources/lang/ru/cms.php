@@ -2,7 +2,10 @@
 
     return [
         'data' => [
+            'add' => 'Добавить',
+            'filter_panel' => 'Панель фильтров',
             'no_data' => 'Нет данных',
+            'imagecollection' => 'Коллекция изображений',
             'photocollection' => 'Коллекция фотографий',
         ],
         'errors' => [

@@ -120,10 +120,14 @@ function buildSubmenu(sm, scheme) {
     let holder;
     let level;
     let parent;
+    let typeLink;
+    let here;
     let mItem;
     let mItems = [];
     for (let i = 0; i < sm.length; i++) {
-        mItem = document.createElement('a');
+        typeLink = (sm[i].behaviour == 'link');
+        here = (document.location.pathname == sm[i].url);
+        mItem = (typeLink && here) ? document.createElement('p') : document.createElement('a');
         mItem.id = `smi_id_${sm[i].id}`;
         mItem.setAttribute("data-id", sm[i].id);
         mItem.setAttribute("data-agrp", sm[i].access_group_id);
@@ -133,7 +137,7 @@ function buildSubmenu(sm, scheme) {
         mItem.setAttribute("data-parent", sm[i].parent);
         level = +sm[i].level;
         parent = +sm[i].parent;
-        if (sm[i].behaviour == 'link') {
+        if (typeLink) {
             mItem.href = sm[i].url;
         }
 

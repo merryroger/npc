@@ -8,15 +8,15 @@ namespace ehwas\documents\collections;
 
 use ehwaz\interfaces\ExtendedDocumentProvider;
 
-class PhotoCollectionProvider implements ExtendedDocumentProvider
+class ImageCollectionProvider implements ExtendedDocumentProvider
 {
 
     private $collector;
     //private $parameters = ['base_dir' => '', 'page' => 1, 'xslt' => []];
 
-    public function __construct(PhotoCollector $photoCollector)
+    public function __construct(ImageCollector $imageCollector)
     {
-        $this->collector = $photoCollector;
+        $this->collector = $imageCollector;
     }
 
     public function load($src, ...$params)

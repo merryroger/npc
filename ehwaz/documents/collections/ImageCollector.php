@@ -7,7 +7,7 @@
 namespace ehwas\documents\collections;
 
 
-class PhotoCollector extends Collections
+class ImageCollector extends Collections
 {
 
     public function __construct()

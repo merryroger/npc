@@ -87,6 +87,13 @@ div#cmm_sub_lvl_1.sm__await {
     background-color: var(--xlt-gray);
 }
 
+#cmm_sub_lvl_1 p {
+    padding: 5px 10pt;
+    color: var(--xlt-gray);
+    background-color: var(--mmnu-abg);
+    cursor: default;
+}
+
 #ucp_pad a, #cmm_sub_lvl_1 a {
     padding: 5px 10pt;
     color: var(--ftr-lnk);

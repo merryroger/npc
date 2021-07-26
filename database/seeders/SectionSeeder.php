@@ -27,10 +27,10 @@ class SectionSeeder extends Seeder
             [
                 'id' => 51,
                 'bip' => 0x00ffffff,
-                'name' => 'photos',
+                'name' => 'images',
                 'entry_point' => 'templates.cms.default',
-                'gen_view' => 'cms.desktop',
-                'template' => 'templates.cms.photos',
+                'gen_view' => 'cms.collections',
+                'template' => 'templates.cms.images',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -39,7 +39,7 @@ class SectionSeeder extends Seeder
                 'bip' => 0x00ffffff,
                 'name' => 'videos',
                 'entry_point' => 'templates.cms.default',
-                'gen_view' => 'cms.desktop',
+                'gen_view' => 'cms.collections',
                 'template' => 'templates.cms.videos',
                 'created_at' => now(),
                 'updated_at' => now()
@@ -49,7 +49,7 @@ class SectionSeeder extends Seeder
                 'bip' => 0x00ffffff,
                 'name' => 'banners',
                 'entry_point' => 'templates.cms.default',
-                'gen_view' => 'cms.desktop',
+                'gen_view' => 'cms.collections',
                 'template' => 'templates.cms.banners',
                 'created_at' => now(),
                 'updated_at' => now()
