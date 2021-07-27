@@ -16,7 +16,7 @@ trait Transcoders
         return $app['default_encoding'];
     }
 
-    public function recode($data): void
+    public function recode(&$data): void
     {
         $encoding = array_shift($data);
         $default_encoding = $this->getEncoding();
@@ -32,7 +32,7 @@ trait Transcoders
         foreach ($data as &$buffer) {
             switch ($encoding) {
                 case 'windows-1251':
-                    $buffer = iconv('cp1251', $encoding, $buffer);
+                    $buffer = iconv('cp1251', $default_encoding, $buffer);
                     break;
                 default:
                     $buffer = iconv($encoding, $default_encoding, $buffer);

@@ -201,7 +201,7 @@ function showErrors(resp) {
     } catch (e) {
 
     } finally {
-
+        rq_sent = true;
     }
 }
 

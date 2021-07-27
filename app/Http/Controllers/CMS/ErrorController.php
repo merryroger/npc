@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ErrorController extends Controller
 {
+
+    use \ehwaz\traits\XMLParsers;
+    use \ehwaz\traits\Transcoders;
+
     const CMS_ERROR_SET_DIR = __DIR__ . '/../../../../resources/errors';
     const TRIES_TO_GET_ERROR = 5;
 
@@ -34,7 +38,9 @@ class ErrorController extends Controller
             $this->getDefaultErrorResponse();
         }
 
-        return response()->json($this->response);
+        $this->applyOptions();
+
+        return $this->render();
     }
 
     private function exploreLibPath($errdata)
@@ -59,12 +65,31 @@ class ErrorController extends Controller
             $this->resetRequestData($this::ERR_CORRUPTED_ERROR_DATA_SOURCE, $options);
             return false;
         }
+
+        if (!$dataset = $this->splitAndRecode($contents)) {
+            $this->resetRequestData($this::ERR_INVALID_ERROR_DATA_SOURCE, $options);
+            return false;
+        }
+
+        unset($contents);
+
+        if (!$this->pickDescription($dataset)) {
+            $this->resetRequestData($this::ERR_UNKNOWN_ERROR, $options);
+            return false;
+        }
+
+        $this->pickControls($dataset);
+
+        $dataset['options'] = $this->options;
+        $this->response = $dataset;
+
+        return true;
     }
 
     private function resetRequestData($erc, &$errdata)
     {
         $this->libPath = realpath($this::CMS_ERROR_SET_DIR . '/errors.xml');
-        $this->errCode = erc;
+        $this->errCode = $erc;
         $this->options['section'] = $errdata['section'];
         $this->options['errorcode'] = $errdata['errorcode'];
     }
@@ -84,13 +109,109 @@ class ErrorController extends Controller
         return ($sect == 'errors') ? 'default' : $sect;
     }
 
+    private function splitAndRecode(&$contents)
+    {
+        $search = [
+            'language' => app()->getLocale(),
+            'encoding' => '([\w\d_-]+)'
+        ];
+
+        if (!$errDataSet = $this->tagParser('errorset', $search, $contents, true)) {
+            return false;
+        }
+
+        if (!$errDataSet[] = $this->pickTagSubdata('controls', $contents)) {
+            return false;
+        }
+
+        $search['encoding'] = $errDataSet[1];
+        unset($errDataSet[0]);
+        $this->recode($errDataSet);
+        $search['dataset'] = array_shift($errDataSet);
+        $search['controls'] = array_shift($errDataSet);
+        unset($errDataSet);
+
+        return $search;
+    }
+
+    private function pickDescription(&$dataset)
+    {
+        $mnemo = $this->buldErrorMnemoCode();
+        $search = ['type' => '(error|warning)'];
+        if (!$descr = $this->tagParser($mnemo, $search, $dataset['dataset'], true)) {
+            return false;
+        }
+
+        $dataset['type'] = $descr[1];
+        $dataset['description'] = $descr[2];
+        unset($descr, $dataset['dataset']);
+
+        return true;
+    }
+
+    private function applyOptions()
+    {
+        $pattern = '#=@([\w_]+)\s#';
+        if ($inserts = $this->multDataParser($pattern, $this->response['description'])) {
+            foreach ($inserts[0] as $idx => $insert) {
+                $ins = "@{$inserts[1][$idx]}";
+                switch (strtolower($ins)) {
+                    case '@herc':
+                        if (isset($this->response['options']['errorcode'])) {
+                            $erc = intval($this->response['options']['errorcode']);
+                            $opt = '0' . $this->buldErrorMnemoCode($erc);
+                        }
+                        break;
+                }
+
+                $this->response['description'] = preg_replace("%{$insert}%", $opt, $this->response['description']);
+            }
+        }
+    }
+
+    private function pickControls(&$dataset)
+    {
+        $ctrls = [];
+        $mnemo = $this->buldErrorMnemoCode();
+        $search = ['label' => '([0-9A-Za-z_]+)'];
+        if ($ctset = $this->tagParser($mnemo, $search, $dataset['controls'])) {
+            foreach ($ctset[1] as $idx => $label) {
+                $ctrl['label'] = trans($label);
+                $ctrl['handler'] = view($ctset[2][$idx])->render();
+                $ctrls[] = view('cms.errors.components.button', compact(['ctrl']))->render();
+            }
+        } else {
+            $ctrl['label'] = trans('cms.errors.ok');
+            $ctrl['handler'] = view('cms.errors.nop')->render();
+            $ctrls[] = view('cms.errors.components.button', compact(['ctrl']))->render();
+        }
+
+        $dataset['controls'] = view('cms.errors.components.controls', compact(['ctrls']))->render();
+        unset($ctrls);
+    }
+
+    private function buldErrorMnemoCode($erc = null)
+    {
+        $mnemo = ($erc == null) ? dechex($this->errCode) : dechex($erc);
+        return (strlen($mnemo) % 2) ? "x0{$mnemo}" : "x{$mnemo}";
+    }
+
     private function getDefaultErrorResponse()
     {
         $type = trans('cms.errors.error');
         $description = trans('cms.errors.def_error');
-        $this->response['view'] = view('cms.deferror', compact([
+        $this->response['view'] = view('cms.errors.deferror', compact([
             'type', 'description'
         ]))->render();
+    }
+
+    private function render()
+    {
+        $this->response['errorcode'] = '0' . $this->buldErrorMnemoCode($this->errCode);
+        $errorSet = $this->response;
+        $response['view'] = view('cms.errors.components.panel', compact(['errorSet']))->render();
+
+        return response()->json($response);
     }
 
 }

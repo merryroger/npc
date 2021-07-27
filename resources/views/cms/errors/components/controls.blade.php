@@ -1,1 +1,5 @@
-<button type="button" onclick="doAction(this, {!! $ctrl['handler'] !!}">{!! $ctrl['label'] !!}</button>
+<section class="error__controls">
+    @foreach($ctrls as $button)
+        {!! $button !!}
+    @endforeach
+</section>
