@@ -41,7 +41,7 @@ function buildImageAddForm(resp) {
             rq_sent = false;
             setError(rsp);
         } else {
-            
+
         }
     } catch (e) {
 

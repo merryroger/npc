@@ -10,8 +10,6 @@ use Illuminate\Http\Request;
 
 class CmsController extends Controller
 {
-    //const CMS_ERROR_SET_DIR = __DIR__ . '/../../../../resources/errors';
-
     const ERR_UNKNOWN_ERROR = 0x00;
     const ERR_INVALID_SECTION_REQUESTED = 0x01;
 

@@ -6,6 +6,8 @@ let rq_sent = false;
 let mm_current = null;
 let mm_source = null;
 let ptrOver = null;
+let errLR = null;
+let errOn = false;
 let targets = {
     'ucp': (src) => {
         return src.closest('#ucp_pad');
@@ -30,6 +32,12 @@ function hangListeners() {
 
 function getToken(selector) {
     return document.body.querySelector(selector)._token.value;
+}
+
+function doAction(src, handler) {
+    let fm = src.closest("#error_form");
+    handler(fm);
+    dropErrorVeil();
 }
 
 function sendPOSTRequest(url, params, wcbFunc) {
@@ -167,7 +175,42 @@ function setError(data) {
 }
 
 function showErrors(resp) {
-    console.log(resp);
+    let rsp;
+    try {
+        rsp = JSON.parse(resp);
+
+        if (errLR == null) {
+            errLR = document.createElement('div');
+            errLR.id = 'error_pad';
+            errLR.className = 'off';
+
+            document.body.insertAdjacentElement('beforeEnd', errLR);
+        }
+
+        if (!errOn) {
+            errLR.innerHTML = rsp.view;
+            errLR.style.top = 0;
+            errLR.style.right = 0;
+            errLR.style.bottom = 0;
+            errLR.style.left = 0;
+            errLR.style.zIndex = +errVeilLR.style.zIndex + 1;
+            errLR.className = 'on';
+
+            errOn = true;
+        }
+    } catch (e) {
+
+    } finally {
+
+    }
+}
+
+function hideError() {
+    if (errOn) {
+        errLR.className = 'off';
+        errLR.innerHTML = '';
+        errOn = false;
+    }
 }
 
 __tasks[__tasks.length] = initDesktop;
