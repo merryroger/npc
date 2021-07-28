@@ -12,6 +12,9 @@ $this->config = [
             'provider' => 'imagecollector',
             'template' => 'templates.cms.collections.images',
         ],
+        'RIAF' => [
+            'template' => 'templates.cms.collections.images.load_form'
+        ]
     ],
 
 ];

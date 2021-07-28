@@ -10,6 +10,7 @@
     --blue-br: #3399ff;
     --ftr-lnk: #bbccdd;
     --blue-lt: #ccddee;
+    --lt-gr-cl: #ccc;
     --xlt-gray: #eee;
     --def-bgr: #fff;
 }
@@ -97,8 +98,8 @@ div.error__panel__header {
 }
 
 .error__panel__header h2 {
-    line-height: 1.5;
-    font-size: 13pt;
+    line-height: 1.7;
+    font-size: 11pt;
     font-family: "PT Sans", sans-serif;
 }
 

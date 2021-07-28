@@ -69,12 +69,24 @@ class CmsController extends Controller
     {
         $this->response = [];
         $this->request = $request->request->all();
-        $section = Section::valid(true)->sectionByName($section_name . 'di')->first();
+        $this->section = Section::valid(true)->sectionByName($section_name)->get()->map(function ($item, $key) {
+            return collect($item)->except([
+                'off', 'created_at', 'updated_at'
+            ]);
+        })->first();
 
-        if ($section != null) {
-            $this->response = $section;
+        if ($this->section != null) {
+            //$view = $this->section->get('gen_view');
+            $this->response = $this->retrieveSectionContents();
+
+            //$this->response['view'] = view($this->section->get('entry_point'), compact([
+            //    'view',
+            //    'contents',
+            //]))->render();
         } else {
-            $this->response = $this->setError($this::ERR_INVALID_SECTION_REQUESTED, 'default');
+            $this->response = $this->setError($this::ERR_INVALID_SECTION_REQUESTED, 'default', [
+                'section' => $section_name
+            ]);
         }
 
         return response()->json($this->response);

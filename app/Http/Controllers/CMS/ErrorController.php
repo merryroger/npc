@@ -4,6 +4,7 @@ namespace App\Http\Controllers\CMS;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use function MongoDB\BSON\fromJSON;
 
 class ErrorController extends Controller
 {
@@ -80,7 +81,7 @@ class ErrorController extends Controller
 
         $this->pickControls($dataset);
 
-        $dataset['options'] = $this->options;
+        //$dataset['options'] = $this->options;
         $this->response = $dataset;
 
         return true;
@@ -96,7 +97,7 @@ class ErrorController extends Controller
 
     private function pickErrorOptions($options = [])
     {
-        $this->options = ($options) ? $options : [];
+        $this->options = ($options) ? json_decode($options, true) : [];
     }
 
     private function pickErrorSection($path)
@@ -151,16 +152,30 @@ class ErrorController extends Controller
 
     private function applyOptions()
     {
+        $opt = '';
         $pattern = '#=@([\w_]+)\s#';
         if ($inserts = $this->multDataParser($pattern, $this->response['description'])) {
             foreach ($inserts[0] as $idx => $insert) {
                 $ins = "@{$inserts[1][$idx]}";
                 switch (strtolower($ins)) {
+                    case '@erc':
+                        if (isset($this->response['options']['errorcode'])) {
+                            $opt = intval($this->response['options']['errorcode']);
+                        }
+                        break;
                     case '@herc':
                         if (isset($this->response['options']['errorcode'])) {
                             $erc = intval($this->response['options']['errorcode']);
                             $opt = '0' . $this->buldErrorMnemoCode($erc);
                         }
+                        break;
+                    case '@section':
+                        if (isset($this->options['section']) && $this->options['section']) {
+                            $opt = ' &#171;' . $this->options['section'] . '&#187;';
+                        }
+                        break;
+                    default:
+                        continue 2;
                         break;
                 }
 

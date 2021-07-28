@@ -49,3 +49,76 @@ div#form_pad {
     background: var(--def-bgr) url("/images/accessories/form_await.gif") center center no-repeat;
 }
 
+form.image__load__form {
+    margin: 10px 10pt;
+}
+
+.image__load__form fieldset {
+    padding: 10px 16pt;
+    border-width: 0;
+    font-family: "Roboto Condensed", sans-serif;
+    //font-family: "PT Sans", sans-serif;
+    flex-direction: column;
+    display: flex;
+}
+
+.image__load__form label {
+    color: var(--mmnu-clr);
+    font-size: 14pt;
+}
+
+ol.image__selector__set {
+    margin-top: 20px;
+    font-size: 10pt;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    display: flex;
+}
+
+section.form__controls {
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+}
+
+.form__controls button {
+    margin: 0 2px;
+    padding: 2px 5pt;
+    min-width: 80px;
+    color: var(--xlt-gray);
+    border: 1px solid var(--mmnu-abg);
+    border-radius: 3pt;
+    background-color: var(--dk-gr-cl);
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+    line-height: 1.3;
+    font-size: 8pt;
+    cursor: pointer;
+}
+
+.form__controls button:active {
+    box-shadow: none;
+}
+
+.image__selector__set button {
+    margin: 2px 3pt;
+    padding: 5px 0;
+    width: 25px;
+    border: 1px solid var(--lt-gr-cl);
+    border-radius: 5px;
+}
+
+li.image__upload__elem__pad {
+    margin: 2px 3pt;
+    padding: 5px 5pt;
+    width: 96px;
+    height: 72px;
+    border: 1px solid var(--xlt-gray);
+    line-height: 2.5;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.image__upload__elem__pad input {
+
+}

@@ -54,7 +54,7 @@ class DocShow
         $contents = '';
 
         if (!isset($sets['provider'])) {
-            return view($sets['template']);
+            return view($sets['template'])->render();
         }
 
         $provider = app($sets['provider']);
@@ -70,7 +70,6 @@ class DocShow
     {
         $this->loadConfig($conf_path);
         $this->parseConfig($extra_data);
-        //   $this->render($page);
 
         return $this->contents;
     }

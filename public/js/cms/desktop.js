@@ -167,7 +167,7 @@ function setError(data) {
         let pms = [
             `errorcode=${data.errorcode}`,
             `section=${data.section}`,
-            `options=${data.options}`,
+            `options=${JSON.stringify(data.options)}`,
         ];
 
         sendPOSTRequest(errURL, pms, showErrors);
