@@ -10,6 +10,7 @@
     --blue-br: #3399ff;
     --ftr-lnk: #bbccdd;
     --blue-lt: #ccddee;
+    --red-cl: #cc0000;
     --lt-gr-cl: #ccc;
     --xlt-gray: #eee;
     --def-bgr: #fff;
@@ -46,6 +47,10 @@ body {
 
 .h {
     display: none;
+}
+
+.red {
+    color: var(--red-cl);
 }
 
 /**** End of general section ****/

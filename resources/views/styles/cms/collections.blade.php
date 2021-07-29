@@ -67,8 +67,9 @@ form.image__load__form {
     font-size: 14pt;
 }
 
-ol.image__selector__set {
+ul.image__selector__set {
     margin-top: 20px;
+    max-width: 590px;
     font-size: 10pt;
     flex-direction: row;
     flex-wrap: wrap;
@@ -104,21 +105,60 @@ section.form__controls {
     margin: 2px 3pt;
     padding: 5px 0;
     width: 25px;
-    border: 1px solid var(--lt-gr-cl);
+    color: var(--mmnu-clr);
+    border: 1px solid var(--xlt-gray);
+    background-color: var(--def-bgr);
     border-radius: 5px;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+
+.image__selector__set button:active {
+    box-shadow: none;
 }
 
 li.image__upload__elem__pad {
     margin: 2px 3pt;
     padding: 5px 5pt;
-    width: 96px;
-    height: 72px;
-    border: 1px solid var(--xlt-gray);
-    line-height: 2.5;
+    border: 1px solid var(--lt-gr-cl);
     border-radius: 5px;
+    list-style-type: none;
     cursor: pointer;
 }
 
-.image__upload__elem__pad input {
+div.img_ld_struct {
+    flex-direction: column;
+    display: flex;
+}
 
+div.img__ld__pad {
+    width: 160px;
+    height: 120px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.img__ld__pad img {
+    border-radius: 5px;
+}
+
+div.no__file__selected {
+    padding: 5px 0 0 0;
+    width: 100%;
+    color: var(--mmnu-abg);
+    font-size: 8pt;
+    flex-direction: row;
+    justify-content: space-between;
+    display: flex;
+    cursor: default;
+}
+
+.no__file__selected > * {
+    margin: 0 3px;
+}
+
+span.rm__image {
+    cursor: pointer;
 }

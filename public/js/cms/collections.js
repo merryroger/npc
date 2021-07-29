@@ -43,7 +43,7 @@ function buildImageAddForm(resp) {
         } else {
             formPadLR.className = '';
             formPadLR.innerHTML = rsp.contents;
-            formPadLR.addEventListener('click', selectImage, false);
+            formPadLR.querySelector('ul').addEventListener('click', selectImage, false);
         }
     } catch (e) {
 
@@ -54,7 +54,7 @@ function buildImageAddForm(resp) {
 
 function closeForm(src) {
     if (formPadOn) {
-        formPadLR.removeEventListener('click', selectImage, false);
+        formPadLR.querySelector('ul').removeEventListener('click', selectImage, false);
         formPadLR.className = 'off';
         formPadLR.innerHTML = '';
         formPadOn = false;
@@ -65,27 +65,79 @@ function closeForm(src) {
 }
 
 function selectImage(e) {
-    if (e.target.closest('li.image__upload__elem__pad').tagName == 'LI') {
-        pwLI = e.target;
+    if (e.target.closest('.no__file__selected') != null) {
+    } else if (e.target.closest('li.image__upload__elem__pad') != null && e.target.closest('li.image__upload__elem__pad').tagName == 'LI') {
+        pwLI = e.target.closest('li.image__upload__elem__pad');
         let fm = e.target.closest('form.image__load__form');
         let fs = fm.querySelector('input[type="file"]');
         fs.click();
         e.preventDefault();
+    } else if (e.target.tagName == 'BUTTON' && e.target.getAttribute('name') == 'another_image') {
+        addAnotherImagePlace(e.target);
     }
 }
 
 function specifyImage(fs) {
+    let ic = pwLI.querySelector('.img__ld__pad');
+    let ds = pwLI.querySelector('.no__file__selected');
+    let dc = pwLI.querySelector('.img__status')
     const img = document.createElement("img");
     img.src = URL.createObjectURL(fs.files[0]);
-    img.width = 96;
-    img.onload = function() {
-        URL.revokeObjectURL(img.src);
+
+    if (ic.hasChildNodes()) {
+        ic.removeChild(ic.childNodes[0]);
     }
 
-    pwLI.appendChild(img);
-   /*
-    const info = document.createElement("span");
-    info.innerHTML = this.files[i].name + ": " + this.files[i].size + " bytes";
-    li.appendChild(info);
-    */
+    img.onload = function () {
+        URL.revokeObjectURL(img.src);
+        if (img.width > img.height) {
+            img.width = (img.width < 160) ? img.width : 160;
+        } else {
+            img.height = (img.height < 120) ? img.height : 120;
+        }
+
+        ic.appendChild(img);
+        ds.setAttribute('data-selected', 1);
+        dc.innerHTML = 'Ок'//fs.files[0].name;
+    }
+
+    /*
+     const info = document.createElement("span");
+     info.innerHTML = this.files[i].name + ": " + this.files[i].size + " bytes";
+     li.appendChild(info);
+     */
+}
+
+function addAnotherImagePlace(src) {
+    let fm = src.closest('form.image__load__form');
+    let fs = fm.querySelector('input[type="file"]');
+    let sample = fm.querySelector('#img_ld_struct').innerHTML;
+    let ul = src.closest('ul');
+    let cap = ul.querySelectorAll('li').length;
+    if (cap < 9) {
+        let li = document.createElement('li');
+        li.className='image__upload__elem__pad';
+        ul.removeChild(src);
+        ul.appendChild(li);
+        ul.appendChild(src);
+
+        let container = document.createElement('div');
+        container.className = 'img_ld_struct';
+        container.innerHTML = sample;
+
+        li.appendChild(container);
+
+        if (cap == 8) {
+            src.classList.add('h');
+        }
+
+        pwLI = li;
+
+        fs.click();
+    }
+}
+
+function clearImage(src) {
+
+    return false;
 }
