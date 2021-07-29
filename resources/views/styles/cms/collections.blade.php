@@ -140,6 +140,10 @@ div.img__ld__pad {
     display: flex;
 }
 
+div.img__ld__pad.no__photo {
+    background: transparent url("/images/accessories/no_photo.png") center center no-repeat;
+}
+
 .img__ld__pad img {
     border-radius: 5px;
 }
@@ -157,6 +161,11 @@ div.no__file__selected {
 
 .no__file__selected > * {
     margin: 0 3px;
+}
+
+span.img__status {
+    max-width: 120px;
+    overflow: hidden;
 }
 
 span.rm__image {
