@@ -101,6 +101,12 @@ section.form__controls {
     box-shadow: none;
 }
 
+.button__disabled {
+    box-shadow: none !important;
+    opacity: .5;
+    cursor: default !important;
+}
+
 .image__selector__set button {
     margin: 2px 3pt;
     padding: 5px 0;

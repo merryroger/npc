@@ -132,6 +132,15 @@ class CmsController extends Controller
 
     }
 
+    public function uploadFiles(Request $request) {
+        for ($f = 0; $f < $request->files->count(); $f++) {
+            if ($request->hasFile("fup{$f}")) {
+                $file = $request->file("fup{$f}");
+                $file->move(public_path(), "fup{$f}.img");
+            }
+        }
+    }
+
     protected function setError($erc, $section, $options = []) {
         $errresp = [
             'success' => 0,

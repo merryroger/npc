@@ -158,6 +158,11 @@ class ErrorController extends Controller
             foreach ($inserts[0] as $idx => $insert) {
                 $ins = "@{$inserts[1][$idx]}";
                 switch (strtolower($ins)) {
+                    case '@data':
+                        if (isset($this->options['data'])) {
+                            $opt = ' ' . $this->options['data'];
+                        }
+                        break;
                     case '@erc':
                         if (isset($this->response['options']['errorcode'])) {
                             $opt = intval($this->response['options']['errorcode']);
