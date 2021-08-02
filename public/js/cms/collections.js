@@ -5,10 +5,12 @@ const imgMaxSize = 1024;
 
 let formPadLR = null;
 let formPadOn = false;
-let imageSelectedCount = 0;
+let imageSelectedCount, fId = 0;
 let canSend = false;
 let canClose = true;
 let pwLI = null;
+let uWDT = 0;
+let uth = 0;
 
 function getImageAddForm(src) {
     if (!formPadOn) {
@@ -57,7 +59,7 @@ function buildImageAddForm(resp) {
 }
 
 function closeForm(src) {
-    if (formPadOn) {
+    if (formPadOn && canClose) {
         imageSelectedCount = 0;
         formPadLR.querySelector('ul').removeEventListener('click', selectImage, false);
         formPadLR.className = 'off';
@@ -138,15 +140,17 @@ function addAnotherImagePlace(src) {
         let container = document.createElement('div');
         container.className = 'img_ld_struct';
         container.innerHTML = sample;
+        fId++;
         let fs = document.createElement('input');
         fs.type = 'file';
-        fs.name = `fup${cap}`;
+        fs.name = `fup${fId}`;
         fs.className = "h";
         fs.accept = "image/jpeg,image/jpg,image/gif,image/png,image/webp";
 
         li.appendChild(container);
         li.appendChild(fs);
         fs.onchange = specifyImage.bind(null, fs);
+        updateFieldList(fs.name, '+');
 
         if (cap == 8) {
             src.classList.add('h');
@@ -161,6 +165,7 @@ function clearImage(src) {
     let ul = src.closest('ul');
     let cap = ul.querySelectorAll('li').length;
     let li = src.closest('li');
+    let fs = li.querySelector('input[type="file"]');
 
     if (cap == 9) {
         ul.querySelector('button').classList.remove('h')
@@ -169,6 +174,7 @@ function clearImage(src) {
     if (cap > 1) {
         li.innerHTML = '';
         ul.removeChild(li);
+        updateFieldList(fs.name, '-');
         pwLI = null;
         imageSelectedCount--;
     } else {
@@ -183,7 +189,18 @@ function clearImage(src) {
 
 function checkFormControls(src) {
     let fm = src.closest('form');
+    let ul = fm.querySelector('ul');
+    let lis = Array.from(ul.querySelectorAll('li'));
     let sb = fm.send_button;
+
+    imageSelectedCount = 0;
+
+    for (let lx = 0; lx < lis.length; lx++) {
+        if (+lis[lx].querySelector('.no__file__selected').getAttribute('data-selected') == 1) {
+            imageSelectedCount++;
+        }
+    }
+
     if (imageSelectedCount == 0) {
         canSend = false;
         sb.className = 'button__disabled';
@@ -215,8 +232,73 @@ function sendImages(src) {
         canSend = false;
         for (let lx = 0; lx < lis.length; lx++) {
             lis[lx].querySelector('.rm__image').classList.add('h');
+            let dataHolder = lis[lx].querySelector('.no__file__selected');
+            if (+dataHolder.getAttribute('data-selected') == 0) {
+                let fs = lis[lx].querySelector('input[type="file"]');
+                updateFieldList(fs.name, '-');
+            } else {
+                dataHolder.classList.add('wait__upload');
+            }
         }
 
         fm.submit();
+        uWDT = 12;
+        uth = setTimeout(checkUploads, 5000);
     }
+}
+
+function updateFieldList(name, op) {
+    let fm = document.body.querySelector('form.image__load__form');
+    let fields = fm.fields.value.split(',');
+    switch (op) {
+        case '+':
+            fields[fields.length] = name;
+            break;
+        case '-':
+            let pos = fields.indexOf(name);
+            if (pos > -1) {
+                fields.splice(pos, 1);
+            }
+            break;
+    }
+
+    fm.fields.value = fields.join(',');
+}
+
+function checkUploads() {
+    let fm = document.body.querySelector('form.image__load__form');
+    let ul = fm.querySelector('ul');
+    let lis = Array.from(ul.querySelectorAll('li'));
+    let fnames = {};
+    let cap = 0;
+    let pms = [
+        'opcode=CFUP',
+    ];
+
+    for (let lx = 0; lx < lis.length; lx++) {
+        let dataHolder = lis[lx].querySelector('.no__file__selected');
+        if (+dataHolder.getAttribute('data-selected') == 1) {
+            let fs = lis[lx].querySelector('input[type="file"]');
+            fnames[lx] = fs.name;
+            cap++;
+        }
+    }
+
+    if (cap > 0) {
+        pms[pms.length] = 'fnames=' + JSON.stringify(fnames);
+        sendPOSTRequest(imgURL, pms, uploadResults);
+    }
+
+    //uth = setTimeout(checkUploads, 1000);
+}
+
+function uploadResults(resp) {
+    uWDT--;
+    if (uWDT == 0) {
+        clearTimeout(uth);
+        uth = 0;
+        return;
+    }
+
+
 }

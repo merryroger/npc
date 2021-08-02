@@ -2,6 +2,7 @@
     <fieldset>
         <label>{!! trans('cms.forms.image_load') !!}</label>
         @csrf
+        <input type="hidden" name="fields" value="fup0"/>
         <div id="img_ld_struct" class="h">
             <div class="img__ld__pad no__photo" title="{!! trans('cms.forms.select_photo') !!}"></div>
             <div data-selected="0" class="no__file__selected">
@@ -16,6 +17,7 @@
                     <div data-selected="0" class="no__file__selected">
                         <span class="img__status">{!! trans('cms.forms.no_file_selected') !!}</span>
                         <span class="rm__image red" onclick="return clearImage(this)">✖</span>
+                        <span class="upload__ok dk__green h">✔</span>
                     </div>
                     <input type="file" name="fup0" class="h" accept="image/jpeg,image/jpg,image/gif,image/png,image/webp"
                     onchange="specifyImage(this)"/>

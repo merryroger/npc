@@ -169,6 +169,10 @@ div.no__file__selected {
     margin: 0 3px;
 }
 
+.wait__upload {
+    background: var(--def-bgr) url("/images/accessories/upload_await.gif") right 8px no-repeat;
+}
+
 span.img__status {
     max-width: 120px;
     overflow: hidden;
@@ -176,4 +180,12 @@ span.img__status {
 
 span.rm__image {
     cursor: pointer;
+}
+
+span.upload__ok {
+    cursor: default;
+}
+
+iframe#file_upload {
+    display: none;
 }

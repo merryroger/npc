@@ -133,10 +133,13 @@ class CmsController extends Controller
     }
 
     public function uploadFiles(Request $request) {
+        $fields_str = ($request->has('fields')) ? $request->request->get('fields') : '';
+        $fields = ($fields_str) ? preg_split("%[\,]+%", $fields_str) : [];
+
         for ($f = 0; $f < $request->files->count(); $f++) {
-            if ($request->hasFile("fup{$f}")) {
-                $file = $request->file("fup{$f}");
-                $file->move(public_path(), "fup{$f}.img");
+            if ($request->hasFile($fields[$f])) {
+                $file = $request->file($fields[$f]);
+                $file->move(public_path() . '/../storage/reception', "{$fields[$f]}." . $file->getClientOriginalExtension());
             }
         }
     }

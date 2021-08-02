@@ -8,6 +8,7 @@
     --mmnu-clr: #555;
     --mmnu-abg: #666;
     --blue-br: #3399ff;
+    --gk-green-cl: #009900;
     --ftr-lnk: #bbccdd;
     --blue-lt: #ccddee;
     --red-cl: #cc0000;
@@ -51,6 +52,10 @@ body {
 
 .red {
     color: var(--red-cl);
+}
+
+.dk__green {
+    color: var(--gk-green-cl);
 }
 
 /**** End of general section ****/
