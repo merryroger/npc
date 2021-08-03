@@ -99,8 +99,10 @@ class CmsController extends Controller
         $mode = (isset($this->request['opcode'])) ? $this->request['opcode'] : 'list';
         $out = (isset($this->request['out'])) ? $this->request['out'] : null;
 
+        $options = collect($this->request)->except(['out', '_token'])->all();
+
         $docShow = new extDocShow();
-        $contents = $docShow->retrieveContents($this->section->get('template'), [], $mode, $out);
+        $contents = $docShow->retrieveContents($this->section->get('template'), $options, $mode, $out);
         $docShow->__destruct();
         unset($docShow);
 

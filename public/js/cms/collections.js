@@ -271,6 +271,7 @@ function checkUploads() {
     let lis = Array.from(ul.querySelectorAll('li'));
     let fnames = {};
     let fsizes = {};
+    let ftypes = {};
     let cap = 0;
     let pms = [
         'opcode=CFUP',
@@ -283,6 +284,7 @@ function checkUploads() {
             let fs = lis[lx].querySelector('input[type="file"]');
             fnames[lx] = fs.name;
             fsizes[lx] = fs.files[0].size;
+            ftypes[lx] = fs.files[0].name.split('.').splice(-1, 1)[0];
             cap++;
         }
     }
@@ -290,18 +292,52 @@ function checkUploads() {
     if (cap > 0) {
         pms[pms.length] = 'fnames=' + JSON.stringify(fnames);
         pms[pms.length] = 'fsizes=' + JSON.stringify(fsizes);
+        pms[pms.length] = 'ftypes=' + JSON.stringify(ftypes);
         sendPOSTRequest(imgURL, pms, uploadResults);
     }
 
 }
 
-function uploadResults(resp) {
-    uWDT--;
-    if (uWDT == 0) {
-        clearTimeout(uth);
-        uth = 0;
-        return;
-    }
+function walkImages(files, final_pass = false) {
+    let fm = document.body.querySelector('form.image__load__form');
+    let ul = fm.querySelector('ul');
+    let lis = Array.from(ul.querySelectorAll('li'));
 
-    uth = setTimeout(checkUploads, 5000);
+    for (let lx = 0; lx < lis.length; lx++) {
+        let dataHolder = lis[lx].querySelector('.no__file__selected');
+        if (+dataHolder.getAttribute('data-selected') == 1) {
+            let fs = lis[lx].querySelector('input[type="file"]');
+            let state = +files[fs.name];
+            if (state == 1) {
+                dataHolder.setAttribute('data-selected', '0');
+                dataHolder.classList.remove('wait__upload');
+                dataHolder.querySelector('.upload__ok').classList.remove('h');
+            } else if (final_pass) {
+                dataHolder.classList.remove('wait__upload');
+                dataHolder.querySelector('.upload__failed').classList.remove('h');
+            }
+        }
+    }
+}
+
+function uploadResults(resp) {
+    let files;
+    try {
+        let rsp = JSON.parse(resp);
+        files = JSON.parse(rsp.contents);
+    } catch (e) {
+    } finally {
+        uWDT--;
+        rq_sent = false;
+        if (uWDT == 0) {
+            walkImages(files, true);
+            clearTimeout(uth);
+            uth = 0;
+            return;
+        }
+
+        walkImages(files);
+
+        uth = setTimeout(checkUploads, 5000);
+    }
 }

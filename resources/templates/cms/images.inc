@@ -14,6 +14,10 @@ $this->config = [
         ],
         'RIAF' => [
             'template' => 'templates.cms.collections.images.load_form'
+        ],
+        'CFUP' => [
+            'provider' => 'imagecollector',
+            'reception_dir' => realpath(public_path() . '/../storage/reception'),
         ]
     ],
 
