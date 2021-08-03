@@ -243,7 +243,7 @@ function sendImages(src) {
 
         fm.submit();
         uWDT = 12;
-        uth = setTimeout(checkUploads, 5000);
+        uth = setTimeout(checkUploads, 10);
     }
 }
 
@@ -270,9 +270,11 @@ function checkUploads() {
     let ul = fm.querySelector('ul');
     let lis = Array.from(ul.querySelectorAll('li'));
     let fnames = {};
+    let fsizes = {};
     let cap = 0;
     let pms = [
         'opcode=CFUP',
+        `pack_id=${fm.pack_id.value}`
     ];
 
     for (let lx = 0; lx < lis.length; lx++) {
@@ -280,16 +282,17 @@ function checkUploads() {
         if (+dataHolder.getAttribute('data-selected') == 1) {
             let fs = lis[lx].querySelector('input[type="file"]');
             fnames[lx] = fs.name;
+            fsizes[lx] = fs.files[0].size;
             cap++;
         }
     }
 
     if (cap > 0) {
         pms[pms.length] = 'fnames=' + JSON.stringify(fnames);
+        pms[pms.length] = 'fsizes=' + JSON.stringify(fsizes);
         sendPOSTRequest(imgURL, pms, uploadResults);
     }
 
-    //uth = setTimeout(checkUploads, 1000);
 }
 
 function uploadResults(resp) {
@@ -300,5 +303,5 @@ function uploadResults(resp) {
         return;
     }
 
-
+    uth = setTimeout(checkUploads, 5000);
 }

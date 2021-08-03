@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 
 class CmsController extends Controller
 {
+    const FILE_UPLOAD_RECEPTION_DIR = '/../storage/reception';
+
     const ERR_UNKNOWN_ERROR = 0x00;
     const ERR_INVALID_SECTION_REQUESTED = 0x01;
 
@@ -132,19 +134,23 @@ class CmsController extends Controller
 
     }
 
-    public function uploadFiles(Request $request) {
+    public function uploadFiles(Request $request)
+    {
+        $path = realpath(public_path() . $this::FILE_UPLOAD_RECEPTION_DIR) . '/';
+        $path .= ($request->has('pack_id')) ? $request->request->get('pack_id') : '';
         $fields_str = ($request->has('fields')) ? $request->request->get('fields') : '';
         $fields = ($fields_str) ? preg_split("%[\,]+%", $fields_str) : [];
 
         for ($f = 0; $f < $request->files->count(); $f++) {
             if ($request->hasFile($fields[$f])) {
                 $file = $request->file($fields[$f]);
-                $file->move(public_path() . '/../storage/reception', "{$fields[$f]}." . $file->getClientOriginalExtension());
+                $file->move($path, "{$fields[$f]}." . $file->getClientOriginalExtension());
             }
         }
     }
 
-    protected function setError($erc, $section, $options = []) {
+    protected function setError($erc, $section, $options = [])
+    {
         $errresp = [
             'success' => 0,
             'errorcode' => $erc,
