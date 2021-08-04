@@ -12,12 +12,19 @@
         @include('styles/cms/collections')
         @include('styles/substyles/mcp')
     </style>
+    @php($parameters = \Illuminate\Support\Facades\Route::current()->parameters())
+    @if (isset($parameters['section']))
+    @switch($parameters['section'])
+        @case('images')
+            <script src="/js/cms/image_uploader.js" type="text/javascript"></script>
+        @break;
+    @endswitch
+    @endif
     <script src="/js/common.js" type="text/javascript"></script>
     <script src="/js/veil.js" type="text/javascript"></script>
     <script src="/js/ajax.js" type="text/javascript"></script>
     <script src="/js/cms/desktop.js" type="text/javascript"></script>
     <script src="/js/cms/collections.js" type="text/javascript"></script>
-    <script src="/js/cms/image_uploader.js" type="text/javascript"></script>
     <script src="/js/cms/mcp.js" type="text/javascript"></script>
 </head>
 <body>

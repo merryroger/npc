@@ -24,6 +24,7 @@ switch (strtoupper($extra_data['opcode'])) {
                 if (file_exists($destFile)) {
                     $fsize = filesize($destFile);
                     if (isset($fsize) && $fsize == $file_sizes[$idx]) {
+                        $provider->storeUploadedFile($destFile);
                         $out[$file_name] = 1;
                         continue;
                     }

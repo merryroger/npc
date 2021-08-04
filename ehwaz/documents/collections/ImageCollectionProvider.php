@@ -12,6 +12,7 @@ class ImageCollectionProvider implements ExtendedDocumentProvider
 {
 
     private $collector;
+
     //private $parameters = ['base_dir' => '', 'page' => 1, 'xslt' => []];
 
     public function __construct(ImageCollector $imageCollector)
@@ -22,6 +23,11 @@ class ImageCollectionProvider implements ExtendedDocumentProvider
     public function getFileUploadDir(): string
     {
         return $this->collector->getFileUploadDir();
+    }
+
+    public function storeUploadedFile($destFile): void
+    {
+        $this->collector->storeUploadedFile($destFile);
     }
 
     public function load($src, ...$params)
