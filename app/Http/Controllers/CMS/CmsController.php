@@ -5,13 +5,12 @@ namespace App\Http\Controllers\CMS;
 use App\Http\Controllers\Controller;
 use App\Models\Menuitem;
 use App\Models\Section;
+use ehwas\documents\collections\Collections;
 use ehwas\documents\ExtDocShow;
 use Illuminate\Http\Request;
 
 class CmsController extends Controller
 {
-    const FILE_UPLOAD_RECEPTION_DIR = '/../storage/reception';
-
     const ERR_UNKNOWN_ERROR = 0x00;
     const ERR_INVALID_SECTION_REQUESTED = 0x01;
 
@@ -138,10 +137,13 @@ class CmsController extends Controller
 
     public function uploadFiles(Request $request)
     {
-        $path = realpath(public_path() . $this::FILE_UPLOAD_RECEPTION_DIR) . '/';
+        $collector = new Collections();
+        $path = $collector->getFileUploadDir() . '/';
         $path .= ($request->has('pack_id')) ? $request->request->get('pack_id') : '';
         $fields_str = ($request->has('fields')) ? $request->request->get('fields') : '';
         $fields = ($fields_str) ? preg_split("%[\,]+%", $fields_str) : [];
+        $collector->__destruct();
+        unset($collector);
 
         for ($f = 0; $f < $request->files->count(); $f++) {
             if ($request->hasFile($fields[$f])) {

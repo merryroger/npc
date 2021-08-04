@@ -11,7 +11,7 @@ if (!isset($extra_data['opcode'])) {
 
 switch (strtoupper($extra_data['opcode'])) {
     case 'CFUP':
-        $checkPath = $sets['reception_dir'] . "/{$extra_data['pack_id']}";
+        $checkPath = $provider->getFileUploadDir() . "/{$extra_data['pack_id']}";
         $out = [];
         $file_names = collect(json_decode($extra_data['fnames']))->all();
         $file_sizes = collect(json_decode($extra_data['fsizes']))->all();

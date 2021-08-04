@@ -193,7 +193,7 @@ class ErrorController extends Controller
     {
         $ctrls = [];
         $mnemo = $this->buldErrorMnemoCode();
-        $search = ['label' => '([0-9A-Za-z_]+)'];
+        $search = ['label' => '([0-9A-Za-z_\.]+)'];
         if ($ctset = $this->tagParser($mnemo, $search, $dataset['controls'])) {
             foreach ($ctset[1] as $idx => $label) {
                 $ctrl['label'] = trans($label);

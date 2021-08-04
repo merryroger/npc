@@ -17,7 +17,6 @@ $this->config = [
         ],
         'CFUP' => [
             'provider' => 'imagecollector',
-            'reception_dir' => realpath(public_path() . '/../storage/reception'),
         ]
     ],
 

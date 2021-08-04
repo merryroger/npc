@@ -10,7 +10,7 @@
                 <span class="img__status">{!! trans('cms.forms.no_file_selected') !!}</span>
                 <span class="rm__image red" onclick="clearImage(this)">✖</span>
                 <span class="upload__ok dk__green h">✔</span>
-                <span class="upload__failed red h">⨻</span>
+                <span class="upload__failed red h">✖</span>
             </div>
         </div>
         <ul class="image__selector__set">
@@ -21,7 +21,7 @@
                         <span class="img__status">{!! trans('cms.forms.no_file_selected') !!}</span>
                         <span class="rm__image red" onclick="return clearImage(this)">✖</span>
                         <span class="upload__ok dk__green h">✔</span>
-                        <span class="upload__failed red h">⨻</span>
+                        <span class="upload__failed red h">✖</span>
                     </div>
                     <input type="file" name="fup0" class="h"
                            accept="image/jpeg,image/jpg,image/gif,image/png,image/webp"

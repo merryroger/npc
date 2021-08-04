@@ -6,6 +6,8 @@
     <x03 type="error">Библиотека ошибок не может быть считана.</x03>
     <x04 type="error">Библиотека ошибок повреждена или имеет неправильный формат.</x04>
     <xe0 type="error">Объём файла изображения превышает установленный лимит#=@data #.</xe0>
+    <xe1 type="error">Загрузка некоторых файлов завершилась с ошибкой.</xe1>
 </errorset>
 <controls>
+    <xe1 label="errors.ok">cms.errors.image_upload_close_enable</xe1>
 </controls>
