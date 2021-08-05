@@ -34,19 +34,13 @@ class ImageCollector extends Collections
         $image->save();
     }
 
-    /*
-    public function loadDocument($doc_path = '', $base_dir = __DIR__, $page = 1, $xslt = []): void
+    public function loadCollection($params, $extra): void
     {
-        parent::loadDocument($doc_path, $base_dir);
-
-        $this->page = $page;
-        $this->xslt = $xslt;
-
-        $this->parseDocument();
-        $this->loadPage();
-
+        $this->contents = Image::dataSet()->get()->map(function($item, $key) {
+            return collect($item)->except(['created_at', 'updated_at'])->all();
+        })->all();
     }
-
+/*
     public function getParameter($param): string
     {
         switch (strtolower($param)) {

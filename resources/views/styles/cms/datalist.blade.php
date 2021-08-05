@@ -14,6 +14,11 @@ section.data__list, section.data__list__empty {
     flex-grow: 1;
     display: flex;
 }
+
+section.data__list {
+    overflow: hidden;
+}
+
 /*
 section.data__list__empty {
     margin: auto;

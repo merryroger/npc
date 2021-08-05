@@ -13,7 +13,14 @@ class Image extends Model
 
     public function scopeTotal($query, $show_hidden = true)
     {
-        return ($show_hidden) ? $query->get()->count() : $query->where('hidden', $show_hidden)->get()->count();
+        return ($show_hidden) ? $query->get()->count() : $query->where('hidden', true)->get()->count();
+    }
+
+    public function scopeDataSet($query, $show_hidden = true)
+    {
+        $rq = ($show_hidden) ? $query : $query->where('hidden', true);
+
+        return $rq->orderBy('id', 'DESC');
     }
 
 }

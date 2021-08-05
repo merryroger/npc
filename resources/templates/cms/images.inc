@@ -17,7 +17,13 @@ $this->config = [
         ],
         'CFUP' => [
             'provider' => 'imagecollector',
-        ]
+        ],
+        'CFLD' => [
+            'provider' => 'imagecollector',
+        ],
+        'CRLD' => [
+            'provider' => 'imagecollector',
+        ],
     ],
 
 ];

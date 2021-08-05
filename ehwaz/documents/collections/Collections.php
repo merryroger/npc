@@ -38,18 +38,12 @@ class Collections
         return realpath($fupDir);
     }
 
-    /*
-        public function loadDocument($doc_path = '', $base_dir = __DIR__): void
-        {
-            $this->reset();
 
-            if (!$this->loadDocumentContents($base_dir . "/{$doc_path}")) {
-                return;
-            }
+    public function loadCollection($params, $extra): void
+    {
+    }
 
-        }
-    */
-    public function getContents(): string
+    public function getContents()
     {
         return $this->contents;
     }

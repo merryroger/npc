@@ -236,7 +236,10 @@ function sendImages(src) {
         canSend = false;
         for (let lx = 0; lx < lis.length; lx++) {
             lis[lx].querySelector('.rm__image').classList.add('h');
-            lis[lx].querySelector('img').style.cursor = 'not-allowed';
+            lis[lx].querySelector('.img__ld__pad').style.cursor = 'not-allowed';
+            if (lis[lx].querySelector('img') != null) {
+                lis[lx].querySelector('img').style.cursor = 'not-allowed';
+            }
             let dataHolder = lis[lx].querySelector('.no__file__selected');
             if (+dataHolder.getAttribute('data-selected') == 0) {
                 let fs = lis[lx].querySelector('input[type="file"]');
@@ -307,6 +310,7 @@ function walkImages(files, final_pass = false) {
     let fm = document.body.querySelector('form.image__load__form');
     let ul = fm.querySelector('ul');
     let lis = Array.from(ul.querySelectorAll('li'));
+    let needReload = false;
     let cap = 0;
 
     for (let lx = 0; lx < lis.length; lx++) {
@@ -318,6 +322,7 @@ function walkImages(files, final_pass = false) {
                 dataHolder.setAttribute('data-selected', '0');
                 dataHolder.classList.remove('wait__upload');
                 dataHolder.querySelector('.upload__ok').classList.remove('h');
+                needReload = true;
             } else if (final_pass) {
                 dataHolder.classList.remove('wait__upload');
                 dataHolder.querySelector('.upload__failed').classList.remove('h');
@@ -325,6 +330,10 @@ function walkImages(files, final_pass = false) {
                 cap++;
             }
         }
+    }
+
+    if (needReload || final_pass) {
+        reloadCollection(imgURL, 'images', reloadImageCollection, {'page': 1});
     }
 
     return cap;

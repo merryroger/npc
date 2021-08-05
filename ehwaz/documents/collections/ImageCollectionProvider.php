@@ -32,7 +32,7 @@ class ImageCollectionProvider implements ExtendedDocumentProvider
 
     public function load($src, ...$params)
     {
-
+        $this->collector->loadCollection($src, $params);
     }
 
     public function getContents()
