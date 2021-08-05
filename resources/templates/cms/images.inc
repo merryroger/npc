@@ -20,9 +20,11 @@ $this->config = [
         ],
         'CFLD' => [
             'provider' => 'imagecollector',
+            'template' => 'templates.cms.collections.images',
         ],
         'CRLD' => [
             'provider' => 'imagecollector',
+            //'template' => 'templates.cms.collections.images',
         ],
     ],
 

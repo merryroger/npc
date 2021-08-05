@@ -17,10 +17,11 @@ function reloadCollection(url, section, wcbf, options = {}) {
 }
 
 function reloadImageCollection(resp) {
-    let rsp;
+    let response = null;
     try {
-        rsp = JSON.parse(resp);
-        console.log(rsp);
+        let rsp = JSON.parse(resp);
+        response = JSON.parse(rsp.contents);
+        console.log(response);
     } catch (e) {
 
     } finally {

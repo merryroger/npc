@@ -18,8 +18,10 @@ class ImageCollector extends Collections
         parent::__construct();
     }
 
-    public function storeUploadedFile($destFile)
+    public function storeUploadedFile($destFile, $pack_id = null)
     {
+        $storage_dir = addslashes(realpath(public_path() . $this::FILE_UPLOAD_BASE_DIR));
+        $destination = preg_replace("%^({$storage_dir})%", '', $destFile);
         $id = DB::table('images')->max('id');
         $nextId = (isset($id)) ? intval($id) + 1 : 1;
         $sid = strval($nextId);
@@ -29,7 +31,10 @@ class ImageCollector extends Collections
         $sid = 'Image' . $sid;
 
         $image = new Image();
-        $image->origin = $destFile;
+        $image->origin = $destination;
+        if (isset($pack_id) && $pack_id) {
+            $image->pack_id = $pack_id;
+        }
         $image->info = $sid;
         $image->save();
     }

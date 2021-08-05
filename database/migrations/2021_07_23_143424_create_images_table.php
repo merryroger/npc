@@ -17,6 +17,7 @@ class CreateImagesTable extends Migration
             $table->increments('id');
             $table->string('origin')->unique()->default('');
             $table->string('preview')->nullable()->default(null);
+            $table->string('pack_id')->default('');
             $table->string('info', 255)->default('');
             $table->boolean('hidden')->default(false);
             $table->timestamps();

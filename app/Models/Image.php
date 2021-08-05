@@ -20,7 +20,7 @@ class Image extends Model
     {
         $rq = ($show_hidden) ? $query : $query->where('hidden', true);
 
-        return $rq->orderBy('id', 'DESC');
+        return $rq->orderByDesc('id')->orderBy('pack_id');
     }
 
 }
