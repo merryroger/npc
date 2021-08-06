@@ -13,39 +13,76 @@ class ImageLoaderController extends Controller
 
     public function loadIcon(Request $request)
     {
-        $rq = $request->get('rq');
-        $path = realpath($this::USER_STORAGE_DIR . '/' . base64_decode($rq));
-        /*        if (!isset($rq['id']) || !$rq['id']) {
-                    return;
-                }
+        if ($request->has('rq')) {
+            $rq = $request->get('rq');
+            $path = realpath($this::USER_STORAGE_DIR . '/' . base64_decode($rq));
+            $rq_width = ($request->has('width')) ? intval($request->get('width')) : 0;
+            $rq_height = ($request->has('height')) ? intval($request->get('height')) : 0;
+        } else {
+            return;
+        }
 
-                $path_parts = preg_split("/\//", $rq['id']);
+        $stream = file_get_contents($path);
+        $size = getimagesize($path);
+        $mime = $size['mime'];
 
-                $icon_index = array_pop($path_parts);
-                array_push($path_parts, 'index.xml');
-
-                $image_data = file_get_contents($this::USER_STORAGE_DIR . '/' . join('/', $path_parts));
-                $search = [ 'index' => $icon_index ];
-                if(!$ims = $this->tagParser('image', $search, $image_data, true)) {
-                    return;
-                } else {
-                    $image_path = $this::USER_STORAGE_DIR . '/' . $ims[1];
-                    unset($ims);
-                }
-
-                $size = getimagesize($image_path);
-                $mime = $size['mime'];
-
-                header("Content-Type: {$mime}");
-
-                $im=imagecreatetruecolor(36, 36);
+        header("Content-Type: {$mime}");
+        if ($rq_width || $rq_height) {
+            if ($newSizes = $this->recalcSizes($rq_width, $rq_height, $size)) {
+                $im = imagecreatetruecolor($newSizes['width'], $newSizes['height']);
                 $white = imagecolorallocate($im, 255, 255, 255);
                 imagefill($im, 0, 0, $white);
-                $src_im = @imagecreatefrompng($image_path);
-                imagecopyresampled($im ,$src_im,0,0,0,0, 36, 36, 36,36);
+                switch ($mime) {
+                    case 'image/jpeg':
+                        $src_im = @imagecreatefromjpeg($path);
+                        imagecopyresampled($im ,$src_im,0,0,0,0, $newSizes['width'], $newSizes['height'], $size[0], $size[1]);
+                        imagejpeg($im);
+                        break;
+                    case 'image/png':
+                        $src_im = @imagecreatefrompng($path);
+                        imagecopyresampled($im ,$src_im,0,0,0,0, $newSizes['width'], $newSizes['height'], $size[0], $size[1]);
+                        imagepng($im);
+                        break;
+                    case 'image/gif':
+                        $src_im = @imagecreatefromgif($path);
+                        imagecopyresampled($im ,$src_im,0,0,0,0, $newSizes['width'], $newSizes['height'], $size[0], $size[1]);
+                        imagegif($im);
+                        break;
+                    case 'image/webp':
+                        $src_im = @imagecreatefromwebp($path);
+                        imagecopyresampled($im ,$src_im,0,0,0,0, $newSizes['width'], $newSizes['height'], $size[0], $size[1]);
+                        imagewebp($im);
+                        break;
+                }
+                imagedestroy($im);
+                return;
+            }
+        }
 
-                imagepng($im);
-                imagedestroy($im);*/
-        //return $stream;
+        print $stream;
     }
+
+    protected function recalcSizes($rw, $rh, &$sizes)
+    {
+        $iw = $sizes[0];
+        $ih = $sizes[1];
+
+        if ($rw && $rh) {
+            if ($iw <= $rw && $ih <= $rh) {
+                return false;
+            }
+
+            $kw = $iw / $rw;
+            $kh = $ih / $rh;
+
+            $ratio = ($kh > $kw) ? $kh : $kw;
+        } elseif ($rw && !$rh) {
+            $ratio = $iw / $rw;
+        } elseif (!$rw && $rh) {
+            $ratio = $ih / $rh;
+        }
+
+        return ['width' => round($iw / $ratio), 'height' => round($ih / $ratio)];
+    }
+
 }

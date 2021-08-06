@@ -38,7 +38,8 @@ switch (strtoupper($extra_data['opcode'])) {
     case 'CRLD':
         $provider->load($extra_data);
         $dataset = $provider->getContents();
-        $contents = json_encode(array_merge($extra_data, ['dataset' => $dataset]));
+        $view = view($sets['template'], compact(['dataset']))->render();
+        $contents = json_encode(array_merge($extra_data, ['view' => $view]));
         break;
     default:
         $total = \App\Models\Image::total();

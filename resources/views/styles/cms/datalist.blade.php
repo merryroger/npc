@@ -51,7 +51,7 @@ section.page__band {
 }
 
 div.image__collection__frame {
-    margin: 5px;
+    margin: 8px;
     padding: 5px;
     width: auto;
     border: 1px solid var(--lt-gr-cl);
@@ -64,7 +64,19 @@ div.image__collection__frame {
 div.image__collection__pad {
     width: 200px;
     height: 150px;
-    border: 1px solid var(--lt-gr-cl);
+    padding: 5px;
+//    border: 1px solid var(--lt-gr-cl);
     border-radius: 5px;
+    background-color: var(--blk-clr);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.non__loaded {
     background: transparent url("/images/accessories/no_photo.png") center center no-repeat;
+}
+
+.image__collection__pad img {
+//    border-radius: 5px;
 }

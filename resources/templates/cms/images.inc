@@ -24,7 +24,7 @@ $this->config = [
         ],
         'CRLD' => [
             'provider' => 'imagecollector',
-            //'template' => 'templates.cms.collections.images',
+            'template' => 'templates.cms.collections.images.dataset',
         ],
     ],
 

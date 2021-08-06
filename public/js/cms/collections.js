@@ -21,11 +21,15 @@ function reloadImageCollection(resp) {
     try {
         let rsp = JSON.parse(resp);
         response = JSON.parse(rsp.contents);
-        console.log(response);
+        document.body.querySelector('section.page__band').innerHTML = response.view;
     } catch (e) {
 
     } finally {
         rq_sent = false;
     }
 
+}
+
+function imageViewReady(src) {
+    src.closest('.image__collection__pad').classList.remove('non__loaded');
 }
