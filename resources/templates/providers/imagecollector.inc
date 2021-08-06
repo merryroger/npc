@@ -42,5 +42,12 @@ switch (strtoupper($extra_data['opcode'])) {
         break;
     default:
         $total = \App\Models\Image::total();
-        $contents = view($sets['template'], compact(['total']))->render();
+        if ($total) {
+            $provider->load($extra_data);
+            $dataset = $provider->getContents();
+        } else {
+            $dataset = [];
+        }
+
+        $contents = view($sets['template'], compact(['total', 'dataset']))->render();
 }
