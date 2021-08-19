@@ -17,7 +17,7 @@ switch (strtoupper($extra_data['opcode'])) {
         $file_sizes = collect(json_decode($extra_data['fsizes']))->all();
         $file_types = collect(json_decode($extra_data['ftypes']))->all();
 
-        foreach($file_names as $idx => $file_name) {
+        foreach ($file_names as $idx => $file_name) {
             $out[$file_name] = 0;
             if (is_dir($checkPath)) {
                 $destFile = realpath($checkPath . "/{$file_name}." . $file_types[$idx]);
@@ -34,13 +34,13 @@ switch (strtoupper($extra_data['opcode'])) {
 
         $contents = json_encode($out);
         break;
-    case 'CFLD':
     case 'CRLD':
         $provider->load($extra_data);
         $dataset = $provider->getContents();
         $view = view($sets['template'], compact(['dataset']))->render();
         $contents = json_encode(array_merge($extra_data, ['view' => $view]));
         break;
+    case 'CFLD':
     default:
         $total = \App\Models\Image::total();
         if ($total) {
@@ -50,5 +50,10 @@ switch (strtoupper($extra_data['opcode'])) {
             $dataset = [];
         }
 
-        $contents = view($sets['template'], compact(['total', 'dataset']))->render();
+        if (!$extra_data['opcode']) {
+            $contents = view($sets['template'], compact(['total', 'dataset']))->render();
+        } else {
+            $view = view($sets['template'], compact(['total', 'dataset']))->render();
+            $contents = json_encode(array_merge($extra_data, ['view' => $view]));
+        }
 }

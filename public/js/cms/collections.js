@@ -21,7 +21,14 @@ function reloadImageCollection(resp) {
     try {
         let rsp = JSON.parse(resp);
         response = JSON.parse(rsp.contents);
-        document.body.querySelector('section.page__band').innerHTML = response.view;
+        switch (response.opcode) {
+            case 'CFLD':
+                document.body.querySelector('section.data__list__empty').outerHTML = response.view;
+                break;
+            case 'CRLD':
+                document.body.querySelector('section.page__band').innerHTML = response.view;
+                break;
+        }
     } catch (e) {
 
     } finally {
