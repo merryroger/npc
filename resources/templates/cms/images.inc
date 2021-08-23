@@ -26,6 +26,14 @@ $this->config = [
             'provider' => 'imagecollector',
             'template' => 'templates.cms.collections.images.dataset',
         ],
+        'TITM' => [
+            'provider' => 'imagecollector',
+            'template' => 'templates.cms.collections.images',
+        ],
+        'RITM' => [
+            'provider' => 'imagecollector',
+            'template' => 'templates.cms.collections.images.dataset',
+        ]
     ],
 
 ];

@@ -34,12 +34,16 @@ switch (strtoupper($extra_data['opcode'])) {
 
         $contents = json_encode($out);
         break;
+    case 'RITM':
+        $provider->deleteItem(intval($extra_data['recId']));
     case 'CRLD':
         $provider->load($extra_data);
         $dataset = $provider->getContents();
         $view = view($sets['template'], compact(['dataset']))->render();
         $contents = json_encode(array_merge($extra_data, ['view' => $view]));
         break;
+    case 'TITM':
+        $provider->deleteItem(intval($extra_data['recId']));
     case 'CFLD':
     default:
         $total = \App\Models\Image::total();

@@ -80,3 +80,47 @@ div.image__collection__pad {
 .image__collection__pad img {
 //    border-radius: 5px;
 }
+
+div.image__collection__item__titlebar {
+    padding: 0 5pt 4px;
+    justify-content: space-between;
+    display: flex;
+}
+
+span.image__item__controls {
+    cursor: pointer;
+}
+
+div#item_control_panel {
+    position: absolute;
+    padding: 3px 0;
+    background-color: var(--def-bgr);
+    border-width: 0;
+    border-radius: 3px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,.5);
+}
+
+div.image__item__control__list {
+    font-size: 10pt;
+    font-family: "Roboto Condensed", sans-serif;
+    flex-direction: column;
+    display: flex;
+}
+
+.image__item__control__list > a {
+    margin: 2px 0;
+    padding: 1px 5pt 3px;
+    border-bottom: 1px solid var(--def-bgr);
+    color: var(--mmnu-clr);
+    text-decoration: none;
+}
+
+.image__item__control__list > a:hover {
+    color: var(--def-bgr);
+    background-color: var(--blk-clr);
+}
+
+.image__item__control__list a:hover > span {
+    border-bottom: 1px solid var(--blue-br);
+}
+

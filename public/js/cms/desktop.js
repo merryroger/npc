@@ -18,6 +18,9 @@ let targets = {
     'cmm_sub_lvl_1': (src) => {
         return src.closest('#cmm_sub_lvl_1');
     },
+    'item_ctrl_list': (src) => {
+        return src.closest('#item_control_panel');
+    }
 };
 
 let menuStack = [];
@@ -36,7 +39,9 @@ function getToken(selector) {
 
 function doAction(src, handler) {
     let fm = src.closest("#error_form");
-    handler(fm);
+    if (!handler(fm))
+        return;
+
     dropErrorVeil();
 }
 
@@ -131,11 +136,12 @@ function clearCloseIntervals(level) {
     }
 }
 
-function openMenuLevel(lvl, name, target) {
+function openMenuLevel(lvl, name, target, postFn = null) {
     let mItem = {
         th: 0,
         name: name,
-        target: target
+        target: target,
+        post_function: postFn
     }
 
     menuStack[lvl] = mItem;
@@ -147,6 +153,9 @@ function shutMenuLevel(lvl) {
         mItem.target.classList.remove('on');
         mItem.target.classList.add('off');
         mItem.th = 0;
+        if (mItem.post_function !== null) {
+            mItem.post_function();
+        }
     }
 
     if (lvl == 0)

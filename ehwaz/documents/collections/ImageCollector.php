@@ -58,6 +58,30 @@ class ImageCollector extends Collections
 
     }
 */
+    public function deleteItem($recId): bool
+    {
+        $storage_dir = realpath(public_path() . $this::FILE_UPLOAD_BASE_DIR);
+
+        $rec = Image::find($recId);
+        $rec->delete();
+
+        $directory = pathinfo(realpath($storage_dir . $rec->origin));
+
+        if (file_exists(realpath($storage_dir . $rec->origin))) {
+            unlink(realpath($storage_dir . $rec->origin));
+        }
+
+        if (count(scandir($directory['dirname'])) == 2) {
+            rmdir($directory['dirname']);
+        }
+
+        if (!Image::total()) {
+            Image::truncate();
+        }
+
+        return true;
+    }
+
     public function __destruct()
     {
         parent::__destruct();

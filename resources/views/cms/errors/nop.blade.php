@@ -1,1 +1,1 @@
-(fm) => { hideError(); }
+(fm) => { hideError(); return true; }

@@ -45,6 +45,10 @@ class Collections
     {
     }
 
+    public function deleteItem($recId): bool
+    {
+    }
+
     public function getContents()
     {
         return $this->contents;

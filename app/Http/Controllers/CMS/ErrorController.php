@@ -192,12 +192,13 @@ class ErrorController extends Controller
     private function pickControls(&$dataset)
     {
         $ctrls = [];
+        $options = $this->options;
         $mnemo = $this->buldErrorMnemoCode();
         $search = ['label' => '([0-9A-Za-z_\.]+)'];
         if ($ctset = $this->tagParser($mnemo, $search, $dataset['controls'])) {
             foreach ($ctset[1] as $idx => $label) {
                 $ctrl['label'] = trans($label);
-                $ctrl['handler'] = view($ctset[2][$idx])->render();
+                $ctrl['handler'] = view($ctset[2][$idx], compact(['options']))->render();
                 $ctrls[] = view('cms.errors.components.button', compact(['ctrl']))->render();
             }
         } else {

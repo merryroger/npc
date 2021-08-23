@@ -128,6 +128,7 @@ section.error__controls {
 }
 
 .error__controls button {
+    margin: 0 1pt;
     padding: 1px 5pt;
     min-width: 60px;
     border: 1px solid var(--mmnu-clr);
