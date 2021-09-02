@@ -17,6 +17,7 @@
     @switch($parameters['section'])
         @case('images')
             <script src="/js/cms/image_uploader.js" type="text/javascript"></script>
+            <script src="/js/cms/image_handler.js" type="text/javascript"></script>
         @break;
     @endswitch
     @endif

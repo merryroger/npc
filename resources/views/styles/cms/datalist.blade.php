@@ -93,23 +93,22 @@ span.image__item__controls {
 
 div#item_control_panel {
     position: absolute;
-    padding: 3px 0;
+    padding: 4px 0 3px;
     background-color: var(--def-bgr);
     border-width: 0;
     border-radius: 3px;
-    box-shadow: 2px 2px 4px rgba(0,0,0,.5);
+    box-shadow: 2px 2px 5px rgba(0,0,0,.75);
 }
 
 div.image__item__control__list {
-    font-size: 10pt;
+    font-size: 8pt;
     font-family: "Roboto Condensed", sans-serif;
     flex-direction: column;
     display: flex;
 }
 
 .image__item__control__list > a {
-    margin: 2px 0;
-    padding: 1px 5pt 3px;
+    padding: 3px 5pt;
     border-bottom: 1px solid var(--def-bgr);
     color: var(--mmnu-clr);
     text-decoration: none;

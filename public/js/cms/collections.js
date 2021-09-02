@@ -18,39 +18,6 @@ function reloadCollection(url, section, wcbf, options = {}) {
     sendPOSTRequest(url, pms, wcbf);
 }
 
-function reloadImageCollection(resp) {
-    let response = null;
-    try {
-        let rsp = JSON.parse(resp);
-        response = JSON.parse(rsp.contents);
-        switch (response.opcode) {
-            case 'TITM':
-                dropErrorVeil();
-                canClose = true;
-                document.body.querySelector('section.data__list').outerHTML = response.view;
-                break;
-            case 'CFLD':
-                document.body.querySelector('section.data__list__empty').outerHTML = response.view;
-                break;
-            case 'RITM':
-                dropErrorVeil();
-                canClose = true;
-            case 'CRLD':
-                document.body.querySelector('section.page__band').innerHTML = response.view;
-                break;
-        }
-    } catch (e) {
-
-    } finally {
-        rq_sent = false;
-    }
-
-}
-
-function imageViewReady(src) {
-    src.closest('.image__collection__pad').classList.remove('non__loaded');
-}
-
 function showItemControlPanel(src) {
     let frame = src.closest('div.image__collection__frame');
     let itemId = +frame.getAttribute('data-id');
@@ -83,32 +50,12 @@ function hideItemControlPanel() {
     }
 }
 
-function deleteImageItem(src) {
-    let control = src.closest('div#item_control_panel');
-    let itemId = +control.getAttribute('data-id');
-    hideItemControlPanel();
+function buildFormPad() {
+    if (formPadLR == null) {
+        formPadLR = document.createElement('div');
+        formPadLR.id = 'form_pad';
+        formPadLR.className = 'off';
 
-    let errorset = {
-        errorcode: 0xd0,
-        section: 'images',
-        options: {
-            id: itemId
-        }
-    };
-
-    setError(errorset);
-
-    return false;
-}
-
-function executeImageDelete(url, id, page = 1, section, wcbf) {
-    let opcode = (document.body.querySelector('section.page__band').childElementCount > 1) ? 'RITM' : 'TITM';
-    let pms = [
-        `opcode=${opcode}`,
-        `recId=${id}`,
-        `page=${page}`,
-        `section=${section}`,
-    ];
-
-    sendPOSTRequest(url, pms, wcbf);
+        document.body.insertAdjacentElement('beforeEnd', formPadLR);
+    }
 }

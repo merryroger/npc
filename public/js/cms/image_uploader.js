@@ -14,14 +14,7 @@ let uth = 0;
 function getImageAddForm(src) {
     if (!formPadOn) {
         raiseVeil(5, true);
-
-        if (formPadLR == null) {
-            formPadLR = document.createElement('div');
-            formPadLR.id = 'form_pad';
-            formPadLR.className = 'off';
-
-            document.body.insertAdjacentElement('beforeEnd', formPadLR);
-        }
+        buildFormPad();
 
         formPadLR.className = 'wait__form';
         formPadLR.style.top = '50px';

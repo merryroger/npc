@@ -77,13 +77,7 @@ class CmsController extends Controller
         })->first();
 
         if ($this->section != null) {
-            //$view = $this->section->get('gen_view');
             $this->response = $this->retrieveSectionContents();
-
-            //$this->response['view'] = view($this->section->get('entry_point'), compact([
-            //    'view',
-            //    'contents',
-            //]))->render();
         } else {
             $this->response = $this->setError($this::ERR_INVALID_SECTION_REQUESTED, 'default', [
                 'section' => $section_name
