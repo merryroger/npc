@@ -74,3 +74,26 @@ function dropErrorVeil() {
     }
 }
 
+function updateVeilWaitState(veil = null, waitstate = false) {
+    let veilOnState = false;
+    let veilAwaitClass = '';
+    if (veil !== null) {
+        switch (veil) {
+            case veilLR:
+                veilOnState = veilOn;
+                veilAwaitClass = 'veil__await';
+                break;
+            case errVeilLR:
+                veilOnState = errVeilOn;
+                veilAwaitClass = 'error__veil__await';
+                break;
+        }
+    }
+
+    if (veilOnState) {
+        veil.classList.remove(veilAwaitClass);
+        if (waitstate) {
+            veil.classList.add(veilAwaitClass);
+        }
+    }
+}

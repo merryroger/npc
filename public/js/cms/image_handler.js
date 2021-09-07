@@ -74,6 +74,7 @@ function buildImageEditForm(resp) {
             formPadLR.className = '';
             formPadLR.innerHTML = contents.view;
             formPadLR.style.right = (document.body.clientWidth - formPadLR.offsetWidth) / 2 + 'px';
+            updateVeilWaitState(veilLR);
         }
     } catch (e) {
 

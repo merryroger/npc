@@ -24,6 +24,14 @@ class FirewallSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
+                'ip' => 0x0a096e00,
+                'mask' => 0xffffff00,
+                'bitmask' => 0xffffffff,
+                'authtype' => 'login,email',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
                 'ip' => 0x0,
                 'mask' => 0x0,
                 'bitmask' => 0x00ffffff,
