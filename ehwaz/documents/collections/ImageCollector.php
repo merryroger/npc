@@ -41,23 +41,38 @@ class ImageCollector extends Collections
 
     public function loadCollection($params, $extra): void
     {
-        $this->contents = Image::dataSet()->get()->map(function($item, $key) {
+        $this->contents = Image::dataSet()->get()->map(function ($item, $key) {
             return collect($item)->except(['created_at', 'updated_at'])->all();
         })->all();
     }
-/*
-    public function getParameter($param): string
+
+    /*
+        public function getParameter($param): string
+        {
+            switch (strtolower($param)) {
+                case 'contents':
+                case 'docheader':
+                case 'colontitule':
+                case 'stamps': return $this->$param;
+                default: return '';
+            }
+
+        }
+    */
+    public function getItem($recId): array
     {
-        switch (strtolower($param)) {
-            case 'contents':
-            case 'docheader':
-            case 'colontitule':
-            case 'stamps': return $this->$param;
-            default: return '';
+        $item = Image::find($recId);
+
+        if ($item == null) {
+            return [];
+        } else {
+            return Image::where('id', $recId)->get()->map(function ($item, $key) {
+                return collect($item)->except(['created_at', 'updated_at'])->all();
+            })->first();
         }
 
     }
-*/
+
     public function deleteItem($recId): bool
     {
         $storage_dir = realpath(public_path() . $this::FILE_UPLOAD_BASE_DIR);

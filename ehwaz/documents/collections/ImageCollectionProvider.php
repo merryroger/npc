@@ -35,6 +35,11 @@ class ImageCollectionProvider implements ExtendedDocumentProvider
         $this->collector->loadCollection($src, $params);
     }
 
+    public function getItem($recId): array
+    {
+        return $this->collector->getItem($recId);
+    }
+
     public function deleteItem($recId): bool
     {
         return $this->collector->deleteItem($recId);

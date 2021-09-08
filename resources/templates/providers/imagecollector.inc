@@ -36,8 +36,8 @@ switch (strtoupper($extra_data['opcode'])) {
         break;
     case 'EDIM':
         $provider->load($extra_data);
-        $dataset = $provider->getContents();
-        $view = view($sets['template'], compact(['dataset']))->render();
+        $image = $provider->getItem($extra_data['recId']);
+        $view = view($sets['template'], compact(['image']))->render();
         $contents = json_encode(array_merge($extra_data, ['view' => $view]));
         break;
     case 'RITM':

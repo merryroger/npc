@@ -1,7 +1,8 @@
 <form action="/cms/images" class="image__edit__form" enctype="multipart/form-data" method="POST" target="file_upload">
     <fieldset>
-        <label>{!! trans('cms.forms.image_edit') !!}</label>
+        <label>{!! trans('cms.forms.image_param_edit') !!}</label>
         @csrf
+        <div class="image__collection__pad non__loaded"><img loading="lazy" src="/cms/icons?rq={!! base64_encode($image['origin']) !!}&width=200&height=150" onload="imageViewReady(this)"/></div>
         <!--input type="hidden" name="fields" value="fup0"/>
         <input type="hidden" name="pack_id" value="{!! md5(now()) !!}"/>
         <div id="img_ld_struct" class="h">
