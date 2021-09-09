@@ -189,3 +189,16 @@ span.upload__ok {
 iframe#file_upload {
     display: none;
 }
+
+/**** Edit form part ****/
+
+div.image__edit__parameters {
+    margin: 7px 0 0;
+}
+
+.image__edit__parameters > p {
+    padding: 2px 0 0 5pt;
+    line-height: 1;
+    color: var(--mmnu-abg);
+    font: 400 9pt "PT Sans", sans-serif;
+}

@@ -61,11 +61,14 @@ div.image__collection__frame {
     display: inline-block;
 }
 
+div.image__edit__pad {
+    margin: 16px 0 5px;
+}
+
 div.image__collection__pad {
     width: 200px;
     height: 150px;
     padding: 5px;
-//    border: 1px solid var(--lt-gr-cl);
     border-radius: 5px;
     background-color: var(--blk-clr);
     justify-content: center;
@@ -78,7 +81,6 @@ div.image__collection__pad {
 }
 
 .image__collection__pad img {
-//    border-radius: 5px;
 }
 
 div.image__collection__item__titlebar {
@@ -122,4 +124,3 @@ div.image__item__control__list {
 .image__item__control__list a:hover > span {
     border-bottom: 1px solid var(--blue-br);
 }
-

@@ -36,7 +36,7 @@ switch (strtoupper($extra_data['opcode'])) {
         break;
     case 'EDIM':
         $provider->load($extra_data);
-        $image = $provider->getItem($extra_data['recId']);
+        $image = $provider->getItem($extra_data['recId']);// dd($image);
         $view = view($sets['template'], compact(['image']))->render();
         $contents = json_encode(array_merge($extra_data, ['view' => $view]));
         break;

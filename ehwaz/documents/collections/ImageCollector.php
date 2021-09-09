@@ -66,9 +66,18 @@ class ImageCollector extends Collections
         if ($item == null) {
             return [];
         } else {
-            return Image::where('id', $recId)->get()->map(function ($item, $key) {
+            $image = Image::where('id', $recId)->get()->map(function ($item, $key) {
                 return collect($item)->except(['created_at', 'updated_at'])->all();
             })->first();
+
+            $storage_dir = realpath(public_path() . $this::FILE_UPLOAD_BASE_DIR);
+            if (file_exists(realpath($storage_dir . $image['origin']))) {
+                $directory = pathinfo(realpath($storage_dir . $image['origin']));
+                $image += getimagesize(realpath($storage_dir . $image['origin']));
+                $image += $directory;
+            }
+
+            return $image;
         }
 
     }

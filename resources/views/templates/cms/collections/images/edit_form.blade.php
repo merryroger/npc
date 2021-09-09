@@ -2,8 +2,14 @@
     <fieldset>
         <label>{!! trans('cms.forms.image_param_edit') !!}</label>
         @csrf
-        <div class="image__collection__pad non__loaded"><img loading="lazy" src="/cms/icons?rq={!! base64_encode($image['origin']) !!}&width=200&height=150" onload="imageViewReady(this)"/></div>
-        <!--input type="hidden" name="fields" value="fup0"/>
+        <div class="image__edit__pad">
+            <div class="image__collection__pad non__loaded"><img loading="lazy" src="/cms/icons?rq={!! base64_encode($image['origin']) !!}&width=200&height=150" onload="imageViewReady(this)"/></div>
+            <div class="image__edit__parameters">
+                <p>{!! trans('cms.forms.image_type') !!}: {!! $image['mime'] !!}</p>
+                <p>{!! trans('cms.forms.image_sizes') !!}: {!! $image[0] !!}x{!! $image[1] !!} px</p>
+            </div>
+        </div>
+    <!--input type="hidden" name="fields" value="fup0"/>
         <input type="hidden" name="pack_id" value="{!! md5(now()) !!}"/>
         <div id="img_ld_struct" class="h">
             <div class="img__ld__pad no__photo" title="{!! trans('cms.forms.select_photo') !!}"></div>
@@ -34,7 +40,7 @@
         <section class="form__controls">
             <button type="button" name="close_button"
                     onclick="closeEditForm(this)">{!! trans('cms.forms.close') !!}</button>
-            <!--button type="button" name="send_button" class="button__disabled"
+        <!--button type="button" name="send_button" class="button__disabled"
                     onclick="sendImages(this)">{!! trans('cms.forms.send') !!}</button-->
         </section>
     </fieldset>
