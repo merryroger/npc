@@ -20,6 +20,9 @@ let targets = {
     },
     'item_ctrl_list': (src) => {
         return src.closest('#item_control_panel');
+    },
+    'preview_ctrl_list': (src) => {
+        return src.closest('#preview_control_panel');
     }
 };
 

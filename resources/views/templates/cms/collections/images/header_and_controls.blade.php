@@ -11,3 +11,11 @@
         <a href="/cms/images" onclick="return deleteImageItem(this)"><span data-level="0">{!! trans('cms.data.delete') !!}</span></a>
     </div>
 </div>
+<div id="preview_control_panel" class="off" data-id="0">
+    <div class="image__item__control__list">
+        <a href="/cms/images" data-type="upload" onclick="return uploadPreview(this)"><span data-level="0">{!! trans('cms.data.upload_from_file') !!}</span></a>
+        <a href="/cms/images" data-type="delete" onclick="return deletePreview(this)"><span data-level="0">{!! trans('cms.data.delete') !!}</span></a>
+        <p data-type="delete" class="h"><span data-level="0">{!! trans('cms.data.delete') !!}</span></p>
+    </div>
+</div>
+

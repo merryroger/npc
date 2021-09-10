@@ -52,9 +52,9 @@ function hideItemControlPanel() {
     }
 }
 
-function showPreviewControlPanel(src) {
-    let frame = document.getElementById('item_preview_control_panel');
-    let itemId = +frame.getAttribute('data-id');
+function showPreviewControlPanel(src, itemId) {
+    let frame = document.getElementById('preview_control_panel');
+    let hasPreview = +src.getAttribute('data-ispreview');
     if (!previewControlPanelOn) {
         if (previewControlPanel == null) {
             previewControlPanel = frame;
@@ -62,10 +62,13 @@ function showPreviewControlPanel(src) {
 
         let sRect = getCoordsRect(src);
 
+        handlePreviewControlList(previewControlPanel, hasPreview, itemId);
+
+        previewControlPanel.setAttribute('data-id', `${itemId}`);
         previewControlPanel.classList.remove('off');
         previewControlPanel.style.zIndex = 7;
         previewControlPanel.style.top = sRect.top - 2 + 'px';
-        previewControlPanel.style.left = sRect.left + 'px';// sRect.width + 5 - previewControlPanel.offsetWidth + 'px';
+        previewControlPanel.style.left = sRect.left + sRect.width + 25 - previewControlPanel.offsetWidth + 'px';
         previewControlPanel.classList.add('on');
         openMenuLevel(0, `preview_control_panel`, previewControlPanel, hidePreviewControlPanel);
 
@@ -77,6 +80,7 @@ function hidePreviewControlPanel() {
     if (previewControlPanelOn) {
         previewControlPanel.classList.remove('on');
         previewControlPanel.classList.add('off');
+        previewControlPanel.setAttribute('data-id', '0');
         previewControlPanelOn = false;
     }
 }
@@ -88,5 +92,27 @@ function buildFormPad() {
         formPadLR.className = 'off';
 
         document.body.insertAdjacentElement('beforeEnd', formPadLR);
+    }
+}
+
+function handlePreviewControlList(menuPanel, hasPreview, id) {
+    menuPanel.setAttribute('data-id', `${id}`);
+    let list = menuPanel.querySelector('.image__item__control__list').querySelectorAll('[data-type="delete"]');
+    if (list.length > 0) {
+        list.forEach((item) => {
+            if (hasPreview) {
+                if (item.tagName == 'A') {
+                    item.classList.remove('h');
+                } else if (item.tagName == 'P') {
+                    item.classList.add('h');
+                }
+            } else {
+                if (item.tagName == 'A') {
+                    item.classList.add('h');
+                } else if (item.tagName == 'P') {
+                    item.classList.remove('h');
+                }
+            }
+        });
     }
 }

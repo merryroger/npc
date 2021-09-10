@@ -126,3 +126,10 @@ function executeImageDelete(url, id, page = 1, section, wcbf) {
 
     sendPOSTRequest(url, pms, wcbf);
 }
+
+function uploadPreview(src) {
+    let frame = src.closest('div#preview_control_panel');
+    let itemId = +frame.getAttribute('data-id');
+    
+    return false;
+}

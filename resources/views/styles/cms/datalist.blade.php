@@ -106,7 +106,7 @@ span.image__item__controls {
     cursor: pointer;
 }
 
-div#item_control_panel, div#item_preview_control_panel {
+div#item_control_panel, div#preview_control_panel {
     position: absolute;
     padding: 4px 0 3px;
     background-color: var(--def-bgr);
@@ -127,6 +127,13 @@ div.image__item__control__list {
     border-bottom: 1px solid var(--def-bgr);
     color: var(--mmnu-clr);
     text-decoration: none;
+}
+
+.image__item__control__list > p {
+    padding: 3px 5pt;
+    border-bottom: 1px solid var(--def-bgr);
+    color: var(--mid-gray);
+    cursor: default;
 }
 
 .image__item__control__list > a:hover {

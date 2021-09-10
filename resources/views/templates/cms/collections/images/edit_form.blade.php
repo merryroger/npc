@@ -1,3 +1,4 @@
+@php($isPreview = (isset($image['preview'])) ? 1 : 0)
 <form action="/cms/images" class="image__edit__form" enctype="multipart/form-data" method="POST" target="file_upload">
     <fieldset>
         <label>{!! trans('cms.forms.image_param_edit') !!}</label>
@@ -14,9 +15,9 @@
             <div class="image__edit__pad">
                 <div class="image__preview__titlebar">
                     <h3>{!! trans('cms.forms.preview') !!}</h3>
-                    <h3><span class="image__item__controls" onpointerover="showPreviewControlPanel(this)">≡</span></h3>
+                    <h3><span class="image__item__controls" data-ispreview="{!! $isPreview !!}" onpointerover="showPreviewControlPanel(this, {!! $image['id'] !!})">≡</span></h3>
                 </div>
-                @if(isset($image['preview']))
+                @if($isPreview)
                 @else
                     <div class="image__preview__pad non__loaded"></div>
                     <div class="image__edit__parameters">
@@ -61,9 +62,4 @@
         </section>
     </fieldset>
 </form>
-<div id="item_preview_control_panel" class="off" data-id="{!! $image['id'] !!}">
-    <div class="image__item__control__list">
-        <a href="/cms/images" onclick="return deleteImageItem(this)"><span data-level="0">{!! trans('cms.data.delete') !!}</span></a>
-    </div>
-</div>
 <!--iframe id="file_upload" name="file_upload"></iframe-->
