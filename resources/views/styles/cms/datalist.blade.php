@@ -76,6 +76,19 @@ div.image__collection__pad {
     display: flex;
 }
 
+div.image__preview__pad {
+    width: 100px;
+    height: 75px;
+    padding: 3px;
+    border-radius: 5px;
+    border: 1px solid var(--mid-gray);
+    background-color: var(--blk-clr);
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
 .non__loaded {
     background: transparent url("/images/accessories/no_photo.png") center center no-repeat;
 }

@@ -192,6 +192,13 @@ iframe#file_upload {
 
 /**** Edit form part ****/
 
+div.image__edit__area, div.image__preview__titlebar {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    display: flex;
+}
+
 div.image__edit__parameters {
     margin: 7px 0 0;
 }
@@ -202,3 +209,10 @@ div.image__edit__parameters {
     color: var(--mmnu-abg);
     font: 400 9pt "PT Sans", sans-serif;
 }
+
+.image__edit__pad > h3, .image__preview__titlebar > h3 {
+    margin: 0 2pt 6px;
+    color: var(--dk-gr-cl);
+    font-size: 11pt;
+}
+

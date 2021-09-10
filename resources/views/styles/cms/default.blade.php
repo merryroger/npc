@@ -7,6 +7,7 @@
     --dk-gr-cl: #333;
     --mmnu-clr: #555;
     --mmnu-abg: #666;
+    --mid-gray: #aaa;
     --blue-br: #3399ff;
     --gk-green-cl: #009900;
     --ftr-lnk: #bbccdd;
