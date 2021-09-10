@@ -106,7 +106,7 @@ span.image__item__controls {
     cursor: pointer;
 }
 
-div#item_control_panel {
+div#item_control_panel, div#item_preview_control_panel {
     position: absolute;
     padding: 4px 0 3px;
     background-color: var(--def-bgr);

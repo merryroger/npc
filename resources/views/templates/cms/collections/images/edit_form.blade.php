@@ -61,4 +61,9 @@
         </section>
     </fieldset>
 </form>
+<div id="item_preview_control_panel" class="off" data-id="{!! $image['id'] !!}">
+    <div class="image__item__control__list">
+        <a href="/cms/images" onclick="return deleteImageItem(this)"><span data-level="0">{!! trans('cms.data.delete') !!}</span></a>
+    </div>
+</div>
 <!--iframe id="file_upload" name="file_upload"></iframe-->
