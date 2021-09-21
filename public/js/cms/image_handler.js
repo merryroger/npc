@@ -130,6 +130,10 @@ function executeImageDelete(url, id, page = 1, section, wcbf) {
 function uploadPreview(src) {
     let frame = src.closest('div#preview_control_panel');
     let itemId = +frame.getAttribute('data-id');
-    
+
+    formPadLR.style.zIndex = 4;
+    hidePreviewControlPanel();
+    updateVeilWaitState(veilLR, true);
+
     return false;
 }

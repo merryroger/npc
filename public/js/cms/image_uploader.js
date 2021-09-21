@@ -46,6 +46,7 @@ function buildImageAddForm(resp) {
     } catch (e) {
 
     } finally {
+        updateVeilWaitState(veilLR);
         rq_sent = false;
     }
 }

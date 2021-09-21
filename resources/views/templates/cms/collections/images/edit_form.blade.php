@@ -26,6 +26,7 @@
                 @endif
             </div>
         </div>
+        <!--input type="file" name="fpv" class="h" accept="image/jpeg,image/jpg,image/gif,image/png,image/webp" onchange="redrawPreview(this)" /-->
     <!--input type="hidden" name="fields" value="fup0"/>
         <input type="hidden" name="pack_id" value="{!! md5(now()) !!}"/>
         <div id="img_ld_struct" class="h">
@@ -47,9 +48,7 @@
                         <span class="upload__ok dk__green h">✔</span>
                         <span class="upload__failed red h">✖</span>
                     </div>
-                    <input type="file" name="fup0" class="h"
-                           accept="image/jpeg,image/jpg,image/gif,image/png,image/webp"
-                           onchange="specifyImage(this)"/>
+
                 </div>
             </li>
             <button type="button" name="another_image" title="{!! trans('cms.forms.another_image') !!}">+</button>
