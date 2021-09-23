@@ -107,7 +107,8 @@ function buildAddPreviewForm(resp) {
             showExtraForm(rsp.contents);
             extraFormPadLR.style.top = '50px';
             extraFormPadLR.style.right = '50px';
-            //formPadLR.querySelector('ul').addEventListener('click', selectImage, false);
+            extraFormPadLR.querySelector('ul').addEventListener('click', selectPreviewImage, false);
+            extraFormPadLR.querySelector('form.preview__load__form').pwup.click();
         }
     } catch (e) {
 
@@ -172,8 +173,55 @@ function uploadPreview(src) {
     return false;
 }
 
+function selectPreviewImage(e) {
+    if (e.target.closest('li.image__upload__elem__pad') != null && e.target.closest('li.image__upload__elem__pad').tagName == 'LI') {
+        let pwLI = e.target.closest('li.image__upload__elem__pad');
+        let fs = pwLI.querySelector('input[type="file"]');
+        fs.click();
+    }
+}
+
+function specifyPreviewImage(fs) {
+    let pwLI = fs.closest('li.image__upload__elem__pad');
+    let ic = pwLI.querySelector('.image__preview__pad');
+    let ds = pwLI.querySelector('.no__file__selected');
+    let dc = pwLI.querySelector('.img__status');
+    const img = document.createElement("img");
+    img.src = URL.createObjectURL(fs.files[0]);
+
+//    if (ic.hasChildNodes()) {
+//        resetImagePad(pwLI);
+//    }
+
+    img.onload = function () {
+        URL.revokeObjectURL(img.src);
+        recalcImageSizes(ic.offsetWidth, ic.offsetHeight, img);
+
+        if (Math.floor(fs.files[0].size / 1024) < imgMaxSize) {
+            ic.classList.remove('non__loaded');
+            ic.appendChild(img);
+            ic.title = '';
+            ds.setAttribute('data-selected', '1');
+            dc.innerHTML = fs.files[0].name;
+
+//            checkFormControls(fs);
+        } else {
+            let errorset = {
+                errorcode: 0xe0,
+                section: 'images',
+                options: {
+                   'data': '1MB'
+                }
+            };
+
+            setError(errorset);
+        }
+    }
+}
+
 function closePreviewForm(src = null) {
     let fm = document.body.querySelector('form.image__edit__form');
+    extraFormPadLR.querySelector('ul').removeEventListener('click', selectPreviewImage, false);
     destroyExtraForm();
     canClose = true;
     fm.close_button.classList.remove('button__disabled');

@@ -83,7 +83,7 @@ function selectImage(e) {
 function specifyImage(fs) {
     let ic = pwLI.querySelector('.img__ld__pad');
     let ds = pwLI.querySelector('.no__file__selected');
-    let dc = pwLI.querySelector('.img__status')
+    let dc = pwLI.querySelector('.img__status');
     const img = document.createElement("img");
     img.src = URL.createObjectURL(fs.files[0]);
 
@@ -93,11 +93,7 @@ function specifyImage(fs) {
 
     img.onload = function () {
         URL.revokeObjectURL(img.src);
-        if (img.width > img.height) {
-            img.width = (img.width < 160) ? img.width : 160;
-        } else {
-            img.height = (img.height < 120) ? img.height : 120;
-        }
+        recalcImageSizes(ic.offsetWidth, ic.offsetHeight, img);
 
         if (Math.floor(fs.files[0].size / 1024) < imgMaxSize) {
             ic.classList.remove('no__photo');
@@ -120,6 +116,28 @@ function specifyImage(fs) {
             setError(errorset);
         }
     }
+}
+
+function recalcImageSizes(reqWidth, reqHeight, img) {
+    let ratio = 1;
+
+    if (+reqWidth && +reqHeight) {
+        if (img.width <= reqWidth && img.height <= reqHeight) {
+            return;
+        }
+
+        let kw = img.width / +reqWidth;
+        let kh = img.height / +reqHeight;
+
+        ratio = (kh > kw) ? kh : kw;
+    } else if (+reqWidth && !+reqHeight) {
+        ratio = img.width / +reqWidth;
+    } else if (!+reqWidth && +reqHeight) {
+        ratio = img.height / +reqHeight;
+    }
+
+    img.width = Math.round(img.width / ratio);
+    img.height = Math.round(img.height / ratio);
 }
 
 function addAnotherImagePlace(src) {

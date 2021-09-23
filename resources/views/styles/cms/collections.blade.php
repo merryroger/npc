@@ -77,6 +77,14 @@ ul.image__selector__set {
     display: flex;
 }
 
+ul.preview__selector__set {
+    margin-top: 12px;
+    font-size: 10pt;
+    flex-direction: row;
+    justify-content: space-around;
+    display: flex;
+}
+
 section.form__controls {
     margin-top: 20px;
     justify-content: center;
