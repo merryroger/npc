@@ -36,7 +36,7 @@ div.coll__ctrl__btn:active {
 
 /**** Form part ****/
 
-div#form_pad {
+div#form_pad, div#extra_form_pad {
     position: absolute;
     background-color: var(--def-bgr);
     border-radius: 10px;
@@ -49,11 +49,11 @@ div#form_pad {
     background: var(--def-bgr) url("/images/accessories/form_await.gif") center center no-repeat;
 }
 
-form.image__load__form, form.image__edit__form {
+form.image__load__form, form.image__edit__form, form.preview__load__form {
     margin: 10px 10pt;
 }
 
-.image__load__form fieldset, .image__edit__form fieldset {
+.image__load__form fieldset, .image__edit__form fieldset, .preview__load__form fieldset {
     padding: 10px 16pt;
     border-width: 0;
     font-family: "Roboto Condensed", sans-serif;
@@ -62,7 +62,7 @@ form.image__load__form, form.image__edit__form {
     display: flex;
 }
 
-.image__load__form label, .image__edit__form label {
+.image__load__form label, .image__edit__form label, .preview__load__form label {
     color: var(--mmnu-clr);
     font-size: 14pt;
 }
@@ -186,7 +186,7 @@ span.upload__ok {
     cursor: default;
 }
 
-iframe#file_upload {
+iframe#file_upload, iframe#preview_upload {
     display: none;
 }
 

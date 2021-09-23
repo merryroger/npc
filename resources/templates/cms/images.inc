@@ -37,6 +37,11 @@ $this->config = [
         'RITM' => [
             'provider' => 'imagecollector',
             'template' => 'templates.cms.collections.images.dataset',
+        ],
+        'PWUP' => [
+ //           'provider' => 'imagecollector',
+            'template' => 'templates.cms.collections.images.preview_load_form'
+
         ]
     ],
 

@@ -6,6 +6,8 @@ let itemControlPanel = null;
 let itemControlPanelOn = 0;
 let previewControlPanel = null;
 let previewControlPanelOn = false;
+let extraFormPadLR = null;
+let extraFormPadON = false;
 
 function reloadCollection(url, section, wcbf, options = {}) {
     let isSetEmpty = document.body.querySelector('section.data__list') == null;
@@ -114,5 +116,37 @@ function handlePreviewControlList(menuPanel, hasPreview, id) {
                 }
             }
         });
+    }
+}
+
+function prepareExtraForm() {
+    if (extraFormPadLR == null) {
+        extraFormPadLR = document.createElement('div');
+        extraFormPadLR.id = 'extra_form_pad';
+        extraFormPadLR.className = 'off';
+        document.body.insertAdjacentElement('beforeEnd', extraFormPadLR);
+    }
+
+    if (extraFormPadON) {
+        destroyExtraForm();
+    }
+}
+
+function showExtraForm(contents, level = 6) {
+    extraFormPadLR.classList.remove('off');
+    extraFormPadLR.innerHTML = contents;
+    extraFormPadLR.style.zIndex = level;
+    extraFormPadLR.classList.add('on');
+
+    extraFormPadON = true;
+}
+
+function destroyExtraForm() {
+    if (extraFormPadON) {
+        extraFormPadLR.classList.remove('on');
+        extraFormPadLR.innerHTML = '';
+        extraFormPadLR.classList.add('off');
+
+        extraFormPadON = false;
     }
 }

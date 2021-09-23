@@ -97,6 +97,26 @@ function closeEditForm(src) {
     }
 }
 
+function buildAddPreviewForm(resp) {
+    let rsp = null;
+    try {
+        rsp = JSON.parse(resp);
+        if (rsp.success == 0) {
+            setError(rsp);
+        } else {
+            showExtraForm(rsp.contents);
+            extraFormPadLR.style.top = '50px';
+            extraFormPadLR.style.right = '50px';
+            //formPadLR.querySelector('ul').addEventListener('click', selectImage, false);
+        }
+    } catch (e) {
+
+    } finally {
+        updateVeilWaitState(veilLR);
+        rq_sent = false;
+    }
+}
+
 function deleteImageItem(src) {
     let control = src.closest('div#item_control_panel');
     let itemId = +control.getAttribute('data-id');
@@ -130,10 +150,32 @@ function executeImageDelete(url, id, page = 1, section, wcbf) {
 function uploadPreview(src) {
     let frame = src.closest('div#preview_control_panel');
     let itemId = +frame.getAttribute('data-id');
+    let fm = document.body.querySelector('form.image__edit__form');
 
+    canClose = false;
+    fm.close_button.classList.add('button__disabled');
     formPadLR.style.zIndex = 4;
     hidePreviewControlPanel();
     updateVeilWaitState(veilLR, true);
 
+    prepareExtraForm();
+
+    let pms = [
+        `opcode=PWUP`,
+        `recId=${itemId}`,
+        `section=images`,
+    ];
+
+    sendPOSTRequest(imgURL, pms, buildAddPreviewForm);
+    rq_sent = true;
+
     return false;
+}
+
+function closePreviewForm(src = null) {
+    let fm = document.body.querySelector('form.image__edit__form');
+    destroyExtraForm();
+    canClose = true;
+    fm.close_button.classList.remove('button__disabled');
+    formPadLR.style.zIndex = 6;
 }
