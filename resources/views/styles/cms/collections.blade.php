@@ -140,6 +140,15 @@ li.image__upload__elem__pad {
     cursor: pointer;
 }
 
+li.preview__upload__elem__pad {
+    margin: 2px 3pt;
+    padding: 5px 5pt;
+    border: 1px solid var(--lt-gr-cl);
+    border-radius: 5px;
+    list-style-type: none;
+}
+
+
 div.img_ld_struct {
     flex-direction: column;
     display: flex;
@@ -162,6 +171,14 @@ div.img__ld__pad.no__photo {
     border-radius: 5px;
 }
 
+.image__preview__pad img {
+    border-radius: 3px;
+}
+
+div.image__preview__pad {
+    cursor: pointer;
+}
+
 div.no__file__selected {
     padding: 5px 0 0 0;
     width: 100%;
@@ -181,6 +198,11 @@ div.no__file__selected {
     background: var(--def-bgr) url("/images/accessories/upload_await.gif") right 8px no-repeat;
 }
 
+span.preview__status {
+    max-width: 87px;
+    overflow: hidden;
+}
+
 span.img__status {
     max-width: 120px;
     overflow: hidden;
@@ -192,6 +214,10 @@ span.rm__image {
 
 span.upload__ok {
     cursor: default;
+}
+
+span.like__rm__image {
+    opacity: .25;
 }
 
 iframe#file_upload, iframe#preview_upload {

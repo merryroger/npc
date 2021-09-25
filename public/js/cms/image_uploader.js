@@ -2,6 +2,7 @@
 
 const imgURL = '/cms/images';
 const imgMaxSize = 1024;
+const previewMaxSize = 20;
 
 let imageSelectedCount, fId = 0;
 let enableSelection = true;
@@ -109,7 +110,7 @@ function specifyImage(fs) {
                 errorcode: 0xe0,
                 section: 'images',
                 options: {
-                    'data': '1MB'
+                    'data': `${Math.round(imgMaxSize / 1024)}MB`
                 }
             };
 
@@ -225,6 +226,20 @@ function checkFormControls(src) {
     }
 }
 
+function checkPreviewControls(src) {
+    let fm = src.closest('form');
+    let ds = fm.querySelector('div.no__file__selected');
+    let sb = fm.send_button;
+
+    if (+ds.getAttribute('data-selected')) {
+        canSend = true;
+        sb.className = '';
+    } else {
+        canSend = false;
+        sb.className = 'button__disabled';
+    }
+}
+
 function resetImagePad(li) {
     let fm = li.closest('form');
     li.querySelector('.img__ld__pad').innerHTML = '';
@@ -232,6 +247,14 @@ function resetImagePad(li) {
     li.querySelector('.img__ld__pad').title = fm.querySelector('.img__ld__pad').title;
     li.querySelector('.no__file__selected').setAttribute('data-selected', '0');
     li.querySelector('span.img__status').innerHTML = fm.querySelector('#img_ld_struct').querySelector('span.img__status').innerHTML;
+}
+
+function resetPreviewPad(li) {
+    li.querySelector('.image__preview__pad').innerHTML = '';
+    li.querySelector('.image__preview__pad').classList.add('non__loaded');
+    li.querySelector('.image__preview__pad').title = li.querySelector('.image__preview__pad').getAttribute('data-title');
+    li.querySelector('.no__file__selected').setAttribute('data-selected', '0');
+    li.querySelector('span.preview__status').innerHTML = li.querySelector('span.preview__status').getAttribute('data-defstatus');
 }
 
 function sendImages(src) {
@@ -387,3 +410,27 @@ function finishUpload() {
     closeForm();
 }
 
+function sendPreviewImage(src) {
+    let fm = src.closest('form');
+    let li = fm.querySelector('li.preview__upload__elem__pad');
+
+    if (canSend) {
+        fm.send_button.className = 'button__disabled';
+        fm.close_button.className = 'button__disabled';
+        enableSelection = false;
+        canClose = false;
+        canSend = false;
+
+        li.querySelector('.like__rm__image').classList.add('h');
+        li.querySelector('.image__preview__pad').style.cursor = 'not-allowed';
+        if (li.querySelector('img') != null) {
+            li.querySelector('img').style.cursor = 'not-allowed';
+        }
+
+        let dataHolder = li.querySelector('.no__file__selected');
+        dataHolder.classList.add('wait__upload');
+
+        uWDT = 12;
+        uth = setTimeout(checkPreviewUpload, 10);
+    }
+}

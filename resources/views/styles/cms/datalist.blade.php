@@ -81,7 +81,7 @@ div.image__preview__pad {
     height: 75px;
     padding: 3px;
     border-radius: 5px;
-    border: 1px solid var(--mid-gray);
+    border: 1px solid var(--blk-clr);
     background-color: var(--blk-clr);
     background-size: cover;
     justify-content: center;
@@ -90,6 +90,7 @@ div.image__preview__pad {
 }
 
 .non__loaded {
+    border: 1px solid var(--mid-gray) !important;
     background: transparent url("/images/accessories/no_photo.png") center center no-repeat;
 }
 

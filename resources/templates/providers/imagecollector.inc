@@ -34,6 +34,11 @@ switch (strtoupper($extra_data['opcode'])) {
 
         $contents = json_encode($out);
         break;
+    case 'PWAF':
+        $image = collect($extra_data)->only(['recId'])->all();
+        $view = view($sets['template'], compact(['image']))->render();
+        $contents = json_encode(array_merge($extra_data, ['view' => $view]));
+        break;
     case 'EDIM':
         $provider->load($extra_data);
         $image = $provider->getItem($extra_data['recId']);// dd($image);

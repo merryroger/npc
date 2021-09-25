@@ -2,25 +2,16 @@
     <fieldset>
         <label>{!! trans('cms.forms.preview_load') !!}</label>
         @csrf
-        <!--
-        <input type="hidden" name="fields" value="fup0"/>
-        <input type="hidden" name="pack_id" value="{!! md5(now()) !!}"/>
-        <div id="img_ld_struct" class="h">
-            <div class="img__ld__pad no__photo" title="{!! trans('cms.forms.select_photo') !!}"></div>
-            <div data-selected="0" class="no__file__selected">
-                <span class="img__status">{!! trans('cms.forms.no_file_selected') !!}</span>
-                <span class="rm__image red" onclick="clearImage(this)">✖</span>
-                <span class="upload__ok dk__green h">✔</span>
-                <span class="upload__failed red h">✖</span>
-            </div>
-        </div-->
+        <input type="hidden" name="recId" value="{!! $image['recId'] !!}"/>
+        <!--input type="hidden" name="pack_id" value="{!! md5(now()) !!}"/-->
+
         <ul class="preview__selector__set">
-            <li class="image__upload__elem__pad">
+            <li class="preview__upload__elem__pad">
                 <div class="img_ld_struct">
-                    <div class="image__preview__pad non__loaded" title="{!! trans('cms.forms.select_photo') !!}"></div>
+                    <div class="image__preview__pad non__loaded" data-title="{!! trans('cms.forms.select_photo') !!}" title="{!! trans('cms.forms.select_photo') !!}"></div>
                     <div data-selected="0" class="no__file__selected">
-                        <span class="img__status">{!! trans('cms.forms.no_file_selected') !!}</span>
-                        <span class="rm__image red" onclick="return clearPreviewSample(this)">✖</span>
+                        <span class="preview__status" data-defstatus="{!! trans('cms.forms.no_file_selected') !!}">{!! trans('cms.forms.no_file_selected') !!}</span>
+                        <span class="like__rm__image">✖</span>
                         <span class="upload__ok dk__green h">✔</span>
                         <span class="upload__failed red h">✖</span>
                     </div>

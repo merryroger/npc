@@ -38,8 +38,8 @@ $this->config = [
             'provider' => 'imagecollector',
             'template' => 'templates.cms.collections.images.dataset',
         ],
-        'PWUP' => [
- //           'provider' => 'imagecollector',
+        'PWAF' => [
+            'provider' => 'imagecollector',
             'template' => 'templates.cms.collections.images.preview_load_form'
 
         ]

@@ -104,7 +104,8 @@ function buildAddPreviewForm(resp) {
         if (rsp.success == 0) {
             setError(rsp);
         } else {
-            showExtraForm(rsp.contents);
+            let contents = JSON.parse(rsp.contents);
+            showExtraForm(contents.view);
             extraFormPadLR.style.top = '50px';
             extraFormPadLR.style.right = '50px';
             extraFormPadLR.querySelector('ul').addEventListener('click', selectPreviewImage, false);
@@ -114,6 +115,7 @@ function buildAddPreviewForm(resp) {
 
     } finally {
         updateVeilWaitState(veilLR);
+        canClose = true;
         rq_sent = false;
     }
 }
@@ -162,7 +164,7 @@ function uploadPreview(src) {
     prepareExtraForm();
 
     let pms = [
-        `opcode=PWUP`,
+        `opcode=PWAF`,
         `recId=${itemId}`,
         `section=images`,
     ];
@@ -174,52 +176,58 @@ function uploadPreview(src) {
 }
 
 function selectPreviewImage(e) {
-    if (e.target.closest('li.image__upload__elem__pad') != null && e.target.closest('li.image__upload__elem__pad').tagName == 'LI') {
-        let pwLI = e.target.closest('li.image__upload__elem__pad');
-        let fs = pwLI.querySelector('input[type="file"]');
-        fs.click();
+    if (e.target.closest('div.image__preview__pad') != null && e.target.closest('div.image__preview__pad').tagName == 'DIV') {
+        if (enableSelection) {
+            let pwLI = e.target.closest('li.preview__upload__elem__pad');
+            let fs = pwLI.querySelector('input[type="file"]');
+            fs.click();
+        }
     }
 }
 
 function specifyPreviewImage(fs) {
-    let pwLI = fs.closest('li.image__upload__elem__pad');
+    let pwLI = fs.closest('li.preview__upload__elem__pad');
     let ic = pwLI.querySelector('.image__preview__pad');
     let ds = pwLI.querySelector('.no__file__selected');
-    let dc = pwLI.querySelector('.img__status');
+    let dc = pwLI.querySelector('.preview__status');
     const img = document.createElement("img");
     img.src = URL.createObjectURL(fs.files[0]);
 
-//    if (ic.hasChildNodes()) {
-//        resetImagePad(pwLI);
-//    }
+    if (ic.hasChildNodes()) {
+        resetPreviewPad(pwLI);
+    }
 
     img.onload = function () {
         URL.revokeObjectURL(img.src);
         recalcImageSizes(ic.offsetWidth, ic.offsetHeight, img);
 
-        if (Math.floor(fs.files[0].size / 1024) < imgMaxSize) {
+        if (Math.floor(fs.files[0].size / 1024) < previewMaxSize) {
             ic.classList.remove('non__loaded');
             ic.appendChild(img);
             ic.title = '';
             ds.setAttribute('data-selected', '1');
             dc.innerHTML = fs.files[0].name;
-
-//            checkFormControls(fs);
         } else {
             let errorset = {
                 errorcode: 0xe0,
                 section: 'images',
                 options: {
-                   'data': '1MB'
+                    'data': `${previewMaxSize}kB`
                 }
             };
 
             setError(errorset);
         }
+
+        checkPreviewControls(fs);
     }
 }
 
 function closePreviewForm(src = null) {
+    if (!canClose) {
+        return;
+    }
+
     let fm = document.body.querySelector('form.image__edit__form');
     extraFormPadLR.querySelector('ul').removeEventListener('click', selectPreviewImage, false);
     destroyExtraForm();
