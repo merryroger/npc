@@ -3,8 +3,6 @@
         <label>{!! trans('cms.forms.preview_load') !!}</label>
         @csrf
         <input type="hidden" name="recId" value="{!! $image['recId'] !!}"/>
-        <!--input type="hidden" name="pack_id" value="{!! md5(now()) !!}"/-->
-
         <ul class="preview__selector__set">
             <li class="preview__upload__elem__pad">
                 <div class="img_ld_struct">

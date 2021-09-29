@@ -430,7 +430,57 @@ function sendPreviewImage(src) {
         let dataHolder = li.querySelector('.no__file__selected');
         dataHolder.classList.add('wait__upload');
 
+//        fm.submit();
         uWDT = 12;
         uth = setTimeout(checkPreviewUpload, 10);
     }
+}
+
+function checkPreviewUpload() {
+    let fm = document.body.querySelector('form.preview__load__form');
+    let dataHolder = fm.querySelector('.no__file__selected');
+    let fs = fm.querySelector('input[type="file"]');
+
+    let pms = [
+        'opcode=PWUP',
+    ];
+
+    if (+dataHolder.getAttribute('data-selected') == 1) {
+        pms[pms.length] = 'fname=' + fs.name;
+        pms[pms.length] = 'fsize=' + fs.files[0].size;
+        pms[pms.length] = 'ftype=' + fs.files[0].name.split('.').splice(-1, 1)[0];
+        sendPOSTRequest(imgURL, pms, previewUploadResult);
+    }
+
+}
+
+function previewUploadResult(resp) {
+//    let files;
+//    try {
+//        let rsp = JSON.parse(resp);
+//        files = JSON.parse(rsp.contents);
+//    } catch (e) {
+//    } finally {
+//        uWDT--;
+//        rq_sent = false;
+//        if (uWDT == 0) {
+//            walkImages(files, true);
+//            clearTimeout(uth);
+//            uth = 0;
+
+//            let errorset = {
+//                errorcode: 0xe1,
+//                section: 'images',
+//                options: {}
+//            };
+//            setError(errorset);
+//            return;
+//        }
+
+//        if (walkImages(files) == 0) {
+//            setTimeout(finishUpload, 1500);
+//        } else {
+//            uth = setTimeout(checkUploads, 5000);
+//        }
+//    }
 }
