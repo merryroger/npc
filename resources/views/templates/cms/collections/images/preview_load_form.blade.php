@@ -2,6 +2,7 @@
     <fieldset>
         <label>{!! trans('cms.forms.preview_load') !!}</label>
         @csrf
+        <input type="hidden" name="uploads" value="preview"/>
         <input type="hidden" name="recId" value="{!! $image['recId'] !!}"/>
         <ul class="preview__selector__set">
             <li class="preview__upload__elem__pad">

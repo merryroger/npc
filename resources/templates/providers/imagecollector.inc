@@ -34,6 +34,27 @@ switch (strtoupper($extra_data['opcode'])) {
 
         $contents = json_encode($out);
         break;
+    case 'PWUP':
+        $result = 0;
+        $recId = intval($extra_data['recId']);
+        $provider->load($extra_data);
+        $image = $provider->getItem($recId);
+        $checkPath = $image['dirname'] . '/preview';
+        $preview = $image['filename'] . '.' . $extra_data['ftype'];
+
+        if (is_dir($checkPath)) {
+            $destFile = realpath($checkPath . "/{$preview}");
+            if (file_exists($destFile)) {
+                $fsize = filesize($destFile);
+                if (isset($fsize) && $fsize == intval($extra_data['fsize'])) {
+                    $provider->storePreview('preview/' . $preview, $recId);
+                    $result = 1;
+                }
+            }
+        }
+
+        $contents = json_encode($result);
+        break;
     case 'PWAF':
         $image = collect($extra_data)->only(['recId'])->all();
         $view = view($sets['template'], compact(['image']))->render();

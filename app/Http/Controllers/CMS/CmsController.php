@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Menuitem;
 use App\Models\Section;
 use ehwas\documents\collections\Collections;
+use ehwas\documents\collections\ImageCollector;
 use ehwas\documents\ExtDocShow;
 use Illuminate\Http\Request;
 
@@ -131,6 +132,23 @@ class CmsController extends Controller
 
     public function uploadFiles(Request $request)
     {
+        if ($request->has('uploads')) {
+            switch ($request->request->get('uploads')) {
+                case 'images':
+                    $this->uploadImages($request);
+                    break;
+                case 'preview':
+                    if ($request->has('recId')) {
+                        $this->uploadPreview($request);
+                    }
+                    break;
+                default:
+            }
+        }
+    }
+
+    protected function uploadImages($request)
+    {
         $collector = new Collections();
         $path = $collector->getFileUploadDir() . '/';
         $path .= ($request->has('pack_id')) ? $request->request->get('pack_id') : '';
@@ -144,6 +162,29 @@ class CmsController extends Controller
                 $file = $request->file($fields[$f]);
                 $file->move($path, "{$fields[$f]}." . $file->getClientOriginalExtension());
             }
+        }
+    }
+
+    protected function uploadPreview($request)
+    {
+        if (!$recId = intval($request->request->get('recId'))) {
+            return;
+        }
+
+        $collector = new ImageCollector();
+        $mainImage = $collector->getItem($recId);
+        $path = $mainImage['dirname'] . '/preview';
+        $fname = $mainImage['filename'];
+        $collector->__destruct();
+        unset($collector);
+
+        if (!is_dir($path)) {
+            mkdir($path);
+        }
+
+        if ($request->hasFile('pwup')) {
+            $file = $request->file('pwup');
+            $file->move($path, "{$fname}." . $file->getClientOriginalExtension());
         }
     }
 

@@ -2,6 +2,7 @@
     <fieldset>
         <label>{!! trans('cms.forms.image_load') !!}</label>
         @csrf
+        <input type="hidden" name="uploads" value="images"/>
         <input type="hidden" name="fields" value="fup0"/>
         <input type="hidden" name="pack_id" value="{!! md5(now()) !!}"/>
         <div id="img_ld_struct" class="h">

@@ -30,6 +30,11 @@ class ImageCollectionProvider implements ExtendedDocumentProvider
         $this->collector->storeUploadedFile($destFile, $pack_id);
     }
 
+    public function storePreview($destFile, $recId): void
+    {
+        $this->collector->storePreview($destFile, $recId);
+    }
+
     public function load($src, ...$params)
     {
         $this->collector->loadCollection($src, $params);

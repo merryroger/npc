@@ -410,6 +410,11 @@ function finishUpload() {
     closeForm();
 }
 
+function finishPreviewUpload() {
+    canClose = true;
+    closePreviewForm();
+}
+
 function sendPreviewImage(src) {
     let fm = src.closest('form');
     let li = fm.querySelector('li.preview__upload__elem__pad');
@@ -430,7 +435,7 @@ function sendPreviewImage(src) {
         let dataHolder = li.querySelector('.no__file__selected');
         dataHolder.classList.add('wait__upload');
 
-//        fm.submit();
+        fm.submit();
         uWDT = 12;
         uth = setTimeout(checkPreviewUpload, 10);
     }
@@ -443,6 +448,7 @@ function checkPreviewUpload() {
 
     let pms = [
         'opcode=PWUP',
+        `recId=${fm.recId.value}`
     ];
 
     if (+dataHolder.getAttribute('data-selected') == 1) {
@@ -454,33 +460,61 @@ function checkPreviewUpload() {
 
 }
 
-function previewUploadResult(resp) {
-//    let files;
-//    try {
-//        let rsp = JSON.parse(resp);
-//        files = JSON.parse(rsp.contents);
-//    } catch (e) {
-//    } finally {
-//        uWDT--;
-//        rq_sent = false;
-//        if (uWDT == 0) {
-//            walkImages(files, true);
-//            clearTimeout(uth);
-//            uth = 0;
+function ifPreviewUploaded(preview, final_pass = false) {
+    let fm = document.body.querySelector('form.preview__load__form');
+    let dataHolder = fm.querySelector('.no__file__selected');
+    let fs = fm.querySelector('input[type="file"]');
+//    let needReload = false;
+    let cap = 0;
 
-//            let errorset = {
-//                errorcode: 0xe1,
-//                section: 'images',
-//                options: {}
-//            };
-//            setError(errorset);
-//            return;
-//        }
+    if (+dataHolder.getAttribute('data-selected') == 1) {
+        if (+preview == 1) {
+            dataHolder.setAttribute('data-selected', '0');
+            dataHolder.classList.remove('wait__upload');
+            dataHolder.querySelector('.upload__ok').classList.remove('h');
+//                needReload = true;
+        } else if (final_pass) {
+            dataHolder.classList.remove('wait__upload');
+            dataHolder.querySelector('.upload__failed').classList.remove('h');
+        } else {
+            cap++;
+        }
+    }
 
-//        if (walkImages(files) == 0) {
-//            setTimeout(finishUpload, 1500);
-//        } else {
-//            uth = setTimeout(checkUploads, 5000);
-//        }
+//    if (needReload || final_pass) {
+//        reloadCollection(imgURL, 'images', reloadImageCollection, {'page': 1});
 //    }
+
+    return cap;
+}
+
+function previewUploadResult(resp) {
+    let preview;
+    try {
+        let rsp = JSON.parse(resp);
+        preview = JSON.parse(rsp.contents);
+    } catch (e) {
+    } finally {
+        uWDT--;
+        rq_sent = false;
+        if (uWDT == 0) {
+            ifPreviewUploaded(preview, true);
+            clearTimeout(uth);
+            uth = 0;
+
+            let errorset = {
+                errorcode: 0xe2,
+                section: 'images',
+                options: {}
+            };
+            setError(errorset);
+            return;
+        }
+
+        if (ifPreviewUploaded(preview) == 0) {
+            setTimeout(finishPreviewUpload, 1500);
+        } else {
+            uth = setTimeout(checkPreviewUpload, 5000);
+        }
+    }
 }

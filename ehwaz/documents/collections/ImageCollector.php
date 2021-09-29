@@ -39,6 +39,14 @@ class ImageCollector extends Collections
         $image->save();
     }
 
+    public function storePreview($destFile, $recId)
+    {
+        $image = Image::find($recId);
+        $image->preview = $destFile;
+
+        $image->save();
+    }
+
     public function loadCollection($params, $extra): void
     {
         $this->contents = Image::dataSet()->get()->map(function ($item, $key) {

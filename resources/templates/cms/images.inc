@@ -19,6 +19,9 @@ $this->config = [
             'provider' => 'imagecollector',
             'template' => 'templates.cms.collections.images.edit_form'
         ],
+        'PWUP' => [
+            'provider' => 'imagecollector',
+        ],
         'CFUP' => [
             'provider' => 'imagecollector',
         ],
