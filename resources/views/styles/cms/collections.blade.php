@@ -175,7 +175,7 @@ div.img__ld__pad.no__photo {
     border-radius: 3px;
 }
 
-div.image__preview__pad {
+div.image__preview__pad.clickable {
     cursor: pointer;
 }
 

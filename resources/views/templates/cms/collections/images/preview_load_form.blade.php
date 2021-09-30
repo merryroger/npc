@@ -7,7 +7,7 @@
         <ul class="preview__selector__set">
             <li class="preview__upload__elem__pad">
                 <div class="img_ld_struct">
-                    <div class="image__preview__pad non__loaded" data-title="{!! trans('cms.forms.select_photo') !!}" title="{!! trans('cms.forms.select_photo') !!}"></div>
+                    <div class="image__preview__pad clickable non__loaded" data-title="{!! trans('cms.forms.select_photo') !!}" title="{!! trans('cms.forms.select_photo') !!}"></div>
                     <div data-selected="0" class="no__file__selected">
                         <span class="preview__status" data-defstatus="{!! trans('cms.forms.no_file_selected') !!}">{!! trans('cms.forms.no_file_selected') !!}</span>
                         <span class="like__rm__image">✖</span>

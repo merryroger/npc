@@ -33,6 +33,10 @@ function imageViewReady(src) {
     src.closest('.image__collection__pad').classList.remove('non__loaded');
 }
 
+function previewReady(src) {
+    src.closest('.image__preview__pad').classList.remove('non__loaded');
+}
+
 function editImageItem(src) {
     if (!formPadOn) {
         let control = src.closest('div#item_control_panel');

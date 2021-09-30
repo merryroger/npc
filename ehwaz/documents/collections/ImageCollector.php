@@ -53,7 +53,6 @@ class ImageCollector extends Collections
             return collect($item)->except(['created_at', 'updated_at'])->all();
         })->all();
     }
-
     /*
         public function getParameter($param): string
         {
@@ -85,9 +84,29 @@ class ImageCollector extends Collections
                 $image += $directory;
             }
 
+            if ($image['preview']) {
+                $this->checkPreview($image, $storage_dir);
+            }
+
             return $image;
         }
 
+    }
+
+    protected function checkPreview(&$image, $storage_dir): void
+    {
+        $previewPath = preg_replace("%[^\/\\\]+$%", '', $image['origin']) . $image['preview'];
+        $preview = [
+            'origin' => $previewPath
+        ];
+
+        if (file_exists(realpath($storage_dir . $previewPath))) {
+            $directory = pathinfo(realpath($storage_dir . $previewPath));
+            $preview += getimagesize(realpath($storage_dir . $previewPath));
+            $preview += $directory;
+
+            $image['preview_info'] = $preview;
+        }
     }
 
     public function deleteItem($recId): bool
