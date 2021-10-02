@@ -86,6 +86,8 @@ div.image__preview__pad {
     background-size: cover;
     justify-content: center;
     align-items: center;
+    flex-basis: 100px;
+    flex-grow: 1;
     display: flex;
 }
 

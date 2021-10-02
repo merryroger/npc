@@ -1,4 +1,3 @@
-@php($isPreview = (isset($image['preview'])) ? 1 : 0)
 <form action="/cms/images" class="image__edit__form" enctype="multipart/form-data" method="POST" target="file_upload">
     <fieldset>
         <label>{!! trans('cms.forms.image_param_edit') !!}</label>
@@ -12,28 +11,10 @@
                     <p>{!! trans('cms.forms.image_sizes') !!}: {!! $image[0] !!}x{!! $image[1] !!} px</p>
                 </div>
             </div>
-            <div class="image__edit__pad">
-                <div class="image__preview__titlebar">
-                    <h3>{!! trans('cms.forms.preview') !!}</h3>
-                    <h3><span class="image__item__controls" data-ispreview="{!! $isPreview !!}" onpointerover="showPreviewControlPanel(this, {!! $image['id'] !!})">≡</span></h3>
-                </div>
-                <div id="preview_holder">
-                @if($isPreview)
-                    <div class="image__preview__pad non__loaded"><img src="/cms/icons?rq={!! base64_encode($image['preview_info']['origin']) !!}&width=160&height=120" onload="previewReady(this)"/></div>
-                    <div class="image__edit__parameters">
-                        <p>{!! trans('cms.forms.image_type') !!}: {!! $image['preview_info']['mime'] !!}</p>
-                        <p>{!! trans('cms.forms.image_sizes') !!}: {!! $image['preview_info'][0] !!}x{!! $image['preview_info'][1] !!} px</p>
-                    </div>
-                @else
-                    <div class="image__preview__pad non__loaded"></div>
-                    <div class="image__edit__parameters">
-                        <p>{!! trans('cms.forms.image_not_loaded') !!}</p>
-                    </div>
-                @endif
-                </div>
+            <div class="image__edit__pad preview__location">
+                @include('templates/cms/collections/images/preview_presentation', ['image' => $image])
             </div>
         </div>
-        <!--input type="file" name="fpv" class="h" accept="image/jpeg,image/jpg,image/gif,image/png,image/webp" onchange="redrawPreview(this)" /-->
     <!--input type="hidden" name="fields" value="fup0"/>
         <input type="hidden" name="pack_id" value="{!! md5(now()) !!}"/>
         <div id="img_ld_struct" class="h">
@@ -68,4 +49,3 @@
         </section>
     </fieldset>
 </form>
-<!--iframe id="file_upload" name="file_upload"></iframe-->

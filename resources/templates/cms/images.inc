@@ -33,6 +33,10 @@ $this->config = [
             'provider' => 'imagecollector',
             'template' => 'templates.cms.collections.images.dataset',
         ],
+        'PRLD' => [
+            'provider' => 'imagecollector',
+            'template' => 'templates.cms.collections.images.preview_presentation',
+        ],
         'TITM' => [
             'provider' => 'imagecollector',
             'template' => 'templates.cms.collections.images',
@@ -44,7 +48,6 @@ $this->config = [
         'PWAF' => [
             'provider' => 'imagecollector',
             'template' => 'templates.cms.collections.images.preview_load_form'
-
         ]
     ],
 

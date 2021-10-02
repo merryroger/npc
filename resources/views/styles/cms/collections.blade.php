@@ -238,7 +238,7 @@ div.image__edit__parameters {
 }
 
 .image__edit__parameters > p {
-    padding: 2px 0 0 5pt;
+    padding: 2px 0 0 2pt;
     line-height: 1;
     color: var(--mmnu-abg);
     font: 400 9pt "PT Sans", sans-serif;

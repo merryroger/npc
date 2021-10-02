@@ -463,8 +463,8 @@ function checkPreviewUpload() {
 function ifPreviewUploaded(preview, final_pass = false) {
     let fm = document.body.querySelector('form.preview__load__form');
     let dataHolder = fm.querySelector('.no__file__selected');
-    let fs = fm.querySelector('input[type="file"]');
-//    let needReload = false;
+    let recId = +fm.recId.value;
+    let needReload = false;
     let cap = 0;
 
     if (+dataHolder.getAttribute('data-selected') == 1) {
@@ -472,7 +472,7 @@ function ifPreviewUploaded(preview, final_pass = false) {
             dataHolder.setAttribute('data-selected', '0');
             dataHolder.classList.remove('wait__upload');
             dataHolder.querySelector('.upload__ok').classList.remove('h');
-//                needReload = true;
+            needReload = true;
         } else if (final_pass) {
             dataHolder.classList.remove('wait__upload');
             dataHolder.querySelector('.upload__failed').classList.remove('h');
@@ -481,9 +481,9 @@ function ifPreviewUploaded(preview, final_pass = false) {
         }
     }
 
-//    if (needReload || final_pass) {
-//        reloadCollection(imgURL, 'images', reloadImageCollection, {'page': 1});
-//    }
+    if (needReload || final_pass) {
+        reloadPreview(imgURL, recId, 'images', reloadImageCollection);
+    }
 
     return cap;
 }

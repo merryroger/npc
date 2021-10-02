@@ -20,6 +20,9 @@ function reloadImageCollection(resp) {
             case 'CRLD':
                 document.body.querySelector('section.page__band').innerHTML = response.view;
                 break;
+            case 'PRLD':
+                document.body.querySelector('div.preview__location').innerHTML = response.view;
+                break;
         }
     } catch (e) {
 
@@ -148,6 +151,16 @@ function executeImageDelete(url, id, page = 1, section, wcbf) {
         `opcode=${opcode}`,
         `recId=${id}`,
         `page=${page}`,
+        `section=${section}`,
+    ];
+
+    sendPOSTRequest(url, pms, wcbf);
+}
+
+function reloadPreview(url, id, section, wcbf) {
+    let pms = [
+        `opcode=PRLD`,
+        `recId=${id}`,
         `section=${section}`,
     ];
 
