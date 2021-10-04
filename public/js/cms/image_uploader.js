@@ -43,6 +43,8 @@ function buildImageAddForm(resp) {
             formPadLR.className = '';
             formPadLR.innerHTML = rsp.contents;
             formPadLR.querySelector('ul').addEventListener('click', selectImage, false);
+            pwLI = formPadLR.querySelector('li.image__upload__elem__pad');
+            formPadLR.querySelector('form.image__load__form').fup0.click();
         }
     } catch (e) {
 

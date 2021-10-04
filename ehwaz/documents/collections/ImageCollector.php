@@ -65,7 +65,6 @@ class ImageCollector extends Collections
                 return collect($item)->except(['created_at', 'updated_at'])->all();
             })->first();
 
-            //$storage_dir = realpath(public_path() . $this::FILE_UPLOAD_BASE_DIR);
             if (file_exists(realpath(public_path() . $image['origin']))) {
                 $directory = pathinfo(realpath(public_path() . $image['origin']));
                 $image += getimagesize(realpath(public_path() . $image['origin']));
@@ -99,8 +98,6 @@ class ImageCollector extends Collections
 
     public function deleteItem($recId): bool
     {
-        //$storage_dir = realpath(public_path() . $this::FILE_UPLOAD_BASE_DIR);
-
         $rec = Image::find($recId);
         $rec->delete();
 
@@ -128,7 +125,6 @@ class ImageCollector extends Collections
     {
         $rec = Image::find($recId);
 
-        //$storage_dir = realpath(public_path() . $this::FILE_UPLOAD_BASE_DIR);
         $this->previewFileRemove($rec);
 
         $rec->preview = null;

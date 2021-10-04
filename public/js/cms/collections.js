@@ -25,7 +25,7 @@ function reloadCollection(url, section, wcbf, options = {}) {
 function showItemControlPanel(src) {
     let frame = src.closest('div.image__collection__frame');
     let itemId = +frame.getAttribute('data-id');
-    
+
     if (itemControlPanelOn !== itemId) {
         if (itemControlPanel == null) {
             itemControlPanel = document.getElementById('item_control_panel');
