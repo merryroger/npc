@@ -49,6 +49,10 @@ class Collections
     {
     }
 
+    public function deletePreview($recId): bool
+    {
+    }
+
     public function getContents()
     {
         return $this->contents;

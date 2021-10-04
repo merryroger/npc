@@ -6,6 +6,7 @@
     <x03 type="error">Библиотека ошибок не может быть считана.</x03>
     <x04 type="error">Библиотека ошибок повреждена или имеет неправильный формат.</x04>
     <xd0 type="warning">Вы собираетесь удалить изображение из&nbsp;коллекции. Возможно, оно уже использутся в&nbsp;публикациях сайта.<br /><br />Удалить всё равно?</xd0>
+    <xd1 type="warning">Вы собираетесь удалить превью изображения.<br /><br />Выполнить операцию?</xd1>
     <xe0 type="error">Объём файла изображения превышает установленный лимит#=@data #.</xe0>
     <xe1 type="error">Загрузка некоторых файлов завершилась с ошибкой.</xe1>
     <xe2 type="error">Загрузка превью завершилась с ошибкой.</xe2>
@@ -13,6 +14,8 @@
 <controls>
     <xd0 label="errors.delete_anyway">cms.errors.image_delete_anyway</xd0>
     <xd0 label="errors.cancel">cms.errors.nop</xd0>
+    <xd1 label="errors.delete_anyway">cms.errors.preview_delete</xd1>
+    <xd1 label="errors.cancel">cms.errors.nop</xd1>
     <xe1 label="errors.ok">cms.errors.image_upload_close_enable</xe1>
     <xe2 label="errors.ok">cms.errors.preview_upload_close_enable</xe2>
 </controls>

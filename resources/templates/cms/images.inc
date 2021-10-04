@@ -33,6 +33,10 @@ $this->config = [
             'provider' => 'imagecollector',
             'template' => 'templates.cms.collections.images.dataset',
         ],
+        'PWRM' => [
+            'provider' => 'imagecollector',
+            'template' => 'templates.cms.collections.images.preview_presentation',
+        ],
         'PRLD' => [
             'provider' => 'imagecollector',
             'template' => 'templates.cms.collections.images.preview_presentation',

@@ -53,19 +53,7 @@ class ImageCollector extends Collections
             return collect($item)->except(['created_at', 'updated_at'])->all();
         })->all();
     }
-    /*
-        public function getParameter($param): string
-        {
-            switch (strtolower($param)) {
-                case 'contents':
-                case 'docheader':
-                case 'colontitule':
-                case 'stamps': return $this->$param;
-                default: return '';
-            }
 
-        }
-    */
     public function getItem($recId): array
     {
         $item = Image::find($recId);
@@ -129,6 +117,28 @@ class ImageCollector extends Collections
         if (!Image::total()) {
             Image::truncate();
         }
+
+        return true;
+    }
+
+    public function deletePreview($recId): bool
+    {
+        $rec = Image::find($recId);
+
+        $storage_dir = realpath(public_path() . $this::FILE_UPLOAD_BASE_DIR);
+        $previewPath = preg_replace("%[^\/\\\]+$%", '', $rec->origin) . $rec->preview;
+        $preview_dir = preg_replace("%[^\/\\\]+$%", '', $previewPath);
+
+        if (file_exists(realpath($storage_dir . $previewPath))) {
+            unlink(realpath($storage_dir . $previewPath));
+        }
+
+        if (count(scandir(realpath($storage_dir . $preview_dir))) == 2) {
+            rmdir(realpath($storage_dir . $preview_dir));
+        }
+
+        $rec->preview = null;
+        $rec->save();
 
         return true;
     }

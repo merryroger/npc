@@ -20,6 +20,8 @@ function reloadImageCollection(resp) {
             case 'CRLD':
                 document.body.querySelector('section.page__band').innerHTML = response.view;
                 break;
+            case 'PWRM':
+                dropErrorVeil();
             case 'PRLD':
                 document.body.querySelector('div.preview__location').innerHTML = response.view;
                 break;
@@ -157,6 +159,16 @@ function executeImageDelete(url, id, page = 1, section, wcbf) {
     sendPOSTRequest(url, pms, wcbf);
 }
 
+function executePreviewDelete(url, id, section, wcbf) {
+    let pms = [
+        `opcode=PWRM`,
+        `recId=${id}`,
+        `section=${section}`,
+    ];
+
+    sendPOSTRequest(url, pms, wcbf);
+}
+
 function reloadPreview(url, id, section, wcbf) {
     let pms = [
         `opcode=PRLD`,
@@ -251,4 +263,23 @@ function closePreviewForm(src = null) {
     canClose = true;
     fm.close_button.classList.remove('button__disabled');
     formPadLR.style.zIndex = 6;
+}
+
+function deletePreview(src) {
+    let control = src.closest('div#preview_control_panel');
+    let itemId = +control.getAttribute('data-id');
+    hidePreviewControlPanel();
+    updateVeilWaitState(veilLR, true);
+
+    let errorset = {
+        errorcode: 0xd1,
+        section: 'images',
+        options: {
+            id: itemId
+        }
+    };
+
+    setError(errorset);
+
+    return false;
 }

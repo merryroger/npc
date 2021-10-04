@@ -60,6 +60,8 @@ switch (strtoupper($extra_data['opcode'])) {
         $view = view($sets['template'], compact(['image']))->render();
         $contents = json_encode(array_merge($extra_data, ['view' => $view]));
         break;
+    case 'PWRM':
+        $provider->deletePreview(intval($extra_data['recId']));
     case 'PRLD':
     case 'EDIM':
         $provider->load($extra_data);
