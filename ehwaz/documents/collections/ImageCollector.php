@@ -20,8 +20,8 @@ class ImageCollector extends Collections
 
     public function storeUploadedFile($destFile, $pack_id = null)
     {
-        $storage_dir = addslashes(realpath(public_path() . $this::FILE_UPLOAD_BASE_DIR));
-        $destination = preg_replace("%^({$storage_dir})%", '', $destFile);
+        $storage_dir = addslashes(realpath(public_path() . $this::FILE_UPLOAD_RECEPTION_DIR));
+        $destination = $this::FILE_UPLOAD_RECEPTION_DIR . preg_replace("%^({$storage_dir})%", '', $destFile);
         $id = DB::table('images')->max('id');
         $nextId = (isset($id)) ? intval($id) + 1 : 1;
         $sid = strval($nextId);
@@ -65,15 +65,15 @@ class ImageCollector extends Collections
                 return collect($item)->except(['created_at', 'updated_at'])->all();
             })->first();
 
-            $storage_dir = realpath(public_path() . $this::FILE_UPLOAD_BASE_DIR);
-            if (file_exists(realpath($storage_dir . $image['origin']))) {
-                $directory = pathinfo(realpath($storage_dir . $image['origin']));
-                $image += getimagesize(realpath($storage_dir . $image['origin']));
+            //$storage_dir = realpath(public_path() . $this::FILE_UPLOAD_BASE_DIR);
+            if (file_exists(realpath(public_path() . $image['origin']))) {
+                $directory = pathinfo(realpath(public_path() . $image['origin']));
+                $image += getimagesize(realpath(public_path() . $image['origin']));
                 $image += $directory;
             }
 
             if ($image['preview']) {
-                $this->checkPreview($image, $storage_dir);
+                $this->checkPreview($image);
             }
 
             return $image;
@@ -81,16 +81,16 @@ class ImageCollector extends Collections
 
     }
 
-    protected function checkPreview(&$image, $storage_dir): void
+    protected function checkPreview(&$image): void
     {
         $previewPath = preg_replace("%[^\/\\\]+$%", '', $image['origin']) . $image['preview'];
         $preview = [
             'origin' => $previewPath
         ];
 
-        if (file_exists(realpath($storage_dir . $previewPath))) {
-            $directory = pathinfo(realpath($storage_dir . $previewPath));
-            $preview += getimagesize(realpath($storage_dir . $previewPath));
+        if (file_exists(realpath(public_path() . $previewPath))) {
+            $directory = pathinfo(realpath(public_path() . $previewPath));
+            $preview += getimagesize(realpath(public_path() . $previewPath));
             $preview += $directory;
 
             $image['preview_info'] = $preview;
@@ -99,15 +99,18 @@ class ImageCollector extends Collections
 
     public function deleteItem($recId): bool
     {
-        $storage_dir = realpath(public_path() . $this::FILE_UPLOAD_BASE_DIR);
+        //$storage_dir = realpath(public_path() . $this::FILE_UPLOAD_BASE_DIR);
 
         $rec = Image::find($recId);
         $rec->delete();
 
-        $directory = pathinfo(realpath($storage_dir . $rec->origin));
+        $directory = pathinfo(realpath(public_path() . $rec->origin));
+        if ($rec->preview) {
+            $this->previewFileRemove($rec);
+        }
 
-        if (file_exists(realpath($storage_dir . $rec->origin))) {
-            unlink(realpath($storage_dir . $rec->origin));
+        if (file_exists(realpath(public_path() . $rec->origin))) {
+            unlink(realpath(public_path() . $rec->origin));
         }
 
         if (count(scandir($directory['dirname'])) == 2) {
@@ -125,20 +128,27 @@ class ImageCollector extends Collections
     {
         $rec = Image::find($recId);
 
-        $storage_dir = realpath(public_path() . $this::FILE_UPLOAD_BASE_DIR);
-        $previewPath = preg_replace("%[^\/\\\]+$%", '', $rec->origin) . $rec->preview;
-        $preview_dir = preg_replace("%[^\/\\\]+$%", '', $previewPath);
-
-        if (file_exists(realpath($storage_dir . $previewPath))) {
-            unlink(realpath($storage_dir . $previewPath));
-        }
-
-        if (count(scandir(realpath($storage_dir . $preview_dir))) == 2) {
-            rmdir(realpath($storage_dir . $preview_dir));
-        }
+        //$storage_dir = realpath(public_path() . $this::FILE_UPLOAD_BASE_DIR);
+        $this->previewFileRemove($rec);
 
         $rec->preview = null;
         $rec->save();
+
+        return true;
+    }
+
+    protected function previewFileRemove($rec): bool
+    {
+        $previewPath = preg_replace("%[^\/\\\]+$%", '', $rec->origin) . $rec->preview;
+        $preview_dir = preg_replace("%[^\/\\\]+$%", '', $previewPath);
+
+        if (file_exists(realpath(public_path() . $previewPath))) {
+            unlink(realpath(public_path() . $previewPath));
+        }
+
+        if (count(scandir(realpath(public_path() . $preview_dir))) == 2) {
+            rmdir(realpath(public_path() . $preview_dir));
+        }
 
         return true;
     }

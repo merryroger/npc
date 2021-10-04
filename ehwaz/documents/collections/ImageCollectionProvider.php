@@ -13,8 +13,6 @@ class ImageCollectionProvider implements ExtendedDocumentProvider
 
     private $collector;
 
-    //private $parameters = ['base_dir' => '', 'page' => 1, 'xslt' => []];
-
     public function __construct(ImageCollector $imageCollector)
     {
         $this->collector = $imageCollector;
