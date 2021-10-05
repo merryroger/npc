@@ -12,6 +12,7 @@ function reloadImageCollection(resp) {
                 document.body.querySelector('section.data__list').outerHTML = response.view;
                 break;
             case 'CFLD':
+                itemControlPanel = null;
                 document.body.querySelector('section.data__list__empty').outerHTML = response.view;
                 break;
             case 'RITM':

@@ -77,8 +77,9 @@ div.image__collection__pad {
 }
 
 div.image__preview__pad {
-    width: 100px;
-    height: 75px;
+    width: 104px;
+    height: 78px;
+    max-height: 78px;
     padding: 3px;
     border-radius: 5px;
     border: 1px solid var(--blk-clr);
