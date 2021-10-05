@@ -396,6 +396,38 @@ class MenuitemSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
+            [
+                'id' => 70,
+                'access_group_id' => 1,
+                'node' => 3,
+                'mode' => 1,
+                'level' => 0,
+                'parent' => 0,
+                'order' => 3,
+                'purpose' => 'main',
+                'mnemo' => 'references',
+                'url' => 'getSubmenu(1, 3, 1, 1, 70, this)',
+                'behaviour' => 'folder',
+                'hidden' => 0,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 71,
+                'access_group_id' => 1,
+                'node' => 3,
+                'mode' => 1,
+                'level' => 1,
+                'parent' => 70,
+                'order' => 1,
+                'purpose' => 'locations',
+                'mnemo' => 'locations',
+                'url' => '/cms/locations',
+                'section_id' => 71,
+                'hidden' => 0,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
         ];
 
         foreach ($data as $portion) {

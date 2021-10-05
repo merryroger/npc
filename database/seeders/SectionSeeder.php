@@ -64,6 +64,16 @@ class SectionSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
+            [
+                'id' => 71,
+                'bip' => 0x00ffffff,
+                'name' => 'locations',
+                'entry_point' => 'templates.cms.default',
+                'gen_view' => 'cms.desktop',
+                'template' => 'templates.cms.locations',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
         ];
 
         foreach ($data as $portion) {
