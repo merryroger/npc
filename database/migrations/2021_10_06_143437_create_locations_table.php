@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImagesTable extends Migration
+class CreateLocationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('location')->default(0);
-            $table->string('origin')->default('');
-            $table->string('preview')->nullable()->default(null);
-            $table->string('pack_id')->default('');
-            $table->string('info', 255)->default('');
+            $table->string('name')->unique()->default('');
+            $table->string('rel_path')->default('');
             $table->boolean('hidden')->default(false);
             $table->timestamps();
         });
+
+        (new \Database\Seeders\LocationSeeder())->run();
     }
 
     /**
@@ -32,6 +31,6 @@ class CreateImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('locations');
     }
 }

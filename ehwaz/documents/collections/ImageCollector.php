@@ -8,6 +8,7 @@ namespace ehwas\documents\collections;
 
 
 use App\Models\Image;
+use App\Models\Location;
 use Illuminate\Support\Facades\DB;
 
 class ImageCollector extends Collections
@@ -20,8 +21,6 @@ class ImageCollector extends Collections
 
     public function storeUploadedFile($destFile, $pack_id = null)
     {
-        $storage_dir = addslashes(realpath(public_path() . $this::FILE_UPLOAD_RECEPTION_DIR));
-        $destination = $this::FILE_UPLOAD_RECEPTION_DIR . preg_replace("%^({$storage_dir})%", '', $destFile);
         $id = DB::table('images')->max('id');
         $nextId = (isset($id)) ? intval($id) + 1 : 1;
         $sid = strval($nextId);
@@ -31,11 +30,13 @@ class ImageCollector extends Collections
         $sid = 'Image' . $sid;
 
         $image = new Image();
-        $image->origin = $destination;
+        $image->location = 1;
+        $image->origin = $destFile;
         if (isset($pack_id) && $pack_id) {
             $image->pack_id = $pack_id;
         }
         $image->info = $sid;
+
         $image->save();
     }
 
@@ -50,26 +51,20 @@ class ImageCollector extends Collections
     public function loadCollection($params, $extra): void
     {
         $this->contents = Image::dataSet()->get()->map(function ($item, $key) {
+            $item['rel_path'] = (intval($item['location']) > 1) ? Location::locationDirById($item['location']) : Location::locationDirById($item['location']) . "/{$item['pack_id']}";
+
             return collect($item)->except(['created_at', 'updated_at'])->all();
         })->all();
     }
 
     public function getItem($recId): array
     {
-        $item = Image::find($recId);
+        $image_item = Image::find($recId);
 
-        if ($item == null) {
+        if ($image_item == null) {
             return [];
         } else {
-            $image = Image::where('id', $recId)->get()->map(function ($item, $key) {
-                return collect($item)->except(['created_at', 'updated_at'])->all();
-            })->first();
-
-            if (file_exists(realpath(public_path() . $image['origin']))) {
-                $directory = pathinfo(realpath(public_path() . $image['origin']));
-                $image += getimagesize(realpath(public_path() . $image['origin']));
-                $image += $directory;
-            }
+            $image = $this->pickImageData($recId);
 
             if ($image['preview']) {
                 $this->checkPreview($image);
@@ -80,9 +75,27 @@ class ImageCollector extends Collections
 
     }
 
+    protected function pickImageData($recId): array
+    {
+        $image = Image::where('id', $recId)->get()->map(function ($item, $key) {
+            $item['rel_path'] = (intval($item['location']) > 1) ? Location::locationDirById($item['location']) : Location::locationDirById($item['location']) . "/{$item['pack_id']}";
+
+            return collect($item)->except(['created_at', 'updated_at'])->all();
+        })->first();
+
+        if (file_exists(realpath(public_path() . $image['rel_path'] . $image['origin']))) {
+            $directory = pathinfo(realpath(public_path() . $image['rel_path'] . $image['origin']));
+            $image += getimagesize(realpath(public_path() . $image['rel_path'] . $image['origin']));
+            $image += $directory;
+        }
+
+        return $image;
+    }
+
     protected function checkPreview(&$image): void
     {
-        $previewPath = preg_replace("%[^\/\\\]+$%", '', $image['origin']) . $image['preview'];
+        $previewPath = $image['rel_path'] . '/' . $image['preview'];
+
         $preview = [
             'origin' => $previewPath
         ];
@@ -98,20 +111,24 @@ class ImageCollector extends Collections
 
     public function deleteItem($recId): bool
     {
+        $image = $this->pickImageData($recId);
+        if ($image['preview']) {
+            $this->checkPreview($image);
+        }
+
         $rec = Image::find($recId);
         $rec->delete();
 
-        $directory = pathinfo(realpath(public_path() . $rec->origin));
         if ($rec->preview) {
-            $this->previewFileRemove($rec);
+            $this->previewFileRemove($image);
         }
 
-        if (file_exists(realpath(public_path() . $rec->origin))) {
-            unlink(realpath(public_path() . $rec->origin));
+        if (file_exists(realpath($image['dirname'] . $rec->origin))) {
+            unlink($image['dirname'] . $rec->origin);
         }
 
-        if (count(scandir($directory['dirname'])) == 2) {
-            rmdir($directory['dirname']);
+        if (count(scandir($image['dirname'])) == 2) {
+            rmdir($image['dirname']);
         }
 
         if (!Image::total()) {
@@ -123,27 +140,26 @@ class ImageCollector extends Collections
 
     public function deletePreview($recId): bool
     {
+        $image = $this->pickImageData($recId);
+        $this->checkPreview($image);
+
         $rec = Image::find($recId);
-
-        $this->previewFileRemove($rec);
-
         $rec->preview = null;
         $rec->save();
+
+        $this->previewFileRemove($image);
 
         return true;
     }
 
-    protected function previewFileRemove($rec): bool
+    protected function previewFileRemove($image): bool
     {
-        $previewPath = preg_replace("%[^\/\\\]+$%", '', $rec->origin) . $rec->preview;
-        $preview_dir = preg_replace("%[^\/\\\]+$%", '', $previewPath);
-
-        if (file_exists(realpath(public_path() . $previewPath))) {
-            unlink(realpath(public_path() . $previewPath));
+        if (file_exists(realpath(public_path() . $image['preview_info']['origin']))) {
+            unlink(realpath(public_path() . $image['preview_info']['origin']));
         }
 
-        if (count(scandir(realpath(public_path() . $preview_dir))) == 2) {
-            rmdir(realpath(public_path() . $preview_dir));
+        if (count(scandir(realpath($image['preview_info']['dirname']))) == 2) {
+            rmdir(realpath($image['preview_info']['dirname']));
         }
 
         return true;

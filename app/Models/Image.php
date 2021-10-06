@@ -11,6 +11,11 @@ class Image extends Model
 
     protected $guarded = [];
 
+    public function locations()
+    {
+        return $this->belongsTo(Location::class);
+    }
+
     public function scopeTotal($query, $show_hidden = true)
     {
         return ($show_hidden) ? $query->get()->count() : $query->where('hidden', true)->get()->count();
