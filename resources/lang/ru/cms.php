@@ -9,6 +9,7 @@
             'no_data' => 'Нет данных',
             'imagecollection' => 'Коллекция изображений',
             'photocollection' => 'Коллекция фотографий',
+            'resourcelocations' => 'Каталоги размещения публикуемых ресурсов',
             'upload_from_file' => 'Загрузить из файла'
         ],
         'errors' => [

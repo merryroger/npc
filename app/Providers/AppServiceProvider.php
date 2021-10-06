@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use ehwas\documents\collections\ImageCollectionProvider;
 use ehwas\documents\collections\ImageCollector;
+use ehwas\documents\references\ResourceLocationProvider;
+use ehwas\documents\references\ResourceLocatior;
 use ehwas\documents\tyrion\TyrionDocumentProvider;
 use ehwas\documents\tyrion\TyrionReader;
 use ehwas\news\NewslineProvider;
@@ -45,6 +47,11 @@ class AppServiceProvider extends ServiceProvider
         app()->bind('imagecollector', ImageCollectionProvider::class);
         app()->bind(ImageCollectionProvider::class, function($api) {
             return new ImageCollectionProvider(new ImageCollector());
+        });
+
+        app()->bind('resourcelocator', ResourceLocationProvider::class);
+        app()->bind(ResourceLocationProvider::class, function($api) {
+            return new ResourceLocationProvider(new ResourceLocatior());
         });
     }
 }

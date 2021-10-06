@@ -69,7 +69,7 @@ class SectionSeeder extends Seeder
                 'bip' => 0x00ffffff,
                 'name' => 'locations',
                 'entry_point' => 'templates.cms.default',
-                'gen_view' => 'cms.desktop',
+                'gen_view' => 'cms.references',
                 'template' => 'templates.cms.locations',
                 'created_at' => now(),
                 'updated_at' => now()
