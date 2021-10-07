@@ -1,5 +1,39 @@
 /**** References` css list ****/
 
+body {
+    flex-grow: 1;
+}
+
+section.data__list, section.data__list__empty {
+    //margin: auto;
+    padding: 50px 0 10px;
+    //background-color: #847078;
+    font-family: "Roboto Condensed", sans-serif;
+    flex-direction: column;
+    align-items: stretch;
+    flex-grow: 1;
+    display: flex;
+}
+
+section.data__list {
+    overflow: hidden;
+    max-height: calc(100% - 60px);
+}
+
+.data__list__empty h1, .data__list h1 {
+    color: var(--mmnu-abg);
+    font-size: 21pt;
+}
+
+.data__list__empty h3 {
+    color: var(--mmnu-abg);
+    font-size: 14pt;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    display: flex;
+}
+
 div.reference__header {
     flex-direction: row;
     justify-content: center;
@@ -32,6 +66,15 @@ div.reference__ctrl__btn {
 
 div.reference__ctrl__btn:active {
     box-shadow: none;
+}
+
+/**** Data table part ****/
+
+section.table__pad {
+    margin: auto;
+    justify-content: center;
+    flex-grow: 1;
+    display: flex;
 }
 
 /**** Form part ****/

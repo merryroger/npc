@@ -51,10 +51,16 @@ class ImageCollector extends Collections
     public function loadCollection($params, $extra): void
     {
         $this->contents = Image::dataSet()->get()->map(function ($item, $key) {
-            $item['rel_path'] = (intval($item['location']) > 1) ? Location::locationDirById($item['location']) : Location::locationDirById($item['location']) . "/{$item['pack_id']}";
+            $this->getLocationDir($item);
 
             return collect($item)->except(['created_at', 'updated_at'])->all();
         })->all();
+    }
+
+    protected function getLocationDir(&$item): void
+    {
+        $relPath = Location::locationDirById($item['location']);
+        $item['rel_path'] = (intval($item['location']) > 1) ? $relPath : $relPath . "/{$item['pack_id']}";
     }
 
     public function getItem($recId): array
@@ -78,7 +84,7 @@ class ImageCollector extends Collections
     protected function pickImageData($recId): array
     {
         $image = Image::where('id', $recId)->get()->map(function ($item, $key) {
-            $item['rel_path'] = (intval($item['location']) > 1) ? Location::locationDirById($item['location']) : Location::locationDirById($item['location']) . "/{$item['pack_id']}";
+            $this->getLocationDir($item);
 
             return collect($item)->except(['created_at', 'updated_at'])->all();
         })->first();

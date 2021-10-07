@@ -16,6 +16,18 @@ class Location extends Model
         return $this->hasMany(Image::class);
     }
 
+    public function scopeTotal($query, $show_hidden = true)
+    {
+        return ($show_hidden) ? $query->get()->count() : $query->where('hidden', true)->get()->count();
+    }
+
+    public function scopeDataSet($query, $show_hidden = true)
+    {
+        $rq = ($show_hidden) ? $query : $query->where('hidden', true);
+
+        return $rq->orderByDesc('id');
+    }
+
     public function scopeLocationDirById($query, $locId)
     {
         $location = $query->where('id', $locId)->get()->map(function($item, $key) {

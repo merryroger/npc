@@ -11,7 +11,6 @@
     <style>
         @include('styles/fonts')
         @include('styles/cms/default')
-        @include('styles/cms/datalist')
         @include('styles/cms/references')
         @include('styles/substyles/mcp')
     </style>

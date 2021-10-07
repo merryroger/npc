@@ -13,7 +13,7 @@ class Image extends Model
 
     public function locations()
     {
-        return $this->belongsTo(Location::class);
+        return $this->belongsTo(Location::class, 'location');
     }
 
     public function scopeTotal($query, $show_hidden = true)
