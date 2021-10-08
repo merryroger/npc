@@ -6,6 +6,8 @@
 
 namespace ehwas\documents\references;
 
+use App\Models\Location;
+
 class ResourceLocatior
 {
 
@@ -22,10 +24,11 @@ class ResourceLocatior
 
     public function loadLocations($params, $extra): void
     {
-//        $this->contents = Image::dataSet()->get()->map(function ($item, $key) {
-//            return collect($item)->except(['created_at', 'updated_at'])->all();
-//        })->all();
-        $this->contents = []; //!!!!!!!!!!!!!!!!! Temporary line !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        $showHidden = !(isset($params['nohidden']) && $params['nohidden']);
+
+        $this->contents = Location::dataSet($showHidden)->get()->map(function ($item, $key) {
+            return collect($item)->except(['created_at', 'updated_at'])->all();
+        })->all();
     }
 /*
     public function getItem($recId): array

@@ -16,13 +16,18 @@
     </style>
     @php($parameters = \Illuminate\Support\Facades\Route::current()->parameters())
     @if (isset($parameters['section']))
-
+        @switch($parameters['section'])
+        @case('locations')
+            <script src="/js/cms/references/location/data_table.js" type="text/javascript"></script>
+        @break
+        @endswitch
     @endif
     <script src="/js/common.js" type="text/javascript"></script>
     <script src="/js/veil.js" type="text/javascript"></script>
     <script src="/js/ajax.js" type="text/javascript"></script>
     <script src="/js/cms/desktop.js" type="text/javascript"></script>
     <script src="/js/cms/references.js" type="text/javascript"></script>
+    <script src="/js/cms/references/data_tables.js" type="text/javascript"></script>
     <script src="/js/cms/mcp.js" type="text/javascript"></script>
 </head>
 <body>

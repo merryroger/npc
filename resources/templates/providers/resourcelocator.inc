@@ -12,6 +12,7 @@ if (!isset($extra_data['opcode'])) {
 switch (strtoupper($extra_data['opcode'])) {
     default:
         $total = \App\Models\Location::total();
+
         if ($total) {
             $provider->load($extra_data);
             $dataset = $provider->getContents();

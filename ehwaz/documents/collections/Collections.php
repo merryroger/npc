@@ -11,9 +11,6 @@ use App\Models\Location;
 
 class Collections
 {
-    //protected const FILE_UPLOAD_BASE_DIR = '/../storage';
-    //protected const FILE_UPLOAD_RECEPTION_DIR = '/../storage/reception';
-
     protected $contents;
 
     public function __construct()
@@ -36,7 +33,6 @@ class Collections
         return realpath($fupDir);
     }
 
-
     public function loadCollection($params, $extra): void
     {
     }
@@ -54,14 +50,8 @@ class Collections
         return $this->contents;
     }
 
-    /*
-        protected function reset(): void
-        {
-        }
-    */
     public function __destruct()
     {
-//        $this->reset();
     }
 
 }
