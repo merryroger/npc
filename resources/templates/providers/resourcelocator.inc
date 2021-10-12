@@ -16,14 +16,16 @@ switch (strtoupper($extra_data['opcode'])) {
         if ($total) {
             $provider->load($extra_data);
             $dataset = $provider->getContents();
+            $vocabulary = $provider->getVocabulary(['common', 'locations']);
         } else {
-            $dataset = [];
+            $dataset = $vocabulary = [];
         }
 
         if (!$extra_data['opcode']) {
-            $contents = view($sets['template'], compact(['total', 'dataset']))->render();
+            $vocabulary = json_encode($vocabulary);
+            $contents = view($sets['template'], compact(['total', 'dataset', 'vocabulary']))->render();
         } else {
             $view = view($sets['template'], compact(['total', 'dataset']))->render();
-            $contents = json_encode(array_merge($extra_data, ['view' => $view]));
+            $contents = json_encode(array_merge($extra_data, ['view' => $view, 'vocabulary' => $vocabulary]));
         }
 }

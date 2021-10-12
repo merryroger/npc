@@ -40,5 +40,18 @@
             'collections' => 'Коллекции',
             'references' => 'Справочники',
             'topics' => 'Разделы'
-        ]
+        ],
+        'references' => [
+            'common' => [
+                'controls' => 'Управление',
+                'id' => 'Id',
+                'hidden' => 'Скрытый',
+                'name' => 'Название',
+                'visibility' => 'Видимость',
+                'visible' => 'Видимая',
+            ],
+            'locations' => [
+                'rel_path' => 'Путь',
+            ],
+        ],
     ];

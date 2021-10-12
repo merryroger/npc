@@ -3,4 +3,4 @@
     <tbody></tbody>
     <tfoot></tfoot>
 </table>
-<script>deployDataset({!! json_encode($dataset) !!})</script>
+<script>deployDataset({!! json_encode($dataset) !!}, {!! $vocabulary !!})</script>

@@ -4,10 +4,10 @@ let tabConf = {
     defCol: 'id',
     defSort: 'asc',
     headers: {
-        'id': {'class_list': 'lb la sortable'},
-        'name': {'class_list': 'lb sortable'},
-        'rel_path': {'class_list': 'lb la sortable'},
-        'hidden': {'class_list': 'lb sortable'},
+        'id': {'class_list': 'rb la sortable'},
+        'name': {'class_list': 'rb sortable'},
+        'rel_path': {'class_list': 'rb la sortable'},
+        'hidden': {'class_list': 'rb sortable'},
         'controls': {}
     },
     rows: {
@@ -16,19 +16,19 @@ let tabConf = {
                 let row = document.createElement('tr');
                 row.className = 'df__header__row';
 
-//                for (let [key, data] of Object.entries(headers)) {
-//                    let th = document.createElement('th');
-//                    th.name = key;
-//                    th.className = (data['class_list']) ? data['class_list'] : '';
-//                    let sort_sign = (sort == 'asc') ? '▲' : '▼';
-//                    th.innerHTML = (key == defCol) ? `${getVocabulary(key)}&nbsp;${sort_sign}` : getVocabulary(key);
-//                    row.appendChild(th);
-//                }
+                for (let [key, data] of Object.entries(headers)) {
+                    let th = document.createElement('th');
+                    th.name = key;
+                    th.className = (data['class_list']) ? data['class_list'] : '';
+                    let sort_sign = (sort == 'asc') ? '▲' : '▼';
+                    th.innerHTML = (key == defCol) ? `${getVocabulary(key)}&nbsp;${sort_sign}` : getVocabulary(key);
+                    row.appendChild(th);
+                }
 
                 return row;
             }
         },
-/*        body: {
+        body: {
             render(headers, cells, data) {
                 let row = document.createElement('tr');
                 row.setAttribute('data-id', data['id']);
@@ -44,13 +44,13 @@ let tabConf = {
 
                 return row;
             }
-        } */
+        }
     },
     cells: {
-/*        id: {
+        id: {
             render(data) {
                 let td = document.createElement('td');
-                td.className = (data['hidden']) ? 'style__hidden' : '';
+                td.className = (data['hidden']) ? 'style__hidden ca' : 'ca';
                 td.innerHTML = data['id'];
                 return td;
             },
@@ -61,11 +61,11 @@ let tabConf = {
                 return value1 - value2;
             },
         },
-        short_name: {
+        name: {
             render(data) {
                 let td = document.createElement('td');
                 td.className = (data['hidden']) ? 'style__hidden' : '';
-                td.innerHTML = data['short_name'];
+                td.innerHTML = data['name'];
                 return td;
             },
             getValue(cells) {
@@ -77,11 +77,11 @@ let tabConf = {
                         -1;
             },
         },
-        full_name: {
+        rel_path: {
             render(data) {
                 let td = document.createElement('td');
                 td.className = (data['hidden']) ? 'style__hidden' : '';
-                td.innerHTML = data['full_name'];
+                td.innerHTML = data['rel_path'];
                 return td;
             },
             getValue(cells) {
@@ -91,6 +91,20 @@ let tabConf = {
                 return value1 > value2 ? 1 :
                     value1 == value2 ? 0 :
                         -1;
+            },
+        },
+        hidden: {
+            render(data) {
+                let td = document.createElement('td');
+                td.className = (data['hidden']) ? 'style__hidden ca' : 'ca';
+                td.innerHTML = data['hidden'];
+                return td;
+            },
+            getValue(cells) {
+                return cells[2].innerHTML;
+            },
+            compare(value1, value2) {
+                return value1 - value2;
             },
         },
         controls: {
@@ -108,7 +122,7 @@ let tabConf = {
 
                 return td;
             }
-        },*/
+        },
     },
 };
 
@@ -186,13 +200,4 @@ function resortTable(rows) {
     return rows;
 }
 
-function renderDataSet(ds, table) {
-    let rows = [];
-    for (let i = 0; i < ds.length; i++) {
-        rows[rows.length] = tabConf.rows.body.render(tabConf.headers, tabConf.cells, ds[i]);
-    }
-
-    rows = resortTable(rows);
-    table.querySelector('tbody').append(...rows);
-}
 */

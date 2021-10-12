@@ -71,10 +71,46 @@ div.reference__ctrl__btn:active {
 /**** Data table part ****/
 
 section.table__pad {
-    margin: auto;
+    margin: 25px auto 0;
     justify-content: center;
+    align-items: flex-start;
     flex-grow: 1;
     display: flex;
+}
+
+table#data_table {
+    border-collapse: collapse;
+    border: 1px solid var(--lt-gr-cl);
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+tr.df__header__row {
+    border-bottom: 1px solid var(--lt-gr-cl);
+    background-color: var(--xlt-gray);
+}
+
+.df__header__row th {
+    padding: 3px 8pt;
+    color: var(--dk-gr-cl);
+    font-size: 10pt;
+}
+
+.df__header__row .rb {
+    border-right: 1px solid var(--lt-gr-cl);
+}
+
+td {
+    padding: 5px 8pt;
+    color: var(--dk-gr-cl);
+    font-size: 9pt;
+}
+
+.la {
+    text-align: left;
+}
+
+.ca {
+    text-align: center;
 }
 
 /**** Form part ****/
