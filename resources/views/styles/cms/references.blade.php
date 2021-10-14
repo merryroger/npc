@@ -93,16 +93,31 @@ tr.df__header__row {
     padding: 3px 8pt;
     color: var(--dk-gr-cl);
     font-size: 10pt;
+    cursor: default;
 }
 
 .df__header__row .rb {
     border-right: 1px solid var(--lt-gr-cl);
 }
 
+tr:hover > td {
+    color: var(--def-bgr);
+    background-color: var(--mmnu-clr);
+}
+
 td {
     padding: 5px 8pt;
     color: var(--dk-gr-cl);
     font-size: 9pt;
+    cursor: pointer;
+}
+
+td.ctrl__cell {
+    cursor: default;
+}
+
+.sortable {
+    cursor: pointer !important;
 }
 
 .la {

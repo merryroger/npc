@@ -2,8 +2,10 @@
 
 function renderDataTable(dataset) {
     let table = document.body.querySelector('table#data_table');
+    takeOffTableListeners(table);
     renderDataHeader(table);
-    renderDataSet(dataset, table)
+    renderDataSet(dataset, table);
+    hangTableListeners(table);
 }
 
 function renderDataHeader(table) {
@@ -18,6 +20,47 @@ function renderDataSet(ds, table) {
         rows[rows.length] = tabConf.rows.body.render(tabConf.headers, tabConf.cells, ds[i]);
     }
 
-    //rows = resortTable(rows);
+    rows = resortTable(rows);
     table.querySelector('tbody').append(...rows);
+}
+
+function resortTable(rows) {
+    let compare = tabConf.cells[tabConf.defCol].compare;
+    if (compare === null)
+        return;
+
+    let getValue = tabConf.cells[tabConf.defCol].getValue;
+
+    rows = (tabConf.defSort == 'asc') ?
+        rows.sort((rowA, rowB) => compare(getValue(rowA.cells), getValue(rowB.cells))) :
+        rows.sort((rowA, rowB) => compare(getValue(rowB.cells), getValue(rowA.cells)));
+
+    return rows;
+}
+
+function sortTable(table, colId) {
+    let tbody = table.querySelector('tbody');
+    let rows = Array.from(tbody.rows);
+
+    if (colId == tabConf.defCol) {
+        tabConf.defSort = (tabConf.defSort == 'asc') ? 'desc' : 'asc';
+    } else {
+        tabConf.defCol = colId;
+        tabConf.defSort = 'asc';
+    }
+
+    renderDataHeader(table);
+    rows = resortTable(rows);
+
+    table.querySelector('tbody').append(...rows);
+}
+
+function hangTableListeners(table) {
+    table.addEventListener('click', tableClickEvent);
+    table.addEventListener('dblclick', tableDBLClickEvent);
+}
+
+function takeOffTableListeners(table) {
+    table.removeEventListener('click', tableClickEvent);
+    table.removeEventListener('dblclick', tableDBLClickEvent);
 }

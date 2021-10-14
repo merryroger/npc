@@ -35,7 +35,7 @@ let tabConf = {
                 for (let key of Object.keys(headers)) {
                     switch (key) {
                         case 'controls':
-                            row.appendChild(cells[key].render(getVocabulary('delete')));
+                            row.appendChild(cells[key].render(+data['id'], getVocabulary('delete_record')));
                             break;
                         default:
                             row.appendChild(cells[key].render(data));
@@ -96,7 +96,7 @@ let tabConf = {
         hidden: {
             render(data) {
                 let td = document.createElement('td');
-                td.className = (data['hidden']) ? 'style__hidden ca' : 'ca';
+                td.className = (data['hidden']) ? 'style__hidden ctrl__cell ca' : 'ctrl__cell ca';
                 td.innerHTML = data['hidden'];
                 return td;
             },
@@ -108,13 +108,13 @@ let tabConf = {
             },
         },
         controls: {
-            render(title) {
+            render(id, title) {
                 let td = document.createElement('td');
                 td.className = 'ca ctrl__cell';
                 td.style.cursor = 'default';
 
                 let span = document.createElement('span');
-                span.className = 'red delete__ctrl';
+                span.className = (id == 1) ? 'delete__ctrl' : 'red delete__ctrl';
                 span.title = title;
                 span.innerHTML = '✖';
 
@@ -125,6 +125,20 @@ let tabConf = {
         },
     },
 };
+
+function tableClickEvent(e) {
+    switch (e.target.tagName) {
+        case 'TH':
+                if (e.target.classList.contains('sortable')) {
+                    sortTable(e.target.closest('table'), e.target.name);
+                }
+            break;
+    }
+}
+
+function tableDBLClickEvent(e) {
+    console.log('dbl click');
+}
 
 /*
 function listRepaint(rsp) {
@@ -169,35 +183,5 @@ function renderList(rsp) {
     }
 }
 
-function sortTable(table, colId) {
-    let tbody = table.querySelector('tbody');
-    let rows = Array.from(tbody.rows);
-
-    if (colId == tabConf.defCol) {
-        tabConf.defSort = (tabConf.defSort == 'asc') ? 'desc' : 'asc';
-    } else {
-        tabConf.defCol = colId;
-        tabConf.defSort = 'asc';
-    }
-
-    renderTableHeader(getDataSet(), table);
-    rows = resortTable(rows);
-
-    table.querySelector('tbody').append(...rows);
-}
-
-function resortTable(rows) {
-    let compare = tabConf.cells[tabConf.defCol].compare;
-    if (compare === null)
-        return;
-
-    let getValue = tabConf.cells[tabConf.defCol].getValue;
-
-    rows = (tabConf.defSort == 'asc') ?
-        rows.sort((rowA, rowB) => compare(getValue(rowA.cells), getValue(rowB.cells))) :
-        rows.sort((rowA, rowB) => compare(getValue(rowB.cells), getValue(rowA.cells)));
-
-    return rows;
-}
-
 */
+

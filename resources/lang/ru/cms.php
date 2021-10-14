@@ -44,11 +44,12 @@
         'references' => [
             'common' => [
                 'controls' => 'Управление',
+                'delete_record' => 'Удалить запись',
                 'id' => 'Id',
                 'hidden' => 'Скрытый',
                 'name' => 'Название',
                 'visibility' => 'Видимость',
-                'visible' => 'Видимая',
+                'visible' => 'Видимый',
             ],
             'locations' => [
                 'rel_path' => 'Путь',
