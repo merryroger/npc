@@ -18,6 +18,7 @@
     @if (isset($parameters['section']))
         @switch($parameters['section'])
         @case('locations')
+            <script src="/js/cms/references/location/locations.js" type="text/javascript"></script>
             <script src="/js/cms/references/location/data_table.js" type="text/javascript"></script>
         @break
         @endswitch

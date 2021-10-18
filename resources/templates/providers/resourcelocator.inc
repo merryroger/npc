@@ -10,6 +10,8 @@ if (!isset($extra_data['opcode'])) {
 }
 
 switch (strtoupper($extra_data['opcode'])) {
+    case 'RAFM':
+        break;
     default:
         $total = \App\Models\Location::total();
 

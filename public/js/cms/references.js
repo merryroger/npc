@@ -1,5 +1,8 @@
 'use strict';
 
+let formPadLR = null;
+let formPadOn = false;
+let canClose = true;
 let sectionVocabulary = {};
 
 function deployDataset(dataset, vocabulary = {}) {
@@ -13,6 +16,16 @@ function setVocabulary(voc) {
     sectionVocabulary = voc;
 }
 
-function getVocabulary($key) {
-    return sectionVocabulary[$key];
+function getVocabulary(key) {
+    return sectionVocabulary[key];
+}
+
+function closeForm(src) {
+    if (formPadOn && canClose) {
+        formPadLR.className = 'off';
+        formPadLR.innerHTML = '';
+        formPadOn = false;
+
+        dropVeil();
+    }
 }
