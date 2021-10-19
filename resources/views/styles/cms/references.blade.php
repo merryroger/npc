@@ -157,8 +157,56 @@ form.edit__form {
 }
 
 .edit__form label {
+    margin-bottom: 5px;
     color: var(--mmnu-clr);
     font-size: 14pt;
+}
+
+div.form__field {
+    margin: 8px 0;
+    width: 99%;
+    flex-direction: column;
+    align-self: flex-end;
+    display: flex;
+}
+
+div.form__assembly {
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row;
+    display: flex;
+}
+
+.form__field label {
+    margin: 0 0 2px 3pt;
+    color: var(--dk-gr-cl);
+    font-size: 10pt;
+}
+
+.form__field input[type="text"] {
+    padding: 3px 5pt;
+    border: 1px solid var(--lt-gr-cl);
+    border-radius: 3px;
+    color: var(--dk-gr-cl);
+    font-family: Tahoma, "PT Sans", sans-serif;
+    font-size: 9pt;
+    outline: none;
+    flex-grow: 1;
+    display: flex;
+}
+
+.form__assembly input[type="button"] {
+    margin-left: 3px;
+    padding: 3px 0;
+    width: 25px;
+    color: var(--dk-gr-cl);
+    border: 1px solid var(--lt-gr-cl);
+    border-radius: 3px;
+    font-family: Tahoma, "PT Sans", sans-serif;
+    font-size: 9pt;
+    outline: none;
+    cursor: pointer;
+    display: flex;
 }
 
 section.form__controls {
@@ -190,50 +238,3 @@ section.form__controls {
     opacity: .5;
     cursor: default !important;
 }
-/*
-.image__selector__set button {
-    margin: 2px 3pt;
-    padding: 5px 0;
-    width: 25px;
-    color: var(--mmnu-clr);
-    border: 1px solid var(--xlt-gray);
-    background-color: var(--def-bgr);
-    border-radius: 5px;
-    box-shadow: 2px 2px 3px rgba(0,0,0,0.3);
-    cursor: pointer;
-}
-
-.image__selector__set button:active {
-    box-shadow: none;
-}
-
-.wait__upload {
-    background: var(--def-bgr) url("/images/accessories/upload_await.gif") right 8px no-repeat;
-}
-*/
-/**** Edit form part ****/
-/*
-div.image__edit__area, div.image__preview__titlebar {
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    display: flex;
-}
-
-div.image__edit__parameters {
-    margin: 7px 0 0;
-}
-
-.image__edit__parameters > p {
-    padding: 2px 0 0 2pt;
-    line-height: 1;
-    color: var(--mmnu-abg);
-    font: 400 9pt "PT Sans", sans-serif;
-}
-
-.image__edit__pad > h3, .image__preview__titlebar > h3 {
-    margin: 0 2pt 6px;
-    color: var(--dk-gr-cl);
-    font-size: 11pt;
-}
-*/

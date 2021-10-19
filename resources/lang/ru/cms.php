@@ -39,6 +39,7 @@
         ],
         'menu' => [
             'collections' => 'Коллекции',
+            'file_manager' => 'Файловый менеджер',
             'references' => 'Справочники',
             'topics' => 'Разделы'
         ],
@@ -53,6 +54,7 @@
                 'visible' => 'Видимый',
             ],
             'locations' => [
+                'location' => 'Расположение',
                 'rel_path' => 'Путь',
             ],
         ],
