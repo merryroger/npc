@@ -162,6 +162,10 @@ form.edit__form {
     font-size: 14pt;
 }
 
+.required label:first-letter {
+    color: var(--red-cl);
+}
+
 div.form__field {
     margin: 8px 0;
     width: 99%;

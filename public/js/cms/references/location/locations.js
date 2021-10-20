@@ -49,6 +49,36 @@ function buildLocationAddForm(resp) {
         console.log(e);
     } finally {
         updateVeilWaitState(veilLR);
+        setTimeout(initLocationForm, 10);
         rq_sent = false;
     }
+}
+
+function initLocationForm() {
+    let fm = document.body.querySelector('form.edit__form');
+    fm.name.focus();
+}
+
+function checkFormControls(fm) {
+    let pms = [
+        `_token=${pickToken(fm)}`,
+    ];
+
+    for (let field of Object.values(fm)) {
+        if (field.getAttribute('data-type') == null || field.getAttribute('data-type') != 'form_field') {
+            continue;
+        }
+
+        switch (field.tagName.toLocaleUpperCase()) {
+            case 'INPUT':
+                if (field.type.toLowerCase() == 'text' || field.type.toLowerCase() == 'hidden') {
+                    pms.push(`${field.name}=${encodeURIComponent(field.value)}`);
+                }
+                break;
+        }
+    }
+
+    sendPOSTRequest(imgURL, pms, buildLocationAddForm);
+
+    return false;
 }

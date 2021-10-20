@@ -40,6 +40,10 @@ function getToken(selector) {
     return document.body.querySelector(selector)._token.value;
 }
 
+function pickToken(fm) {
+    return fm._token.value;
+}
+
 function doAction(src, handler) {
     let fm = src.closest("#error_form");
     if (!handler(fm))
