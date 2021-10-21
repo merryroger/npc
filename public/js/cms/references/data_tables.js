@@ -20,8 +20,34 @@ function renderDataSet(ds, table) {
         rows[rows.length] = tabConf.rows.body.render(tabConf.headers, tabConf.cells, ds[i]);
     }
 
+    table.querySelector('tbody').innerHTML = '';
     rows = resortTable(rows);
     table.querySelector('tbody').append(...rows);
+}
+
+
+function renderList(resp) {
+    let rsp = JSON.parse(resp);
+    if (rsp.success == 0) {
+        setError(rsp);
+    } else {
+        let contents = JSON.parse(rsp.contents);
+
+        listRepaint(contents.dataset);
+        closeForm();
+        dropVeil();
+
+        rq_sent = false;
+        formPadOn = false;
+    }
+}
+
+function listRepaint(dataset) {
+    let table = document.body.querySelector('table#data_table');
+
+    takeOffTableListeners(table);
+    renderDataSet(dataset, table);
+    hangTableListeners(table);
 }
 
 function resortTable(rows) {

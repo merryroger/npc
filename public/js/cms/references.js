@@ -20,7 +20,7 @@ function getVocabulary(key) {
     return sectionVocabulary[key];
 }
 
-function closeForm(src) {
+function closeForm(src = null) {
     if (formPadOn && canClose) {
         formPadLR.className = 'off';
         formPadLR.innerHTML = '';

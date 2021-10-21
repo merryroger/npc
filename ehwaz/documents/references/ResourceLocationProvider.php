@@ -22,6 +22,11 @@ class ResourceLocationProvider implements ExtendedDocumentProvider
         $this->reference->loadLocations($src, $params);
     }
 
+    public function addRecord($params)
+    {
+        return $this->reference->addRecord($params);
+    }
+
     public function getVocabulary($topics)
     {
         return $this->reference->getVocabulary($topics);

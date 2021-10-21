@@ -80,13 +80,14 @@ section.table__pad {
 
 table#data_table {
     border-collapse: collapse;
-    border: 1px solid var(--lt-gr-cl);
+    border: 1px solid var(--mid-gray);
     font-family: "Roboto Condensed", sans-serif;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
 }
 
 tr.df__header__row {
-    border-bottom: 1px solid var(--lt-gr-cl);
-    background-color: var(--xlt-gray);
+    border-bottom: 1px solid var(--mid-gray);
+    background-color: var(--th-bgr-cl);
 }
 
 .df__header__row th {
@@ -97,12 +98,16 @@ tr.df__header__row {
 }
 
 .df__header__row .rb {
-    border-right: 1px solid var(--lt-gr-cl);
+    border-right: 1px solid var(--mid-gray);
 }
 
 tr:hover > td {
     color: var(--def-bgr);
     background-color: var(--mmnu-clr);
+}
+
+tr:nth-child(even) {
+    background-color: var(--xlt-gray);
 }
 
 td {
@@ -114,6 +119,10 @@ td {
 
 td.ctrl__cell {
     cursor: default;
+}
+
+.ctrl__cell span {
+    cursor: pointer;
 }
 
 .sortable {
@@ -181,6 +190,13 @@ div.form__assembly {
     display: flex;
 }
 
+div.form__assembly {
+    width: auto;
+    justify-content: flex-start;
+    flex-direction: row;
+    display: flex;
+}
+
 .form__field label {
     margin: 0 0 2px 3pt;
     color: var(--dk-gr-cl);
@@ -197,6 +213,13 @@ div.form__assembly {
     outline: none;
     flex-grow: 1;
     display: flex;
+}
+
+.form__field input[type="checkbox"] {
+    border: 1px solid var(--lt-gr-cl);
+    border-radius: 3px;
+    color: var(--dk-gr-cl);
+    outline: none;
 }
 
 .form__assembly input[type="button"] {

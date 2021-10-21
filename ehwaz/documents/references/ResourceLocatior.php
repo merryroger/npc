@@ -16,6 +16,19 @@ class ResourceLocatior extends References
         parent::__construct();
     }
 
+    public function addRecord($params): int
+    {
+        $location = new Location();
+
+        $location->name = $params['name'];
+        $location->rel_path = $params['location'];
+        $location->hidden = $params['hidden'];
+
+        $location->save();
+
+        return $location->id;
+    }
+
     public function getContents()
     {
         return $this->contents;

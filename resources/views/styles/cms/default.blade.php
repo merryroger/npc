@@ -14,6 +14,7 @@
     --blue-lt: #ccddee;
     --red-cl: #cc0000;
     --lt-gr-cl: #ccc;
+    --th-bgr-cl: #ddd;
     --xlt-gray: #eee;
     --def-bgr: #fff;
 }

@@ -10,7 +10,12 @@ if (!isset($extra_data['opcode'])) {
 }
 
 switch (strtoupper($extra_data['opcode'])) {
-    case 'RAFM':
+    case 'RLAD':
+        $id = $provider->addRecord($extra_data);
+        $provider->load($extra_data);
+        $dataset = $provider->getContents();
+        $vocabulary = $provider->getVocabulary(['common', 'locations']);
+        $contents = json_encode(array_merge($extra_data, ['dataset' => $dataset, 'vocabulary' => $vocabulary]));
         break;
     default:
         $total = \App\Models\Location::total();

@@ -73,12 +73,16 @@ function checkFormControls(fm) {
             case 'INPUT':
                 if (field.type.toLowerCase() == 'text' || field.type.toLowerCase() == 'hidden') {
                     pms.push(`${field.name}=${encodeURIComponent(field.value)}`);
+                } else if (field.type.toLowerCase() == 'checkbox') {
+                    let state = (field.checked) ? 1 : 0;
+                    pms.push(`${field.name}=${state}`);
                 }
+
                 break;
         }
     }
 
-    sendPOSTRequest(imgURL, pms, buildLocationAddForm);
+    sendPOSTRequest(imgURL, pms, renderList);
 
     return false;
 }

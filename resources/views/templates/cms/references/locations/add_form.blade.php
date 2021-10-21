@@ -14,11 +14,16 @@
                 <input type="button" id="location_select_help_button" value="…" tabindex="3" title="{!! trans('cms.menu.file_manager') !!}" />
             </div>
         </div>
-
+        <div class="form__field">
+            <div class="form__inline">
+                <input type="checkbox" name="hidden" data-type="form_field" tabindex="4" />
+                <label>{!! trans('cms.data.hide') !!}</label>
+            </div>
+        </div>
         <section class="form__controls">
-            <button type="button" name="close_button" tabindex="4"
+            <button type="button" name="close_button" tabindex="5"
                     onclick="closeForm(this)">{!! trans('cms.forms.close') !!}</button>
-            <button type="submit" name="send_button" tabindex="5">{!! trans('cms.forms.send') !!}</button>
+            <button type="submit" name="send_button" tabindex="6">{!! trans('cms.forms.send') !!}</button>
         </section>
     </fieldset>
 </form>
