@@ -117,6 +117,10 @@ td {
     cursor: pointer;
 }
 
+td.style__hidden {
+    color: var(--mid-gray);
+}
+
 td.ctrl__cell {
     cursor: default;
 }

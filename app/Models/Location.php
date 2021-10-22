@@ -30,11 +30,15 @@ class Location extends Model
 
     public function scopeLocationDirById($query, $locId)
     {
-        $location = $query->where('id', $locId)->get()->map(function($item, $key) {
-           return $item->only('rel_path');
+        $location = $query->where('id', $locId)->get()->map(function ($item, $key) {
+            return $item->only('rel_path');
         })->first()['rel_path'];
 
         return $location;
+    }
+
+    public function scopeFindMatches($query, $fields, $scheme = 'OR')
+    {
     }
 
 }

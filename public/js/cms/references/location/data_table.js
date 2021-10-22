@@ -97,11 +97,12 @@ let tabConf = {
             render(data) {
                 let td = document.createElement('td');
                 td.className = (data['hidden']) ? 'style__hidden ctrl__cell ca' : 'ctrl__cell ca';
+                td.setAttribute('data-state', `${data['hidden']}`);
                 td.innerHTML = data['hidden'];
                 return td;
             },
             getValue(cells) {
-                return cells[2].innerHTML;
+                return +cells[3].getAttribute('data-state');
             },
             compare(value1, value2) {
                 return value1 - value2;
