@@ -18,14 +18,20 @@ class ResourceLocatior extends References
 
     public function addRecord($params): int
     {
-        $location = new Location();
+        $fields = collect($params)->only(['name', 'rel_path'])->all();
+        $matches = Location::findMatches($fields)->get();
 
-        $location->name = $params['name'];
-        $location->rel_path = $params['location'];
-        $location->hidden = $params['hidden'];
+        if ($matches->count()) {
+            dd($matches);
+        } else {
+            $location = new Location();
 
-        $location->save();
+            $location->name = $params['name'];
+            $location->rel_path = $params['rel_path'];
+            $location->hidden = $params['hidden'];
 
+            $location->save();
+        }
         return $location->id;
     }
 
