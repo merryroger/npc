@@ -22,9 +22,9 @@ class ResourceLocationProvider implements ExtendedDocumentProvider
         $this->reference->loadLocations($src, $params);
     }
 
-    public function addRecord($params)
+    public function addRecord($params, &$erc)
     {
-        return $this->reference->addRecord($params);
+        return $this->reference->addRecord($params, $erc);
     }
 
     public function getVocabulary($topics)

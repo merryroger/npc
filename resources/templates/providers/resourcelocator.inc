@@ -11,7 +11,8 @@ if (!isset($extra_data['opcode'])) {
 
 switch (strtoupper($extra_data['opcode'])) {
     case 'RLAD':
-        $id = $provider->addRecord($extra_data);
+        $erc = [ 'errorcode' => 0, 'section' => 'locations', 'options' => [] ];
+        $id = $provider->addRecord($extra_data, $erc);
         $provider->load($extra_data);
         $dataset = $provider->getContents();
         $vocabulary = $provider->getVocabulary(['common', 'locations']);

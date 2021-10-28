@@ -16,13 +16,21 @@ class ResourceLocatior extends References
         parent::__construct();
     }
 
-    public function addRecord($params): int
+    public function addRecord($params, &$erc): int
     {
         $fields = collect($params)->only(['name', 'rel_path'])->all();
         $matches = Location::findMatches($fields)->get();
 
         if ($matches->count()) {
-            dd($matches);
+            dd($matches->map(function($item, $key) use ($params) {
+                $it = collect($item)->only(['name', 'rel_path'])->filter(function($item, $key) use ($params) {
+                    return $item == $params[$key];
+                });
+
+                return $it->all();
+            })->first());
+
+            return 0;
         } else {
             $location = new Location();
 
@@ -32,6 +40,7 @@ class ResourceLocatior extends References
 
             $location->save();
         }
+
         return $location->id;
     }
 
