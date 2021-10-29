@@ -8,7 +8,7 @@
             <input type="text" name="name" data-type="form_field" value="" tabindex="1" required autofocus />
         </div>
         <div class="form__field required">
-            <label>{!! trans('cms.references.locations.location') !!}</label>
+            <label>{!! trans('cms.references.locations.rel_path') !!}</label>
             <div class="form__assembly">
                 <input type="text" name="rel_path" data-type="form_field" value="" tabindex="2" required />
                 <input type="button" id="location_select_help_button" value="…" tabindex="3" title="{!! trans('cms.menu.file_manager') !!}" />

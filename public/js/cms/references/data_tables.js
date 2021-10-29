@@ -28,11 +28,11 @@ function renderDataSet(ds, table) {
 
 function renderList(resp) {
     let rsp = JSON.parse(resp);
-    if (rsp.success == 0) {
-        setError(rsp);
+    let contents = JSON.parse(rsp.contents);
+    if (contents.success == 0) {
+        rq_sent = false;
+        setError(contents);
     } else {
-        let contents = JSON.parse(rsp.contents);
-
         listRepaint(contents.dataset);
         closeForm();
         dropVeil();

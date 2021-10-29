@@ -1,0 +1,13 @@
+<?xml version='1.0'?>
+<errorset language="ru" encoding="utf-8">
+    <x00 type="error">Неизвестная ошибка #=@herc #.</x00>
+    <x01 type="error">Обращение к неверному разделу#=@section #.</x01>
+    <x02 type="error">Обращение к неcуществующей библиотеке ошибок.</x02>
+    <x03 type="error">Библиотека ошибок не может быть считана.</x03>
+    <x04 type="error">Библиотека ошибок повреждена или имеет неправильный формат.</x04>
+    <xda01 type="error">Значение поля «#=@data_nosp #» должно быть уникальным.</xda01>
+    <xda02 type="error">Значения полей «#=@data_nosp #» должны быть уникальными.</xda02>
+</errorset>
+<controls>
+    <~xd0 label="errors.delete_anyway">cms.errors.image_delete_anyway</xd0~>
+</controls>

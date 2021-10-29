@@ -11,12 +11,15 @@ if (!isset($extra_data['opcode'])) {
 
 switch (strtoupper($extra_data['opcode'])) {
     case 'RLAD':
-        $erc = [ 'errorcode' => 0, 'section' => 'locations', 'options' => [] ];
-        $id = $provider->addRecord($extra_data, $erc);
-        $provider->load($extra_data);
-        $dataset = $provider->getContents();
-        $vocabulary = $provider->getVocabulary(['common', 'locations']);
-        $contents = json_encode(array_merge($extra_data, ['dataset' => $dataset, 'vocabulary' => $vocabulary]));
+        $erc = ['success' => 0, 'errorcode' => 0, 'section' => 'locations', 'options' => []];
+        if ($id = $provider->addRecord($extra_data, $erc)) {
+            $provider->load($extra_data);
+            $dataset = $provider->getContents();
+            $vocabulary = $provider->getVocabulary(['common', 'locations']);
+            $contents = json_encode(array_merge($extra_data, ['dataset' => $dataset, 'vocabulary' => $vocabulary]));
+        } else {
+            $contents = json_encode(array_merge($erc, $extra_data));
+        }
         break;
     default:
         $total = \App\Models\Location::total();

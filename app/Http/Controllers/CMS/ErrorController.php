@@ -37,6 +37,8 @@ class ErrorController extends Controller
 
         if ($retries < 0) {
             $this->getDefaultErrorResponse();
+        } else {
+            $this->response['options'] = $this->options;
         }
 
         $this->applyOptions();
@@ -76,6 +78,7 @@ class ErrorController extends Controller
 
         if (!$this->pickDescription($dataset)) {
             $this->resetRequestData($this::ERR_UNKNOWN_ERROR, $options);
+
             return false;
         }
 
@@ -158,9 +161,10 @@ class ErrorController extends Controller
             foreach ($inserts[0] as $idx => $insert) {
                 $ins = "@{$inserts[1][$idx]}";
                 switch (strtolower($ins)) {
+                    case '@data_nosp':
                     case '@data':
                         if (isset($this->options['data'])) {
-                            $opt = ' ' . $this->options['data'];
+                            $opt = strcasecmp($ins, '@data') ? $this->options['data'] : ' ' . $this->options['data'];
                         }
                         break;
                     case '@erc':

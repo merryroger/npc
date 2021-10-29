@@ -22,13 +22,19 @@ class ResourceLocatior extends References
         $matches = Location::findMatches($fields)->get();
 
         if ($matches->count()) {
-            dd($matches->map(function($item, $key) use ($params) {
+            $data = $matches->map(function($item, $key) use ($params) {
                 $it = collect($item)->only(['name', 'rel_path'])->filter(function($item, $key) use ($params) {
                     return $item == $params[$key];
                 });
 
-                return $it->all();
-            })->first());
+                return $it->keys()->map(function ($item, $key) {
+                    return trans("cms.references.locations.{$item}");
+                })->all();
+
+            })->first();
+
+            $erc['options']['data'] = join(', ', $data);
+            $erc['errorcode'] = (count($data) == 1) ? 0xda01 : 0xda02;
 
             return 0;
         } else {
