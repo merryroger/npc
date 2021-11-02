@@ -5,9 +5,13 @@
     <x02 type="error">Обращение к неcуществующей библиотеке ошибок.</x02>
     <x03 type="error">Библиотека ошибок не может быть считана.</x03>
     <x04 type="error">Библиотека ошибок повреждена или имеет неправильный формат.</x04>
+    <xd0 type="warning">Это расположение является хранилищем по&nbsp;умолчанию. Оно не&nbsp;может быть изменено или удалено.</xd0>
+    <xd1 type="warning">Вы собираетесь удалить выбранное расположение ресурсов, которое, возможно, уже наполнено содержимым.<br /><br />Можно полностью удалить расположение вместе с&nbsp;содержимым, но&nbsp;можно удалить лишь указатель на&nbsp;него, сохранив данные на&nbsp;сервере.</xd1>
     <xda01 type="error">Значение поля «#=@data_nosp #» должно быть уникальным.</xda01>
     <xda02 type="error">Значения полей «#=@data_nosp #» должны быть уникальными.</xda02>
 </errorset>
 <controls>
-    <~xd0 label="errors.delete_anyway">cms.errors.image_delete_anyway</xd0~>
+    <xd1 label="errors.delete_full">cms.errors.record_delete_full</xd1>
+    <xd1 label="errors.delete_reference">cms.errors.record_delete_reference</xd1>
+    <xd1 label="errors.cancel">cms.errors.nop</xd1>
 </controls>

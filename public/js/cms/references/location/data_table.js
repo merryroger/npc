@@ -134,6 +134,11 @@ function tableClickEvent(e) {
                     sortTable(e.target.closest('table'), e.target.name);
                 }
             break;
+        case 'SPAN':
+            if (e.target.classList.contains('delete__ctrl')) {
+                requestDeleteItem(e.target);
+            }
+            break;
     }
 }
 

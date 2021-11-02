@@ -86,3 +86,17 @@ function checkFormControls(fm) {
 
     return false;
 }
+
+function requestDeleteItem(src) {
+    let tr = src.closest('tr');
+    let itemId = +tr.getAttribute('data-id');
+    let errorset = {
+        errorcode: ((itemId == 1) ? 0xd0 : 0xd1),
+        section: 'locations',
+        options: {
+            id: itemId
+        }
+    };
+
+    setError(errorset);
+}
