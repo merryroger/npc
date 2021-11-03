@@ -42,6 +42,15 @@ class ResourceLocatior extends References
         return $location->id;
     }
 
+    public function deleteRecord($extra_data, &$erc): boolean
+    {
+        $opcode = strtoupper($extra_data['opcode']);
+        $recId = intval($extra_data['itemId']);
+        dump($opcode);
+        dd($recId);
+        return true;
+    }
+
     public function getContents()
     {
         return $this->contents;

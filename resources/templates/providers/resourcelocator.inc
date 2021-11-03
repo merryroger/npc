@@ -9,9 +9,21 @@ if (!isset($extra_data['opcode'])) {
     $extra_data['opcode'] = '';
 }
 
+$erc = ['success' => 0, 'errorcode' => 0, 'section' => 'locations', 'options' => []];
+
 switch (strtoupper($extra_data['opcode'])) {
+    case 'IFRM':
+    case 'IRRM':
+        if ($provider->deleteRecord($extra_data, $erc)) {
+            $provider->load($extra_data);
+            $dataset = $provider->getContents();
+            $vocabulary = $provider->getVocabulary(['common', 'locations']);
+            $contents = json_encode(array_merge($extra_data, ['dataset' => $dataset, 'vocabulary' => $vocabulary]));
+        } else {
+            $contents = json_encode(array_merge($erc, $extra_data));
+        }
+        break;
     case 'RLAD':
-        $erc = ['success' => 0, 'errorcode' => 0, 'section' => 'locations', 'options' => []];
         if ($id = $provider->addRecord($extra_data, $erc)) {
             $provider->load($extra_data);
             $dataset = $provider->getContents();

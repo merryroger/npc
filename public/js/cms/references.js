@@ -29,3 +29,14 @@ function closeForm(src = null) {
         dropVeil();
     }
 }
+
+function removeItem(itemId, opcode = null, pms = []) {
+    pms.push(`itemId=${itemId}`);
+    if (opcode != null) {
+        pms.push(`opcode=${opcode}`);
+    }
+
+    sendPOSTRequest(imgURL, pms, renderList);
+
+    rq_sent = true;
+}
