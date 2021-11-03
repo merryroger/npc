@@ -27,7 +27,7 @@ class ResourceLocationProvider implements ExtendedDocumentProvider
         return $this->reference->addRecord($params, $erc);
     }
 
-    public function deleteRecord($extra_data, $erc): boolean
+    public function deleteRecord($extra_data, $erc): bool
     {
         return $this->reference->deleteRecord($extra_data, $erc);
     }

@@ -32,6 +32,25 @@ class References
         return $voc;
     }
 
+    protected function cleanDir($directory): void
+    {
+        $dh = @opendir($directory);
+        while (false !== ($entry = readdir($dh))) {
+            if ($entry == '.' || $entry == '..') {
+                continue;
+            }
+
+            if (is_dir($directory . "/{$entry}")) {
+                $this->cleanDir($directory . "/{$entry}");
+                rmdir($directory . "/{$entry}");
+            } else {
+                unlink($directory . "/{$entry}");
+            }
+        }
+
+        closedir($dh);
+    }
+
     public function __destruct()
     {
     }

@@ -42,12 +42,19 @@ class ResourceLocatior extends References
         return $location->id;
     }
 
-    public function deleteRecord($extra_data, &$erc): boolean
+    public function deleteRecord($extra_data, &$erc): bool
     {
         $opcode = strtoupper($extra_data['opcode']);
         $recId = intval($extra_data['itemId']);
-        dump($opcode);
-        dd($recId);
+
+        $location = Location::locationDirById($recId);
+        $rec = Location::find($recId);
+        $rec->delete();
+
+        if ($opcode == 'IFRM') {
+            $this->removeDirectories($location, ['preview']);
+        }
+
         return true;
     }
 
@@ -103,6 +110,24 @@ class ResourceLocatior extends References
         if ($parts) {
             $path .= '/' . array_splice($parts, 0, 1)[0];
             $this->checkSubDir($path, $parts);
+        }
+    }
+
+    protected function removeDirectories($location, $extra_subdirs = []): void
+    {
+        do {
+            $extra_path = ($extra_subdirs) ? '/' . join('/', $extra_subdirs) : '';
+            if ($extra_path && is_dir(public_path() . $location . $extra_path)) {
+                $this->cleanDir(public_path() . $location . $extra_path);
+                rmdir(public_path() . $location . $extra_path);
+            }
+
+            array_pop($extra_subdirs);
+        } while ($extra_subdirs);
+
+        if (is_dir(public_path() . $location)) {
+            $this->cleanDir(public_path() . $location);
+            rmdir(public_path() . $location);
         }
     }
 
