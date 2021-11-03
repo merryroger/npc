@@ -16,6 +16,19 @@ class ResourceLocatior extends References
         parent::__construct();
     }
 
+    public function getItem($recId): array
+    {
+        $location_item = Location::find($recId);
+
+        if ($location_item == null) {
+            return [];
+        } else {
+            return Location::where('id', $recId)->get()->map(function ($item, $key) {
+                return collect($item)->except(['created_at', 'updated_at'])->all();
+            })->first();
+        }
+    }
+
     public function addRecord($params, &$erc): int
     {
         $fields = collect($params)->only(['name', 'rel_path'])->all();

@@ -15,6 +15,10 @@ $this->config = [
         'RAFM' => [
             'template' => 'templates.cms.references.locations.add_form',
         ],
+        'REFM' => [
+            'provider' => 'resourcelocator',
+            'template' => 'templates.cms.references.locations.edit_form',
+        ],
         'IFRM' => [
             'provider' => 'resourcelocator',
         ],

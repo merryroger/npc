@@ -143,5 +143,7 @@ function tableClickEvent(e) {
 }
 
 function tableDBLClickEvent(e) {
-    console.log('dbl click');
+    if (e.target.tagName == 'TD' && e.target.closest('tr') != null) {
+        requestEditItem(e.target.closest('tr'));
+    }
 }

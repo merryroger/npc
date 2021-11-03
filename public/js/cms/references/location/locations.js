@@ -14,13 +14,29 @@ function getLocationAddForm(src) {
         raiseVeil(5, true);
         buildFormPad();
 
-        formPadLR.className = 'wait__form';
-        formPadLR.style.top = '50px';
-        formPadLR.style.right = '50px';
-        formPadLR.style.zIndex = 6;
-        formPadLR.classList.add('on');
+        sendPOSTRequest(imgURL, pms, buildLocationForm);
 
-        sendPOSTRequest(imgURL, pms, buildLocationAddForm);
+        rq_sent = true;
+        formPadOn = true;
+    }
+
+    return false;
+}
+
+function getLocationEditForm(itemId) {
+    if (!formPadOn) {
+
+        let pms = [
+            `itemId=${itemId}`,
+            `opcode=REFM`,
+            `section=locations`,
+            `sectgroup=references`,
+        ];
+
+        raiseVeil(5, true);
+        buildFormPad();
+
+        sendPOSTRequest(imgURL, pms, buildLocationForm);
 
         rq_sent = true;
         formPadOn = true;
@@ -37,9 +53,15 @@ function buildFormPad() {
 
         document.body.insertAdjacentElement('beforeEnd', formPadLR);
     }
+
+    formPadLR.className = 'wait__form';
+    formPadLR.style.top = '50px';
+    formPadLR.style.right = '50px';
+    formPadLR.style.zIndex = 6;
+    formPadLR.classList.add('on');
 }
 
-function buildLocationAddForm(resp) {
+function buildLocationForm(resp) {
     let rsp;
     try {
         rsp = JSON.parse(resp);
@@ -85,6 +107,23 @@ function checkFormControls(fm) {
     sendPOSTRequest(imgURL, pms, renderList);
 
     return false;
+}
+
+function requestEditItem(row) {
+    let itemId = +row.getAttribute('data-id');
+    if (itemId == 1) {
+        let errorset = {
+            errorcode: 0xd0,
+            section: 'locations',
+            options: {
+                id: itemId
+            }
+        };
+
+        setError(errorset);
+    } else {
+        getLocationEditForm(itemId);
+    }
 }
 
 function requestDeleteItem(src) {

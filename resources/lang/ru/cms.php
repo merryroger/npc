@@ -35,6 +35,7 @@
             'preview' => 'Превью',
             'preview_load' => 'Загрузка превью',
             'resource_location_create' => 'Создание нового размещения',
+            'resource_location_edit' => 'Редактирование параметров размещения',
             'select_photo' => 'Выберите изображение',
             'send' => 'Отправить',
         ],
