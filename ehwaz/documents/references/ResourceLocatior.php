@@ -23,7 +23,10 @@ class ResourceLocatior extends References
         if ($location_item == null) {
             return [];
         } else {
-            return Location::where('id', $recId)->get()->map(function ($item, $key) {
+            $preview = is_dir(public_path() . $location_item->rel_path . "/preview");
+
+            return Location::where('id', $recId)->get()->map(function ($item, $key) use ($preview) {
+                $item->preview = ($preview) ? 1 : 0;
                 return collect($item)->except(['created_at', 'updated_at'])->all();
             })->first();
         }
@@ -49,10 +52,42 @@ class ResourceLocatior extends References
 
             $location->save();
 
-            $this->checkRelPath($params['rel_path'], ['preview']);
+            $preview = ($params['use_preview']) ? ['preview'] : [];
+
+            $this->checkRelPath($params['rel_path'], $preview);
         }
 
         return $location->id;
+    }
+
+    public function updateRecord($params, &$erc): bool
+    {
+        $recId = intval($params['itemId']);
+        $fields = collect($params)->only(['name'])->all();
+        $matches = Location::findMatches($fields)->where('id', '!=', $recId)->get();
+
+        if ($matches->count()) {
+            $data = $this->retrieveMatches($matches, $params);
+            $erc['options']['data'] = join(', ', $data);
+            $erc['errorcode'] = 0xda01;
+
+            return false;
+        } else {
+            $location = Location::find($recId);
+            $location->name = $params['name'];
+            $location->hidden = $params['hidden'];
+
+            $location->save();
+
+            if (intval($params['use_preview'])) {
+                $parts = ['preview'];
+                $this->checkSubDir($location->rel_path, $parts);
+            } else {
+                $this->removeDirectories($location->rel_path . "/preview");
+            }
+        }
+
+        return true;
     }
 
     public function deleteRecord($extra_data, &$erc): bool

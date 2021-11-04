@@ -17,11 +17,20 @@ switch (strtoupper($extra_data['opcode'])) {
             $dataset = $provider->getItem($itemId);
             $vocabulary = $provider->getVocabulary(['common', 'locations']);
             $contents = view($sets['template'], compact(['dataset', 'vocabulary']))->render();
-            //$contents = json_encode(array_merge($extra_data, ['view' => $view, 'vocabulary' => $vocabulary]));
         break;
     case 'IFRM':
     case 'IRRM':
         if ($provider->deleteRecord($extra_data, $erc)) {
+            $provider->load($extra_data);
+            $dataset = $provider->getContents();
+            $vocabulary = $provider->getVocabulary(['common', 'locations']);
+            $contents = json_encode(array_merge($extra_data, ['dataset' => $dataset, 'vocabulary' => $vocabulary]));
+        } else {
+            $contents = json_encode(array_merge($erc, $extra_data));
+        }
+        break;
+    case 'RLUD':
+        if ($provider->updateRecord($extra_data, $erc)) {
             $provider->load($extra_data);
             $dataset = $provider->getContents();
             $vocabulary = $provider->getVocabulary(['common', 'locations']);

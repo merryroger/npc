@@ -109,6 +109,18 @@ function checkFormControls(fm) {
     return false;
 }
 
+function checkUsePreviewStatus(src) {
+    if (!src.checked) {
+        let errorset = {
+            errorcode: 0xe0,
+            section: 'locations',
+            options: {}
+        };
+
+        setError(errorset);
+    }
+}
+
 function requestEditItem(row) {
     let itemId = +row.getAttribute('data-id');
     if (itemId == 1) {

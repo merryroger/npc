@@ -8,24 +8,33 @@
             <label>{!! trans('cms.references.common.name') !!}</label>
             <input type="text" name="name" data-type="form_field" value="{!! $dataset['name'] !!}" tabindex="1" required autofocus />
         </div>
-        <!--div class="form__field required">
+        <div class="form__field">
             <label>{!! trans('cms.references.locations.rel_path') !!}</label>
             <div class="form__assembly">
-                <input type="text" name="rel_path" data-type="form_field" value="" tabindex="2" required />
-                <input type="button" id="location_select_help_button" value="…" tabindex="3" title="{!! trans('cms.menu.file_manager') !!}" />
+                <input type="text" name="rel_path" data-type="form_field" value="{!! $dataset['rel_path'] !!}" disabled />
+                <input type="button" id="location_select_help_button" value="…" tabindex="2" title="{!! trans('cms.menu.file_manager') !!}" />
             </div>
-        </div-->
+        </div>
+        <div class="form__field">
+            <div class="form__inline">
+                @php($checked = (($dataset['preview']) ? ' checked' : ''))
+                <input type="checkbox" name="use_preview" data-type="form_field"{!! $checked !!} onchange="checkUsePreviewStatus(this)" tabindex="3" />
+                <label>{!! trans('cms.data.use') !!} {!! trans('cms.data.preview') !!}</label>
+            </div>
+        </div>
+        <div class="form__field"></div>
         <div class="form__field">
             <div class="form__inline">
                 @php($checked = (($dataset['hidden']) ? ' checked' : ''))
                 <input type="checkbox" name="hidden" data-type="form_field"{!! $checked !!} tabindex="4" />
-                <label>{!! trans('cms.data.hide') !!}</label>
+                <label>{!! trans('cms.data.hide') !!} {!! trans('cms.data.record') !!}</label>
             </div>
         </div>
+        <div class="form__field"></div>
         <section class="form__controls">
             <button type="button" name="close_button" tabindex="5"
                     onclick="closeForm(this)">{!! trans('cms.forms.close') !!}</button>
-            <!--button type="submit" name="send_button" tabindex="6">{!! trans('cms.forms.send') !!}</button-->
+            <button type="submit" name="send_button" tabindex="6">{!! trans('cms.data.save') !!}</button>
         </section>
     </fieldset>
 </form>

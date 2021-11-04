@@ -28,6 +28,9 @@ $this->config = [
         'RLAD' => [
             'provider' => 'resourcelocator',
         ],
+        'RLUD' => [
+            'provider' => 'resourcelocator',
+        ]
     ],
 
 ];

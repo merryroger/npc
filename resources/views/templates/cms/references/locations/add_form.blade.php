@@ -16,14 +16,22 @@
         </div>
         <div class="form__field">
             <div class="form__inline">
-                <input type="checkbox" name="hidden" data-type="form_field" tabindex="4" />
-                <label>{!! trans('cms.data.hide') !!}</label>
+                <input type="checkbox" name="use_preview" data-type="form_field" tabindex="4" />
+                <label>{!! trans('cms.data.use') !!} {!! trans('cms.data.preview') !!}</label>
             </div>
         </div>
+        <div class="form__field"></div>
+        <div class="form__field">
+            <div class="form__inline">
+                <input type="checkbox" name="hidden" data-type="form_field" tabindex="5" />
+                <label>{!! trans('cms.data.hide') !!} {!! trans('cms.data.record') !!}</label>
+            </div>
+        </div>
+        <div class="form__field"></div>
         <section class="form__controls">
-            <button type="button" name="close_button" tabindex="5"
+            <button type="button" name="close_button" tabindex="6"
                     onclick="closeForm(this)">{!! trans('cms.forms.close') !!}</button>
-            <button type="submit" name="send_button" tabindex="6">{!! trans('cms.forms.send') !!}</button>
+            <button type="submit" name="send_button" tabindex="7">{!! trans('cms.data.create') !!}</button>
         </section>
     </fieldset>
 </form>
