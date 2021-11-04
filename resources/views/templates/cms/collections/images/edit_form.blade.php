@@ -17,6 +17,16 @@
         </div>
         <div class="image__edit__pad">
             <h3>{!! trans('cms.forms.image_location') !!}</h3>
+            <select name="location" size="1" onchange="console.log(this)">
+                @foreach($locations as $location)
+                    @php($selected = (($location['id'] == $image['id']) ? ' selected' : ''))
+                    <option value="{!! $location['id'] !!}"{!! $selected !!}>{!! $location['name'] !!}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="image__edit__pad">
+            <h3>{!! trans('cms.forms.file_name') !!}</h3>
+            <input type="text" name="file_name" value="{!! $image['filename'] !!}" />
         </div>
 
         <section class="form__controls">

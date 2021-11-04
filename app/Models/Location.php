@@ -23,7 +23,7 @@ class Location extends Model
 
     public function scopeDataSet($query, $show_hidden = true)
     {
-        $rq = ($show_hidden) ? $query : $query->where('hidden', true);
+        $rq = ($show_hidden) ? $query : $query->where('hidden', false);
 
         return $rq->orderByDesc('id');
     }
@@ -41,7 +41,7 @@ class Location extends Model
     {
         if (gettype($fields) == 'array') {
             foreach ($fields as $fieldName => $fieldValue) {
-                    $conds[] = (is_numeric($fieldValue)) ? "{$fieldName}={$fieldValue}" : "{$fieldName}='{$fieldValue}'";
+                $conds[] = (is_numeric($fieldValue)) ? "{$fieldName}={$fieldValue}" : "{$fieldName}='{$fieldValue}'";
             }
 
             $conditions = (count($conds) > 1) ? '(' . join(" {$scheme} ", $conds) . ')' : $conds[0];

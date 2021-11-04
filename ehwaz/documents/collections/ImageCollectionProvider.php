@@ -58,4 +58,9 @@ class ImageCollectionProvider implements ExtendedDocumentProvider
         return $this->collector->getContents();
     }
 
+    public function getLocations($show_hidden = true): array
+    {
+        return $this->collector->getLocations($show_hidden);
+    }
+
 }

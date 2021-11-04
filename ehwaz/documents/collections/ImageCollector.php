@@ -63,6 +63,18 @@ class ImageCollector extends Collections
         $item['rel_path'] = (intval($item['location']) > 1) ? $relPath : $relPath . "/{$item['pack_id']}";
     }
 
+    public function getLocations($show_hidden = true): array
+    {
+        $locations = Location::dataSet($show_hidden)->get();
+        if ($locations->count()) {
+            return $locations->map(function($item, $key) {
+                return collect($item)->only(['id', 'name'])->all();
+            })->all();
+        } else {
+            return [];
+        }
+    }
+
     public function getItem($recId): array
     {
         $image_item = Image::find($recId);

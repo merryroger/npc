@@ -65,8 +65,9 @@ switch (strtoupper($extra_data['opcode'])) {
     case 'PRLD':
     case 'EDIM':
         $provider->load($extra_data);
-        $image = $provider->getItem($extra_data['recId']); //dd($image);
-        $view = view($sets['template'], compact(['image']))->render();
+        $image = $provider->getItem($extra_data['recId']);// dd($image);
+        $locations = $provider->getLocations(false);// dd($locations);
+        $view = view($sets['template'], compact(['image', 'locations']))->render();
         $contents = json_encode(array_merge($extra_data, ['view' => $view]));
         break;
     case 'RITM':
