@@ -226,6 +226,16 @@ iframe#file_upload, iframe#preview_upload {
 
 /**** Edit form part ****/
 
+div.image__location__form {
+    position: relative;
+    width: 100%;
+    left: -10pt;
+    margin-top: 20px;
+    padding: 0 10pt 12px;
+    border-radius: 5px;
+    background-color: var(--xlt-gray);
+}
+
 div.image__edit__area, div.image__preview__titlebar {
     flex-direction: row;
     justify-content: space-between;
@@ -250,3 +260,26 @@ div.image__edit__parameters {
     font-size: 11pt;
 }
 
+.image__edit__pad select {
+    padding: 3px 0 3px 3pt;
+    color: var(--dk-gr-cl);
+    background-color: var(--def-bgr);
+    border: 1px solid var(--mid-gray);
+    border-radius: 3pt;
+    font: 400 10pt "PT Sans", sans-serif;
+    outline: none;
+}
+
+.image__edit__pad input[type="text"] {
+    padding: 3px 3pt;
+    color: var(--dk-gr-cl);
+    background-color: var(--def-bgr);
+    border: 1px solid var(--mid-gray);
+    border-radius: 3pt;
+    font: 400 10pt "PT Sans", sans-serif;
+    outline: none;
+}
+
+.required h3:first-letter {
+    color: var(--red-cl);
+}

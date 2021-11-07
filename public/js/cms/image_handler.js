@@ -284,3 +284,102 @@ function deletePreview(src) {
 
     return false;
 }
+
+function checkLocationDataMismatch(src) {
+    let mismatch = 0;
+    let defVal = src.getAttribute('data-def');
+    let fm = document.getElementById('edit_location');
+    let fmDefSatus = +fm.getAttribute('data-def');
+
+    switch(src.tagName.toUpperCase()) {
+        case 'SELECT':
+                mismatch = (+src.options[src.selectedIndex].value == +defVal) ? 0x0 : 0x2;
+                mismatch = (fmDefSatus ^ mismatch) & 0x2;
+            break;
+        case 'INPUT':
+                if (src.value.length > 0) {
+                    mismatch = (MD5(src.value) == defVal) ? 0x0 : 0x1;
+                } else {
+                    mismatch = 0x1;
+                }
+
+                mismatch = (fmDefSatus ^ mismatch) & 0x1;
+            break;
+        default: return false;
+    }
+
+    fmDefSatus ^= mismatch;
+    fm.setAttribute('data-def', `${fmDefSatus}`);
+
+    if (!fm.reset_button.classList.contains('button__disabled') ^ fmDefSatus > 0) {
+        fm.reset_button.classList.toggle('button__disabled');
+    }
+
+    if (!fm.replace_button.classList.contains('button__disabled') ^ fmDefSatus > 0) {
+        fm.replace_button.classList.toggle('button__disabled');
+    }
+}
+
+function resetImageRelocationForm(fm) {
+    if (+fm.getAttribute('data-def') == 0) {
+        return false;
+    }
+
+    fm.setAttribute('data-def', '0');
+
+    if (!fm.reset_button.classList.contains('button__disabled')) {
+        fm.reset_button.classList.add('button__disabled');
+    }
+
+    if (!fm.replace_button.classList.contains('button__disabled')) {
+        fm.replace_button.classList.add('button__disabled');
+    }
+
+    return true;
+}
+
+function submitImageRelocation(fm) {
+    if (+fm.getAttribute('data-def') == 0) {
+        return false;
+    }
+
+    let globForm = document.body.querySelector('form.image__edit__form');
+    let pms = [
+        `_token=${pickToken(globForm)}`,
+    ];
+
+    for (let field of Object.values(fm)) {
+        if (field.getAttribute('data-type') == null || field.getAttribute('data-type') != 'form_field') {
+            continue;
+        }
+
+        switch (field.tagName.toLocaleUpperCase()) {
+            case 'INPUT':
+                if (field.type.toLowerCase() == 'text' || field.type.toLowerCase() == 'hidden') {
+                    pms.push(`${field.name}=${encodeURIComponent(field.value)}`);
+                } else if (field.type.toLowerCase() == 'checkbox') {
+                    let state = (field.checked) ? 1 : 0;
+                    pms.push(`${field.name}=${state}`);
+                }
+
+                break;
+            case 'SELECT':
+                pms.push(`${field.name}=${field.options[field.selectedIndex].value}`);
+                break;
+        }
+    }
+
+    canClose = false;
+    globForm.close_button.classList.add('button__disabled');
+    fm.reset_button.classList.add('button__disabled');
+    fm.replace_button.classList.add('button__disabled');
+    formPadLR.style.zIndex = 4;
+    updateVeilWaitState(veilLR, true);
+
+    //sendPOSTRequest(imgURL, pms, updateImageRelocationForm);
+
+    rq_sent = true;
+
+    return false;
+}
+
