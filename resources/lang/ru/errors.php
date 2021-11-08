@@ -6,4 +6,5 @@ return [
     'delete_full' => 'Удалить всё',
     'delete_reference' => 'Удалить указатель',
     'ok' => 'Ok',
+    'overwrite' => 'Перезаписать',
 ];

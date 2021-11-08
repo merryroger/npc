@@ -53,9 +53,9 @@ class ImageCollectionProvider implements ExtendedDocumentProvider
         return $this->collector->deletePreview($recId);
     }
 
-    public function imageRelocate($currentImageData, $requestedData, &$erc): void
+    public function imageRelocate($currentImageData, $requestedData, &$erc): bool
     {
-        $this->collector->imageRelocate($currentImageData, $requestedData,$erc);
+        return $this->collector->imageRelocate($currentImageData, $requestedData,$erc);
     }
 
     public function getContents()

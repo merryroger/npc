@@ -291,21 +291,22 @@ function checkLocationDataMismatch(src) {
     let fm = document.getElementById('edit_location');
     let fmDefSatus = +fm.getAttribute('data-def');
 
-    switch(src.tagName.toUpperCase()) {
+    switch (src.tagName.toUpperCase()) {
         case 'SELECT':
-                mismatch = (+src.options[src.selectedIndex].value == +defVal) ? 0x0 : 0x2;
-                mismatch = (fmDefSatus ^ mismatch) & 0x2;
+            mismatch = (+src.options[src.selectedIndex].value == +defVal) ? 0x0 : 0x2;
+            mismatch = (fmDefSatus ^ mismatch) & 0x2;
             break;
         case 'INPUT':
-                if (src.value.length > 0) {
-                    mismatch = (MD5(src.value) == defVal) ? 0x0 : 0x1;
-                } else {
-                    mismatch = 0x1;
-                }
+            if (src.value.length > 0) {
+                mismatch = (MD5(src.value) == defVal) ? 0x0 : 0x1;
+            } else {
+                mismatch = 0x1;
+            }
 
-                mismatch = (fmDefSatus ^ mismatch) & 0x1;
+            mismatch = (fmDefSatus ^ mismatch) & 0x1;
             break;
-        default: return false;
+        default:
+            return false;
     }
 
     fmDefSatus ^= mismatch;
@@ -339,10 +340,37 @@ function resetImageRelocationForm(fm) {
 }
 
 function updateImageRelocationForm(resp) {
-    console.log(resp);
+    let rsp = null;
+    let contents = null;
+    let fm = null;
+    try {
+        rsp = JSON.parse(resp);
+        contents = JSON.parse(rsp.contents);
+        if (contents.success == 0) {
+            rq_sent = false;
+            setError(contents);
+            return;
+        } else {
+            fm = document.getElementById('edit_location');
+            fm.location.setAttribute('data-def', `${contents.def_location}`);
+            fm.location.querySelector('option[selected]').removeAttribute("selected");
+            fm.location.querySelector(`option[value='${contents.def_location}']`).setAttribute('selected', 'selected');
+            fm.file_name.setAttribute('data-def', contents.fn_hash);
+            fm.file_name.defaultValue = fm.file_name.value;
+            fm.setAttribute('data-def', '0');
+        }
+    } catch (e) {
+        console.log(e);
+    } finally {
+        canClose = true;
+        formPadLR.style.zIndex = 6;
+        document.body.querySelector('form.image__edit__form').close_button.classList.remove('button__disabled');
+        updateVeilWaitState(veilLR);
+        rq_sent = false;
+    }
 }
 
-function submitImageRelocation(fm) {
+function submitImageRelocation(fm, force_overwrite = false) {
     if (+fm.getAttribute('data-def') == 0) {
         return false;
     }
@@ -350,6 +378,7 @@ function submitImageRelocation(fm) {
     let globForm = document.body.querySelector('form.image__edit__form');
     let pms = [
         `_token=${pickToken(globForm)}`,
+        `force_overwrite=${(force_overwrite) ? 1 : 0}`,
     ];
 
     for (let field of Object.values(fm)) {

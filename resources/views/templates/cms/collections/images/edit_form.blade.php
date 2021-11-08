@@ -23,7 +23,7 @@
                     <select form="edit_location" name="location" size="1" data-def="{!! $image['location'] !!}"
                             data-type="form_field" tabindex="1" onchange="checkLocationDataMismatch(this)">
                         @foreach($locations as $location)
-                            @php($selected = (($location['id'] == $image['id']) ? ' selected' : ''))
+                            @php($selected = (($location['id'] == $image['location']) ? ' selected' : ''))
                             <option value="{!! $location['id'] !!}"{!! $selected !!}>{!! $location['name'] !!}</option>
                         @endforeach
                     </select>

@@ -9,13 +9,11 @@ class ImageLoaderController extends Controller
 {
     use \ehwaz\traits\XMLParsers;
 
-    private const USER_STORAGE_DIR = __DIR__ . '/../../../../storage';
-
     public function loadIcon(Request $request)
     {
         if ($request->has('rq')) {
             $rq = $request->get('rq');
-            $path = realpath($this::USER_STORAGE_DIR . '/' . base64_decode($rq));
+            $path = realpath(public_path() . '/' . base64_decode($rq));
             $rq_width = ($request->has('width')) ? intval($request->get('width')) : 0;
             $rq_height = ($request->has('height')) ? intval($request->get('height')) : 0;
         } else {

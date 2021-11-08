@@ -183,29 +183,67 @@ class ImageCollector extends Collections
         return true;
     }
 
-    public function imageRelocate($currentImageData, $requestedData, &$erc): void
+    public function imageRelocate($currentImageData, $requestedData, &$erc): bool
     {
         $this->getLocationDir($requestedData);
-        $newLocation = realpath(public_path() . $requestedData['rel_path']);
+        $forceOverwrite = intval($requestedData['force_overwrite']);
+        $newLocation = public_path() . $requestedData['rel_path'];
         $newFileName = $requestedData['file_name'] . ".{$currentImageData['extension']}";
 
-        if (!$this->checkLocation($newLocation, $newFileName, $erc)) {
-            return;
+        if ($currentImageData['location'] == intval($requestedData['location']) && !strcasecmp($currentImageData['filename'], $requestedData['file_name'])) {
+            $erc['errorcode'] = 0xe3;
+            return false;
+        }
+
+        if (!$this->checkLocation($newLocation, $newFileName, $forceOverwrite, $erc)) {
+            return false;
         }
 
         if ($currentImageData['preview'] != null) {
-            if (!$this->checkLocation($newLocation . '/preview', $newFileName, $erc)) {
-                return;
+            $newPreviewFile = $requestedData['file_name'] . ".{$currentImageData['preview_info']['extension']}";
+            if (!$this->checkLocation($newLocation . '/preview', $newPreviewFile, $forceOverwrite, $erc)) {
+                return false;
             }
         }
 
-        //dump($currentImageData);
-        //dd($requestedData);
+        $image = Image::find($currentImageData['id']);
+        $image->location = intval($requestedData['location']);
+        $image->origin = '/' . $newFileName;
+        if ($currentImageData['preview'] != null) {
+            $image['preview'] = 'preview/' . $newPreviewFile;
+        }
+        $image->save();
+
+        @rename($currentImageData['dirname'] . $currentImageData['origin'], realpath($newLocation) . '/' . $newFileName);
+        if ($currentImageData['preview'] != null) {
+            $pw = $currentImageData['preview_info'];
+            @rename($pw['dirname'] . "/{$pw['basename']}", realpath($newLocation . '/preview') . '/' . $newPreviewFile);
+        }
+
+        return true;
     }
 
-    protected function checkLocation($path, $fileName, &$erc): bool
+    protected function checkLocation($path, $fileName, $fOW, &$erc): bool
     {
-        //To be continued...
+        $realpath = realpath($path);
+        if (!$realpath) {
+            if (!mkdir($path)) {
+                $erc['errorcode'] = 0xe4;
+                return false;
+            }
+
+            if (!$realpath = realpath($path)) {
+                $erc['errorcode'] = 0xe5;
+                return false;
+            }
+        }
+
+        if (!$fOW && is_file($realpath . "/{$fileName}")) {
+            $erc['errorcode'] = 0xe6;
+            return false;
+        }
+
+        return true;
     }
 
     public function __destruct()

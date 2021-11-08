@@ -10,6 +10,10 @@
     <xe0 type="error">Объём файла изображения превышает установленный лимит#=@data #.</xe0>
     <xe1 type="error">Загрузка некоторых файлов завершилась с ошибкой.</xe1>
     <xe2 type="error">Загрузка превью завершилась с ошибкой.</xe2>
+    <xe3 type="error">Невозможно выполнить перемещение файла на&nbsp;самого себя.</xe3>
+    <xe4 type="error">Ошибка восстановления каталога назначения.</xe4>
+    <xe5 type="error">Каталог назначения не&nbsp;найден или повреждён.</xe5>
+    <xe6 type="warning">В&nbsp;каталоге назначения уже есть файл с&nbsp;таким именем.<br />Вы можете заместить его новым файлом (перезаписать) либо отменить операцию, чтобы задать другое имя или расположение.</xe6>
 </errorset>
 <controls>
     <xd0 label="errors.delete_anyway">cms.errors.image_delete_anyway</xd0>
@@ -18,4 +22,6 @@
     <xd1 label="errors.cancel">cms.errors.nop</xd1>
     <xe1 label="errors.ok">cms.errors.image_upload_close_enable</xe1>
     <xe2 label="errors.ok">cms.errors.preview_upload_close_enable</xe2>
+    <xe6 label="errors.overwrite">cms.errors.image_overwrite_at_new_location</xe6>
+    <xe6 label="errors.cancel">cms.errors.nop</xe6>
 </controls>

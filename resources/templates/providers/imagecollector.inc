@@ -39,7 +39,6 @@ switch (strtoupper($extra_data['opcode'])) {
     case 'PWUP':
         $result = 0;
         $recId = intval($extra_data['recId']);
-        $provider->load($extra_data);
         $image = $provider->getItem($recId);
         $checkPath = $image['dirname'] . '/preview';
         $preview = $image['filename'] . '.' . $extra_data['ftype'];
@@ -66,18 +65,21 @@ switch (strtoupper($extra_data['opcode'])) {
         $provider->deletePreview(intval($extra_data['recId']));
     case 'PRLD':
     case 'EDIM':
-        $provider->load($extra_data);
         $image = $provider->getItem($extra_data['recId']);// dd($image);
         $locations = $provider->getLocations(false);// dd($locations);
         $view = view($sets['template'], compact(['image', 'locations']))->render();
         $contents = json_encode(array_merge($extra_data, ['view' => $view]));
         break;
     case 'RIRL':
-        $provider->load($extra_data);
         $image = $provider->getItem($extra_data['recId']);
         $locateTo = collect($extra_data)->except(['recId', 'opcode'])->merge(['pack_id' => $image['pack_id']])->all();
-        $provider->imageRelocate($image, $locateTo, $erc);// dd($image);
-
+        if ($provider->imageRelocate($image, $locateTo, $erc)) {
+            $image = $provider->getItem($extra_data['recId']);
+            $result = ['def_location' => $image['location'], 'fn_hash' => md5($locateTo['file_name'])];
+            $contents = json_encode(array_merge($extra_data, $result));
+        } else {
+            $contents = json_encode(array_merge($erc, $extra_data));
+        }
         break;
     case 'RITM':
         $provider->deleteItem(intval($extra_data['recId']));
