@@ -338,6 +338,10 @@ function resetImageRelocationForm(fm) {
     return true;
 }
 
+function updateImageRelocationForm(resp) {
+    console.log(resp);
+}
+
 function submitImageRelocation(fm) {
     if (+fm.getAttribute('data-def') == 0) {
         return false;
@@ -376,7 +380,7 @@ function submitImageRelocation(fm) {
     formPadLR.style.zIndex = 4;
     updateVeilWaitState(veilLR, true);
 
-    //sendPOSTRequest(imgURL, pms, updateImageRelocationForm);
+    sendPOSTRequest(imgURL, pms, updateImageRelocationForm);
 
     rq_sent = true;
 

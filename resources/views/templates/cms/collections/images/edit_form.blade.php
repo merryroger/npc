@@ -55,5 +55,5 @@
       onreset="return resetImageRelocationForm(this)"
       onsubmit="return submitImageRelocation(this)">
     <input type="hidden" name="opcode" data-type="form_field" value="RIRL"/>
-    <input type="hidden" name="itemId" data-type="form_field" value="{!! $image['id'] !!}"/>
+    <input type="hidden" name="recId" data-type="form_field" value="{!! $image['id'] !!}"/>
 </form>

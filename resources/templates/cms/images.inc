@@ -15,6 +15,9 @@ $this->config = [
         'RIAF' => [
             'template' => 'templates.cms.collections.images.load_form'
         ],
+        'RIRL' => [
+            'provider' => 'imagecollector',
+        ],
         'EDIM' => [
             'provider' => 'imagecollector',
             'template' => 'templates.cms.collections.images.edit_form'

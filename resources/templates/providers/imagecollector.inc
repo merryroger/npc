@@ -9,6 +9,8 @@ if (!isset($extra_data['opcode'])) {
     $extra_data['opcode'] = '';
 }
 
+$erc = ['success' => 0, 'errorcode' => 0, 'section' => 'images', 'options' => []];
+
 switch (strtoupper($extra_data['opcode'])) {
     case 'CFUP':
         $checkPath = $provider->getFileUploadDir() . "/{$extra_data['pack_id']}";
@@ -69,6 +71,13 @@ switch (strtoupper($extra_data['opcode'])) {
         $locations = $provider->getLocations(false);// dd($locations);
         $view = view($sets['template'], compact(['image', 'locations']))->render();
         $contents = json_encode(array_merge($extra_data, ['view' => $view]));
+        break;
+    case 'RIRL':
+        $provider->load($extra_data);
+        $image = $provider->getItem($extra_data['recId']);
+        $locateTo = collect($extra_data)->except(['recId', 'opcode'])->merge(['pack_id' => $image['pack_id']])->all();
+        $provider->imageRelocate($image, $locateTo, $erc);// dd($image);
+
         break;
     case 'RITM':
         $provider->deleteItem(intval($extra_data['recId']));

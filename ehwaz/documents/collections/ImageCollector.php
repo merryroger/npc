@@ -67,7 +67,7 @@ class ImageCollector extends Collections
     {
         $locations = Location::dataSet($show_hidden)->get();
         if ($locations->count()) {
-            return $locations->map(function($item, $key) {
+            return $locations->map(function ($item, $key) {
                 return collect($item)->only(['id', 'name'])->all();
             })->all();
         } else {
@@ -181,6 +181,31 @@ class ImageCollector extends Collections
         }
 
         return true;
+    }
+
+    public function imageRelocate($currentImageData, $requestedData, &$erc): void
+    {
+        $this->getLocationDir($requestedData);
+        $newLocation = realpath(public_path() . $requestedData['rel_path']);
+        $newFileName = $requestedData['file_name'] . ".{$currentImageData['extension']}";
+
+        if (!$this->checkLocation($newLocation, $newFileName, $erc)) {
+            return;
+        }
+
+        if ($currentImageData['preview'] != null) {
+            if (!$this->checkLocation($newLocation . '/preview', $newFileName, $erc)) {
+                return;
+            }
+        }
+
+        //dump($currentImageData);
+        //dd($requestedData);
+    }
+
+    protected function checkLocation($path, $fileName, &$erc): bool
+    {
+        //To be continued...
     }
 
     public function __destruct()
