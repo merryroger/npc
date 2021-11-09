@@ -49,3 +49,6 @@
         //-->
     </aside>
 @endsection
+
+@section('banners')
+@endsection
