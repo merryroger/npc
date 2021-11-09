@@ -136,6 +136,10 @@
         display: none;
     }
 
+    section#banners {
+        width: 82%;
+    }
+
     footer {
         padding: 90px 35pt 35px;
         justify-content: space-evenly;

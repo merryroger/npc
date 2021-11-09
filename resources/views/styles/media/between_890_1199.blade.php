@@ -77,7 +77,7 @@
     section.main__sheet {
         width: 800px;
         margin-bottom: 0;
-}
+    }
 
     .main__sheet article {
         padding: 15px 25pt;
@@ -117,11 +117,14 @@
         display: none !important;
     }
 
+    section#banners {
+        width: calc(800px - 50pt);
+    }
+
     footer {
         padding: 50px 0 35px;
         justify-content: center;
     }
-
 
     article.footer {
         margin: 0 1% 10px;

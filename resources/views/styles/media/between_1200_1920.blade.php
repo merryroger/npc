@@ -109,6 +109,10 @@
         display: none !important;
     }
 
+    section#banners {
+        width: calc(800px - 50pt);
+    }
+
     footer {
         padding: 50px 0 35px;
         justify-content: center;

@@ -36,6 +36,7 @@
     @yield('main_sheet')
     @yield('right_aside')
 </section>
+@yield('banners')
 @include('templates/footer', ['menu' => $menu['extra']])
 </body>
 </html>

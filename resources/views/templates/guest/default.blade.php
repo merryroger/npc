@@ -2,6 +2,7 @@
 
 @section('styles')
     @include('styles/substyles/news_aside')
+    @include('styles/substyles/banners')
 @endsection
 
 @section('left_aside')
@@ -51,4 +52,5 @@
 @endsection
 
 @section('banners')
+    {!! $contents['banners'] !!}
 @endsection

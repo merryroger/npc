@@ -6,7 +6,7 @@
 
 $this->config = [
 
-    'blocks' => 3,
+    'blocks' => 4,
     'contents' => [
         'left_aside' => [
             'template' => 'templates.empty',
@@ -26,6 +26,9 @@ $this->config = [
             'sortby' => 'desc',
             'hidelast' => 1,
             'template' => 'templates.guest.homepage.news'
+        ],
+        'banners' => [
+            'template' => 'templates.guest.homepage.banners'
         ],
     ],
 
