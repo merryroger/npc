@@ -5,11 +5,14 @@ let menuDepth = -1;
 let isRootMenuFloated = 0;
 let toh = 0;
 
+let winResz = null;
 let ptrMove = null;
 let ptrOver = null;
 let deferredEvt = null;
 
-let menuLayers = {}
+let bannerCarousel;
+
+let menuLayers = {};
 
 function initMenu() {
     checkRootMenuStatus();
@@ -58,6 +61,9 @@ function rebuildMenu() {
     }
 
     checkRootMenuStatus();
+    if (bannerCarousel !== undefined) {
+        bannerCarousel.resize();
+    }
 }
 
 function pointerMove(e) {
@@ -80,8 +86,8 @@ function pointerMove(e) {
         case 'SECTION':
         case 'IMG':
         case 'DIV':
-            if (e.target.closest('section#banners') !== null && typeof(bannerCarousel) == 'function') {
-                bannerCarousel(e.target, e);
+            if (e.target.closest('section#banners') !== null && bannerCarousel !== undefined) {
+                bannerCarousel.pointerMove(e.target, e);
             } else if (e.target.closest('nav.mainmenu') !== null || e.target.closest('div.subpanel') !== null)
                 return;
         default:
@@ -191,4 +197,4 @@ function hideSubpanels(level) {
 
 onresize = rebuildMenu;
 
-__tasks[__tasks.length] = initMenu;
+__tasks.push(initMenu);
