@@ -5,6 +5,10 @@
     @include('styles/substyles/banners')
 @endsection
 
+@section('js')
+    <script src="/js/banners.js" type="text/javascript"></script>
+@endsection
+
 @section('left_aside')
     <aside class="page__aside aside__left">
         {!! $contents['left_aside'] !!}

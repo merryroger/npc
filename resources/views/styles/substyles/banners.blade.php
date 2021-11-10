@@ -16,11 +16,12 @@ div.banner__band {
     display: flex;
 }
 
-div.banner__cell {
+a.banner__cell {
     margin: 5px 5pt;
     width: 120px;
     height: 60px;
     box-shadow: 2px 2px 6px rgba(0,0,0,0.25);
+    border-width: 0;
 }
 
 .banner__cell img {
