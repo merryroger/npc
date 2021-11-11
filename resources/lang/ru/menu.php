@@ -10,6 +10,7 @@ return [
     'buildings' => 'Здания',
     'contacts' => 'Контактная информация',
     'documents' => 'Документы',
+    'gohome' => 'На главную',
     'history' => 'История НПЦ',
     'news' => 'Новости',
     'publications' => 'Публикации',

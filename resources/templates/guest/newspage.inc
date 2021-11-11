@@ -12,8 +12,8 @@ $this->config = [
             'template' => 'templates.empty',
         ],
         'main_sheet' => [
-            //'provider' => 'tyrion',
-            'template' => 'templates.empty',
+            'provider' => 'newsline',
+            'template' => 'templates.guest.newspage.main'
         ],
         'right_aside' => [
             //'provider' => 'newsline',

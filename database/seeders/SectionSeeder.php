@@ -25,6 +25,7 @@ class SectionSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
+                'id' => 8,
                 'bip' => 0x1,
                 'name' => 'news',
                 'entry_point' => 'templates.guest.news',

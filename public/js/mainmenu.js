@@ -69,6 +69,7 @@ function rebuildMenu() {
 function pointerMove(e) {
     switch (e.target.tagName.toUpperCase()) {
         case 'NAV':
+        case 'P':
         case 'A':
             if (e.target.closest('nav.mainmenu') !== null || e.target.closest('div.subpanel') !== null) {
                 let parent = +e.target.getAttribute('data-item');

@@ -6,7 +6,7 @@
         width: 100%;
     }
 
-    section#title {
+    section#title, a#title {
         padding-top: 40px;
         height: 130px;
         background: transparent url("/images/logo_lt.png") no-repeat center 25px;
@@ -40,6 +40,13 @@
         margin: 5px 0;
         padding: 2px 20pt;
         color: var(--link-clr);
+        text-decoration: none;
+    }
+
+    .extra__menu > p {
+        margin: 5px 0;
+        padding: 2px 20pt;
+        color: var(--subpn-brd);
         text-decoration: none;
     }
 

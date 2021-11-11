@@ -6,7 +6,7 @@
         width: 1920px;
     }
 
-    section#title {
+    section#title, a#title {
         padding-left: 196px;
         margin-bottom: 30px;
         height: 130px;

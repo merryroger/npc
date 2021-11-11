@@ -1,12 +1,20 @@
 <header>
     <section id="top__frame">
         <aside class="haside haside__left"></aside>
-        <section id="title">
+        @if($section_ids[0]['id'] > 1)
+            <a href="/" id="title" title="{!! trans('menu.gohome') !!}">
+        @else
+            <section id="title">
+        @endif
             <div class="hdr__holder">
                 <h1>Научно-производственный центр</h1>
                 <h6>по охране памятников истории и культуры Курганской области</h6>
             </div>
-        </section>
+        @if($section_ids[0]['id'] > 1)
+            </a>
+        @else
+            </section>
+        @endif
         <aside class="haside haside__right">
             <div id="top__controls">
                 <form id="search" action="/search">

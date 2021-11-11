@@ -14,7 +14,14 @@
     </article>
     <article class="footer foot__links">
         @foreach($menu as $item)
-            <a href="{{ $item['url'] }}">{{ @trans("menu.$item[mnemo]") }}</a>
+            @if($item['id'] == $section_ids[0]['id'])
+                <p>{{ @trans("menu.$item[mnemo]") }}</p>
+            @else
+                <a href="{{ $item['url'] }}">{{ @trans("menu.$item[mnemo]") }}</a>
+            @endif
         @endforeach
+        @if($section_ids[0]['id'] > 1)
+            <a href="/">{{ @trans("menu.gohome") }}</a>
+        @endif
     </article>
 </footer>

@@ -122,7 +122,8 @@ a.auth__rq__button {
     outline: none;
 }
 
-section#title {
+section#title, a#title {
+    text-decoration: none;
     flex-grow: 0;
     flex-direction: column;
     justify-content: center;
@@ -293,6 +294,11 @@ article.foot__contacts, article.foot__links {
     margin-bottom: 10px;
 }
 
+.foot__links p {
+    color: var(--def-bgr);
+    cursor: default;
+}
+
 .on {
     visibility: visible;
 }
@@ -302,6 +308,10 @@ article.foot__contacts, article.foot__links {
     top: 0;
     z-index: -1;
     visibility: hidden;
+}
+
+.def__pointer {
+    cursor: default;
 }
 
 .h {
