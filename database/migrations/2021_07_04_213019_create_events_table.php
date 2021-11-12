@@ -15,8 +15,10 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('location')->unique()->default('');
-            $table->string('code')->unique()->default('');
+            $table->string('source')->unique()->default('');
+            $table->string('preview')->nullable();
+            $table->dateTime('official_news_date')->default('2000-01-01 00:00:00');
+            $table->integer('collection_id')->unsigned()->default(0);
             $table->boolean('hidden')->default(true);
             $table->timestamps();
             $table->softDeletes();
