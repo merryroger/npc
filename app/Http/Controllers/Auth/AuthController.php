@@ -222,7 +222,7 @@ class AuthController extends Controller
             $request->session()->forget('user');
         }
 
-        return redirect()->route('guest.lvl1.sections');
+        return redirect()->route('guest.lvl1.sections', ['section' => '']);
     }
 
 }

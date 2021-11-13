@@ -23,7 +23,7 @@ $this->config = [
         'right_aside' => [
             'provider' => 'newsline',
             'count' => 4,
-            'sortby' => 'desc',
+            'order' => 'desc',
             'hidelast' => 1,
             'template' => 'templates.guest.homepage.news'
         ],

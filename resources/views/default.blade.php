@@ -25,6 +25,7 @@
     <script src="/js/md5.js" type="text/javascript"></script>
     <script src="/js/mainmenu.js" type="text/javascript"></script>
     <script src="/js/search.js" type="text/javascript"></script>
+    <script src="/js/popupmsgs.js" type="text/javascript"></script>
     @yield('js')
     @if ($user)
         <script src="/js/cms/mcp.js" type="text/javascript"></script>
@@ -39,5 +40,8 @@
 </section>
 @yield('banners')
 @include('templates/footer', ['menu' => $menu['extra']])
+@if (session()->has('errors'))
+    <script>popupMessenger.fire('{!! json_encode(session()->get('errors')) !!}', '{!! trans('flasherrors.error') !!}')</script>
+@endif
 </body>
 </html>

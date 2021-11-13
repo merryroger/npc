@@ -6,5 +6,6 @@
         <div class="list__container">
 
         </div>
+        <a href="/news" class="all__news">Все новости</a>
     @endif
 </section>

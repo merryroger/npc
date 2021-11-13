@@ -15,10 +15,23 @@ class Event extends Model
 
     public function scopeNewsCount($query, $include_hidden = false)
     {
+        $query = $query->whereNull('deleted_at');
+
         if ($include_hidden) {
             return $query->count();
         } else {
             return $query->where('hidden', 0)->count();
         }
+    }
+
+    public function scopeNewsList($query, $count, $order, $include_hidden = false)
+    {
+        $query = $query->whereNull('deleted_at');
+
+        if (!$include_hidden) {
+            $query = $query->where('hidden', 0);
+        }
+
+        return $query->orderBy('official_news_date', $order)->skip(0)->take($count);
     }
 }

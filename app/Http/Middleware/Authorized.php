@@ -26,6 +26,6 @@ class Authorized
             }
         }
 
-        return ($fault) ? redirect()->route('guest.lvl1.sections') : $next($request);
+        return ($fault) ? redirect()->route('guest.lvl1.sections', ['section' => '']) : $next($request);
     }
 }

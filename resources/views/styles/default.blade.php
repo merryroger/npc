@@ -394,3 +394,25 @@ p.resp__error {
 }
 
 /**** End of response panel ****/
+
+/**** Flashes ****/
+
+div.flash__message {
+    position: fixed;
+    right: 50pt;
+    padding: 6px 10pt;
+    max-width: 280px;
+    min-width: 280px;
+    border: 1px solid var(--shdr-clr);
+    border-radius: 5px;
+    background-color: var(--prg-clr);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+}
+
+.flash__message > p {
+    color: var(--ftr-clr);
+    font-size: 10pt;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+/**** End of flashes ****/

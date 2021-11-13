@@ -12,7 +12,13 @@ class NewslineProvider implements DocumentProvider
 {
 
     private $newsline;
-    private $parameters = ['location' => '', 'code' => '', 'xslt' => []];
+    private $parameters = [
+        'source' => '',
+        'preview' => null,
+        'official_news_date' => '2000-01-01 00:00:00',
+        'collection_id' => 0,
+        'xslt' => []
+    ];
 
     public function __construct(NewslineReader $newslineReader)
     {
@@ -34,7 +40,12 @@ class NewslineProvider implements DocumentProvider
 
     public function checkNews()
     {
-        $this->newsline->getNewsCount();
+        return $this->newsline->getNewsCount();
+    }
+
+    public function pickPreviewList(&$settings)
+    {
+        return $this->newsline->pickPreviewList($settings);
     }
 
     public function getContents()
