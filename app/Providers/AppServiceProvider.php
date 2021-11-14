@@ -39,6 +39,8 @@ class AppServiceProvider extends ServiceProvider
             return new TyrionDocumentProvider(new TyrionReader());
         });
 
+        app()->bind('newsmessage', NewslineProvider::class);
+        app()->bind('newslist', NewslineProvider::class);
         app()->bind('newsline', NewslineProvider::class);
         app()->bind(NewslineProvider::class, function($api) {
             return new NewslineProvider(new NewslineReader());

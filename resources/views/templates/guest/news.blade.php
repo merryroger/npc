@@ -21,3 +21,9 @@
         {!! $contents['right_aside'] !!}
     </aside>
 @endsection
+
+@section('newslist')
+    <section class="main__sheet">
+        {!! $contents['newslist'] !!}
+    </section>
+@endsection

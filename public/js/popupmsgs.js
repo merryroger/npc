@@ -19,13 +19,17 @@ let popupMessenger = (() => {
                 flash.classList.add('on');
                 this.shiftOtherFlashes(getCoordsRect(flash));
                 this.flashes.set(flash.id, flash);
+                flash.style.opacity = 0;
             }
         }
 
         shiftOtherFlashes(rect) {
-            let shift = rect.height + 24;
+            let shift = rect.height + 10;
+            let winHeight = document.documentElement.clientHeight;
+            let cnt = this.flashes.size;
             this.flashes.forEach((value, key, map) => {
-                value.style.bottom = value.offsetHeight + shift + 'px';
+                value.style.bottom = winHeight - (value.offsetTop + value.offsetHeight) + shift * cnt + 'px';
+                cnt--;
             });
         }
 
@@ -38,11 +42,24 @@ let popupMessenger = (() => {
             return flash;
         }
 
+        removeFlash(flash) {
+            let id = flash.id;
+            if (this.flashes.has(id)) {
+                this.flashes.delete(id);
+                document.body.removeChild(flash);
+            }
+        }
+
     }
 
     let self = new PopupMessenger();
 
     return {
+        listen: (e) => {
+            if (e.propertyName == 'opacity') {
+                self.removeFlash(e.target);
+            }
+        },
         fire: (messages, title = '') => {
             let mss;
             try {
@@ -57,3 +74,9 @@ let popupMessenger = (() => {
     }
 
 })();
+
+__tasks.push(setPopupListener);
+
+function setPopupListener() {
+    document.body.addEventListener('transitionend', popupMessenger.listen);
+}

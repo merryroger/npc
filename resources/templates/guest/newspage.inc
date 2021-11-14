@@ -4,22 +4,25 @@
  * Date: 01.07.2021
  */
 
+
 $this->config = [
 
-    'blocks' => 3,
+    'blocks' => 4,
     'contents' => [
+        'main_sheet' => [
+            'provider' => 'newsmessage',
+            'template' => 'templates.guest.newspage.main'
+        ],
         'left_aside' => [
             'template' => 'templates.empty',
         ],
-        'main_sheet' => [
-            'provider' => 'newsline',
-            'template' => 'templates.guest.newspage.main'
+        'newslist' => [
+            'provider' => 'newslist',
+            //'count' => 3,
+            //'sortby' => 'desc',
+            'template' => 'templates.guest.newspage.list'
         ],
         'right_aside' => [
-            //'provider' => 'newsline',
-            //'count' => 4,
-            //'sortby' => 'desc',
-            //'hidelast' => 1,
             'template' => 'templates.empty',
         ],
     ],

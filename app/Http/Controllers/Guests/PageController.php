@@ -10,11 +10,11 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+    protected $request;
     protected $section;
     protected $user;
 
     public function getSections(Request $request, $section = 'home')
-
     {
         if ($request->session()->exists('user')) {
             $this->user = $request->session()->get('user');
@@ -22,6 +22,7 @@ class PageController extends Controller
             $this->user = [];
         }
 
+        $this->request = $request->request->all();
         $this->section = $this->getSection($section, true);
 
         return $this->render();
@@ -46,7 +47,7 @@ class PageController extends Controller
     protected function retrieveSectionContents()
     {
         $docShow = new DocShow();
-        $contents = $docShow->retrieveContents($this->section->template);
+        $contents = $docShow->retrieveContents($this->section->template, $this->request);
         $docShow->__destruct();
         unset($docShow);
 

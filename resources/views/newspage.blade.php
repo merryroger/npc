@@ -25,6 +25,7 @@
     <script src="/js/md5.js" type="text/javascript"></script>
     <script src="/js/mainmenu.js" type="text/javascript"></script>
     <script src="/js/search.js" type="text/javascript"></script>
+    <script src="/js/popupmsgs.js" type="text/javascript"></script>
     @if ($user)
         <script src="/js/cms/mcp.js" type="text/javascript"></script>
     @endif
@@ -36,6 +37,13 @@
     @yield('main_sheet')
     @yield('right_aside')
 </section>
+<section id="news_band">
+    @yield('newslist')
+</section>
 @include('templates/footer', ['menu' => $menu['extra']])
+@if (session()->has('errors'))
+    <script>popupMessenger.fire('{!! json_encode(session()->get('errors')) !!}', '{!! trans('flasherrors.error') !!}')</script>
+    @php(session()->forget('errors'))
+@endif
 </body>
 </html>

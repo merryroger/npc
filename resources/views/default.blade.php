@@ -42,6 +42,7 @@
 @include('templates/footer', ['menu' => $menu['extra']])
 @if (session()->has('errors'))
     <script>popupMessenger.fire('{!! json_encode(session()->get('errors')) !!}', '{!! trans('flasherrors.error') !!}')</script>
+    @php(session()->forget('errors'))
 @endif
 </body>
 </html>

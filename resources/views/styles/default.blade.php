@@ -407,6 +407,8 @@ div.flash__message {
     border-radius: 5px;
     background-color: var(--prg-clr);
     box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    transition: opacity 4s linear 6s, bottom .2s ease-out;
+    opacity: 1;
 }
 
 .flash__message > p {

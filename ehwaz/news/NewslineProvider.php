@@ -48,6 +48,16 @@ class NewslineProvider implements DocumentProvider
         return $this->newsline->pickPreviewList($settings);
     }
 
+    public function getLastNewsId()
+    {
+        return $this->newsline->getLastNewsId();
+    }
+
+    public function getItem($newsId, $show_hidden = false)
+    {
+        return $this->newsline->getItem($newsId, $show_hidden);
+    }
+
     public function getContents()
     {
         return $this->newsline->getContents();

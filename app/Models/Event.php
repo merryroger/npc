@@ -24,6 +24,17 @@ class Event extends Model
         }
     }
 
+    public function scopeNewsItem($query, $id, $show_hidden = false)
+    {
+        $query = $query->whereNull('deleted_at');
+
+        if (!$show_hidden) {
+            $query = $query->where('hidden', 0);
+        }
+
+        return $query->whereId($id)->first();
+    }
+
     public function scopeNewsList($query, $count, $order, $include_hidden = false)
     {
         $query = $query->whereNull('deleted_at');
@@ -33,5 +44,16 @@ class Event extends Model
         }
 
         return $query->orderBy('official_news_date', $order)->skip(0)->take($count);
+    }
+
+    public function scopeMaxNewsItemByOfficialDate($query, $include_hidden = false)
+    {
+        $query = $query->whereNull('deleted_at');
+
+        if (!$include_hidden) {
+            $query = $query->where('hidden', 0);
+        }
+
+        return $query->orderBy('official_news_date', 'desc')->first();
     }
 }
