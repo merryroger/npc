@@ -9,6 +9,19 @@ section.main__sheet {
     padding-bottom: 0;
 }
 
+div.photo__frame {
+    margin: 8px 20pt 20px 0;
+    display: inline-block;
+    background-size: contain !important;
+    background-repeat: no-repeat;
+}
+
+.pf__standard {
+    float: left;
+    width: 350px;// 420px;
+    height: 225px;// 280px;
+}
+
 .news__article h2 {
     margin-bottom: 36px;
     line-height: 1.2;
