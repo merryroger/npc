@@ -5,6 +5,7 @@ let popupMessenger = (() => {
     class PopupMessenger {
 
         constructor() {
+            this.mMargin = 10;
             this.flashes = new Map();
         }
 
@@ -17,20 +18,22 @@ let popupMessenger = (() => {
                 flash.classList.remove('off');
                 flash.style.zIndex = 10;
                 flash.classList.add('on');
-                this.shiftOtherFlashes(getCoordsRect(flash));
-                this.flashes.set(flash.id, flash);
-                flash.style.opacity = 0;
+
+                this.appendFlash(flash);
             }
         }
 
-        shiftOtherFlashes(rect) {
-            let shift = rect.height + 10;
+        appendFlash(flash) {
+            let shift = flash.offsetHeight + this.mMargin;
             let winHeight = document.documentElement.clientHeight;
-            let cnt = this.flashes.size;
-            this.flashes.forEach((value, key, map) => {
-                value.style.bottom = winHeight - (value.offsetTop + value.offsetHeight) + shift * cnt + 'px';
-                cnt--;
+
+            this.flashes.forEach((value) => {
+                value.style.bottom = winHeight - (value.offsetTop + value.offsetHeight) + shift + 'px';
+                shift += value.offsetHeight + this.mMargin;
             });
+
+            this.flashes.set(flash.id, flash);
+            flash.style.opacity = 0;
         }
 
         makeFlash(msg) {

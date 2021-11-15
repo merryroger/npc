@@ -1,6 +1,7 @@
 @extends($view)
 
 @section('styles')
+    @include('styles/substyles/news_page')
     @include('styles/substyles/news_aside')
 @endsection
 
@@ -11,7 +12,7 @@
 @endsection
 
 @section('main_sheet')
-    <section class="main__sheet">
+    <section class="main__sheet news__article">
         {!! $contents['main_sheet'] !!}
     </section>
 @endsection

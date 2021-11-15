@@ -11,6 +11,7 @@ $this->config = [
     'contents' => [
         'main_sheet' => [
             'provider' => 'newsmessage',
+            'textprovider' => 'tyrion',
             'template' => 'templates.guest.newspage.main'
         ],
         'left_aside' => [

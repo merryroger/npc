@@ -62,13 +62,3 @@ div.empty__line {
 }
 
 /**** End of news aside block ****/
-
-/**** News band block ****/
-
-section#news_band {
-    justify-content: center;
-    flex-grow: 1;
-    display: flex;
-}
-
-/**** End of news band block ****/
