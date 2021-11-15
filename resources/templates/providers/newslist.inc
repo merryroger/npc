@@ -5,6 +5,7 @@
  */
 
     $xslt = '';
+    $previewOrig = true;
     $message = trans('flasherrors.news.preview');
     $messages = [];
 
@@ -18,6 +19,7 @@
                 $source = $item['preview'];
             } else {
                 $source = $item['source'];
+                $previewOrig = false;
             }
 
             if ($source) {

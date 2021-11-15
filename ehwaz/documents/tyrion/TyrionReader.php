@@ -32,6 +32,7 @@ class TyrionReader extends TyrionDoc
         switch (strtolower($param)) {
             case 'contents':
             case 'docheader':
+            case 'docname':
             case 'colontitule':
             case 'stamps': return $this->$param;
             default: return '';

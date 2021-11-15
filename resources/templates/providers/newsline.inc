@@ -4,26 +4,48 @@
  * Date: 05.07.2021
  */
 
-    $xslt = '';
+    $xslt = (isset($sets['xslt'])) ? $sets['xslt'] : [];
+    $bdr = addslashes($this->base_dir);
     $message = trans('flasherrors.news.preview');
+    $previewOrig = true;
     $messages = [];
+    $previews = [];
 
     $capacity = $provider->checkNews();
 
     if ($capacity > 0) {
         $list = $provider->pickPreviewList($sets);
+        $newsReader = app($sets['textprovider']);
 
         foreach ($list as $item) {
+            $date = preg_replace("/^(\d{4})-(\d{2})-(\d{2}).+$/", "\\3.\\2.\\1", $item['official_news_date']);
+
             if (isset($item['preview'])) {
                 $source = $item['preview'];
             } else {
                 $source = $item['source'];
+                $previewOrig = false;
             }
 
             if ($source) {
+                $newsId = $item['id'];
+                $doc_path = preg_replace("%^{$bdr}%sU", '', $source);
+                $newsReader->load($doc_path, $this->base_dir, 1, $xslt);
+
+                if ($previewOrig) {
+                    $previews[] = preg_replace_callback(
+                        "/<#=newsId\s+#>/sU",
+                        function($val) use ($newsId) {
+                            return $newsId;
+                        },
+                        $newsReader->getContents()
+                    );
+                } else {
+                    $docname = $newsReader->getParameter('docname');
+                    $previews[] = view($sets['nopreview'], compact(['newsId', 'date', 'docname']))->render();
+                }
 
             } else {
-                $date = preg_replace("/^(\d{4})-(\d{2})-(\d{2}).+$/", "\\3.\\2.\\1", $item['official_news_date']);
                 $messages[] = preg_replace("/<#=date\s+#>/", $date, $message);
             }
         }
@@ -33,4 +55,4 @@
         }
     }
 
-    $contents = view($sets['template'], compact(['capacity']))->render();
+    $contents = view($sets['template'], compact(['capacity', 'previews']))->render();

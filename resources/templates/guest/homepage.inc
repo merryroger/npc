@@ -22,10 +22,12 @@ $this->config = [
         ],
         'right_aside' => [
             'provider' => 'newsline',
+            'textprovider' => 'tyrion',
             'count' => 4,
             'order' => 'desc',
             'hidelast' => 1,
-            'template' => 'templates.guest.homepage.news'
+            'template' => 'templates.guest.homepage.news',
+            'nopreview' => 'templates.guest.homepage.nopreview'
         ],
         'banners' => [
             'template' => 'templates.guest.homepage.banners'

@@ -20,6 +20,7 @@ class TyrionDoc
 
     protected $contents;
     protected $parameters;
+    protected $docname;
     protected $docheader;
     protected $colontitule;
     protected $stamps;
@@ -63,6 +64,10 @@ class TyrionDoc
             $this->page = 1;
         } elseif ($this->page > $pages) {
             $this->page = $pages;
+        }
+
+        if (isset($this->parameters['docname'])) {
+            $this->docname = $this->parameters['docname'];
         }
 
         if (isset($this->parameters['colontitules'])) {
@@ -168,6 +173,7 @@ class TyrionDoc
         $this->error = 0;
         $this->contents = '';
         $this->docheader = '';
+        $this->docname = '';
         $this->colontitule = '';
         $this->stamps = '';
         $this->xslt = [];

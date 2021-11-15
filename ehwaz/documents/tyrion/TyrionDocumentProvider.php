@@ -32,6 +32,11 @@ class TyrionDocumentProvider implements DocumentProvider
         $this->tyrion->loadDocument($src, $this->parameters['base_dir'], $this->parameters['page'], $this->parameters['xslt']);
     }
 
+    public function getParameter($param): string
+    {
+        return $this->tyrion->getParameter($param);
+    }
+
     public function getContents()
     {
         return $this->tyrion->getContents();

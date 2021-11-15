@@ -1,0 +1,20 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News preview</doctopic>
+    <docname>Власти совместно с&nbsp;бизнесом отремонтируют памятники погибшим воинам в&nbsp;Курганской области</docname>
+    <doctype>Text</doctype>
+    <docdate>23.04.2020</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<a href="/news?nid=<#=newsId #>" class="news">
+    <div class="news__image"><h6>23.04.2020</h6><img src="/images/news/preview/20200423_Shumkov.jpg" alt="Власти совместно с бизнесом отремонтируют памятники погибшим воинам в Курганской области"/></div>
+    <p>Власти совместно с&nbsp;бизнесом отремонтируют памятники погибшим воинам в&nbsp;Курганской области.</p>
+</a>
+</page>
