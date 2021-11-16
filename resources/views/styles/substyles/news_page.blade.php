@@ -50,8 +50,16 @@ address {
 /**** News band block ****/
 
 section#news_band {
+    margin-bottom: 50px;
     justify-content: center;
     flex-grow: 1;
+    display: flex;
+}
+
+nav.news__preview__band {
+    //background-color: #840789;
+    overflow-x: hidden;
+    flex-wrap: nowrap;
     display: flex;
 }
 

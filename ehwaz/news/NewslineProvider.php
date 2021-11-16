@@ -53,6 +53,11 @@ class NewslineProvider implements DocumentProvider
         return $this->newsline->getLastNewsId();
     }
 
+    public function pickPreviewSurroundList($newsId, &$settings, &$info)
+    {
+        return $this->newsline->pickPreviewSurroundList($newsId, $settings, $info);
+    }
+
     public function getItem($newsId, $show_hidden = false)
     {
         return $this->newsline->getItem($newsId, $show_hidden);

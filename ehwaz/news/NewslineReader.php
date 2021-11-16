@@ -29,24 +29,26 @@ class NewslineReader
         return Event::newsCount();
     }
 
-    public function pickPreviewList(&$settings)
+    protected function retrievePreviewData($data)
     {
-        $result = [];
         $newspath = realpath(app_path() . $this::NEWS_ORIGIN);
 
-        $count = (isset($settings['count']) && $settings['count']) ? $settings['count'] : $this::NEWSLIST_PREVIEW_COUNT;
-        $order = (isset($settings['order']) && !strcasecmp($settings['order'], 'asc')) ? 'asc' : $this::NEWSLIST_PREVIEW_ORDER;
-
-        $result = Event::newsList($count, $order)->get()->map(function ($item, $key) use ($newspath) {
+        return $data->get()->map(function ($item, $key) use ($newspath) {
             $item->source = realpath($newspath . '/' . $item->source);
             if (isset($item->preview)) {
                 $item->preview = realpath($newspath . '/preview/' . $item->preview);
             }
 
-            return collect($item)->except(['hidden', 'created_at', 'updated_at', 'deleted_at'])->all();
+            return collect($item)->except(['collection_id', 'hidden', 'created_at', 'updated_at', 'deleted_at'])->all();
         })->all();
+    }
 
-        return $result;
+    public function pickPreviewList(&$settings)
+    {
+        $count = (isset($settings['count']) && $settings['count']) ? $settings['count'] : $this::NEWSLIST_PREVIEW_COUNT;
+        $order = (isset($settings['order']) && !strcasecmp($settings['order'], 'asc')) ? 'asc' : $this::NEWSLIST_PREVIEW_ORDER;
+
+        return $this->retrievePreviewData(Event::newsList($count, $order));
     }
 
     public function getLastNewsId()
@@ -54,6 +56,28 @@ class NewslineReader
         $item = Event::maxNewsItemByOfficialDate();
 
         return ($item->count()) ? $item->id : 0;
+    }
+
+    public function pickPreviewSurroundList($newsId, &$settings, &$info)
+    {
+        $result = [];
+        $order = (isset($settings['order']) && !strcasecmp($settings['order'], 'asc')) ? 'asc' : $this::NEWSLIST_PREVIEW_ORDER;
+
+        $info = Event::neighboursInfo($newsId); //dump($settings);
+        $info['take_after'] = ($info['after'] < $settings['after']) ? $info['after'] : $settings['after'];
+        $info['take_before'] = ($info['before'] < $settings['before']) ? $info['before'] : $settings['before'];
+        $item_ids = Event::newsSurroundIds($newsId, $info);
+
+        foreach ($item_ids as $group => $ids) {
+            if (!$ids) {
+                $result[$group] = [];
+                continue;
+            }
+
+            $result[$group] = $this->retrievePreviewData(Event::newsListById($ids, $order));
+        }
+
+        return $result;
     }
 
     public function getItem($newsId, $show_hidden = false)

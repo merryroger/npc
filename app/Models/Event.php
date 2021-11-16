@@ -13,47 +13,74 @@ class Event extends Model
 
     protected $dates = ['deleted_at'];
 
+    public function scopeUndeleted($query)
+    {
+        return $query->whereNull('deleted_at');
+    }
+
+    public function scopeValid($query, $include_hidden = false)
+    {
+        $query = $this->scopeUndeleted($query);
+
+        return ($include_hidden) ? $query : $query->where('hidden', 0);
+    }
+
     public function scopeNewsCount($query, $include_hidden = false)
     {
-        $query = $query->whereNull('deleted_at');
+        $query = $this->scopeUndeleted($query);
 
-        if ($include_hidden) {
-            return $query->count();
-        } else {
-            return $query->where('hidden', 0)->count();
-        }
+        return ($include_hidden) ? $query->count() : $query->where('hidden', 0)->count();
     }
 
     public function scopeNewsItem($query, $id, $show_hidden = false)
     {
-        $query = $query->whereNull('deleted_at');
-
-        if (!$show_hidden) {
-            $query = $query->where('hidden', 0);
-        }
-
-        return $query->whereId($id)->first();
+        return $this->scopeValid($query, $show_hidden)->whereId($id)->first();
     }
 
     public function scopeNewsList($query, $count, $order, $include_hidden = false)
     {
-        $query = $query->whereNull('deleted_at');
+        return $this->scopeValid($query, $include_hidden)->orderBy('official_news_date', $order)->skip(0)->take($count);
+    }
 
-        if (!$include_hidden) {
-            $query = $query->where('hidden', 0);
-        }
+    public function scopeNewsListById($query, $ids, $order, $include_hidden = false)
+    {
+        $whereIDS = '(' . join(' OR ', $ids) . ')';
 
-        return $query->orderBy('official_news_date', $order)->skip(0)->take($count);
+        return $this->scopeValid($query, $include_hidden)->whereRaw($whereIDS)->orderBy('official_news_date', $order);
     }
 
     public function scopeMaxNewsItemByOfficialDate($query, $include_hidden = false)
     {
-        $query = $query->whereNull('deleted_at');
-
-        if (!$include_hidden) {
-            $query = $query->where('hidden', 0);
-        }
-
-        return $query->orderBy('official_news_date', 'desc')->first();
+        return $this->scopeValid($query, $include_hidden)->orderBy('official_news_date', 'desc')->first();
     }
+
+    public function scopeNeighboursInfo($query, $newsId)
+    {
+        $result = [];
+        $item = $this->scopeNewsItem($query, $newsId);
+
+        $result['after'] = $this->scopeValid($this::query())->where('official_news_date', '<', $item->official_news_date)->count();
+        $result['before'] = $this->scopeValid($this::query())->where('official_news_date', '>', $item->official_news_date)->count();
+
+        return $result;
+    }
+
+    public function scopeNewsSurroundIds($query, $newsId, &$info)
+    {
+        $result = [];
+        $item = $this->scopeNewsItem($query, $newsId);
+
+        $result['after'] = $this->scopeValid($this::query())
+            ->where('official_news_date', '<', $item->official_news_date)
+            ->orderBy('official_news_date', 'asc')->skip(0)
+            ->take($info['take_after'])->value('id');
+        $result['selected'] = [$item->id];
+        $result['before'] = $this->scopeValid($this::query())
+            ->where('official_news_date', '>', $item->official_news_date)
+            ->orderBy('official_news_date', 'desc')
+            ->skip(0)->take($info['take_before'])->value('id');
+
+        return $result;
+    }
+
 }

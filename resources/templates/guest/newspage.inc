@@ -19,8 +19,10 @@ $this->config = [
         ],
         'newslist' => [
             'provider' => 'newslist',
-            //'count' => 3,
-            //'sortby' => 'desc',
+            'textprovider' => 'tyrion',
+            'before' => 2,
+            'after' => 1,
+            'order' => 'desc',
             'template' => 'templates.guest.newspage.list'
         ],
         'right_aside' => [
