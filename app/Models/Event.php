@@ -61,7 +61,7 @@ class Event extends Model
 
         $result['after'] = $this->scopeValid($this::query())->where('official_news_date', '>', $item->official_news_date)->count();
         $result['before'] = $this->scopeValid($this::query())->where('official_news_date', '<', $item->official_news_date)->count();
-dump($result);
+
         return $result;
     }
 
