@@ -59,9 +59,9 @@ class Event extends Model
         $result = [];
         $item = $this->scopeNewsItem($query, $newsId);
 
-        $result['after'] = $this->scopeValid($this::query())->where('official_news_date', '<', $item->official_news_date)->count();
-        $result['before'] = $this->scopeValid($this::query())->where('official_news_date', '>', $item->official_news_date)->count();
-
+        $result['after'] = $this->scopeValid($this::query())->where('official_news_date', '>', $item->official_news_date)->count();
+        $result['before'] = $this->scopeValid($this::query())->where('official_news_date', '<', $item->official_news_date)->count();
+dump($result);
         return $result;
     }
 
@@ -71,12 +71,12 @@ class Event extends Model
         $item = $this->scopeNewsItem($query, $newsId);
 
         $result['after'] = $this->scopeValid($this::query())
-            ->where('official_news_date', '<', $item->official_news_date)
+            ->where('official_news_date', '>', $item->official_news_date)
             ->orderBy('official_news_date', 'asc')
             ->skip(0)->take($info['take_after'])->pluck('id')->all();
         $result['selected'] = [$item->id];
         $result['before'] = $this->scopeValid($this::query())
-            ->where('official_news_date', '>', $item->official_news_date)
+            ->where('official_news_date', '<', $item->official_news_date)
             ->orderBy('official_news_date', 'desc')
             ->skip(0)->take($info['take_before'])->pluck('id')->all();
 
