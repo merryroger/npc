@@ -26,7 +26,7 @@ a.news:hover > p {
 
 .news__image img {
     margin: 0 5px;
-    height: 56px;
+    height: 75px;
     border-radius: 3px;
 }
 

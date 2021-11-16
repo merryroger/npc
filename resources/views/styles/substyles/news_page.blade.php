@@ -63,4 +63,44 @@ nav.news__preview__band {
     display: flex;
 }
 
+a.news__band__cell, div.news__band__cell {
+    margin: 0 5pt 5px;
+    width: calc(800px / 3 - 10pt);
+    max-width: calc(800px / 3 - 10pt);
+    text-decoration: none;
+    display: block;
+}
+/*
+a.news:hover > p {
+text-decoration: underline;
+}
+
+.news p {
+margin-bottom: 5px;
+margin-left: 4px;
+color: var(--prg-clr);
+line-height: 1.3;
+font-size: 11pt;
+font-family: "Roboto Condensed", sans-serif;
+}
+
+.news__image {
+width:  100%;
+margin-bottom: 3px;
+}
+
+.news__image img {
+margin: 0 5px;
+height: 75px;
+border-radius: 3px;
+}
+
+.news__image h6 {
+margin-bottom: 8px;
+color: var(--smnu-bgr);
+font-size: 11pt;
+font-weight: 400;
+font-family: "Roboto Condensed", sans-serif;
+}
+*/
 /**** End of news band block ****/

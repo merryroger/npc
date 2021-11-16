@@ -44,7 +44,7 @@ class Event extends Model
 
     public function scopeNewsListById($query, $ids, $order, $include_hidden = false)
     {
-        $whereIDS = '(' . join(' OR ', $ids) . ')';
+        $whereIDS = '(id = ' . join(' OR id = ', $ids) . ')';
 
         return $this->scopeValid($query, $include_hidden)->whereRaw($whereIDS)->orderBy('official_news_date', $order);
     }
@@ -72,13 +72,13 @@ class Event extends Model
 
         $result['after'] = $this->scopeValid($this::query())
             ->where('official_news_date', '<', $item->official_news_date)
-            ->orderBy('official_news_date', 'asc')->skip(0)
-            ->take($info['take_after'])->value('id');
+            ->orderBy('official_news_date', 'asc')
+            ->skip(0)->take($info['take_after'])->pluck('id')->all();
         $result['selected'] = [$item->id];
         $result['before'] = $this->scopeValid($this::query())
             ->where('official_news_date', '>', $item->official_news_date)
             ->orderBy('official_news_date', 'desc')
-            ->skip(0)->take($info['take_before'])->value('id');
+            ->skip(0)->take($info['take_before'])->pluck('id')->all();
 
         return $result;
     }

@@ -23,7 +23,9 @@ $this->config = [
             'before' => 2,
             'after' => 1,
             'order' => 'desc',
-            'template' => 'templates.guest.newspage.list'
+            'template' => 'templates.guest.newspage.list',
+            'haspreview' => 'templates.guest.newspage.haspreview',
+            'nopreview' => 'templates.guest.newspage.nopreview'
         ],
         'right_aside' => [
             'template' => 'templates.empty',

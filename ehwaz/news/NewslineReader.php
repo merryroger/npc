@@ -67,7 +67,6 @@ class NewslineReader
         $info['take_after'] = ($info['after'] < $settings['after']) ? $info['after'] : $settings['after'];
         $info['take_before'] = ($info['before'] < $settings['before']) ? $info['before'] : $settings['before'];
         $item_ids = Event::newsSurroundIds($newsId, $info);
-
         foreach ($item_ids as $group => $ids) {
             if (!$ids) {
                 $result[$group] = [];

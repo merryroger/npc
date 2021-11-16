@@ -22,6 +22,7 @@
 
             if (isset($item['preview'])) {
                 $source = $item['preview'];
+                $previewOrig = true;
             } else {
                 $source = $item['source'];
                 $previewOrig = false;
@@ -33,13 +34,8 @@
                 $newsReader->load($doc_path, $this->base_dir, 1, $xslt);
 
                 if ($previewOrig) {
-                    $previews[] = preg_replace_callback(
-                        "/<#=newsId\s+#>/sU",
-                        function($val) use ($newsId) {
-                            return $newsId;
-                        },
-                        $newsReader->getContents()
-                    );
+                    $contents = $newsReader->getContents();
+                    $previews[] = view($sets['haspreview'], compact(['newsId', 'contents']))->render();
                 } else {
                     $docname = $newsReader->getParameter('docname');
                     $previews[] = view($sets['nopreview'], compact(['newsId', 'date', 'docname']))->render();

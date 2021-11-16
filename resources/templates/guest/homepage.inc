@@ -27,6 +27,7 @@ $this->config = [
             'order' => 'desc',
             'hidelast' => 1,
             'template' => 'templates.guest.homepage.news',
+            'haspreview' => 'templates.guest.homepage.haspreview',
             'nopreview' => 'templates.guest.homepage.nopreview'
         ],
         'banners' => [
