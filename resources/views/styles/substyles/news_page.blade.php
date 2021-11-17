@@ -78,9 +78,13 @@ section#news_band {
     display: flex;
 }
 
-nav.news__preview__band {
+div.news__preview_pad {
     max-width: 1024px;
     overflow-x: hidden;
+}
+
+nav.news__preview__band {
+    position: relative;
     flex-wrap: nowrap;
     display: flex;
 }
@@ -89,7 +93,7 @@ a.news__band__cell, div.news__band__cell {
     margin: 0 5pt 5px;
     padding: 3px 3pt;
     width: calc(800px / 3 - 16pt);
-    min-width: calc(800px / 3 - 24pt);//calc(100px + 16pt);
+    min-width: calc(800px / 3 - 24pt);
     max-width: calc(800px / 3 - 16pt);
     text-decoration: none;
     display: block;

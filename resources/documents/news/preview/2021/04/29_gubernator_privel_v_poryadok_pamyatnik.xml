@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News preview</doctopic>
+    <docname>Губернатор Вадим Шумков вместе со&nbsp;школьниками привёл в&nbsp;порядок памятник погибшим в&nbsp;Великой Отечественной войне</docname>
+    <doctype>Text</doctype>
+    <docdate>29.04.2021</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>29.04.2021</h6><img src="/images/news/preview/20210429_Shumkov.jpg" alt="Губернатор Вадим Шумков вместе со школьниками привёл в порядок памятник погибшим в Великой Отечественной войне"/></div>
+<p>Губернатор Вадим Шумков вместе со&nbsp;школьниками привёл в&nbsp;порядок памятник погибшим в&nbsp;Великой Отечественной войне</p>
+</page>

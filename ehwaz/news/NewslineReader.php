@@ -64,13 +64,25 @@ class NewslineReader
         $order = (isset($settings['order']) && !strcasecmp($settings['order'], 'asc')) ? 'asc' : $this::NEWSLIST_PREVIEW_ORDER;
 
         $info = $info + Event::neighboursInfo($newsId); //dump($settings);
-        //if ($info['capacity'] < $settings['after'] + $settings['before']) {
-            $info['take_after'] = ($info['after'] < $settings['after']) ? $info['after'] : $settings['after'];
-            //$da = $settings['after'] - $info['take_after'];
-            $info['take_before'] = ($info['before'] < $settings['before']) ? $info['before'] : $settings['before'];
-        //} else {
 
-        //}
+        if ($info['capacity'] < $settings['after'] + $settings['before']) {
+            $info['take_after'] = ($info['after'] < $settings['after']) ? $info['after'] : $settings['after'];
+            $settings['before'] += $settings['after'] - $info['take_after'];
+            $info['take_before'] = ($info['before'] < $settings['before']) ? $info['before'] : $settings['before'];
+        } else {
+            $da = $settings['after'] - $info['after'];
+            $db = $settings['before'] - $info['before'];
+            if ($da >= 0) {
+                $info['take_after'] = $info['after'];
+                $info['take_before'] = $settings['before'] + $da;
+            } elseif ($db >= 0) {
+                $info['take_before'] = $info['before'];
+                $info['take_after'] = $settings['after'] + $db;
+            } else {
+                $info['take_after'] = $settings['after'];
+                $info['take_before'] = $settings['before'];
+            }
+        }
 
         $item_ids = Event::newsSurroundIds($newsId, $info);
         foreach ($item_ids as $group => $ids) {
