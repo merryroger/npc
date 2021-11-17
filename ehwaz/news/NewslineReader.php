@@ -63,9 +63,15 @@ class NewslineReader
         $result = [];
         $order = (isset($settings['order']) && !strcasecmp($settings['order'], 'asc')) ? 'asc' : $this::NEWSLIST_PREVIEW_ORDER;
 
-        $info = Event::neighboursInfo($newsId); //dump($settings);
-        $info['take_after'] = ($info['after'] < $settings['after']) ? $info['after'] : $settings['after'];
-        $info['take_before'] = ($info['before'] < $settings['before']) ? $info['before'] : $settings['before'];
+        $info = $info + Event::neighboursInfo($newsId); //dump($settings);
+        //if ($info['capacity'] < $settings['after'] + $settings['before']) {
+            $info['take_after'] = ($info['after'] < $settings['after']) ? $info['after'] : $settings['after'];
+            //$da = $settings['after'] - $info['take_after'];
+            $info['take_before'] = ($info['before'] < $settings['before']) ? $info['before'] : $settings['before'];
+        //} else {
+
+        //}
+
         $item_ids = Event::newsSurroundIds($newsId, $info);
         foreach ($item_ids as $group => $ids) {
             if (!$ids) {

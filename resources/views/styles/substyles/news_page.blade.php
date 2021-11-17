@@ -11,10 +11,12 @@ section.main__sheet {
 
 div.photo__frame {
     margin: 8px 20pt 20px 0;
-    display: inline-block;
     border-radius: 5px;
     background-size: contain !important;
     background: transparent var(--img-src) center top no-repeat;
+    justify-content: center;
+    align-items: flex-end;
+    display: flex; //inline-block;
 }
 
 .pf__standard {
@@ -32,6 +34,18 @@ div.photo__frame {
     max-height: var(--h-max);
     width: var(--frame-width);
     height: calc(var(--frame-width) * 7 / 20);
+}
+
+.photo__frame h6 {
+    position: relative;
+    top: var(--top);
+    color: var(--hdr-clr);
+    font-size: 9pt;
+    font-family: "PT Sans", sans-serif;
+}
+
+h6 ~ div {
+    margin-bottom: 50px !important;
 }
 
 .news__article h2 {
@@ -65,6 +79,7 @@ section#news_band {
 }
 
 nav.news__preview__band {
+    max-width: 1024px;
     overflow-x: hidden;
     flex-wrap: nowrap;
     display: flex;
@@ -74,6 +89,7 @@ a.news__band__cell, div.news__band__cell {
     margin: 0 5pt 5px;
     padding: 3px 3pt;
     width: calc(800px / 3 - 16pt);
+    min-width: calc(800px / 3 - 24pt);//calc(100px + 16pt);
     max-width: calc(800px / 3 - 16pt);
     text-decoration: none;
     display: block;

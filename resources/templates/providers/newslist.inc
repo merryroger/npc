@@ -8,13 +8,13 @@
     $previewOrig = true;
     $bdr = addslashes($this->base_dir);
     $message = trans('flasherrors.news.preview');
-    $info = [];
     $messages = [];
     $previews = [];
 
     $capacity = $provider->checkNews();
 
     if ($capacity > 0) {
+        $info = ['capacity' => $capacity];
         $newsId = $this->config['newsId'];
         $newsReader = app($sets['textprovider']);
         $list = $provider->pickPreviewSurroundList($newsId, $sets, $info);
