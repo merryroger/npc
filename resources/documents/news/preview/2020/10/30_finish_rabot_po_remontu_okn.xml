@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News preview</doctopic>
+    <docname>Масштабные работы по&nbsp;ремонту объектов культурного наследия Курганской области, запланированные на&nbsp;этот год, близятся к&nbsp;завершению</docname>
+    <doctype>Text</doctype>
+    <docdate>30.10.2020</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+    <div class="news__image"><h6>30.10.2020</h6><img src="/images/news/preview/20201030_dalmatovskymuseum.jpg" alt="Масштабные работы по ремонту объектов культурного наследия Курганской области, запланированные на этот год, близятся к завершению"/></div>
+    <p>Масштабные работы по&nbsp;ремонту объектов культурного наследия Курганской области, запланированные на&nbsp;этот год, близятся к&nbsp;завершению</p>
+</page>
