@@ -5,6 +5,10 @@
     @include('styles/substyles/news_aside')
 @endsection
 
+@section('js')
+    <script src="/js/newsband.js" type="text/javascript"></script>
+@endsection
+
 @section('left_aside')
     <aside class="page__aside aside__left">
         {!! $contents['left_aside'] !!}

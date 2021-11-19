@@ -11,6 +11,7 @@ let ptrOver = null;
 let deferredEvt = null;
 
 let bannerCarousel;
+let newsBand;
 
 let menuLayers = {};
 
@@ -63,6 +64,10 @@ function rebuildMenu() {
     checkRootMenuStatus();
     if (bannerCarousel !== undefined) {
         bannerCarousel.resize();
+    }
+
+    if (newsBand != undefined) {
+        newsBand.resize();
     }
 }
 

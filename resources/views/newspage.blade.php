@@ -26,6 +26,7 @@
     <script src="/js/mainmenu.js" type="text/javascript"></script>
     <script src="/js/search.js" type="text/javascript"></script>
     <script src="/js/popupmsgs.js" type="text/javascript"></script>
+    @yield('js')
     @if ($user)
         <script src="/js/cms/mcp.js" type="text/javascript"></script>
     @endif

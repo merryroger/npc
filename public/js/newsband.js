@@ -1,17 +1,17 @@
 'use strict';
 
-bannerCarousel = (() => {
+newsBand = (() => {
 
-    class BannerCarousel {
+    class NewsBand {
 
         constructor() {
             this.holder = null;
             this.band = null;
-            this.leftScroll = null;
-            this.rightScroll = null;
-            this.carouselOn = false;
-            this.zIndex = -1;
-            this.delta = 1;
+//            this.leftScroll = null;
+//            this.rightScroll = null;
+            this.controlsOn = true;
+//            this.zIndex = -1;
+//            this.delta = 1;
         }
 
         init(params) {
@@ -20,16 +20,17 @@ bannerCarousel = (() => {
             }
         }
 
-        needCarouselOn() {
-            let state = this.carouselOn;
-            this.carouselOn = this.holder.offsetWidth < this.band.offsetWidth;
-            if (this.carouselOn) {
-                this.checkInvalidState();
-            }
+        needControlsOn() {
+            let state = this.controlsOn;
+            this.controlsOn = this.holder.offsetWidth < this.band.offsetWidth;
+            //console.log(this.controlsOn);
+//            if (this.carouselOn) {
+//                this.checkInvalidState();
+//            }
 
-            return (state ^ this.carouselOn) | this.carouselOn;
+//            return (state ^ this.carouselOn) | this.carouselOn;
         }
-
+/*
         redrawControls() {
             if (this.carouselOn) {
                 this.band.style.position = 'relative';
@@ -81,52 +82,49 @@ bannerCarousel = (() => {
                 this.band.style.left = this.holder.offsetWidth - this.band.offsetWidth + 'px';
             }
         }
-
+*/
     }
 
-    let self = new BannerCarousel();
+    let self = new NewsBand();
 
     return {
         init: (params = {}) => {
             self.init(params);
-            self.needCarouselOn();
-            self.redrawControls();
-        },
-        pointerMove: (src, e) => {
-            //This function still does nothing
+            self.needControlsOn();
+//            self.redrawControls();
         },
         resize: () => {
-            if (self.needCarouselOn()) {
-                self.redrawControls();
+            if (self.needControlsOn()) {
+//                self.redrawControls();
             }
         },
-        scrollLeft: () => {
-            self.scrollLeft();
-        },
-        scrollRight: () => {
-            self.scrollRight();
-        },
-        listen: (e) => {
-            if (e.target == self.band) {
-                self.redrawControls();
-            }
-        }
+//        scrollLeft: () => {
+//            self.scrollLeft();
+//        },
+//        scrollRight: () => {
+//            self.scrollRight();
+//        },
+//        listen: (e) => {
+//            if (e.target == self.band) {
+//                self.redrawControls();
+//            }
+//        }
     }
 
 })();
 
-function initBannerCarousel() {
+function initNewsBand() {
     let params = {
-        holder: document.body.querySelector('div.banner__band__pad'),
-        band: document.body.querySelector('div.banner__band'),
-        leftScroll: document.body.querySelector('div.banner__ctrls.scroll__left'),
-        rightScroll: document.body.querySelector('div.banner__ctrls.scroll__right'),
-        delta: 132,
-        zIndex: 5,
+        holder: document.body.querySelector('div.news__preview__pad'),
+        band: document.body.querySelector('nav.news__preview__band'),
+//        leftScroll: document.body.querySelector('div.banner__ctrls.scroll__left'),
+//        rightScroll: document.body.querySelector('div.banner__ctrls.scroll__right'),
+//        delta: 132,
+//        zIndex: 5,
     };
 
-    bannerCarousel.init(params);
-    document.body.addEventListener('transitionend', bannerCarousel.listen);
+    newsBand.init(params);
+//    document.body.addEventListener('transitionend', newsBand.listen);
 }
 
-__tasks.push(initBannerCarousel);
+__tasks.push(initNewsBand);
