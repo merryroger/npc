@@ -93,7 +93,8 @@ a.news__band__cell, div.news__band__cell {
     margin: 0 5pt 5px;
     padding: 3px 3pt;
     width: calc(800px / 3 - 16pt);
-    min-width: calc(800px / 3 - 24pt);
+    //min-width: calc(800px / 3 - 24pt);
+    min-width: calc(100px + 6pt);
     max-width: calc(800px / 3 - 16pt);
     text-decoration: none;
     display: block;

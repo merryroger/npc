@@ -59,8 +59,10 @@ let popupMessenger = (() => {
 
     return {
         listen: (e) => {
-            if (e.propertyName == 'opacity') {
-                self.removeFlash(e.target);
+            if (e.target.classList.contains('flash__message')) {
+                if (e.propertyName == 'opacity') {
+                    self.removeFlash(e.target);
+                }
             }
         },
         fire: (messages, title = '') => {

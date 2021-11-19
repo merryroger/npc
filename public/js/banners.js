@@ -115,7 +115,9 @@ bannerCarousel = (() => {
             self.scrollRight();
         },
         listen: (e) => {
-            self.redrawControls();
+            if (e.target == self.band) {
+                self.redrawControls();
+            }
         }
     }
 

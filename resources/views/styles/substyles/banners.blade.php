@@ -59,7 +59,7 @@ div.banner__ctrls:active {
 }
 
 .scroll__left {
-    left: calc(15px + 2pt);
+    left: calc(15px - 2pt);
     background: transparent url("/images/accessories/scroll_left.png") center center no-repeat;
 }
 
