@@ -1,7 +1,7 @@
 @if($group == 'selected')
-<div class="news__band__cell" data-newsId="{!! $nid !!}">
+<div class="news__band__cell" data-newsId="{!! $nid !!}" data-stamp="{!! $stamp !!}">
 @else
-<a href="/news?nid={!! $nid !!}" class="news__band__cell" data-newsId="{!! $nid !!}">
+<a href="/news?nid={!! $nid !!}" class="news__band__cell" data-newsId="{!! $nid !!}" data-stamp="{!! $stamp !!}">
 @endif
     <div class="news__image"><h6>{!! $date !!}</h6></div>
     <p>{!! $docname !!}.</p>

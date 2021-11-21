@@ -23,6 +23,7 @@
             foreach ($groupSet as $item) {
                 $nid = $item['id'];
                 $date = preg_replace("/^(\d{4})-(\d{2})-(\d{2}).+$/", "\\3.\\2.\\1", $item['official_news_date']);
+                $stamp = preg_replace("/([\s\-\:])+/", "", $item['official_news_date']);
 
                 if (isset($item['preview'])) {
                     $source = $item['preview'];
@@ -38,10 +39,10 @@
 
                     if ($previewOrig) {
                         $contents = $newsReader->getContents();
-                        $previews[] = view($sets['haspreview'], compact(['nid', 'group', 'contents']))->render();
+                        $previews[] = view($sets['haspreview'], compact(['nid', 'group', 'stamp', 'contents']))->render();
                     } else {
                         $docname = $newsReader->getParameter('docname');
-                        $previews[] = view($sets['nopreview'], compact(['nid', 'group', 'date', 'docname']))->render();
+                        $previews[] = view($sets['nopreview'], compact(['nid', 'group', 'date', 'stamp', 'docname']))->render();
                     }
                 } else {
                     $messages[] = preg_replace("/<#=date\s+#>/", $date, $message);

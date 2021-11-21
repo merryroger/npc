@@ -7,20 +7,29 @@ newsBand = (() => {
         constructor() {
             this.holder = null;
             this.band = null;
+            this.items = {};
 //            this.leftScroll = null;
 //            this.rightScroll = null;
             this.controlsOn = true;
 //            this.zIndex = -1;
 //            this.delta = 1;
+            this.invalid = true;
         }
 
         init(params) {
             for (let [pmName, pmValue] of Object.entries(params)) {
                 this[pmName] = pmValue;
             }
+
+            this.invalid = (this.holder == null || this.band == null);
         }
 
         needControlsOn() {
+            if (this.invalid) {
+                this.controlsOn = false;
+                return this.controlsOn;
+            }
+            
             let state = this.controlsOn;
             this.controlsOn = this.holder.offsetWidth < this.band.offsetWidth;
             //console.log(this.controlsOn);
@@ -114,9 +123,13 @@ newsBand = (() => {
 })();
 
 function initNewsBand() {
+    let band = document.body.querySelector('nav.news__preview__band');
+
+    console.log(band.querySelectorAll('.news__band__cell'));
+
     let params = {
         holder: document.body.querySelector('div.news__preview__pad'),
-        band: document.body.querySelector('nav.news__preview__band'),
+        band: band,
 //        leftScroll: document.body.querySelector('div.banner__ctrls.scroll__left'),
 //        rightScroll: document.body.querySelector('div.banner__ctrls.scroll__right'),
 //        delta: 132,
