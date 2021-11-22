@@ -29,7 +29,7 @@ newsBand = (() => {
                 this.controlsOn = false;
                 return this.controlsOn;
             }
-            
+
             let state = this.controlsOn;
             this.controlsOn = this.holder.offsetWidth < this.band.offsetWidth;
             //console.log(this.controlsOn);
@@ -123,11 +123,19 @@ newsBand = (() => {
 })();
 
 function initNewsBand() {
+    let items = {};
     let band = document.body.querySelector('nav.news__preview__band');
 
-    console.log(band.querySelectorAll('.news__band__cell'));
-
-    let params = {
+    if (band !== null) {
+        Array.from(band.querySelectorAll('.news__band__cell')).forEach((item) => {
+            items[item.getAttribute('data-stamp')] = {
+                id: +item.getAttribute('data-newsId'),
+                selected: item.tagName == 'DIV',
+            }
+        });
+    }
+console.log(items);
+    let params = (band === null) ? {} : {
         holder: document.body.querySelector('div.news__preview__pad'),
         band: band,
 //        leftScroll: document.body.querySelector('div.banner__ctrls.scroll__left'),
