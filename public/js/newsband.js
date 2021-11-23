@@ -8,6 +8,8 @@ newsBand = (() => {
             this.holder = null;
             this.band = null;
             this.items = {};
+            this.lastNewsid = 0;
+            this.firstNewsId = 0;
 //            this.leftScroll = null;
 //            this.rightScroll = null;
             this.controlsOn = true;
@@ -124,6 +126,7 @@ newsBand = (() => {
 
 function initNewsBand() {
     let items = {};
+    let holder = document.body.querySelector('div.news__preview__pad');
     let band = document.body.querySelector('nav.news__preview__band');
 
     if (band !== null) {
@@ -134,16 +137,19 @@ function initNewsBand() {
             }
         });
     }
-console.log(items);
+
     let params = (band === null) ? {} : {
-        holder: document.body.querySelector('div.news__preview__pad'),
-        band: band,
+        holder,
+        band,
+        items,
+        lastNewsId: +holder.getAttribute('data-last'),
+        firstNewsId: +holder.getAttribute('data-first'),
 //        leftScroll: document.body.querySelector('div.banner__ctrls.scroll__left'),
 //        rightScroll: document.body.querySelector('div.banner__ctrls.scroll__right'),
 //        delta: 132,
 //        zIndex: 5,
     };
-
+console.log(params);
     newsBand.init(params);
 //    document.body.addEventListener('transitionend', newsBand.listen);
 }

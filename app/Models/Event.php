@@ -62,6 +62,9 @@ class Event extends Model
         $result['after'] = $this->scopeValid($this::query())->where('official_news_date', '>', $item->official_news_date)->count();
         $result['before'] = $this->scopeValid($this::query())->where('official_news_date', '<', $item->official_news_date)->count();
 
+        $result['last'] = $this->scopeValid($this::query())->orderBy('official_news_date', 'desc')->first()->id;
+        $result['first'] = $this->scopeValid($this::query())->orderBy('official_news_date', 'asc')->first()->id;
+
         return $result;
     }
 

@@ -18,7 +18,7 @@
         $newsId = $this->config['newsId'];
         $newsReader = app($sets['textprovider']);
         $list = $provider->pickPreviewSurroundList($newsId, $sets, $info);
-//dump($info);
+
         foreach ($list as $group => $groupSet) {
             foreach ($groupSet as $item) {
                 $nid = $item['id'];
@@ -55,4 +55,4 @@
         }
     }
 
-    $contents = view($sets['template'], compact(['capacity', 'previews']))->render();
+    $contents = view($sets['template'], compact(['capacity', 'previews', 'info']))->render();
