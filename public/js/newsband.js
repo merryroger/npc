@@ -8,6 +8,7 @@ newsBand = (() => {
             this.holder = null;
             this.band = null;
             this.items = {};
+            this.newsId = 0;
             this.lastNewsid = 0;
             this.firstNewsId = 0;
 //            this.leftScroll = null;
@@ -34,12 +35,12 @@ newsBand = (() => {
 
             let state = this.controlsOn;
             this.controlsOn = this.holder.offsetWidth < this.band.offsetWidth;
-            //console.log(this.controlsOn);
+
 //            if (this.carouselOn) {
 //                this.checkInvalidState();
 //            }
-
-//            return (state ^ this.carouselOn) | this.carouselOn;
+//console.log((state ^ this.controlsOn) | this.controlsOn);
+            return (state ^ this.controlsOn) | this.controlsOn;
         }
 /*
         redrawControls() {
@@ -133,7 +134,7 @@ function initNewsBand() {
         Array.from(band.querySelectorAll('.news__band__cell')).forEach((item) => {
             items[item.getAttribute('data-stamp')] = {
                 id: +item.getAttribute('data-newsId'),
-                selected: item.tagName == 'DIV',
+                item
             }
         });
     }
@@ -142,6 +143,7 @@ function initNewsBand() {
         holder,
         band,
         items,
+        newsId: +holder.getAttribute('data-current'),
         lastNewsId: +holder.getAttribute('data-last'),
         firstNewsId: +holder.getAttribute('data-first'),
 //        leftScroll: document.body.querySelector('div.banner__ctrls.scroll__left'),

@@ -109,6 +109,15 @@
         display: none !important;
     }
 
+    div.news__preview__pad {
+        max-width: calc(800px - 50pt);
+    }
+
+    a.news__band__cell, div.news__band__cell {
+        min-width: calc((800px - 50pt) / 3 - 16pt);
+        max-width: calc((800px - 50pt) / 3 - 16pt);
+    }
+
     section#banners {
         width: calc(800px - 50pt);
     }

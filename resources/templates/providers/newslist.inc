@@ -14,8 +14,8 @@
     $capacity = $provider->checkNews();
 
     if ($capacity > 0) {
-        $info = ['capacity' => $capacity];
         $newsId = $this->config['newsId'];
+        $info = ['capacity' => $capacity, 'current' => $newsId];
         $newsReader = app($sets['textprovider']);
         $list = $provider->pickPreviewSurroundList($newsId, $sets, $info);
 

@@ -133,6 +133,15 @@
         display: block;
     }
 
+    div.news__preview__pad {
+        max-width: 100%;
+    }
+
+    a.news__band__cell, div.news__band__cell {
+        min-width: calc(100px + 8pt);
+        max-width: calc(100% / 3 - 16pt);
+    }
+
     article.foot__logo {
         flex-direction: column;
         align-self: flex-start;
