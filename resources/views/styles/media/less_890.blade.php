@@ -134,12 +134,13 @@
     }
 
     div.news__preview__pad {
+        width: 100%;
         max-width: 100%;
     }
 
     a.news__band__cell, div.news__band__cell {
-        min-width: calc(100px + 8pt);
-        max-width: calc(100% / 3 - 16pt);
+        min-width: calc(80vw / 3 - 14pt);
+        max-width: calc(80vw / 3 - 14pt);
     }
 
     article.foot__logo {

@@ -118,7 +118,7 @@
     }
 
     div.news__preview__pad {
-        max-width: 100%;
+        max-width: calc(800px - 50pt);
     }
 
     a.news__band__cell, div.news__band__cell {

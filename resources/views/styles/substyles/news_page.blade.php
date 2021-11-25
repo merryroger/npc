@@ -89,7 +89,8 @@ nav.news__preview__band {
     position: relative;
     left: 0;
     width: auto;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    //justify-content: space-evenly;
     flex-wrap: nowrap;
     display: flex;
 //background-color: #679303;
@@ -98,7 +99,6 @@ nav.news__preview__band {
 a.news__band__cell, div.news__band__cell {
     margin: 0 5pt 5px;
     padding: 3px 3pt;
-    width: calc(80vw / 3 - 16pt);
     text-decoration: none;
     display: block;
 }
