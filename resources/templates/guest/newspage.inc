@@ -23,6 +23,7 @@ $this->config = [
             'before' => 1,
             'after' => 1,
             'order' => 'desc',
+            'visible' => 3,
             'template' => 'templates.guest.newspage.list',
             'haspreview' => 'templates.guest.newspage.haspreview',
             'nopreview' => 'templates.guest.newspage.nopreview'

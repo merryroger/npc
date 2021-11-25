@@ -109,13 +109,14 @@
         display: none !important;
     }
 
-    div.news__preview__pad {
+    div.news__band__control__frame, div.news__preview__pad {
+        min-width: calc(800px - 50pt);
         max-width: calc(800px - 50pt);
     }
 
     a.news__band__cell, div.news__band__cell {
-        max-width: calc((800px - 50pt) / 3 - 16pt - 1px);
-        max-width: calc((800px - 50pt) / 3 - 16pt - 1px);
+        max-width: calc((800px - 50pt) / var(--visible-items) - 16pt - 1px);
+        max-width: calc((800px - 50pt) / var(--visible-items) - 16pt - 1px);
     }
 
     section#banners {

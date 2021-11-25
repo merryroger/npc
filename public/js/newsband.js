@@ -8,13 +8,15 @@ newsBand = (() => {
             this.holder = null;
             this.band = null;
             this.items = {};
+            this.bandCapacity = 0;
+            this.visibleItems = 0;
             this.newsId = 0;
             this.lastNewsid = 0;
             this.firstNewsId = 0;
-//            this.leftScroll = null;
-//            this.rightScroll = null;
+            this.leftScroll = null;
+            this.rightScroll = null;
             this.controlsOn = true;
-//            this.zIndex = -1;
+            this.zIndex = -1;
 //            this.delta = 1;
             this.invalid = true;
         }
@@ -34,27 +36,21 @@ newsBand = (() => {
             }
 
             let state = this.controlsOn;
-            this.controlsOn = this.holder.offsetWidth < this.band.offsetWidth;
+            this.controlsOn = (this.holder.offsetWidth < this.band.offsetWidth) || (this.bandCapacity > this.visibleItems);
 
-//            if (this.carouselOn) {
-//                this.checkInvalidState();
-//            }
-//console.log((state ^ this.controlsOn) | this.controlsOn);
             return (state ^ this.controlsOn) | this.controlsOn;
         }
-/*
+
         redrawControls() {
-            if (this.carouselOn) {
-                this.band.style.position = 'relative';
-                this.toggleControl(this.leftScroll, this.band.offsetLeft < this.holder.offsetLeft);
-                this.toggleControl(this.rightScroll, this.holder.offsetLeft + this.holder.offsetWidth < this.band.offsetLeft + this.band.offsetWidth);
+            if (this.controlsOn) {
+  //              this.toggleControl(this.leftScroll, this.band.offsetLeft < this.holder.offsetLeft);
+ //               this.toggleControl(this.rightScroll, this.holder.offsetLeft + this.holder.offsetWidth < this.band.offsetLeft + this.band.offsetWidth);
             } else {
-                this.band.style.position = 'inherit';
-                this.toggleControl(this.leftScroll, false);
-                this.toggleControl(this.rightScroll, false);
+  //              this.toggleControl(this.leftScroll, false);
+ //               this.toggleControl(this.rightScroll, false);
             }
         }
-
+/*
         scrollLeft() {
             let shift = this.band.offsetLeft - this.holder.offsetLeft + this.delta;
             if (shift > 0) {
@@ -78,7 +74,7 @@ newsBand = (() => {
 
             this.band.style.left = shift + 'px';
         }
-
+*/
         toggleControl(ctrl, showUp) {
             if (showUp) {
                 ctrl.style.zIndex = this.zIndex;
@@ -89,12 +85,6 @@ newsBand = (() => {
             }
         }
 
-        checkInvalidState() {
-            if (this.band.offsetLeft + this.band.offsetWidth < this.holder.offsetLeft + this.holder.offsetWidth) {
-                this.band.style.left = this.holder.offsetWidth - this.band.offsetWidth + 'px';
-            }
-        }
-*/
     }
 
     let self = new NewsBand();
@@ -103,19 +93,19 @@ newsBand = (() => {
         init: (params = {}) => {
             self.init(params);
             self.needControlsOn();
-//            self.redrawControls();
+            self.redrawControls();
         },
         resize: () => {
             if (self.needControlsOn()) {
-//                self.redrawControls();
+                self.redrawControls();
             }
         },
-//        scrollLeft: () => {
+        scrollLeft: () => {
 //            self.scrollLeft();
-//        },
-//        scrollRight: () => {
+        },
+        scrollRight: () => {
 //            self.scrollRight();
-//        },
+        },
 //        listen: (e) => {
 //            if (e.target == self.band) {
 //                self.redrawControls();
@@ -143,15 +133,17 @@ function initNewsBand() {
         holder,
         band,
         items,
+        bandCapacity: +holder.getAttribute('data-capacity'),
+        visibleItems: +holder.getAttribute('data-visible'),
         newsId: +holder.getAttribute('data-current'),
         lastNewsId: +holder.getAttribute('data-last'),
         firstNewsId: +holder.getAttribute('data-first'),
-//        leftScroll: document.body.querySelector('div.banner__ctrls.scroll__left'),
-//        rightScroll: document.body.querySelector('div.banner__ctrls.scroll__right'),
+        leftScroll: document.body.querySelector('div.news__band__ctrls.scroll__left'),
+        rightScroll: document.body.querySelector('div.news__band__ctrls.scroll__right'),
 //        delta: 132,
-//        zIndex: 5,
+        zIndex: 5,
     };
-console.log(params);
+//console.log(params);
     newsBand.init(params);
 //    document.body.addEventListener('transitionend', newsBand.listen);
 }

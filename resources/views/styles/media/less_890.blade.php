@@ -133,14 +133,14 @@
         display: block;
     }
 
-    div.news__preview__pad {
-        width: 100%;
+    div.news__band__control__frame, div.news__preview__pad {
+        min-width: 80vw;
         max-width: 100%;
     }
 
     a.news__band__cell, div.news__band__cell {
-        min-width: calc(80vw / 3 - 14pt);
-        max-width: calc(80vw / 3 - 14pt);
+        min-width: calc(80vw / var(--visible-items) - 14pt);
+        max-width: calc(80vw / var(--visible-items) - 14pt);
     }
 
     article.foot__logo {

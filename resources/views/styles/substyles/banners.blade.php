@@ -47,7 +47,6 @@ div.banner__ctrls {
     height: 30px;
     min-height: 30px;
     border-radius: 30px;
-    z-index: 5;
     box-shadow: 2px 2px 6px rgba(0,0,0,0.5);
     visibility: hidden;
     z-index: -1;
