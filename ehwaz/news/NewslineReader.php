@@ -29,12 +29,32 @@ class NewslineReader
         return Event::newsCount();
     }
 
-    protected function retrievePreviewData($data)
+    protected function neighbourFilter($data)
     {
+        $result = [];
+
+        foreach ($data as $group => $dataset) {
+            $result[$group] = $dataset->reduce(function ($carry, $item) {
+                $carry[] = [$item->official_news_date => $item->id];
+                return $carry;
+            }, []);
+        }
+
+        krsort($result['after']);
+
+        return $result;
+    }
+
+    protected function retrievePreviewData($data, $visible_count)
+    {
+        $neighbors_cnt = $visible_count - 1;
         $newspath = realpath(app_path() . $this::NEWS_ORIGIN);
 
-        return $data->get()->map(function ($item, $key) use ($newspath) {
+        return $data->get()->map(function ($item, $key) use ($newspath, $neighbors_cnt) {
             $item->source = realpath($newspath . '/' . $item->source);
+
+            $item->neighbours = $this->neighbourFilter(Event::neighboursIds($item->id, $neighbors_cnt));
+
             if (isset($item->preview)) {
                 $item->preview = realpath($newspath . '/preview/' . $item->preview);
             }
@@ -85,13 +105,14 @@ class NewslineReader
         }
 
         $item_ids = Event::newsSurroundIds($newsId, $info);
+
         foreach ($item_ids as $group => $ids) {
             if (!$ids) {
                 $result[$group] = [];
                 continue;
             }
 
-            $result[$group] = $this->retrievePreviewData(Event::newsListById($ids, $order));
+            $result[$group] = $this->retrievePreviewData(Event::newsListById($ids, $order), $settings['visible']);
         }
 
         return $result;

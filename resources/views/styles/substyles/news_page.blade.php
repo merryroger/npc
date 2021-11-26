@@ -138,7 +138,7 @@ div.news__band__ctrls {
     visibility: hidden;
     z-index: -1;
     cursor: pointer;
-    opacity: .5;
+    opacity: .75;
 }
 
 div.news__band__ctrls:active {

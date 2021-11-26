@@ -68,6 +68,23 @@ class Event extends Model
         return $result;
     }
 
+    public function scopeNeighboursIds($query, $id, $count) {
+        $result = [];
+        $item = $this->scopeNewsItem($query, $id);
+
+        $result['after'] = $this->scopeValid($this::query())->
+            where('official_news_date', '>', $item->official_news_date)->
+            orderBy('official_news_date', 'asc')->
+            skip(0)->take($count)->get();
+
+        $result['before'] = $this->scopeValid($this::query())->
+            where('official_news_date', '<', $item->official_news_date)->
+            orderBy('official_news_date', 'desc')->
+            skip(0)->take($count)->get();
+
+        return $result;
+    }
+
     public function scopeNewsSurroundIds($query, $newsId, &$info)
     {
         $result = [];
