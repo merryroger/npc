@@ -99,6 +99,7 @@ nav.news__preview__band {
     justify-content: flex-start;
     flex-wrap: nowrap;
     display: flex;
+    transition: left .25s ease-out;
 }
 
 a.news__band__cell, div.news__band__cell {
@@ -128,17 +129,16 @@ a.news__band__cell:hover > p {
 
 div.news__band__ctrls {
     position: relative;
-    width: 22px;
-    min-width: 22px;
-    height: 50px;
-    max-height: 50px;
-    border-radius: 10px;
-//    z-index: 5;
-    box-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    width: 17px;
+    min-width: 17px;
+    height: 56px;
+    max-height: 56px;
+    border-radius: 3px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     visibility: hidden;
     z-index: -1;
     cursor: pointer;
-//    opacity: .5;
+    opacity: .5;
 }
 
 div.news__band__ctrls:active {
@@ -146,12 +146,12 @@ div.news__band__ctrls:active {
 }
 
 .scroll__left {
-    left: calc(15px - 5pt);
+    left: calc(15px - 15pt);
     background: transparent url("/images/accessories/scroll_left.png") center center no-repeat;
 }
 
 .scroll__right {
-    left: calc(-15px + 5pt);
+    left: calc(-15px + 12pt);
     background: transparent url("/images/accessories/scroll_right.png") center center no-repeat;
 }
 

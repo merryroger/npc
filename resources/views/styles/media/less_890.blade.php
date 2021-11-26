@@ -134,7 +134,7 @@
     }
 
     div.news__band__control__frame, div.news__preview__pad {
-        min-width: 80vw;
+        min-width: calc(80vw + 8px);
         max-width: 100%;
     }
 
