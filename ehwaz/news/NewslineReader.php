@@ -35,7 +35,9 @@ class NewslineReader
 
         foreach ($data as $group => $dataset) {
             $result[$group] = $dataset->reduce(function ($carry, $item) {
-                $carry[] = [$item->official_news_date => $item->id];
+                $stamp = preg_replace("/([\s\-\:])+/", "", $item->official_news_date);
+                $carry[] = ["{$stamp}" => $item->id];
+
                 return $carry;
             }, []);
         }
@@ -45,15 +47,17 @@ class NewslineReader
         return $result;
     }
 
-    protected function retrievePreviewData($data, $visible_count)
+    protected function retrievePreviewData($data, $visible_count = null)
     {
-        $neighbors_cnt = $visible_count - 1;
+        $neighbours_cnt = (isset($visible_count) && $visible_count) ? $visible_count - 1 : 0;
         $newspath = realpath(app_path() . $this::NEWS_ORIGIN);
 
-        return $data->get()->map(function ($item, $key) use ($newspath, $neighbors_cnt) {
+        return $data->get()->map(function ($item, $key) use ($newspath, $neighbours_cnt) {
             $item->source = realpath($newspath . '/' . $item->source);
 
-            $item->neighbours = $this->neighbourFilter(Event::neighboursIds($item->id, $neighbors_cnt));
+            if ($neighbours_cnt) {
+                $item->neighbours = $this->neighbourFilter(Event::neighboursIds($item->id, $neighbours_cnt));
+            }
 
             if (isset($item->preview)) {
                 $item->preview = realpath($newspath . '/preview/' . $item->preview);

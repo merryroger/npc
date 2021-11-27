@@ -55,6 +55,7 @@ newsBand = (() => {
 
         scrollLeft() {
             let shift = this.band.offsetLeft - this.holder.offsetLeft + this.delta;
+
 //            if (shift > 0) {
 //                shift = 0;
 //            } else {
@@ -67,13 +68,22 @@ newsBand = (() => {
 
         scrollRight() {
             let shift = this.band.offsetLeft - this.holder.offsetLeft - this.delta;
+            let id = this.map['visible'][this.visibleItems - 1];
+            let item = this.band.querySelector(`.news__band__cell[data-newsId="${id}"]`);
+            let neighbours = JSON.parse(atob(item.getAttribute('data-neighbours')));
+            neighbours['before'].forEach((item) => {
+                for (let [ts, newsId] of Object.entries(item)) {
+//                    console.log(this.band.querySelector(`.news__band__cell[data-stamp="${ts}"]`));
+                }
+            });
+
 //            if (shift + this.band.offsetWidth < this.holder.offsetWidth) {
 //                shift = this.holder.offsetWidth - this.band.offsetWidth;
 //            } else {
 //                let ss = (this.holder.offsetWidth - this.band.offsetWidth) % this.delta;
 //                shift += ss;
 //            }
-//console.log(shift);
+//console.log(neighbours['before']);
 //            this.band.style.left = shift + 'px';
         }
 
@@ -173,6 +183,7 @@ function initNewsBand() {
         Array.from(band.querySelectorAll('.news__band__cell')).forEach((item) => {
             items[item.getAttribute('data-stamp')] = {
                 id: +item.getAttribute('data-newsId'),
+                //neighbours: JSON.parse(atob(item.getAttribute('data-neighbours'))),
                 item
             }
         });
