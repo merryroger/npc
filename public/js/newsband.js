@@ -1,5 +1,27 @@
 'use strict';
 
+class NewsbandItem {
+
+    constructor(id, ts) {
+        this.newsId = id;
+        this.timeStamp = ts;
+        this.createItem();
+    }
+
+    createItem() {
+        this.nbItem = document.createElement('a');
+        this.nbItem.setAttribute('href', `/news?nid=${this.newsId}`);
+        this.nbItem.classList = 'news__band__cell await__preview__data';
+        this.nbItem.setAttribute('data-newsId', `${this.newsId}`);
+        this.nbItem.setAttribute('data-stamp', this.timeStamp);
+    }
+
+    getItem() {
+        return this.nbItem;//.toString();
+    }
+
+}
+
 newsBand = (() => {
 
     class NewsBand {
@@ -39,6 +61,10 @@ newsBand = (() => {
             let state = this.controlsOn;
             this.controlsOn = (this.holder.offsetWidth < this.band.offsetWidth) || (this.bandCapacity > this.visibleItems);
 
+            if (this.controlsOn) {
+                this.checkInvalidState();
+            }
+
             return (state ^ this.controlsOn) | this.controlsOn;
         }
 
@@ -67,15 +93,25 @@ newsBand = (() => {
         }
 
         scrollRight() {
-            let shift = this.band.offsetLeft - this.holder.offsetLeft - this.delta;
             let id = this.map['visible'][this.visibleItems - 1];
             let item = this.band.querySelector(`.news__band__cell[data-newsId="${id}"]`);
             let neighbours = JSON.parse(atob(item.getAttribute('data-neighbours')));
-            neighbours['before'].forEach((item) => {
-                for (let [ts, newsId] of Object.entries(item)) {
-//                    console.log(this.band.querySelector(`.news__band__cell[data-stamp="${ts}"]`));
+            this.reCalcDelta(neighbours['before'].length);
+            let shift = this.band.offsetLeft - this.holder.offsetLeft - this.delta;
+
+            neighbours['before'].forEach((siblingItem) => {
+                for (let [ts, newsId] of Object.entries(siblingItem)) {
+                    let sibling = this.band.querySelector(`.news__band__cell[data-stamp="${ts}"]`);
+                    if (sibling == null) {
+                        sibling = new NewsbandItem(newsId, ts);
+                        item.insertAdjacentElement('afterend', sibling.getItem());
+                        this.items[ts] = { id: newsId, item };
+                    }
+
+                    item = this.band.querySelector(`.news__band__cell[data-newsId="${newsId}"]`);
                 }
             });
+
 
 //            if (shift + this.band.offsetWidth < this.holder.offsetWidth) {
 //                shift = this.holder.offsetWidth - this.band.offsetWidth;
@@ -83,8 +119,8 @@ newsBand = (() => {
 //                let ss = (this.holder.offsetWidth - this.band.offsetWidth) % this.delta;
 //                shift += ss;
 //            }
-//console.log(neighbours['before']);
-//            this.band.style.left = shift + 'px';
+//console.log(this.band);
+            this.band.style.left = shift + 'px';
         }
 
         checkLeftScrollShowConditions() {
@@ -136,10 +172,16 @@ newsBand = (() => {
             this.map = { after: [], visible: [], before: [] };
         }
 
-        reCalcDelta() {
+        reCalcDelta(steps) {
             let cnt = this.map['after'].length + this.map['visible'].length + this.map['before'].length;
             let step = this.band.offsetWidth / cnt;
-            this.delta = step * (this.visibleItems - 1);
+            this.delta = step * steps;
+        }
+
+        checkInvalidState() {
+            if (this.band.offsetLeft + this.band.offsetWidth < this.holder.offsetLeft + this.holder.offsetWidth) {
+                this.band.style.left = this.holder.offsetWidth - this.band.offsetWidth + 'px';
+            }
         }
 
     }
@@ -158,11 +200,11 @@ newsBand = (() => {
             }
         },
         scrollLeft: () => {
-            self.reCalcDelta();
+            //self.reCalcDelta();
             self.scrollLeft();
         },
         scrollRight: () => {
-            self.reCalcDelta();
+            //self.reCalcDelta();
             self.scrollRight();
         },
 //        listen: (e) => {
@@ -178,7 +220,7 @@ function initNewsBand() {
     let items = {};
     let holder = document.body.querySelector('div.news__preview__pad');
     let band = document.body.querySelector('nav.news__preview__band');
-
+//console.log(band);
     if (band !== null) {
         Array.from(band.querySelectorAll('.news__band__cell')).forEach((item) => {
             items[item.getAttribute('data-stamp')] = {

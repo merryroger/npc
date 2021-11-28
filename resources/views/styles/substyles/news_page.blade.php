@@ -118,6 +118,11 @@ a.news__band__cell:hover > p {
     text-decoration: underline;
 }
 
+.await__preview__data {
+    border-radius: 5px;
+    background: #f0f0f0 url("/images/accessories/news_preview_await.gif") center center no-repeat;
+}
+
 .news__band__cell p {
     margin-bottom: 5px;
     margin-left: 4px;

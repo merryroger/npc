@@ -115,7 +115,7 @@
     }
 
     a.news__band__cell, div.news__band__cell {
-        max-width: calc((800px - 50pt) / var(--visible-items) - 16pt - 1px);
+        min-width: calc((800px - 50pt) / var(--visible-items) - 16pt - 1px);
         max-width: calc((800px - 50pt) / var(--visible-items) - 16pt - 1px);
     }
 
