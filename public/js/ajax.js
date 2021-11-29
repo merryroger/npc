@@ -5,6 +5,7 @@ let AJAX = (function () {
     let _post = post.bind(this);
     let _response = response.bind(this);
     let _recipient;
+    let _recipients = new Map();
 
     let _ajax = {
         post: (url, params, cbf) => {
@@ -47,7 +48,7 @@ let AJAX = (function () {
         if (xhr === false)
             return false;
 
-        _recipient = cbf;
+        _recipients.set(xhr, cbf);
         xhr.onreadystatechange = _ajax.response;
         xhr.open('POST', url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -57,7 +58,11 @@ let AJAX = (function () {
     function response(rsp) {
         if (rsp.readyState == 4) {
             if (rsp.status == 200) {
-                _recipient(rsp.responseText);
+                if (_recipients.has(rsp)) {
+                    _recipient = _recipients.get(rsp);
+                    _recipients.delete(rsp);
+                    _recipient(rsp.responseText);
+                }
             } else if (rsp.status > 0) {
                 console.log(rsp.status, ': ', rsp.statusText);
             } else {

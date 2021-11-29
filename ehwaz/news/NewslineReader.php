@@ -42,8 +42,6 @@ class NewslineReader
             }, []);
         }
 
-        krsort($result['after']);
-
         return $result;
     }
 

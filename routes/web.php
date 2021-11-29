@@ -25,6 +25,7 @@ Route::name('guest')->group(function() {
     });
 
     Route::namespace('Guests')->group(function() {
+        Route::post('/asio/{section?}', 'PageAsyncController@handleRequest')->where('section', '[a-z_]*')->name('.async.sections');
         Route::get('/{section?}', 'PageController@getSections')->where('section', '[a-z_]*')->name('.lvl1.sections');
     });
 });
