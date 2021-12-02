@@ -16,8 +16,12 @@ $this->config = [
             'after' => 0,
             'order' => 'desc',
             'visible' => 3,
-            'nopreview' => 'templates.guest.newspage.nopreview'
+            'nopreview' => 'templates.guest.newspage.preview_from_docname'
         ],
+        'RDNW' => [
+            'provider' => 'newslist',
+            'textprovider' => 'tyrion',
+        ]
     ],
 
 ];

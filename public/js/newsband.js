@@ -2,29 +2,64 @@
 
 class NewsbandItem {
 
-    constructor(id, ts) {
+    constructor(id, ts, ng) {
         this.newsId = id;
         this.timeStamp = ts;
-        this.URL = '/asio/news';
-
-        this.createItem();
+        this.neighbours = ng;
+        this.href = `/news?nid=${this.newsId}`;
+        this.classList = ['news__band__cell'];
+        this.nbItem = null;
     }
 
-    createItem() {
+    createAnchorItem(cts = '') {
         this.nbItem = document.createElement('a');
-        this.nbItem.setAttribute('href', `/news?nid=${this.newsId}`);
-        this.nbItem.classList = 'news__band__cell await__preview__data';
+        this.nbItem.setAttribute('href', this.href);
+        this.nbItem.className = this.classList.join(' ');
         this.nbItem.setAttribute('data-newsId', `${this.newsId}`);
         this.nbItem.setAttribute('data-stamp', this.timeStamp);
+        if (this.neighbours !== undefined && this.neighbours !== null) {
+            this.nbItem.setAttribute('data-neighbours', this.neighbours);
+        }
+
+        this.nbItem.setAttribute('onclick', `return newsBand.loadNews(${this.newsId})`);
+
+        if (cts) {
+            this.nbItem.innerHTML = cts;
+        }
+    }
+
+    createDIVItem(cts = '') {
+        this.nbItem = document.createElement('div');
+        this.nbItem.className = this.classList.join(' ');
+        this.nbItem.setAttribute('data-newsId', `${this.newsId}`);
+        this.nbItem.setAttribute('data-stamp', this.timeStamp);
+        if (this.neighbours !== undefined && this.neighbours !== null) {
+            this.nbItem.setAttribute('data-neighbours', this.neighbours);
+        }
+
+        if (cts) {
+            this.nbItem.innerHTML = cts;
+        }
     }
 
     getItem() {
         return this.nbItem;
     }
+}
+
+class NewsbandPreview extends NewsbandItem {
+
+    constructor(id, ts, ng = null) {
+        super(id, ts, ng);
+        this.URL = '/asio/news';
+        this.classList.push('await__preview__data');
+
+        this.createAnchorItem();
+    }
 
     requestData(respCBF) {
         let params = [
-            `_token=${this.getToken()}`,
+            `_token=${getToken()}`,
             'opcode=RQPW',
             `nid=${this.newsId}`
         ];
@@ -138,7 +173,7 @@ newsBand = (() => {
                         siblings[ts] = this.band.querySelector(`.news__band__cell[data-stamp="${ts}"]`);
                         if (siblings[ts] == null) {
                             this.scrollLocked += newsId;
-                            siblings[ts] = new NewsbandItem(newsId, ts);
+                            siblings[ts] = new NewsbandPreview(newsId, ts);
                             item.insertAdjacentElement('beforebegin', siblings[ts].getItem());
                             siblings[ts].requestData(siblings[ts].handleResponse.bind(siblings[ts]));
                             this.items[ts] = {id: newsId, item};
@@ -153,7 +188,7 @@ newsBand = (() => {
 
                 this.band.style.left = shift + 'px';
                 siblings = null;
-                
+
                 if (this.scrollLocked > 1000000) {
                     this.scrollLocked -= 1000000;
                 }
@@ -179,7 +214,7 @@ newsBand = (() => {
                         siblings[ts] = this.band.querySelector(`.news__band__cell[data-stamp="${ts}"]`);
                         if (siblings[ts] == null) {
                             this.scrollLocked += newsId;
-                            siblings[ts] = new NewsbandItem(newsId, ts);
+                            siblings[ts] = new NewsbandPreview(newsId, ts);
                             item.insertAdjacentElement('afterend', siblings[ts].getItem());
                             siblings[ts].requestData(siblings[ts].handleResponse.bind(siblings[ts]));
                             this.items[ts] = {id: newsId, item};
@@ -261,6 +296,51 @@ newsBand = (() => {
             }
         }
 
+        rqNewsReplace(nid, respCBF) {
+            let params = [
+                `_token=${getToken()}`,
+                'opcode=RDNW',
+                `nid=${nid}`
+            ];
+
+            AJAX.post(this.URL, params.join('&'), respCBF.bind(this));
+        }
+
+        newsReplaceCBF(rsp) {
+            let resp, contents;
+            try {
+                resp = JSON.parse(rsp);
+                contents = JSON.parse(resp.contents);
+            } catch (e) {
+                console.log(e);
+            } finally {
+                scrollTo(0, 0);
+                this.nest.innerHTML = contents.message.trim();
+            }
+        }
+
+        rePlaceSelectedPreview(nid) {
+            let newItem = this.band.querySelector(`.news__band__cell[data-newsId="${nid}"]`);
+            let oldItem = this.band.querySelector(`.news__band__cell[data-newsId="${this.newsId}"]`);
+            let newSelected = new NewsbandItem(nid, newItem.getAttribute('data-stamp'), newItem.getAttribute('data-neighbours'));
+            newSelected.createDIVItem(newItem.innerHTML);
+
+            let oldSelected = new NewsbandItem(this.newsId, oldItem.getAttribute('data-stamp'), oldItem.getAttribute('data-neighbours'));
+            oldSelected.createAnchorItem(oldItem.innerHTML);
+
+            oldItem.insertAdjacentElement('afterend', oldSelected.getItem());
+            this.band.removeChild(oldItem);
+            oldItem = this.band.querySelector(`.news__band__cell[data-newsId="${this.newsId}"]`);
+            this.items[oldItem.getAttribute('data-stamp')].item = oldItem;
+
+            newItem.insertAdjacentElement('afterend', newSelected.getItem());
+            this.band.removeChild(newItem);
+            newItem = this.band.querySelector(`.news__band__cell[data-newsId="${nid}"]`);
+            this.items[newItem.getAttribute('data-stamp')].item = newItem;
+
+            this.newsId = nid;
+        }
+
     }
 
     let self = new NewsBand();
@@ -275,6 +355,11 @@ newsBand = (() => {
             if (self.needControlsOn()) {
                 self.redrawControls();
             }
+        },
+        loadNews: (nid) => {
+            self.rqNewsReplace(nid, self.newsReplaceCBF);
+            self.rePlaceSelectedPreview(nid);
+            return false;
         },
         scrollLeft: () => {
             self.scrollLeft();
@@ -301,6 +386,7 @@ newsBand = (() => {
 
 function initNewsBand() {
     let items = {};
+    let params = {};
     let holder = document.body.querySelector('div.news__preview__pad');
     let band = document.body.querySelector('nav.news__preview__band');
 
@@ -311,25 +397,28 @@ function initNewsBand() {
                 item
             }
         });
+
+        params = {
+            holder,
+            band,
+            items,
+            bandCapacity: +holder.getAttribute('data-capacity'),
+            visibleItems: +holder.getAttribute('data-visible'),
+            newsId: +holder.getAttribute('data-current'),
+            lastNewsId: +holder.getAttribute('data-last'),
+            firstNewsId: +holder.getAttribute('data-first'),
+            leftScroll: document.body.querySelector('div.news__band__ctrls.scroll__left'),
+            rightScroll: document.body.querySelector('div.news__band__ctrls.scroll__right'),
+            zIndex: 5,
+            URL: '/asio/news',
+            nest: document.body.querySelector('section.main__sheet.news__article>article'),
+        };
+
+        newsBand.init(params);
+        document.body.addEventListener('transitionend', newsBand.listen);
+        document.body.addEventListener('gotPreview', newsBand.listen, {capture: true});
+
     }
-
-    let params = (band === null) ? {} : {
-        holder,
-        band,
-        items,
-        bandCapacity: +holder.getAttribute('data-capacity'),
-        visibleItems: +holder.getAttribute('data-visible'),
-        newsId: +holder.getAttribute('data-current'),
-        lastNewsId: +holder.getAttribute('data-last'),
-        firstNewsId: +holder.getAttribute('data-first'),
-        leftScroll: document.body.querySelector('div.news__band__ctrls.scroll__left'),
-        rightScroll: document.body.querySelector('div.news__band__ctrls.scroll__right'),
-        zIndex: 5,
-    };
-
-    newsBand.init(params);
-    document.body.addEventListener('transitionend', newsBand.listen);
-    document.body.addEventListener('gotPreview', newsBand.listen, {capture: true});
 }
 
 __tasks.push(initNewsBand);

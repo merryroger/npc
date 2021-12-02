@@ -111,3 +111,8 @@ function checkTypeSend(fm) {
 
     return false;
 }
+
+function getToken() {
+    let fm = document.getElementById('search');
+    return fm._token.value;
+}

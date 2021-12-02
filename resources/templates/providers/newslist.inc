@@ -8,6 +8,7 @@ $xslt = '';
 $previewOrig = true;
 $bdr = addslashes($this->base_dir);
 $message = trans('flasherrors.news.preview');
+$info = [];
 $messages = [];
 $previews = [];
 
@@ -18,6 +19,22 @@ if (!isset($extra_data['opcode'])) {
 $capacity = $provider->checkNews();
 
 switch (strtoupper($extra_data['opcode'])) {
+    case 'RDNW':
+        $page = (isset($extra_data['page']) && $extra_data['page']) ? intval($extra_data['page']) : 1;
+        $newsId = intval($extra_data['nid']);
+        $item = $provider->getItem($newsId);
+        $date = preg_replace("/^(\d{4})-(\d{2})-(\d{2}).+$/", "\\3.\\2.\\1", $item['official_news_date']);
+        $xslt = (isset($sets['xslt'])) ? $sets['xslt'] : [];
+        $bdr = addslashes($this->base_dir);
+        $doc_path = preg_replace("%^{$bdr}%sU", '', $item['source']);
+
+        $newsReader = app($sets['textprovider']);
+        $newsReader->load($doc_path, $this->base_dir, $page, $xslt);
+        $message = $newsReader->getContents();
+        $message .= "<h5>{$date}</h5>";
+
+        $contents = json_encode(['message' => $message]);
+        break;
     case 'RQPW':
         $out = [];
         $nid = intval($extra_data['nid']);
@@ -48,7 +65,7 @@ switch (strtoupper($extra_data['opcode'])) {
                 $out['text'] = $newsReader->getContents();
             } else {
                 $docname = $newsReader->getParameter('docname');
-                $out[] = view($sets['nopreview'], compact(['nid', 'group', 'date', 'stamp', 'neighbours', 'docname']))->render();
+                $out['text'] = view($sets['nopreview'], compact(['date', 'docname']))->render();
             }
         } else {
             $out['errors'] = preg_replace("/<#=date\s+#>/", $date, $message);
