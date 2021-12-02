@@ -137,6 +137,7 @@ newsBand = (() => {
             this.controlsOn = (this.holder.offsetWidth < this.band.offsetWidth) || (this.bandCapacity > this.visibleItems);
 
             if (this.controlsOn) {
+                this.reMap();
                 this.checkInvalidState();
             }
 
