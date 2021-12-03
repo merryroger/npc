@@ -177,7 +177,11 @@ newsBand = (() => {
                             siblings[ts] = new NewsbandPreview(newsId, ts);
                             item.insertAdjacentElement('beforebegin', siblings[ts].getItem());
                             siblings[ts].requestData(siblings[ts].handleResponse.bind(siblings[ts]));
-                            this.items[ts] = {id: newsId, item};
+                            this.items[ts] = {
+                                id: newsId,
+                                item: this.band.querySelector(`.news__band__cell[data-newsId="${newsId}"]`)
+                            };
+
                             shift = 0;
                         }
 
@@ -218,7 +222,10 @@ newsBand = (() => {
                             siblings[ts] = new NewsbandPreview(newsId, ts);
                             item.insertAdjacentElement('afterend', siblings[ts].getItem());
                             siblings[ts].requestData(siblings[ts].handleResponse.bind(siblings[ts]));
-                            this.items[ts] = {id: newsId, item};
+                            this.items[ts] = {
+                                id: newsId,
+                                item: this.band.querySelector(`.news__band__cell[data-newsId="${newsId}"]`)
+                            };
                         }
 
                         item = this.band.querySelector(`.news__band__cell[data-newsId="${newsId}"]`);
@@ -295,6 +302,9 @@ newsBand = (() => {
             if (this.band.offsetLeft + this.band.offsetWidth < this.holder.offsetLeft + this.holder.offsetWidth) {
                 this.band.style.left = this.holder.offsetWidth - this.band.offsetWidth + 'px';
             }
+
+            let item = this.items[this.map['visible'][this.map['visible'].length - 1]].item;
+            this.band.style.left = -1 * (item.offsetWidth + 14) * this.map['after'] + 'px';
         }
 
         rqNewsReplace(nid, respCBF) {
@@ -329,13 +339,11 @@ newsBand = (() => {
             let oldSelected = new NewsbandItem(this.newsId, oldItem.getAttribute('data-stamp'), oldItem.getAttribute('data-neighbours'));
             oldSelected.createAnchorItem(oldItem.innerHTML);
 
-            oldItem.insertAdjacentElement('afterend', oldSelected.getItem());
-            this.band.removeChild(oldItem);
+            this.band.replaceChild(oldSelected.getItem(), oldItem);
             oldItem = this.band.querySelector(`.news__band__cell[data-newsId="${this.newsId}"]`);
             this.items[oldItem.getAttribute('data-stamp')].item = oldItem;
 
-            newItem.insertAdjacentElement('afterend', newSelected.getItem());
-            this.band.removeChild(newItem);
+            this.band.replaceChild(newSelected.getItem(), newItem);
             newItem = this.band.querySelector(`.news__band__cell[data-newsId="${nid}"]`);
             this.items[newItem.getAttribute('data-stamp')].item = newItem;
 
@@ -353,9 +361,13 @@ newsBand = (() => {
             self.redrawControls();
         },
         resize: () => {
+            self.band.style.transitionDuration = '.01s';
+
             if (self.needControlsOn()) {
                 self.redrawControls();
             }
+
+            self.band.style.transitionDuration = '.25s';
         },
         loadNews: (nid) => {
             self.rqNewsReplace(nid, self.newsReplaceCBF);

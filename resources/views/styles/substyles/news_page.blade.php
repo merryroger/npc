@@ -79,7 +79,7 @@ section#news_band {
 }
 
 div.news__band__control__frame {
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-wrap: nowrap;
     flex-grow: 1;
