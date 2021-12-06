@@ -31,7 +31,8 @@
             "ehwaz/documents",
             "ehwaz/documents/tyrion",
             "ehwaz/news",
-            "ehwaz/traits"
+            "ehwaz/traits",
+            "ehwaz/videos"
         ]
     },
     "autoload-dev": {

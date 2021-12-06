@@ -34,8 +34,6 @@ class NewslineProvider implements DocumentProvider
                 $this->parameters[$param_keys[$pid]] = $value;
             }
         }
-
-        //$this->newsline->load($src, $this->parameters['base_dir'], $this->parameters['page'], $this->parameters['xslt']);
     }
 
     public function checkNews()

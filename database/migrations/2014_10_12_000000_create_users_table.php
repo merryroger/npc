@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
         });
 
-        (new \Database\Seeders\UserSeeder())->run();
+        //(new \Database\Seeders\UserSeeder())->run();
     }
 
     /**

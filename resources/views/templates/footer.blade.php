@@ -1,4 +1,9 @@
 <footer>
+    @if($section_ids[0]['id'] == 1)
+        <div class="footer__logotype"></div>
+    @else
+        <a href="/" class="footer__logotype" title="{{ @trans("menu.gohome") }}"></a>
+    @endif
     <article class="footer foot__logo">
         <p>НПЦ по&nbsp;охране памятников истории<br/>и&nbsp;культуры Курганской области.</p>
         <ul>Время работы:

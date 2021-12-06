@@ -16,7 +16,7 @@ div.photo__frame {
     background: transparent var(--img-src) center top no-repeat;
     justify-content: center;
     align-items: flex-end;
-    display: flex; //inline-block;
+    display: flex;
 }
 
 .pf__standard {

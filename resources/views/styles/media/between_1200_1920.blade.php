@@ -7,10 +7,11 @@
     }
 
     section#title, a#title {
-        padding-left: 196px;
+        padding-left: 156px;
         margin-bottom: 30px;
         height: 130px;
         background: transparent url("/images/logo_lt.png") no-repeat left center;
+        background-size: auto 70px;
     }
 
     .hdr__holder h1 {
@@ -132,10 +133,12 @@
         margin: 0 1% 10px;
     }
 
-
-    article.foot__logo {
-        padding-left: 124px;
+    .footer__logotype {
+        margin-right: 16px;
+        width: 99px;
+        height: 56px;
         background: transparent url("/images/logo_dk.png") no-repeat left top;
+        background-size: 96% auto;
     }
 
     article.foot__links {

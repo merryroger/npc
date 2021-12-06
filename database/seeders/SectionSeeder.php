@@ -35,6 +35,16 @@ class SectionSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
+                'id' => 10,
+                'bip' => 0x1,
+                'name' => 'videos',
+                'entry_point' => 'templates.guest.videos',
+                'gen_view' => 'default',
+                'template' => 'templates.guest.videos',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
                 'id' => 51,
                 'bip' => 0x00ffffff,
                 'name' => 'images',
