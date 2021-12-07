@@ -5,7 +5,7 @@
 @endsection
 
 @section('js')
-    <script src="/js/banners.js" type="text/javascript"></script>
+    <script src="/js/video.js" type="text/javascript"></script>
 @endsection
 
 @section('left_aside')
