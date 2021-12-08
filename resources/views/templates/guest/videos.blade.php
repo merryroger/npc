@@ -27,4 +27,14 @@
 @endsection
 
 @section('banners')
+    <div id="video_frame_pad" class="off">
+        <div class="dad__panel"></div>
+        <iframe id="video_frame"></iframe>
+        <section id="video_frame_panel">
+            <div class="vf__title"></div>
+            <div class="vf__controls">
+                <span onclick="return closeMovie(this)">✖</span>
+            </div>
+        </section>
+    </div>
 @endsection

@@ -5,13 +5,14 @@
     @else
         <nav class="video__pad">
             <div class="video__item__pad">
-                <h6>29.04.2021</h6>
+                <h6>23.04.2020</h6>
                 <a href="https://www.youtube.com/embed/NA-scdkEj8Q?autoplay=1"
                    style="background-image: url('https://img.youtube.com/vi/NA-scdkEj8Q/hqdefault.jpg')"
                    onclick="return viewMovie(this, 'https://www.youtube.com/embed/NA-scdkEj8Q')">
                     <span>▶</span>
                 </a>
-                <p>По&nbsp;приведению в&nbsp;порядок памятников погибшим в&nbsp;годы Великой Отечественной войны</p>
+                <p>В.&nbsp;М.&nbsp;Шумков об&nbsp;участии в&nbsp;областной акции «Обелиск» по&nbsp;приведению в&nbsp;порядок памятников погибшим
+                    в&nbsp;годы Великой Отечественной войны</p>
             </div>
             <div class="video__item__pad">
                 <h6>29.04.2021</h6>

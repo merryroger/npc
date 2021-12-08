@@ -10,6 +10,7 @@ let ptrMove = null;
 let ptrOver = null;
 let deferredEvt = null;
 
+let videoProjector;
 let bannerCarousel;
 let newsBand;
 
@@ -68,6 +69,10 @@ function rebuildMenu() {
 
     if (newsBand != undefined) {
         newsBand.resize();
+    }
+
+    if (videoProjector != undefined) {
+        videoProjector.resize();
     }
 }
 
