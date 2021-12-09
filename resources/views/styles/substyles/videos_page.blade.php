@@ -1,14 +1,13 @@
 /**** Videos page block ****/
 
 nav.video__pad {
-    justify-content: flex-start;
+    margin: 0 auto;
     flex-wrap: wrap;
+    flex-grow: 1;
     display: flex;
 }
 
 div.video__item__pad {
-    margin: 0 10pt 20px;
-    width: calc((800px - 50pt) / 3 - 21pt);
     flex-direction: column;
     flex-wrap: nowrap;
     display: flex;
@@ -24,8 +23,6 @@ div.video__item__pad {
 
 .video__item__pad a {
     width: 100%;
-    height: calc(((800px - 50pt) / 3 - 21pt) / 1.78);
-    max-height: calc(((800px - 50pt) / 3 - 21pt) / 1.78);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -118,3 +115,15 @@ div.vf__controls {
 }
 
 /**** End of video frame block ****/
+
+/**** Veil section ****/
+
+div#veil, div.veil__panel {
+    position: absolute;
+}
+
+.veil__await {
+    background: transparent url("/images/accessories/veil_await.gif") center center no-repeat;
+}
+
+/**** End of Veil section ****/

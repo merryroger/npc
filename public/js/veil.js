@@ -23,7 +23,7 @@ function raiseVeil(level = 5, waitstate = false) {
 
         veilLR.style.top = 0;
         veilLR.style.right = 0;
-        veilLR.style.bottom = 0;
+        veilLR.style.height = document.documentElement.scrollHeight + 'px';
         veilLR.style.left = 0;
         veilLR.style.zIndex = level;
 
@@ -35,6 +35,7 @@ function raiseVeil(level = 5, waitstate = false) {
 
 function dropVeil() {
     if (veilOn && veilLR != null) {
+        veilLR.style.height = 0;
         veilLR.className = 'off';
         veilOn = false;
     }
@@ -57,7 +58,7 @@ function raiseErrorVeil(level = 20, waitstate = false) {
 
         errVeilLR.style.top = 0;
         errVeilLR.style.right = 0;
-        errVeilLR.style.bottom = 0;
+        errVeilLR.style.height = document.documentElement.scrollHeight + 'px';
         errVeilLR.style.left = 0;
         errVeilLR.style.zIndex = level;
 
@@ -69,6 +70,7 @@ function raiseErrorVeil(level = 20, waitstate = false) {
 
 function dropErrorVeil() {
     if (errVeilOn && errVeilLR != null) {
+        errVeilLR.style.height = 0;
         errVeilLR.className = 'off';
         errVeilOn = false;
     }

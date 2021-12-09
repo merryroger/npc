@@ -14,6 +14,7 @@ videoProjector = (() => {
             this.settings = {};
             this.vpOpen = false;
             this.dadPanel = false;
+            this.veilPanel = false;
             this.dragged = false;
             this.dragData = {mX: 0, mY: 0, dX: 0, dY: 0};
             this.example = null;
@@ -41,8 +42,23 @@ videoProjector = (() => {
             return this.vpOpen;
         }
 
+        adjustHolderPosition() {
+            if (this.holder.offsetLeft < 0) {
+                this.holder.style.left = '5px';
+            } else if (this.holder.offsetLeft + this.holder.offsetWidth > document.documentElement.clientWidth) {
+                this.holder.style.left = document.documentElement.clientWidth - this.holder.offsetWidth - 5 + 'px';
+            }
+
+            if (this.holder.offsetTop < 0) {
+                this.holder.style.top = '5px';
+            } else if (this.holder.offsetTop + this.holder.offsetHeight > document.documentElement.offsetHeight) {
+                this.holder.style.top = document.documentElement.clientHeight - this.holder.offsetHeight - 5 + 'px';
+            }
+        }
+
         resize(width = null, height = null) {
             let delta = 0;
+            //let yOffset = window.pageYOffset;
 
             width = (width !== null) ? width : this.vFrame.offsetWidth;
             height = (height !== null) ? height : this.vFrame.offsetHeight;
@@ -66,14 +82,8 @@ videoProjector = (() => {
                 this.vFrame.style.height = height + 'px';
                 this.holder.style.width = width + 'px';
             }
-
-            if (this.holder.offsetLeft + this.holder.offsetWidth > document.documentElement.clientWidth) {
-                this.holder.style.left = document.documentElement.clientWidth - this.holder.offsetWidth - 5 + 'px';
-            }
-
-            if (this.holder.offsetTop + this.holder.offsetHeight > document.documentElement.offsetHeight) {
-                this.holder.style.top = document.documentElement.clientHeight - this.holder.offsetHeight - yOffset - 5 + 'px';
-            }
+console.log(veilLR);
+            this.adjustHolderPosition();
         }
 
         setData(url, resources, width = null, height = null) {
@@ -99,7 +109,7 @@ videoProjector = (() => {
             if (!this.vpOpen) {
                 this.holder.classList.remove('off');
 
-                this.holder.zIndex = this.zIndex;
+                this.holder.style.zIndex = this.zIndex;
                 this.holder.classList.add('on');
 
                 this.example = resources.example;
@@ -111,7 +121,6 @@ videoProjector = (() => {
 
         hide() {
             this.holder.classList.remove('on');
-            this.holder.zIndex = -1;
             this.vFrame.src = 'about:blank';
             this.holder.classList.add('off');
             this.dadPanel.removeEventListener('pointerdown', this.example.catchFrame.bind(this.example), {catch: true});
@@ -122,7 +131,10 @@ videoProjector = (() => {
             this.dragged = state;
             src.style.cursor = (state) ? 'move' : 'pointer';
 
+            this.coverIFrame(state);
             if (state) {
+                raiseVeil();
+                this.holder.style.userSelect = 'none';
                 this.dragData.mX = mX;
                 this.dragData.mY = mY;
                 this.dragData.dX = this.dragData.dY = 0;
@@ -135,18 +147,9 @@ videoProjector = (() => {
                     this.toh = 0;
                 }
 
-                if (this.holder.offsetLeft < 0) {
-                    this.holder.style.left = '5px';
-                } else if (this.holder.offsetLeft + this.holder.offsetWidth > document.documentElement.clientWidth) {
-                    this.holder.style.left = document.documentElement.clientWidth - this.holder.offsetWidth - 5 + 'px';
-                }
-
-                if (this.holder.offsetTop < 0) {
-                    this.holder.style.top = '5px';
-                } else if (this.holder.offsetTop + this.holder.offsetHeight > document.documentElement.offsetHeight) {
-                    this.holder.style.top = document.documentElement.clientHeight - this.holder.offsetHeight - 5 + 'px';
-                }
-
+                this.adjustHolderPosition();
+                this.holder.style.userSelect = 'auto';
+                dropVeil();
                 document.body.removeEventListener('pointermove', this.example.dragFrame.bind(this.example), {catch: true});
                 document.body.removeEventListener('pointerup', this.example.dropFrame.bind(this.example), {catch: true});
             }
@@ -155,7 +158,9 @@ videoProjector = (() => {
         dragFrame(e) {
             this.dragData.dX = e.clientX - this.dragData.mX;
             this.dragData.dY = e.clientY - this.dragData.mY;
-            setTimeout(this.example.moveFrame.bind(this.example), 5);
+            if (this.toh == 0) {
+                this.toh = setTimeout(this.example.moveFrame.bind(this.example), 10);
+            }
         }
 
         moveFrame() {
@@ -165,6 +170,24 @@ videoProjector = (() => {
             this.dragData.mX += this.dragData.dX;
             this.dragData.mY += this.dragData.dY;
             this.dragData.dX = this.dragData.dY = 0;
+            this.toh = 0;
+        }
+
+        coverIFrame(state) {
+            if (state) {
+                this.veilPanel.classList.remove('off');
+                this.veilPanel.style.left = this.vFrame.offsetLeft + 'px';
+                this.veilPanel.style.top = this.vFrame.offsetTop + 'px';
+                this.veilPanel.style.width = this.vFrame.offsetWidth + 'px';
+                this.veilPanel.style.height = this.vFrame.offsetHeight + 'px';
+                this.veilPanel.style.zIndex = this.zIndex + 1;
+                this.veilPanel.classList.add('on');
+            } else {
+                this.veilPanel.classList.remove('on');
+                this.veilPanel.style.width = 0;
+                this.veilPanel.style.height = 0;
+                this.veilPanel.classList.remove('off');
+            }
         }
 
     }
@@ -218,9 +241,10 @@ function initVideoProjector() {
         vfPanel: holder.querySelector('section#video_frame_panel'),
         vfTitle: holder.querySelector('div.vf__title'),
         dadPanel: holder.querySelector('div.dad__panel'),
+        veilPanel: holder.querySelector('div.veil__panel'),
         width: 560,
         height: 315,
-        zIndex: 5,
+        zIndex: 6,
         settings: {
             valuable: {
                 autoplay: "1",

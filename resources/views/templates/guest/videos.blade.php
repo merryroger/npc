@@ -6,6 +6,7 @@
 
 @section('js')
     <script src="/js/video.js" type="text/javascript"></script>
+    <script src="/js/veil.js" type="text/javascript"></script>
 @endsection
 
 @section('left_aside')
@@ -29,11 +30,12 @@
 @section('banners')
     <div id="video_frame_pad" class="off">
         <div class="dad__panel"></div>
+        <div class="veil__panel" class="off"></div>
         <iframe id="video_frame"></iframe>
         <section id="video_frame_panel">
             <div class="vf__title"></div>
             <div class="vf__controls">
-                <span onclick="return closeMovie(this)">✖</span>
+                <span onclick="return closeMovie(this)" title="{!! @trans('services.close') !!}">✖</span>
             </div>
         </section>
     </div>

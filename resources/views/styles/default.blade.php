@@ -334,7 +334,7 @@ div#resp_holder {
 }
 
 .resp__elems {
-    margin-bottom: 16px;
+    margin-bottom: 16px !important;
     width: 160px;
 }
 
@@ -355,6 +355,7 @@ input.resp__elems {
 }
 
 div#auth_ctrls {
+    margin-bottom: 0 !important;
     text-align: center;
 }
 

@@ -47,6 +47,18 @@
                     в&nbsp;областной акции "Обелиск" по&nbsp;приведению в&nbsp;порядок памятников погибшим в&nbsp;годы
                     Великой Отечественной войны</p>
             </div>
+            <div class="video__item__pad">
+                <h6>29.04.2021</h6>
+                <a href="https://www.youtube.com/embed/NA-scdkEj8Q?autoplay=1"
+                   style="background-image: url('https://img.youtube.com/vi/NA-scdkEj8Q/hqdefault.jpg')"
+                   onclick="return viewMovie(this, 'https://www.youtube.com/embed/NA-scdkEj8Q')">
+                    <span>▶</span>
+                </a>
+                <p>Комментарий врио губернатора Курганской области В.&nbsp;М.&nbsp;Шумкова об&nbsp;участии
+                    в&nbsp;областной акции "Обелиск" по&nbsp;приведению в&nbsp;порядок памятников погибшим в&nbsp;годы
+                    Великой Отечественной войны</p>
+            </div>
+            <div class="video__item__pad"></div>
             <!--iframe width="560" height="315" src="https://www.youtube.com/embed/_VW0FlbmG3Y"//-->
             <!--iframe width="280" height="160" src="https://www.youtube.com/embed/NA-scdkEj8Q" loading="lazy"
                     srcdoc="<style>@import 'http://npc.local/styles/yt.css'</style>

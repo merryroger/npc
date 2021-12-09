@@ -132,6 +132,21 @@
         width: calc(800px - 50pt);
     }
 
+    nav.video__pad {
+        min-width: calc(800px - 50pt);
+        justify-content: space-between;
+    }
+
+    div.video__item__pad {
+        margin: 0 10pt 20px;
+        width: calc((800px - 50pt) / 3 - 21pt);
+    }
+
+    .video__item__pad a {
+        height: calc(((800px - 50pt) / 3 - 21pt) / 1.78);
+        max-height: calc(((800px - 50pt) / 3 - 21pt) / 1.78);
+    }
+
     footer {
         padding: 50px 0 35px;
         justify-content: center;
