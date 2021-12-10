@@ -221,7 +221,7 @@ article.photo__collection {
     font-family: "Roboto", sans-serif;
 }
 
-a.centered {
+a.centered, .centered iframe {
     width: 100%;
     height: 153px;
     min-width: 160px;
@@ -230,6 +230,16 @@ a.centered {
     text-decoration: none;
     justify-content: center;
     display: flex;
+}
+
+div.centered {
+    width: 100%;
+    min-width: 160px;
+    min-height: 100px;
+}
+
+.centered iframe {
+    margin-bottom: 25px;
 }
 
 div.graphic__contents {

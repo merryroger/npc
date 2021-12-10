@@ -12,13 +12,17 @@ $this->config = [
             'template' => 'templates.empty',
         ],
         'main_sheet' => [
-            'provider' => 'tyrion',
+            //'provider' => 'tyrion',
+            'provider' => 'rootpage',
+            'textprovider' => 'tyrion',
+            'videoprovider' => 'videos',
             'sources' => [
-                'doc1' => 'documents/about.xml',
-                'doc2' => 'documents/collections/photos.xml',
-                'doc3' => 'documents/collections/videos.xml',
+                'leadart' => 'documents/about.xml',
+                'photos' => 'documents/collections/photos.xml',
+                'videos' => 'documents/collections/videos.xml',
             ],
-            'template' => 'templates.guest.homepage.main'
+            'template' => 'templates.guest.homepage.main',
+            'video_template' => 'templates.guest.homepage.video'
         ],
         'right_aside' => [
             'provider' => 'newsline',

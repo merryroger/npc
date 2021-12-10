@@ -107,6 +107,16 @@
         padding: 15px 8%;
     }
 
+    article.photo__collection {
+        width: 90% !important;
+    }
+
+    .centered {
+        margin: auto;
+        width: 55% !important;
+        min-width: 320px !important;
+    }
+
     aside.page__aside {
         padding: 5px 9% 80px;
     }

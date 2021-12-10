@@ -41,6 +41,21 @@ class VideoPageCollector
         })->all();
     }
 
+    public function getLatestVideo()
+    {
+        $video_data_path = realpath(app_path() . '/' . $this::VIDEOS_ORIGIN);
+
+        $result = Video::latestVideo()->get()->map(function ($item) use ($video_data_path) {
+            if (isset($item->comment)) {
+                $item->comment = realpath($video_data_path . '/' . $item->comment);
+            }
+
+            return collect($item)->except(['created_at', 'updated_at', 'deleted_at'])->all();
+        })->all();
+
+        return ($result) ? array_shift($result) : [];
+    }
+
     public function getContents()
     {
         return '';

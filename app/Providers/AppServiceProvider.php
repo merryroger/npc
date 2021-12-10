@@ -10,6 +10,8 @@ use ehwas\documents\tyrion\TyrionDocumentProvider;
 use ehwas\documents\tyrion\TyrionReader;
 use ehwas\news\NewslineProvider;
 use ehwas\news\NewslineReader;
+use ehwas\root\HomepageBuilder;
+use ehwas\root\HomepageProvider;
 use ehwas\videos\VideosProvider;
 use ehwas\videos\VideoPageCollector;
 use Illuminate\Support\Facades\Schema;
@@ -46,6 +48,11 @@ class AppServiceProvider extends ServiceProvider
         app()->bind('newsline', NewslineProvider::class);
         app()->bind(NewslineProvider::class, function($api) {
             return new NewslineProvider(new NewslineReader());
+        });
+
+        app()->bind('rootpage', HomepageProvider::class);
+        app()->bind(HomepageProvider::class, function($api) {
+            return new HomepageProvider(new HomepageBuilder());
         });
 
         app()->bind('videos', VideosProvider::class);

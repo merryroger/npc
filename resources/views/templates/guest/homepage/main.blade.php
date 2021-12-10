@@ -1,11 +1,11 @@
 <article>
-    {!! $docs['doc1'] !!}
+    {!! $docs['leadart'] !!}
 </article>
 <section class="zwei__spalte">
     <article class="photo__collection">
-        {!! $docs['doc2'] !!}
+        {!! $docs['photos'] !!}
     </article>
     <article class="photo__collection">
-        {!! $docs['doc3'] !!}
+        {!! $docs['videos'] !!}
     </article>
 </section>

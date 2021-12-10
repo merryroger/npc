@@ -46,6 +46,11 @@ class VideosProvider implements DocumentProvider
         return $this->videos->loadPageList($page, $sets);
     }
 
+    public function getLatestVideo()
+    {
+        return $this->videos->getLatestVideo();
+    }
+
     public function getContents()
     {
         return $this->videos->getContents();

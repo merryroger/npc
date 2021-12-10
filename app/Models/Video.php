@@ -42,4 +42,9 @@ class Video extends Model
             ->orderBy('official_video_date', $order)
             ->skip($skip)->take($count);
     }
+
+    public function scopeLatestVideo($query, $include_hidden = false)
+    {
+        return $this->scopeValid($query, $include_hidden)->orderBy('official_video_date', 'desc')->skip(0)->take(1);
+    }
 }
