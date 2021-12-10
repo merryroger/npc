@@ -13,7 +13,7 @@ class VideoPageCollector
 
     const VIDEOSET_PREVIEW_ORDER = 'desc';
 
-    //const NEWS_ORIGIN = '/../resources/documents/news';
+    const VIDEOS_ORIGIN = '/../resources/documents/video';
 
     public function __construct()
     {
@@ -26,6 +26,19 @@ class VideoPageCollector
     public function getVideoRecordsCount()
     {
         return Video::videosCount();
+    }
+
+    public function loadPageList($page, &$sets)
+    {
+        $video_data_path = realpath(app_path() . '/' . $this::VIDEOS_ORIGIN);
+
+        return Video::pageList($page, $sets)->get()->map(function ($item) use ($video_data_path) {
+            if (isset($item->comment)) {
+                $item->comment = realpath($video_data_path . '/' . $item->comment);
+            }
+
+            return collect($item)->except(['hidden', 'created_at', 'updated_at', 'deleted_at'])->all();
+        })->all();
     }
 
     public function getContents()

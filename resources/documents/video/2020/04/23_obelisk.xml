@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/videos</docuri>
+    <returi>/videos</returi>
+    <docref>m10</docref>
+    <doctopic>Video commentaries</doctopic>
+    <docname>Акция «Обелиск»</docname>
+    <doctype>Text</doctype>
+    <docdate>23.04.2020</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<p>В.&nbsp;М.&nbsp;Шумков об&nbsp;участии в&nbsp;областной акции «Обелиск» по&nbsp;приведению в&nbsp;порядок памятников
+    погибшим в&nbsp;годы Великой Отечественной войны</p>
+</page>

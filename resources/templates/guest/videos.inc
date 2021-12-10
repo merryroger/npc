@@ -11,7 +11,12 @@ $this->config = [
     'contents' => [
         'main_sheet' => [
             'provider' => 'videos',
-            'template' => 'templates.guest.videos.main'
+            'textprovider' => 'tyrion',
+            'movesPerPage' => 12,
+            'order' => 'desc',
+            'template' => 'templates.guest.videos.main',
+            'preview_template' => 'templates.guest.videos.preview',
+            'preview_empty' => 'templates.guest.videos.preview_empty',
         ],
         'left_aside' => [
             'template' => 'templates.empty',

@@ -15,6 +15,7 @@ class VideosProvider implements DocumentProvider
     private $parameters = [
         'source' => '',
         'preview' => null,
+        'comment' => null,
         'official_video_date' => '2000-01-01 00:00:00',
         'xslt' => []
     ];
@@ -38,6 +39,11 @@ class VideosProvider implements DocumentProvider
     public function checkVideos()
     {
         return $this->videos->getVideoRecordsCount();
+    }
+
+    public function loadPageList($page, &$sets)
+    {
+        return $this->videos->loadPageList($page, $sets);
     }
 
     public function getContents()

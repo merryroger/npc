@@ -15,8 +15,11 @@ class CreateVideosTable extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedSmallInteger('width')->default(560);
+            $table->unsignedSmallInteger('height')->default(315);
             $table->string('source')->unique()->default('');
             $table->string('preview')->nullable();
+            $table->string('comment', 128)->nullable();
             $table->dateTime('official_video_date')->default('2000-01-01 00:00:00');
             $table->boolean('hidden')->default(true);
             $table->timestamps();

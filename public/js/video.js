@@ -58,7 +58,6 @@ videoProjector = (() => {
 
         resize(width = null, height = null) {
             let delta = 0;
-            //let yOffset = window.pageYOffset;
 
             width = (width !== null) ? width : this.vFrame.offsetWidth;
             height = (height !== null) ? height : this.vFrame.offsetHeight;
@@ -82,7 +81,7 @@ videoProjector = (() => {
                 this.vFrame.style.height = height + 'px';
                 this.holder.style.width = width + 'px';
             }
-console.log(veilLR);
+
             this.adjustHolderPosition();
         }
 
@@ -130,11 +129,11 @@ console.log(veilLR);
         setDragState(src, mX, mY, state) {
             this.dragged = state;
             src.style.cursor = (state) ? 'move' : 'pointer';
-
+            this.holder.style.userSelect = (state) ? 'none' : 'auto';
             this.coverIFrame(state);
+
             if (state) {
                 raiseVeil();
-                this.holder.style.userSelect = 'none';
                 this.dragData.mX = mX;
                 this.dragData.mY = mY;
                 this.dragData.dX = this.dragData.dY = 0;
@@ -148,7 +147,6 @@ console.log(veilLR);
                 }
 
                 this.adjustHolderPosition();
-                this.holder.style.userSelect = 'auto';
                 dropVeil();
                 document.body.removeEventListener('pointermove', this.example.dragFrame.bind(this.example), {catch: true});
                 document.body.removeEventListener('pointerup', this.example.dropFrame.bind(this.example), {catch: true});
@@ -267,7 +265,7 @@ function viewMovie(src, url) {
         date: container.querySelector('h6').outerHTML,
         rect: getCoordsRect(container),
         example: videoProjector
-    }
+    };
 
     videoProjector.show(url, resources);
 

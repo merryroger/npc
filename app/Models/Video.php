@@ -32,4 +32,14 @@ class Video extends Model
         return ($include_hidden) ? $query->count() : $query->where('hidden', 0)->count();
     }
 
+    public function scopePageList($query, $page, &$sets, $include_hidden = false)
+    {
+        $order = (isset($sets['order']) && !strcasecmp($sets['order'], 'asc')) ? 'asc' : 'desc';
+        $count = (isset($sets['movesPerPage'])) ? intval($sets['movesPerPage']) : 12;
+        $skip = ($page - 1) * $count;
+
+        return $this->scopeValid($query, $include_hidden)
+            ->orderBy('official_video_date', $order)
+            ->skip($skip)->take($count);
+    }
 }
