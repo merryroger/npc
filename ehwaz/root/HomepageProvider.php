@@ -23,13 +23,17 @@ class HomepageProvider implements DocumentProvider
 
     public function load($src, ...$params)
     {
-        $param_keys = array_keys($this->parameters);
+        $this->homepage->load($src, $params[0]);
+    }
 
-        if ($params) {
-            foreach ($params as $pid => $value) {
-                $this->parameters[$param_keys[$pid]] = $value;
-            }
-        }
+    public function loadTextModules($provider_type, &$extra_data, &$sets)
+    {
+        return $this->homepage->loadTextModules($provider_type, $extra_data, $sets);
+    }
+
+    public function getTextProvider()
+    {
+        return $this->homepage->getTextProvider();
     }
 
     public function getContents()

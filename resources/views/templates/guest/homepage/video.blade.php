@@ -1,7 +1,7 @@
 <h2>Видео</h2>
 <div class="centered">
     <iframe src="{!! $video['source'] !!}" loading="lazy"
-            srcdoc="<html><head><style>@import 'http://npc.local/styles/yt.css'</style></head>
+            srcdoc="<html><head><style>@import '{{ config('app.url') }}/styles/yt.css'</style></head>
             <body>
             <a href='{!! $video['source'] !!}?autoplay=1' title='{!! $video['comment'] !!}'>
                 <img src='{!! $video['preview'] !!}' alt='{!! $video['comment'] !!}'>
