@@ -56,7 +56,7 @@ bannerCarousel = (() => {
 
         scrollRight() {
             let shift = this.band.offsetLeft - this.holder.offsetLeft - this.delta;
-            if (shift + this.band.offsetWidth < this.holder.offsetWidth) {
+            if (shift - this.holder.offsetLeft + this.band.offsetWidth < this.holder.offsetWidth) {
                 shift = this.holder.offsetWidth - this.band.offsetWidth;
             } else {
                 let ss = (this.holder.offsetWidth - this.band.offsetWidth) % this.delta;

@@ -7,7 +7,7 @@
     $bdr = addslashes($this->base_dir);
     $provider->load('', $this->base_dir);
     $docs = $provider->loadTextModules($sets['textprovider'], $extra_data, $sets);
-    
+
     $videoBuilder = app($sets['videoprovider']);
 
     if ($videoBuilder->checkVideos()) {
