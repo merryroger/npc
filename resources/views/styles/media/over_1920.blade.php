@@ -40,10 +40,19 @@
         display: none;
     }
 
-    .mainmenu > * {
+    .mainmenu > a {
         margin: 0 25pt;
         color: var(--mmnu-clr);
         border-bottom: 1px dotted var(--mmnu-clr);
+    }
+
+    .mainmenu > p {
+        margin: 0 25pt;
+        color: var(--ftr-clr);
+    }
+
+    .mainmenu > p.menu__node {
+        border-bottom: 1px dotted var(--ftr-clr);
     }
 
     div.subpanel {

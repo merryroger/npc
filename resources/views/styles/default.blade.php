@@ -214,11 +214,19 @@ article.photo__collection {
     font-family: "PT Sans", sans-serif;
 }
 
-.main__sheet p {
+.main__sheet p, .main__sheet ul {
     margin-bottom: 15px;
     color: var(--prg-clr);
     font-size: 11pt;
     font-family: "Roboto", sans-serif;
+}
+
+.main__sheet li {
+    margin-left: 25pt;
+    margin-right: 15pt;
+    margin-bottom: 15px;
+    font-size: 10.2pt;
+    line-height: 1.4;
 }
 
 a.centered, .centered iframe {

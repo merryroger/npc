@@ -43,14 +43,22 @@
         text-decoration: none;
     }
 
-    .extra__menu > p {
+    .mainmenu > p, .extra__menu > p {
         margin: 5px 0;
         padding: 2px 20pt;
         color: var(--subpn-brd);
         text-decoration: none;
     }
 
-    .mainmenu > a:hover, .extra__menu > a:hover, .subpanel > a:hover {
+    /*.mainmenu > p.menu__node {
+        border-bottom: 1px dotted var(--ftr-clr);
+    }*/
+
+    .mainmenu > p.menu__node:hover {
+        background-color: var(--smnu-bgr);
+    }
+
+    .mainmenu > a:hover, .extra__menu > a:hover, .subpanel > a:hover  {
         background-color: var(--smnu-bgr);
         text-decoration: underline;
     }

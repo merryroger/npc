@@ -39,9 +39,17 @@
         display: none;
     }
 
-    .mainmenu > * {
+    .mainmenu > a {
         color: var(--mmnu-clr);
         border-bottom: 1px dotted var(--mmnu-clr);
+    }
+
+    .mainmenu > p {
+        color: var(--ftr-clr);
+    }
+
+    .mainmenu > p.menu__node {
+        border-bottom: 1px dotted var(--ftr-clr);
     }
 
     div.subpanel {
