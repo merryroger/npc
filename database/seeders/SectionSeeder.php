@@ -25,6 +25,16 @@ class SectionSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
+                'id' => 6,
+                'bip' => 0x1,
+                'name' => 'anticorruption',
+                'entry_point' => 'templates.guest.subpage',
+                'gen_view' => 'default',
+                'template' => 'templates.guest.subpage',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
                 'id' => 8,
                 'bip' => 0x1,
                 'name' => 'news',

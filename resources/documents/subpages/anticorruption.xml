@@ -1,0 +1,17 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/anticorruption</docuri>
+    <returi>/anticorruption</returi>
+    <docref>m6</docref>
+    <doctopic>Anticorruption subpage</doctopic>
+    <docname>Противодействие коррупции</docname>
+    <doctype>Text</doctype>
+    <docdate>14.12.2021</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<h2>Противодействие коррупции</h2>
+</page>

@@ -1,0 +1,3 @@
+<article>
+    {!! $docs['default'] !!}
+</article>
