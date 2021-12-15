@@ -1,0 +1,36 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/documents</docuri>
+    <returi>/documents</returi>
+    <docref>m12</docref>
+    <doctopic>Documents subpage</doctopic>
+    <docname>Документы</docname>
+    <doctype>Text</doctype>
+    <docdate>15.12.2021</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<h2>Документы</h2>
+<p>Нормативные акты:</p>
+<ul>
+    <li>Федеральный Закон №&nbsp;73 «Об&nbsp;Объектах культурного наследия (памятниках истории и&nbsp;культуры) народов
+        Российской Федерации»;</li>
+    <li>Указ Президента РФ №&nbsp;176 от&nbsp;20&nbsp;февраля 1995&nbsp;г.;</li>
+    <li>Указ Президента РФ №&nbsp;452 от&nbsp;5&nbsp;мая 1997&nbsp;г.;</li>
+    <li>Постановление Совета Министров РСФСР:
+        <ul style="margin-top: 10px;">
+            <li type="disc">№&nbsp;1327 от&nbsp;30&nbsp;августа 1960&nbsp;г.;</li>
+            <li type="disc">№&nbsp;624 от&nbsp;04&nbsp;декабря&nbsp;1974&nbsp;г.;</li>
+        </ul>
+    </li>
+    <li>Постановление Госстроя РСФСР и&nbsp;коллегии Министерства культуры РСФСР №&nbsp;36 от&nbsp;31&nbsp;июля
+        1970&nbsp;г.;</li>
+    <li>Постановление коллегий Министерства культуры РСФСР, Госстроя РСФСР и&nbsp;Президиума Центрального Совета ВООПИК
+        №&nbsp;12-3-12&nbsp;(162) от&nbsp;19-28-16&nbsp;февраля 1990&nbsp;г.;</li>
+    <li>Приказ НПЦ по&nbsp;охране и&nbsp;использованию памятников истории и&nbsp;культуры от&nbsp;09.02.2005&nbsp;г.
+        №&nbsp;5.</li>
+</ul>
+</page>

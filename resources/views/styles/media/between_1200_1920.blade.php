@@ -49,9 +49,11 @@
     .mainmenu > p {
         margin: 0 25pt;
         color: var(--ftr-clr);
+        cursor: default;
     }
 
-    .mainmenu > p.menu__node {
+    .mainmenu > *.menu__node {
+        color: var(--ftr-clr);
         border-bottom: 1px dotted var(--ftr-clr);
     }
 
@@ -75,6 +77,14 @@
         color: var(--mmnu-clr);
         background-color: var(--ftr-clr);
         text-decoration: underline;
+    }
+
+    .subpanel > p {
+        margin: 1px 0pt;
+        padding: 2px 12pt 3px;
+        color: var(--shdr-clr);
+        background-color: var(--extra-lt-cl);
+        cursor: default;
     }
 
     nav.sq__ctrls {

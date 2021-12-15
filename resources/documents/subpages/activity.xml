@@ -2,7 +2,7 @@
 <parameters>
     <docdtd>tyrion-xml-metadoc</docdtd>
     <docuri>/activity</docuri>
-    <returi>/aactivity</returi>
+    <returi>/activity</returi>
     <docref>m2</docref>
     <doctopic>Activity subpage</doctopic>
     <docname>Деятельность</docname>

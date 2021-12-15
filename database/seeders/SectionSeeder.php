@@ -65,6 +65,36 @@ class SectionSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
+                'id' => 12,
+                'bip' => 0x1,
+                'name' => 'documents',
+                'entry_point' => 'templates.guest.subpage',
+                'gen_view' => 'default',
+                'template' => 'templates.guest.documents',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 13,
+                'bip' => 0x1,
+                'name' => 'publications',
+                'entry_point' => 'templates.guest.subpage',
+                'gen_view' => 'default',
+                'template' => 'templates.guest.publications',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 14,
+                'bip' => 0x1,
+                'name' => 'history',
+                'entry_point' => 'templates.guest.subpage',
+                'gen_view' => 'default',
+                'template' => 'templates.guest.history',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
                 'id' => 51,
                 'bip' => 0x00ffffff,
                 'name' => 'images',

@@ -43,16 +43,17 @@
         text-decoration: none;
     }
 
-    .mainmenu > p, .extra__menu > p {
+    .mainmenu > p, .extra__menu > p, .subpanel > p {
         margin: 5px 0;
         padding: 2px 20pt;
         color: var(--subpn-brd);
         text-decoration: none;
+        cursor: default;
     }
 
-    /*.mainmenu > p.menu__node {
-        border-bottom: 1px dotted var(--ftr-clr);
-    }*/
+    .mainmenu > *.menu__node {
+        background-color: var(--lblk-clr);
+    }
 
     .mainmenu > p.menu__node:hover {
         background-color: var(--smnu-bgr);

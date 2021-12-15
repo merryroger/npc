@@ -4,6 +4,7 @@
 
 :root {
     --blk-clr:  #000;
+    --lblk-clr:  #111;
     --smnu-bgr: #333;
     --prg-clr: #444;
     --link-clr: #3399dd;
@@ -15,6 +16,7 @@
     --sqmnu-brd: #ccc;
     --blue-lt: #ccddee;
     --subpn-brd: #ddd;
+    --extra-lt-cl: #eee;
     --def-bgr: #fff;
 }
 

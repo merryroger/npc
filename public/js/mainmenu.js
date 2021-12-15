@@ -147,7 +147,7 @@ function pickSubmenuPanel(node, level, parent) {
 
 function pickSubitems(node, level, parent) {
     let SUL = document.body.querySelector('.sublevels__menu');
-    return Array.from(SUL.querySelectorAll(`a[data-node="${node}"][data-level="${level}"][data-parent="${parent}"]`));
+    return Array.from(SUL.querySelectorAll(`[data-node="${node}"][data-level="${level}"][data-parent="${parent}"]`));
 }
 
 function showSubpanel(subpanel, level, sender) {
