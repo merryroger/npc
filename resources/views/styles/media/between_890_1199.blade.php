@@ -72,15 +72,15 @@
 
     .subpanel > a:hover {
         color: var(--mmnu-clr);
-        background-color: var(--ftr-clr);
+        background-color: var(--subpn-brd);
         text-decoration: underline;
     }
 
     .subpanel > p {
         margin: 1px 0pt;
         padding: 2px 12pt 3px;
-        color: var(--shdr-clr);
-        background-color: var(--extra-lt-cl);
+        color: var(--sqmnu-brd);
+        //background-color: var(--extra-lt-cl);
         cursor: default;
     }
 

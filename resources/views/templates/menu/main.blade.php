@@ -1,6 +1,6 @@
 @foreach($menu['main'] as $item)
     @if($item['id'] == $section_ids[0]['id'] && count($section_ids) == 1)
-        @if (count($menu_tree[$item['node']][$item['level'] + 1]))
+        @if (isset($menu_tree[$item['node']][$item['level'] + 1]))
             <p class="menu__node" data-item="{{ $item['id'] }}" data-node="{{ $item['node'] }}" data-level="{{ $item['level'] }}">{{ @trans("menu.$item[mnemo]") }}</p>
         @else
             <p>{{ @trans("menu.$item[mnemo]") }}</p>

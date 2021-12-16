@@ -35,6 +35,36 @@ class SectionSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
+                'id' => 3,
+                'bip' => 0x1,
+                'name' => 'architecture',
+                'entry_point' => 'templates.guest.subpage',
+                'gen_view' => 'default',
+                'template' => 'templates.guest.architecture',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 4,
+                'bip' => 0x1,
+                'name' => 'archeology',
+                'entry_point' => 'templates.guest.subpage',
+                'gen_view' => 'default',
+                'template' => 'templates.guest.archeology',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 5,
+                'bip' => 0x1,
+                'name' => 'contacts',
+                'entry_point' => 'templates.guest.subpage',
+                'gen_view' => 'default',
+                'template' => 'templates.guest.contacts',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
                 'id' => 6,
                 'bip' => 0x1,
                 'name' => 'anticorruption',
@@ -91,6 +121,56 @@ class SectionSeeder extends Seeder
                 'entry_point' => 'templates.guest.subpage',
                 'gen_view' => 'default',
                 'template' => 'templates.guest.history',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 15,
+                'bip' => 0x1,
+                'name' => 'buildings',
+                'entry_point' => 'templates.guest.subpage',
+                'gen_view' => 'default',
+                'template' => 'templates.guest.buildings',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 16,
+                'bip' => 0x1,
+                'name' => 'restoration',
+                'entry_point' => 'templates.guest.subpage',
+                'gen_view' => 'default',
+                'template' => 'templates.guest.restoration',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 17,
+                'bip' => 0x1,
+                'name' => 'temples',
+                'entry_point' => 'templates.guest.subpage',
+                'gen_view' => 'default',
+                'template' => 'templates.guest.temples',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 18,
+                'bip' => 0x1,
+                'name' => 'archeodept',
+                'entry_point' => 'templates.guest.subpage',
+                'gen_view' => 'default',
+                'template' => 'templates.guest.archeodept',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 19,
+                'bip' => 0x1,
+                'name' => 'researchist',
+                'entry_point' => 'templates.guest.subpage',
+                'gen_view' => 'default',
+                'template' => 'templates.guest.researchist',
                 'created_at' => now(),
                 'updated_at' => now()
             ],

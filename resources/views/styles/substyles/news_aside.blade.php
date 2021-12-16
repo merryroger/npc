@@ -45,7 +45,7 @@ div.list__container {
 
 a.all__news {
     margin-left: 4px;
-    color: var(--link-clr);
+    color: var(--link-clr) !important;
     font-size: 12pt;
     font-weight: 400;
     font-family: "Roboto Condensed", sans-serif;

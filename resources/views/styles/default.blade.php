@@ -4,6 +4,7 @@
 
 :root {
     --blk-clr:  #000;
+    --dk-link-clr: #0066aa;
     --lblk-clr:  #111;
     --smnu-bgr: #333;
     --prg-clr: #444;
@@ -11,6 +12,7 @@
     --mmnu-clr: #555;
     --hdr-clr: #6e6e6e;
     --shdr-clr: #888;
+    --dk-link-vis: #993399;
     --ftr-clr: #bbb;
     --ftr-lnk: #bbccdd;
     --sqmnu-brd: #ccc;
@@ -209,6 +211,14 @@ article.photo__collection {
     padding: 0 5pt 8px !important;
 }
 
+.main__sheet a:link {
+    color: var(--dk-link-clr);
+}
+
+.main__sheet a:visited {
+    color: var(--dk-link-vis);
+}
+
 .main__sheet h2, #news h2, .zwei__spalte > h2 {
     margin-bottom: 15px;
     color: var(--prg-clr);
@@ -216,7 +226,7 @@ article.photo__collection {
     font-family: "PT Sans", sans-serif;
 }
 
-.main__sheet p, .main__sheet ul {
+.main__sheet p, .main__sheet ul, .main__sheet ol {
     margin-bottom: 15px;
     color: var(--prg-clr);
     font-size: 11pt;
@@ -257,6 +267,10 @@ div.graphic__contents {
     width: 100%;
     heigth: 100%;
     background-size: contain;
+}
+
+.b {
+    font-weight: 600;
 }
 
 .photos {

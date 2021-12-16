@@ -1,0 +1,17 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/contacts</docuri>
+    <returi>/contacts</returi>
+    <docref>m5</docref>
+    <doctopic>Contacts subpage</doctopic>
+    <docname>Контактная информация</docname>
+    <doctype>Text</doctype>
+    <docdate>16.12.2021</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<h2>Контактная информация</h2>
+</page>
