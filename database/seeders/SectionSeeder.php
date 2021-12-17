@@ -58,7 +58,7 @@ class SectionSeeder extends Seeder
                 'id' => 5,
                 'bip' => 0x1,
                 'name' => 'contacts',
-                'entry_point' => 'templates.guest.subpage',
+                'entry_point' => 'templates.guest.contacts',
                 'gen_view' => 'default',
                 'template' => 'templates.guest.contacts',
                 'created_at' => now(),
@@ -75,6 +75,16 @@ class SectionSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
+                'id' => 7,
+                'bip' => 0x1,
+                'name' => 'about',
+                'entry_point' => 'templates.guest.subpage',
+                'gen_view' => 'default',
+                'template' => 'templates.guest.about',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
                 'id' => 8,
                 'bip' => 0x1,
                 'name' => 'news',
@@ -85,12 +95,32 @@ class SectionSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
+                'id' => 9,
+                'bip' => 0x1,
+                'name' => 'photos',
+                'entry_point' => 'templates.guest.photos',
+                'gen_view' => 'default',
+                'template' => 'templates.guest.photos',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
                 'id' => 10,
                 'bip' => 0x1,
                 'name' => 'videos',
                 'entry_point' => 'templates.guest.videos',
                 'gen_view' => 'default',
                 'template' => 'templates.guest.videos',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 11,
+                'bip' => 0x1,
+                'name' => 'search',
+                'entry_point' => 'templates.guest.search',
+                'gen_view' => 'default',
+                'template' => 'templates.guest.search',
                 'created_at' => now(),
                 'updated_at' => now()
             ],

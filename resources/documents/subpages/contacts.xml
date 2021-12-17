@@ -14,4 +14,5 @@
 <docheader> </docheader>
 <page number="1">
 <h2>Контактная информация</h2>
+<div id="npc_office" class="map"></div>
 </page>
