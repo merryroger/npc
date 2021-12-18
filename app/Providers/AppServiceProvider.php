@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use ehwas\documents\collections\ImageCollectionProvider;
 use ehwas\documents\collections\ImageCollector;
+use ehwas\documents\collections\ImageGalleryCollector;
+use ehwas\documents\collections\ImageGalleryProvider;
 use ehwas\documents\references\ResourceLocationProvider;
 use ehwas\documents\references\ResourceLocatior;
 use ehwas\documents\tyrion\TyrionDocumentProvider;
@@ -53,6 +55,11 @@ class AppServiceProvider extends ServiceProvider
         app()->bind('rootpage', HomepageProvider::class);
         app()->bind(HomepageProvider::class, function($api) {
             return new HomepageProvider(new HomepageBuilder());
+        });
+
+        app()->bind('photogallery', ImageGalleryProvider::class);
+        app()->bind(ImageGalleryProvider::class, function($api) {
+            return new ImageGalleryProvider(new ImageGalleryCollector());
         });
 
         app()->bind('videos', VideosProvider::class);

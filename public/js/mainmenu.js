@@ -170,14 +170,15 @@ function showSubpanel(subpanel, level, sender) {
 
     subpanel.classList.remove('off');
 
-    subpanel.style.top = cr.top + 'px';
     if (isRootMenuFloated) {
+        subpanel.style.top = cr.top + 'px';
         subpanel.style.left = cr.width - 30 + 'px';
         if (subpanel.offsetLeft + subpanel.offsetWidth >= document.body.clientWidth) {
             subpanel.style.left = document.body.clientWidth - subpanel.offsetWidth - 10 + 'px';
         }
     } else {
-        subpanel.style.left = cr.left + 30 + 'px';
+        subpanel.style.top = cr.top + 10 + 'px';
+        subpanel.style.left = cr.left + 50 + 'px';
     }
 
     subpanel.style.zIndex = 10 + level + 1;

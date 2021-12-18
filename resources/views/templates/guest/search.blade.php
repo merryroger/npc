@@ -1,6 +1,7 @@
 @extends($view)
 
 @section('styles')
+    @include('styles/substyles/search')
 @endsection
 
 @section('js')

@@ -1,9 +1,9 @@
 <?xml version='1.0'?>
 <parameters>
     <docdtd>tyrion-xml-metadoc</docdtd>
-    <docuri>/</docuri>
-    <returi>/</returi>
-    <docref>m1</docref>
+    <docuri>/photos</docuri>
+    <returi>/photos</returi>
+    <docref>m9</docref>
     <doctopic>Photos</doctopic>
     <docname>Фотографии</docname>
     <doctype>Text</doctype>
@@ -13,8 +13,11 @@
 </parameters>
 <docheader> </docheader>
 <page number="1">
-<h2>Фотографии</h2>
+<h2>Фотогалерея</h2>
 <a href="/photos" class="centered">
     <div class="photos graphic__contents"></div>
 </a>
+<div class="centered" style="margin-top: 25px; min-height: auto;">
+    <a href="/photos" class="all__news">Фотоколлекции</a>
+</div>
 </page>

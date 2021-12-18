@@ -10,7 +10,9 @@ $this->config = [
     'blocks' => 4,
     'contents' => [
         'main_sheet' => [
-            'template' => 'templates.empty'
+            'provider' => 'photogallery',
+            'order' => 'desc',
+            'template' => 'templates.guest.photos.main',
         ],
         'left_aside' => [
             'template' => 'templates.empty',

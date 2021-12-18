@@ -146,7 +146,7 @@ class MenuitemSeeder extends Seeder
                 'mnemo' => 'photos',
                 'url' => '/photos',
                 'section_id' => 9,
-                'hidden' => 1,
+                'hidden' => 0,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -161,7 +161,7 @@ class MenuitemSeeder extends Seeder
                 'mnemo' => 'videos',
                 'url' => '/videos',
                 'section_id' => 10,
-                'hidden' => 1,
+                'hidden' => 0,
                 'created_at' => now(),
                 'updated_at' => now()
             ],

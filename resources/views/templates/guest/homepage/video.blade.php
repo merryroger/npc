@@ -13,5 +13,5 @@
             allowfullscreen
             title="{!! $video['comment'] !!}">
     </iframe>
-    <a href="/videos" class="all__news">Всё видео</a>
+    <a href="/videos" class="all__news">{{ @trans('menu.videogallery') }}</a>
 </div>

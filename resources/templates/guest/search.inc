@@ -10,7 +10,7 @@ $this->config = [
     'blocks' => 4,
     'contents' => [
         'main_sheet' => [
-            'template' => 'templates.empty'
+            'template' => 'templates.guest.search.main'
         ],
         'left_aside' => [
             'template' => 'templates.empty',

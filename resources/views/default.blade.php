@@ -39,7 +39,7 @@
     @yield('right_aside')
 </section>
 @yield('banners')
-@include('templates/footer', ['menu' => $menu['extra']])
+@include('templates/footer', ['menu' => $menu])
 @if (session()->has('errors'))
     <script>popupMessenger.fire('{!! json_encode(session()->get('errors')) !!}', '{!! trans('flasherrors.error') !!}')</script>
     @php(session()->forget('errors'))

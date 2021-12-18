@@ -35,7 +35,7 @@ class Video extends Model
     public function scopePageList($query, $page, &$sets, $include_hidden = false)
     {
         $order = (isset($sets['order']) && !strcasecmp($sets['order'], 'asc')) ? 'asc' : 'desc';
-        $count = (isset($sets['movesPerPage'])) ? intval($sets['movesPerPage']) : 12;
+        $count = (isset($sets['moviesPerPage'])) ? intval($sets['moviesPerPage']) : 12;
         $skip = ($page - 1) * $count;
 
         return $this->scopeValid($query, $include_hidden)

@@ -1,9 +1,9 @@
 <?xml version='1.0'?>
 <parameters>
     <docdtd>tyrion-xml-metadoc</docdtd>
-    <docuri>/</docuri>
-    <returi>/</returi>
-    <docref>m1</docref>
+    <docuri>/videos</docuri>
+    <returi>/videos</returi>
+    <docref>m10</docref>
     <doctopic>Videos</doctopic>
     <docname>Видео</docname>
     <doctype>Text</doctype>

@@ -21,6 +21,8 @@
         @endif
     @endforeach
     @if($section_ids[0]['id'] > 1)
+        @include('templates/menu/photos', ['menu' => $menu['collections']])
+        @include('templates/menu/videos', ['menu' => $menu['collections']])
         <a href="/">{{ @trans("menu.gohome") }}</a>
     @endif
 </div>

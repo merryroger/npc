@@ -18,7 +18,7 @@
         <p>E-mail: <a href="mailto:npckurgan@yandex.ru">npckurgan@yandex.ru</a>.</p>
     </article>
     <article class="footer foot__links">
-        @foreach($menu as $item)
+        @foreach($menu['extra'] as $item)
             @if($item['id'] == $section_ids[0]['id'])
                 <p>{{ @trans("menu.$item[mnemo]") }}</p>
             @else
@@ -26,6 +26,8 @@
             @endif
         @endforeach
         @if($section_ids[0]['id'] > 1)
+            @include('templates/menu/photos', ['menu' => $menu['collections']])
+            @include('templates/menu/videos', ['menu' => $menu['collections']])
             <a href="/">{{ @trans("menu.gohome") }}</a>
         @endif
     </article>

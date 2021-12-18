@@ -1,6 +1,7 @@
 @extends($view)
 
 @section('styles')
+    @include('styles/substyles/photos')
 @endsection
 
 @section('js')
