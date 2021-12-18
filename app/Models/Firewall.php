@@ -11,7 +11,7 @@ class Firewall extends Model
 
     public function scopeScan($query)
     {
-        $conditions = "(INET_ATON(\"{$_SERVER['REMOTE_ADDR']}\") & ip) = ip";
+        $conditions = "(INET_ATON(\"{$_SERVER['REMOTE_ADDR']}\") & mask) = ip";
 
         $fwlSet = $query->whereRaw($conditions)->where('off', 0)->skip(0)->take(1)->get();
 
