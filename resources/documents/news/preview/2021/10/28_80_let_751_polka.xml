@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>В&nbsp;Кетовском районе открыли памятный знак к&nbsp;80-летию формирования 751-го стрелкового полка</docname>
+    <doctype>Text</doctype>
+    <docdate>28.10.2021</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>28.10.2021</h6><img src="/images/news/preview/20211028_751_polk.jpg" alt="В Кетовском районе открыли памятный знак к 80-летию формирования 751-го стрелкового полка"/></div>
+<p>В&nbsp;Кетовском районе открыли памятный знак к&nbsp;80-летию формирования 751-го стрелкового полка</p>
+</page>

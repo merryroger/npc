@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>В&nbsp;Кургане открыли памятник основателю машиностроения Курганской области&nbsp;— Сергею Балакшину</docname>
+    <doctype>Text</doctype>
+    <docdate>24.09.2021</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>24.09.2021</h6><img src="/images/news/preview/20210924_Balakshin.jpg" alt="В Кургане открыли памятник основателю машиностроения Курганской области — Сергею Балакшину"/></div>
+<p>В&nbsp;Кургане открыли памятник основателю машиностроения Курганской области&nbsp;— Сергею Балакшину</p>
+</page>
