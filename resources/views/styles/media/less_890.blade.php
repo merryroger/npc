@@ -194,18 +194,18 @@
         width: 82%;
     }
 
-    nav.video__pad {
+    nav.video__pad, nav.photo__pad {
         min-width: calc(100vw - 20%);
         justify-content: center;
     }
 
-    div.video__item__pad {
+    div.video__item__pad, div.photo__item__pad {
         margin: 0 5% 20px;
         width: calc((100vw - 20%) / 3 - 21pt);
         min-width: 225px;
     }
 
-    .video__item__pad a {
+    .video__item__pad a, .photo__item__pad a {
         height: calc(((100vw - 20%) / 3 - 21pt) / 1.78);
         min-height: calc(225px / 1.78);
         max-height: calc(225px / 1.78);
