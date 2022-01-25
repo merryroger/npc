@@ -79,7 +79,7 @@ function showCMSSubMenu(id, lvl, src, data = null) {
 function getSubmenu(agrp, node, mode, level, parent, src) {
     let id = `menuid_${parent}`;
     let subMenu = localStorage.getItem(id);
-    //localStorage.clear();
+//    localStorage.clear();
 
     if (subMenu == null) {
         let pms = [

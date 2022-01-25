@@ -428,6 +428,22 @@ class MenuitemSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
+            [
+                'id' => 72,
+                'access_group_id' => 1,
+                'node' => 3,
+                'mode' => 2,
+                'level' => 1,
+                'parent' => 70,
+                'order' => 2,
+                'purpose' => 'tags',
+                'mnemo' => 'tags',
+                'url' => '/cms/tags',
+                'section_id' => 72,
+                'hidden' => 0,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
         ];
 
         foreach ($data as $portion) {

@@ -254,6 +254,16 @@ class SectionSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
+            [
+                'id' => 72,
+                'bip' => 0x00ffffff,
+                'name' => 'tags',
+                'entry_point' => 'templates.cms.default',
+                'gen_view' => 'cms.references',
+                'template' => 'templates.cms.tags',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
         ];
 
         foreach ($data as $portion) {

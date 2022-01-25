@@ -8,6 +8,8 @@ use ehwas\documents\collections\ImageGalleryCollector;
 use ehwas\documents\collections\ImageGalleryProvider;
 use ehwas\documents\references\ResourceLocationProvider;
 use ehwas\documents\references\ResourceLocatior;
+use ehwas\documents\references\TagLibrary;
+use ehwas\documents\references\TagLibraryProvider;
 use ehwas\documents\tyrion\TyrionDocumentProvider;
 use ehwas\documents\tyrion\TyrionReader;
 use ehwas\news\NewslineProvider;
@@ -75,6 +77,11 @@ class AppServiceProvider extends ServiceProvider
         app()->bind('resourcelocator', ResourceLocationProvider::class);
         app()->bind(ResourceLocationProvider::class, function($api) {
             return new ResourceLocationProvider(new ResourceLocatior());
+        });
+
+        app()->bind('taglibrary', TagLibraryProvider::class);
+        app()->bind(TagLibraryProvider::class, function($api) {
+            return new TagLibraryProvider(new TagLibrary());
         });
     }
 }
