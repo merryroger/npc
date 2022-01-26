@@ -13,13 +13,12 @@ $erc = ['success' => 0, 'errorcode' => 0, 'section' => 'locations', 'options' =>
 
 switch (strtoupper($extra_data['opcode'])) {
     default:
-        //$total = \App\Models\Location::total();
-        $total = 0;
+        $total = \App\Models\Tag::total();
 
         if ($total) {
             $provider->load($extra_data);
-            //$dataset = $provider->getContents();
-            //$vocabulary = $provider->getVocabulary(['common', 'tags']);
+            $dataset = $provider->getContents();
+            $vocabulary = $provider->getVocabulary(['common', 'tags']);
         } else {
             $dataset = $vocabulary = [];
         }

@@ -41,12 +41,12 @@ class TagLibraryProvider implements ExtendedDocumentProvider
     {
         return $this->reference->deleteRecord($extra_data, $erc);
     }
-
+*/
     public function getVocabulary($topics)
     {
         return $this->reference->getVocabulary($topics);
     }
-*/
+
     public function getContents()
     {
         return $this->reference->getContents();

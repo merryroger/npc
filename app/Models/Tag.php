@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function scopeTotal($query)
+    {
+        return $query->get()->count();
+    }
+
 }

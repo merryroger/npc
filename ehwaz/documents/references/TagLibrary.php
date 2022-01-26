@@ -103,12 +103,12 @@ class TagLibrary extends References
 
         return true;
     }
-
+*/
     public function getContents()
     {
         return $this->contents;
     }
-
+/*
     public function loadLocations($params, $extra): void
     {
         $showHidden = !(isset($params['nohidden']) && $params['nohidden']);
