@@ -3,6 +3,7 @@
 @section('styles')
     @include('styles/substyles/news_aside')
     @include('styles/substyles/banners')
+    @include('styles/substyles/extras')
 @endsection
 
 @section('js')

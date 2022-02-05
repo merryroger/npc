@@ -17,7 +17,8 @@ $this->config = [
             'textprovider' => 'tyrion',
             'videoprovider' => 'videos',
             'sources' => [
-                'leadart' => 'documents/about.xml',
+                'leadart' => 'documents/region/anniversary_79.xml',
+                //'leadart' => 'documents/about.xml',
                 'photos' => 'documents/collections/photos.xml',
                 'videos' => 'documents/collections/videos.xml',
             ],
