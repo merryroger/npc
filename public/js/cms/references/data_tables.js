@@ -33,7 +33,12 @@ function renderList(resp) {
         rq_sent = false;
         setError(contents);
     } else {
-        listRepaint(contents.dataset);
+        if (contents.view == undefined) {
+            listRepaint(contents.dataset);
+        } else {
+            tableRebuild(contents);
+        }
+
         closeForm();
         dropVeil();
 

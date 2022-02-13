@@ -19,6 +19,7 @@
         @switch($parameters['section'])
             @case('tags')
             <script src="/js/cms/references/tags/tags.js" type="text/javascript"></script>
+            <script src="/js/cms/references/tags/data_table.js" type="text/javascript"></script>
             @break
             @case('locations')
             <script src="/js/cms/references/location/locations.js" type="text/javascript"></script>

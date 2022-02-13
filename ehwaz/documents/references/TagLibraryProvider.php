@@ -19,9 +19,9 @@ class TagLibraryProvider implements ExtendedDocumentProvider
 
     public function load($src, ...$params)
     {
-        $this->reference->loadLocations($src, $params);
+        $this->reference->loadTags($src, $params);
     }
-/*
+
     public function getItem($recId): array
     {
         return $this->reference->getItem($recId);
@@ -41,7 +41,7 @@ class TagLibraryProvider implements ExtendedDocumentProvider
     {
         return $this->reference->deleteRecord($extra_data, $erc);
     }
-*/
+
     public function getVocabulary($topics)
     {
         return $this->reference->getVocabulary($topics);

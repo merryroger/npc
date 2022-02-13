@@ -45,6 +45,8 @@
             'reset_fields' => 'Восстановить начальные значения полей',
             'resource_location_create' => 'Создание нового размещения',
             'resource_location_edit' => 'Редактирование параметров размещения',
+            'resource_tag_create' => 'Новый тег',
+            'resource_tag_edit' => 'Редактирвание тега',
             'select_photo' => 'Выберите изображение',
             'send' => 'Отправить',
         ],

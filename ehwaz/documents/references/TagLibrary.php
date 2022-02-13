@@ -6,6 +6,8 @@
 
 namespace ehwas\documents\references;
 
+use App\Models\Tag;
+
 class TagLibrary extends References
 
 {
@@ -13,18 +15,15 @@ class TagLibrary extends References
     {
         parent::__construct();
     }
-/*
+
     public function getItem($recId): array
     {
-        $location_item = Location::find($recId);
+        $location_item = Tag::find($recId);
 
         if ($location_item == null) {
             return [];
         } else {
-            $preview = is_dir(public_path() . $location_item->rel_path . "/preview");
-
-            return Location::where('id', $recId)->get()->map(function ($item, $key) use ($preview) {
-                $item->preview = ($preview) ? 1 : 0;
+            return Tag::where('id', $recId)->get()->map(function ($item, $key) {
                 return collect($item)->except(['created_at', 'updated_at'])->all();
             })->first();
         }
@@ -32,8 +31,8 @@ class TagLibrary extends References
 
     public function addRecord($params, &$erc): int
     {
-        $fields = collect($params)->only(['name', 'rel_path'])->all();
-        $matches = Location::findMatches($fields)->get();
+        $fields = collect($params)->only(['name'])->all();
+        $matches = Tag::findMatches($fields)->get();
 
         if ($matches->count()) {
             $data = $this->retrieveMatches($matches, $params);
@@ -42,27 +41,21 @@ class TagLibrary extends References
 
             return 0;
         } else {
-            $location = new Location();
+            $tag = new Tag();
 
-            $location->name = $params['name'];
-            $location->rel_path = $params['rel_path'];
-            $location->hidden = $params['hidden'];
+            $tag->name = $params['name'];
 
-            $location->save();
-
-            $preview = ($params['use_preview']) ? ['preview'] : [];
-
-            $this->checkRelPath($params['rel_path'], $preview);
+            $tag->save();
         }
 
-        return $location->id;
+        return $tag->id;
     }
 
     public function updateRecord($params, &$erc): bool
     {
         $recId = intval($params['itemId']);
         $fields = collect($params)->only(['name'])->all();
-        $matches = Location::findMatches($fields)->where('id', '!=', $recId)->get();
+        $matches = Tag::findMatches($fields)->where('id', '!=', $recId)->get();
 
         if ($matches->count()) {
             $data = $this->retrieveMatches($matches, $params);
@@ -71,18 +64,10 @@ class TagLibrary extends References
 
             return false;
         } else {
-            $location = Location::find($recId);
-            $location->name = $params['name'];
-            $location->hidden = $params['hidden'];
+            $tag = Tag::find($recId);
+            $tag->name = $params['name'];
 
-            $location->save();
-
-            if (intval($params['use_preview'])) {
-                $parts = ['preview'];
-                $this->checkSubDir($location->rel_path, $parts);
-            } else {
-                $this->removeDirectories($location->rel_path . "/preview");
-            }
+            $tag->save();
         }
 
         return true;
@@ -90,30 +75,28 @@ class TagLibrary extends References
 
     public function deleteRecord($extra_data, &$erc): bool
     {
-        $opcode = strtoupper($extra_data['opcode']);
+        $total = Tag::total();
+
         $recId = intval($extra_data['itemId']);
+        $rec = Tag::find($recId);
 
-        $location = Location::locationDirById($recId);
-        $rec = Location::find($recId);
-        $rec->delete();
-
-        if ($opcode == 'IFRM') {
-            $this->removeDirectories($location, ['preview']);
+        if ($total > 1) {
+            $rec->delete();
+        } else {
+            $rec->truncate();
         }
 
         return true;
     }
-*/
+
     public function getContents()
     {
         return $this->contents;
     }
-/*
-    public function loadLocations($params, $extra): void
-    {
-        $showHidden = !(isset($params['nohidden']) && $params['nohidden']);
 
-        $this->contents = Location::dataSet($showHidden)->get()->map(function ($item, $key) {
+    public function loadTags($params, $extra): void
+    {
+        $this->contents = Tag::get()->map(function ($item, $key) {
             return collect($item)->except(['created_at', 'updated_at'])->all();
         })->all();
     }
@@ -121,7 +104,7 @@ class TagLibrary extends References
     protected function retrieveMatches(&$matches, &$params): array
     {
         return $matches->map(function ($item, $key) use ($params) {
-            $it = collect($item)->only(['name', 'rel_path'])->filter(function ($item, $key) use ($params) {
+            $it = collect($item)->only(['name'])->filter(function ($item, $key) use ($params) {
                 return $item == $params[$key];
             });
 
@@ -132,51 +115,6 @@ class TagLibrary extends References
         })->first();
     }
 
-    protected function checkRelPath($rel_path, $extra_subdirs = []): void
-    {
-        $path = '';
-
-        if (!is_dir(public_path() . $rel_path)) {
-            $parts = preg_split("/[\/\\\]+/sU", $rel_path);
-            if ($extra_subdirs) {
-                $parts = array_merge($parts, $extra_subdirs);
-            }
-
-            $path .= join('/', array_splice($parts, 0, 2));
-            $this->checkSubDir($path, $parts);
-        }
-    }
-
-    protected function checkSubDir($path, &$parts): void
-    {
-        if (!is_dir(public_path() . $path)) {
-            mkdir(public_path() . $path);
-        }
-
-        if ($parts) {
-            $path .= '/' . array_splice($parts, 0, 1)[0];
-            $this->checkSubDir($path, $parts);
-        }
-    }
-
-    protected function removeDirectories($location, $extra_subdirs = []): void
-    {
-        do {
-            $extra_path = ($extra_subdirs) ? '/' . join('/', $extra_subdirs) : '';
-            if ($extra_path && is_dir(public_path() . $location . $extra_path)) {
-                $this->cleanDir(public_path() . $location . $extra_path);
-                rmdir(public_path() . $location . $extra_path);
-            }
-
-            array_pop($extra_subdirs);
-        } while ($extra_subdirs);
-
-        if (is_dir(public_path() . $location)) {
-            $this->cleanDir(public_path() . $location);
-            rmdir(public_path() . $location);
-        }
-    }
-*/
     public function __destruct()
     {
         parent::__destruct();

@@ -22,21 +22,21 @@ function getTagsAddForm(src) {
 
     return false;
 }
-/*
-function getLocationEditForm(itemId) {
+
+function getTagEditForm(itemId) {
     if (!formPadOn) {
 
         let pms = [
             `itemId=${itemId}`,
             `opcode=REFM`,
-            `section=locations`,
+            `section=tags`,
             `sectgroup=references`,
         ];
 
         raiseVeil(5, true);
         buildFormPad();
 
-        sendPOSTRequest(imgURL, pms, buildLocationForm);
+        sendPOSTRequest(imgURL, pms, buildTagsForm);
 
         rq_sent = true;
         formPadOn = true;
@@ -44,7 +44,7 @@ function getLocationEditForm(itemId) {
 
     return false;
 }
-*/
+
 function buildFormPad() {
     if (formPadLR == null) {
         formPadLR = document.createElement('div');
@@ -62,7 +62,6 @@ function buildFormPad() {
 }
 
 function buildTagsForm(resp) {
-    console.log(rest); //!--------- Temporary line -----------------!//
     let rsp;
     try {
         rsp = JSON.parse(resp);
@@ -72,12 +71,12 @@ function buildTagsForm(resp) {
         console.log(e);
     } finally {
         updateVeilWaitState(veilLR);
-        setTimeout(initLocationForm, 10);
+        setTimeout(initTagForm, 10);
         rq_sent = false;
     }
 }
-/*
-function initLocationForm() {
+
+function initTagForm() {
     let fm = document.body.querySelector('form.edit__form');
     fm.name.focus();
 }
@@ -96,9 +95,6 @@ function checkFormControls(fm) {
             case 'INPUT':
                 if (field.type.toLowerCase() == 'text' || field.type.toLowerCase() == 'hidden') {
                     pms.push(`${field.name}=${encodeURIComponent(field.value)}`);
-                } else if (field.type.toLowerCase() == 'checkbox') {
-                    let state = (field.checked) ? 1 : 0;
-                    pms.push(`${field.name}=${state}`);
                 }
 
                 break;
@@ -110,46 +106,22 @@ function checkFormControls(fm) {
     return false;
 }
 
-function checkUsePreviewStatus(src) {
-    if (!src.checked) {
-        let errorset = {
-            errorcode: 0xe0,
-            section: 'locations',
-            options: {}
-        };
-
-        setError(errorset);
-    }
-}
-
 function requestEditItem(row) {
     let itemId = +row.getAttribute('data-id');
-    if (itemId == 1) {
-        let errorset = {
-            errorcode: 0xd0,
-            section: 'locations',
-            options: {
-                id: itemId
-            }
-        };
-
-        setError(errorset);
-    } else {
-        getLocationEditForm(itemId);
-    }
+    getTagEditForm(itemId);
 }
 
 function requestDeleteItem(src) {
     let tr = src.closest('tr');
     let itemId = +tr.getAttribute('data-id');
     let errorset = {
-        errorcode: ((itemId == 1) ? 0xd0 : 0xd1),
-        section: 'locations',
+        errorcode: 0xd1,
+        section: 'tags',
         options: {
-            id: itemId
+            id: itemId,
+            section: 'tags',
         }
     };
 
     setError(errorset);
 }
-*/
