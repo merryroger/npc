@@ -16,3 +16,12 @@ div.photo__frame {
     width: var(--frame-width);
     height: calc(var(--frame-width) * 2 / 3);
 }
+
+.pf__vertical {
+    --frame-width: calc(80vw);
+    float: left;
+    max-width: var(--w-max);
+    max-height: var(--h-max);
+    width: var(--frame-width);
+    height: calc(var(--frame-width) * 3 / 2);
+}

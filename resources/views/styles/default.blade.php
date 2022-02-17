@@ -241,6 +241,15 @@ article.photo__collection {
     line-height: 1.4;
 }
 
+
+.main__sheet h4, #news h4, .zwei__spalte > h4 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: var(--prg-clr);
+    font-size: 16pt;
+    font-family: "PT Sans", sans-serif;
+}
+
 a.centered, .centered iframe {
     width: 100%;
     height: 153px;
