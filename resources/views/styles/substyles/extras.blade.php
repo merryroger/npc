@@ -25,3 +25,10 @@ div.photo__frame {
     width: var(--frame-width);
     height: calc(var(--frame-width) * 3 / 2);
 }
+
+address {
+    margin-top: 30px;
+    color: var(--hdr-clr);
+    font-size: 11pt;
+    font-family: "Roboto Condensed", "PT Sans", sans-serif;
+}
