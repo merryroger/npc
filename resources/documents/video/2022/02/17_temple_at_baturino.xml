@@ -1,0 +1,17 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/videos</docuri>
+    <returi>/videos</returi>
+    <docref>m10</docref>
+    <doctopic>Video commentaries</doctopic>
+    <docname>Тайны Энергетиков Курганы и крепости</docname>
+    <doctype>Text</doctype>
+    <docdate>17.02.2022</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<p>Завершение работ по&nbsp;реставрации Спасо-Преображенской церкви в&nbsp;селе Батурино</p>
+</page>
