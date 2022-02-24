@@ -17,6 +17,14 @@ div.photo__frame {
     height: calc(var(--frame-width) * 2 / 3);
 }
 
+.pf__long {
+    --frame-width: calc(80vw);
+    max-width: var(--w-max);
+    max-height: var(--h-max);
+    width: var(--frame-width);
+    height: calc(var(--frame-width) * 7 / 20);
+}
+
 .pf__vertical {
     --frame-width: calc(80vw);
     float: left;
@@ -25,6 +33,19 @@ div.photo__frame {
     width: var(--frame-width);
     height: calc(var(--frame-width) * 3 / 2);
 }
+
+.photo__frame h6 {
+    position: relative;
+    top: var(--top);
+    color: var(--hdr-clr);
+    font-size: 9pt;
+    font-family: "PT Sans", sans-serif;
+}
+
+h6 ~ div {
+    margin-bottom: 50px !important;
+}
+
 
 address {
     margin-top: 30px;

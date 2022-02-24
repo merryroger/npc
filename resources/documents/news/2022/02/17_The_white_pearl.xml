@@ -1,10 +1,10 @@
 <?xml version='1.0'?>
 <parameters>
     <docdtd>tyrion-xml-metadoc</docdtd>
-    <docuri>/</docuri>
-    <returi>/</returi>
-    <docref>m1</docref>
-    <doctopic>Lead article</doctopic>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
     <docname>Белая жемчужина зауральского православия</docname>
     <doctype>Text</doctype>
     <docdate>17.02.2022</docdate>
@@ -99,7 +99,6 @@
     увидеть один из&nbsp;ярких примеров возрождения культурного наследия Курганской области.</p>
 <p>Все возвращается на&nbsp;круги своя: среди заснеженных просторов, в&nbsp;морозной дымке, над селом вновь, словно белая
     лебедь, плывет Спасо-Преображенская церковь&nbsp;— возрожденный храм&nbsp;— белая жемчужина зауральского православия.</p>
-<p>&nbsp;</p>
 <address>На&nbsp;сайте НПЦ в&nbsp;разделе «<a href="/videos">Галерея видео</a>» размещен видеоролик, посвященный завершению
     работ по&nbsp;реставрации храма в&nbsp;селе Батурино</address>
 </page>

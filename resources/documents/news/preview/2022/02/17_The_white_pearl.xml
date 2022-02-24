@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Белая жемчужина зауральского православия</docname>
+    <doctype>Text</doctype>
+    <docdate>17.02.2022</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>17.02.2022</h6><img src="/images/news/preview/20220217_Restored.jpg" alt="Белая жемчужина зауральского православия"/></div>
+<p>Завершены работы по&nbsp;реставрации храма в&nbsp;селе Батурино.</p>
+</page>
