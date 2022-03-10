@@ -43,6 +43,56 @@ function previewReady(src) {
     src.closest('.image__preview__pad').classList.remove('non__loaded');
 }
 
+function editImageTagSet(src) {
+    if (!formPadOn) {
+        let control = src.closest('div#item_control_panel');
+        let itemId = +control.getAttribute('data-id');
+
+        let pms = [
+            `opcode=ETAG`,
+            `recId=${itemId}`,
+            `section=images`,
+        ];
+
+        raiseVeil(5, true);
+        buildFormPad();
+
+        formPadLR.className = 'wait__form';
+        formPadLR.style.top = '50px';
+        formPadLR.style.right = (document.body.clientWidth - formPadLR.offsetWidth) / 2 + 'px';
+        formPadLR.style.zIndex = 6;
+        formPadLR.classList.add('on');
+
+        sendPOSTRequest(imgURL, pms, buildImageTagSetEditForm);
+
+        formPadOn = true;
+    }
+
+    hideItemControlPanel();
+
+    return false;
+}
+
+function buildImageTagSetEditForm(resp) {
+    let rsp = null;
+    try {
+        rsp = JSON.parse(resp);
+        if (rsp.success == 0) {
+            setError(rsp);
+        } else {
+            let contents = JSON.parse(rsp.contents);
+            formPadLR.className = '';
+            formPadLR.innerHTML = contents.view;
+            formPadLR.style.right = (document.body.clientWidth - formPadLR.offsetWidth) / 2 + 'px';
+            updateVeilWaitState(veilLR);
+        }
+    } catch (e) {
+
+    } finally {
+        rq_sent = false;
+    }
+}
+
 function editImageItem(src) {
     if (!formPadOn) {
         let control = src.closest('div#item_control_panel');

@@ -70,6 +70,11 @@ switch (strtoupper($extra_data['opcode'])) {
         $view = view($sets['template'], compact(['image', 'locations']))->render();
         $contents = json_encode(array_merge($extra_data, ['view' => $view]));
         break;
+    case 'ETAG':
+        $image = $provider->getItem($extra_data['recId']);// dd($image);
+        $view = view($sets['template'], compact(['image']))->render();
+        $contents = json_encode(array_merge($extra_data, ['view' => $view]));
+        break;
     case 'RIRL':
         $image = $provider->getItem($extra_data['recId']);
         $locateTo = collect($extra_data)->except(['recId', 'opcode'])->merge(['pack_id' => $image['pack_id']])->all();

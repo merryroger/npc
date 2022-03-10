@@ -18,6 +18,10 @@ $this->config = [
         'RIRL' => [
             'provider' => 'imagecollector',
         ],
+        'ETAG' => [
+            'provider' => 'imagecollector',
+            'template' => 'templates.cms.collections.images.edit_tags'
+        ],
         'EDIM' => [
             'provider' => 'imagecollector',
             'template' => 'templates.cms.collections.images.edit_form'

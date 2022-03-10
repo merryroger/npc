@@ -7,6 +7,7 @@
 </div>
 <div id="item_control_panel" class="off" data-id="0">
     <div class="image__item__control__list">
+        <a href="/cms/images" onclick="return editImageTagSet(this)"><span data-level="0">{!! trans('cms.data.tags') !!}</span></a>
         <a href="/cms/images" onclick="return editImageItem(this)"><span data-level="0">{!! trans('cms.data.edit') !!}</span></a>
         <a href="/cms/images" onclick="return deleteImageItem(this)"><span data-level="0">{!! trans('cms.data.delete') !!}</span></a>
     </div>
