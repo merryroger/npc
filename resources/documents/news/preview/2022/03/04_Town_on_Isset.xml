@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Город на Исети: история в камне</docname>
+    <doctype>Text</doctype>
+    <docdate>04.03.2022</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>04.03.2022</h6><img src="/images/news/preview/20220304_Lenin_107.jpg" alt="Город на Исети: история в камне"/></div>
+<p>В&nbsp;г.&nbsp;Шадринске сконцентрировано наибольшее количество объектов культурного наследия в&nbsp;нашей области.
+    В&nbsp;2019-2021 годах были отремонтированы четырнадцать из&nbsp;них.</p>
+</page>
