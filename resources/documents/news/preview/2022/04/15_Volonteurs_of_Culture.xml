@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Акция «Волонтеры культуры»</docname>
+    <doctype>Text</doctype>
+    <docdate>15.04.2022</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>15.04.2022</h6><img src="/images/news/preview/20220415_work.jpg" alt="Акция «Волонтеры культуры»"/></div>
+<p>Специалисты по&nbsp;охране объектов культурного наследия Курганской области приняли участие в&nbsp;акции «Всероссийский
+    день заботы о&nbsp;памятниках истории и&nbsp;культуры».</p>
+</page>
