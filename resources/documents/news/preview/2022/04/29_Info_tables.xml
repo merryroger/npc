@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Информационные таблички</docname>
+    <doctype>Text</doctype>
+    <docdate>29.04.2022</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>29.04.2022</h6><img src="/images/news/preview/20220429_kocheshev.jpg" alt="Информационные таблички"/></div>
+<p>На&nbsp;фасадах еще двадцати объектов культурного наследия в&nbsp;Курганской области появились новые информационные таблички.</p>
+</page>
