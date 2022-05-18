@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Субботник в честь Дня Победы</docname>
+    <doctype>Text</doctype>
+    <docdate>05.05.2022</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>05.05.2022</h6><img src="/images/news/preview/20220505_at_subb.jpg" alt="На субботнике"/></div>
+<p>Губернатор Вадим Шумков накануне Дня Победы принял участие в&nbsp;субботнике.</p>
+</page>
