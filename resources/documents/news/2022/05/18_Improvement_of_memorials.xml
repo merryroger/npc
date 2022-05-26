@@ -1,10 +1,10 @@
 <?xml version='1.0'?>
 <parameters>
     <docdtd>tyrion-xml-metadoc</docdtd>
-    <docuri>/</docuri>
-    <returi>/</returi>
-    <docref>m1</docref>
-    <doctopic>Lead article</doctopic>
+    <docuri>/news<</docuri>
+    <returi>/news<</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
     <docname>Благоустройство мемориалов</docname>
     <doctype>Text</doctype>
     <docdate>18.05.2022</docdate>
@@ -13,7 +13,7 @@
 </parameters>
 <docheader> </docheader>
 <page number="1">
-<h2>В Курганской области проведены работы по благоустройству и ремонту всех мемориалов, посвященных участникам ВОВ</h2>
+<h2>В Курганской области проведены работы по&nbsp;благоустройству и&nbsp;ремонту всех мемориалов, посвященных участникам ВОВ</h2>
 <div class="photo__frame pf__standard" style="--w-max: 420px; --h-max: 280px; --img-src: url('/images/news/20220518_Yermakov.jpg');"></div>
 <p>По&nbsp;поручению Губернатора Курганской области Вадима Шумкова в&nbsp;2022&nbsp;году, в&nbsp;рамках подготовки к&nbsp;празднованию
     77-й годовщины Победы, в&nbsp;нашем регионе проведены работы по&nbsp;ремонту и&nbsp;благоустройству прилегающих территорий
