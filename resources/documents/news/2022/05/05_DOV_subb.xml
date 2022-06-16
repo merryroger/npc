@@ -1,8 +1,8 @@
 <?xml version='1.0'?>
 <parameters>
     <docdtd>tyrion-xml-metadoc</docdtd>
-    <docuri>/news<</docuri>
-    <returi>/news<</returi>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
     <docref>m8</docref>
     <doctopic>News message</doctopic>
     <docname>Субботник в честь Дня Победы</docname>
