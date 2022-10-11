@@ -1,10 +1,10 @@
 <?xml version='1.0'?>
 <parameters>
     <docdtd>tyrion-xml-metadoc</docdtd>
-    <docuri>/</docuri>
-    <returi>/</returi>
-    <docref>m1</docref>
-    <doctopic>Lead article</doctopic>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
     <docname>Открытие обновленного выставочного зала «Археология. Палеонтология. Савин-1»</docname>
     <doctype>Text</doctype>
     <docdate>27.06.2022</docdate>
