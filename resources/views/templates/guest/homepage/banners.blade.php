@@ -10,6 +10,7 @@
                class="banner__cell"><img src="/images/banners/ww2_mems.png"></a>
             <a href="https://docs.google.com/spreadsheets/d/1tIkf2NTX3LgHxB5usegb8WsJ7okFFHg0ric1jF5zWkQ/edit?usp=sharing"
                class="banner__cell"><img src="/images/banners/memorials_45.png"></a>
+            <a href="https://kurganobl.ru/ohrana-obektov-kulturnogo-naslediya" class="banner__cell"><img src="/images/banners/okn.png"></a>
             <a href="https://www.gosuslugi.ru/" class="banner__cell"><img src="/images/banners/gosuslugi.png"></a>
         </div>
     </div>

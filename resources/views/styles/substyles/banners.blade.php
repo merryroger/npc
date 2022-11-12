@@ -20,14 +20,19 @@ div.banner__band {
     margin: 0 auto;
     left: 0;
     width: auto;
+    display: grid;
+    grid-template-columns: repeat(5, 120px);
+    grid-template-rows: repeat(2, 60px);
     justify-content: space-evenly;
     flex-wrap: nowrap;
-    display: flex;
+    column-gap: 10px;
+    row-gap: 10px;
+    //display: flex;
     transition: left .25s ease-out;
 }
 
 a.banner__cell {
-    margin: 5px 5pt;
+    //margin: 5px 5pt;
     width: 120px;
     height: 60px;
     box-shadow: 2px 2px 6px rgba(0,0,0,0.25);
