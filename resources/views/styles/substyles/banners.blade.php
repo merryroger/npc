@@ -27,12 +27,10 @@ div.banner__band {
     flex-wrap: nowrap;
     column-gap: 10px;
     row-gap: 10px;
-    //display: flex;
     transition: left .25s ease-out;
 }
 
 a.banner__cell {
-    //margin: 5px 5pt;
     width: 120px;
     height: 60px;
     box-shadow: 2px 2px 6px rgba(0,0,0,0.25);

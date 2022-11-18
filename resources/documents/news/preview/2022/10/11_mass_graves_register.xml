@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Единый Реестр братских захоронений, памятников и мемориалов периода Гражданской войны</docname>
+    <doctype>Text</doctype>
+    <docdate>11.10.2022</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>11.10.2022</h6><img src="/images/news/preview/20221011_mass_graves.jpg" alt="Создан единый Реестр братских захоронений, памятников и&nbsp;мемориалов периода Гражданской войны"/></div>
+<p>В&nbsp;Курганской области создан единый Реестр братских захоронений, памятников и&nbsp;мемориалов периода Гражданской войны</p>
+</page>
