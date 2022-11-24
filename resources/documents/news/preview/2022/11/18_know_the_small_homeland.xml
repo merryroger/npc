@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Познай малую родину</docname>
+    <doctype>Text</doctype>
+    <docdate>18.11.2022</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>18.11.2022</h6><img src="/images/news/preview/20221118_Oleg_Vinokurov.jpg" alt="Олег Винокуров"/></div>
+<p>16&nbsp;ноября прошла творческая встреча автора книг по&nbsp;истории Курганской области Олега Винокурова с&nbsp;краеведами.</p>
+</page>
