@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>XXII Уральское археологическое совещание</docname>
+    <doctype>Text</doctype>
+    <docdate>24.11.2022</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>24.11.2022</h6><img src="/images/news/preview/20221124_XXII_Ural_archaeological_meeting.jpg" alt="XXII Уральское археологическое совещание"/></div>
+<p>Специалисты ГКУ НПЦ приняли участие в&nbsp;работе Всероссийской научной конференции «XXII Уральское археологическое совещание»</p>
+</page>
