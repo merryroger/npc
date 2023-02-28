@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Новогодние поздравления</docname>
+    <doctype>Text</doctype>
+    <docdate>27.12.2022</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>27.12.2022</h6><img src="/images/news/preview/20221227_New_year.jpg" alt="Новогодние поздравления"/></div>
+<p>Коллектив ГКУ НПЦ поздравляет всех посетителей нашего официального сайта с&nbsp;наступающими Новогодними и&nbsp;рождественскими
+    праздниками!</p>
+</page>
