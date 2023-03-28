@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>«Крымская весна» в ЦПКиО</docname>
+    <doctype>Text</doctype>
+    <docdate>18.03.2023</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>18.03.2023</h6><img src="/images/news/preview/20230318_Crimean_spring2.jpg" alt="«Крымская весна» в&nbsp;ЦПКиО"/></div>
+<p>«Крымская весна» в&nbsp;ЦПКиО</p>
+</page>
