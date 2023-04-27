@@ -6,6 +6,13 @@
         width: 100%;
     }
 
+    section#top__frame {
+	background-image: url('/images/accessories/gb_tr.webp');
+    	background-position: right center;
+    	background-repeat: no-repeat;
+    	background-size: auto 90%;
+    }
+
     section#title, a#title {
         padding-left: 156px;
         margin-bottom: 30px;

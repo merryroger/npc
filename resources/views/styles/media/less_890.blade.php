@@ -6,6 +6,13 @@
         width: 100%;
     }
 
+    header {
+	background-image: url('/images/accessories/gb_tr.webp');
+    	background-position: 96% 10%;
+    	background-repeat: no-repeat;
+    	background-size: 33% auto;
+    }
+
     section#title, a#title {
         padding-top: 40px;
         height: 130px;
