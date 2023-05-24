@@ -6,12 +6,15 @@
         width: 1920px;
     }
 
+    /*** The Georgian band as top decoration ***/
+    /*
     section#top__frame {
-	background-image: url('/images/accessories/gb_tr.webp');
+	    background-image: url('/images/accessories/gb_tr.webp');
     	background-position: 90% center;
     	background-repeat: no-repeat;
     	background-size: contain;
     }
+    */
 
     section#title, a#title {
         padding-left: 156px;
