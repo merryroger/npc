@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>В Юговке состоялась презентация уникального документального фильма «Мятежная Сибирь. Пожавшие бурю»</docname>
+    <doctype>Text</doctype>
+    <docdate>23.05.2023</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>23.05.2023</h6><img src="/images/news/preview/20230523_Mukhortikov.jpg" alt="Презентация документального фильма «Мятежная Сибирь. Пожавшие бурю»"/></div>
+<p>В&nbsp;Юговке состоялась презентация уникального документального фильма «Мятежная Сибирь. Пожавшие бурю»</p>
+</page>
