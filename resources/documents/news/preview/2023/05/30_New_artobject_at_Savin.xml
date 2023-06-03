@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Новый познавательный арт-объект на территории этнокультурного центра «Савин»</docname>
+    <doctype>Text</doctype>
+    <docdate>30.05.2023</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>30.05.2023</h6><img src="/images/news/preview/20230523_New_artobject_at_Savin1.jpg" alt="Новый арт-объект на территории центра «Савин»"/></div>
+<p>На&nbsp;территории центра «Савин» появился новый арт-объект&nbsp;— «Жилище раннего железного века». </p>
+</page>
