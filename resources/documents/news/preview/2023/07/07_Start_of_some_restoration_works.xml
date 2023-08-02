@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>В Кургане ряд объектов культурного наследия ожидает начала реставрационных работ.</docname>
+    <doctype>Text</doctype>
+    <docdate>07.07.2023</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>07.07.2023</h6><img src="/images/news/preview/20230707_Kropanin_house_clr.jpg" alt="Дом Кропанина"/></div>
+<p>В Кургане ряд объектов культурного наследия ожидает начала реставрационных работ.</p>
+</page>
