@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>В прошедшие выходные прошел фестиваль «Едем на Савин».</docname>
+    <doctype>Text</doctype>
+    <docdate>01.08.2023</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>01.08.2023</h6><img src="/images/news/preview/20230801_Goto_Savin_fest1.jpg" alt="Савин"/></div>
+<p>В&nbsp;прошедшие выходные прошел фестиваль «Едем на&nbsp;Савин».</p>
+</page>

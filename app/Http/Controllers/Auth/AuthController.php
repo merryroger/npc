@@ -93,7 +93,7 @@ class AuthController extends Controller
                         $this->setCache($user, $key_hash);
                         $this->sendMail($user, $key_hash);
                         $_response['retcode'] = 200;
-                        $_response['message_panel'] = view('services.auth_mail_sent')->render();
+                        $_response['message_panel'] = view('services.auth_email_sent')->render();
                         break;
                 }
             }
