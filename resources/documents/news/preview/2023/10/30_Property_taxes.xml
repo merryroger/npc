@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Оплатить имущественные налоги необходимо до 1 декабря 2023 года.</docname>
+    <doctype>Text</doctype>
+    <docdate>30.10.2023</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>30.10.2023</h6><img src="/images/news/preview/20231030_Property_taxes.jpg" alt="Tax payment instruction"/></div>
+<p>Оплатить имущественные налоги необходимо до&nbsp;1&nbsp;декабря 2023&nbsp;года.</p>
+</page>

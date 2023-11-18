@@ -1,10 +1,10 @@
 <?xml version='1.0'?>
 <parameters>
     <docdtd>tyrion-xml-metadoc</docdtd>
-    <docuri>/</docuri>
-    <returi>/</returi>
-    <docref>m1</docref>
-    <doctopic>Lead article</doctopic>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m18</docref>
+    <doctopic>News message</doctopic>
     <docname>Оплатить имущественные налоги необходимо до 1 декабря 2023 года.</docname>
     <doctype>Text</doctype>
     <docdate>30.10.2023</docdate>
