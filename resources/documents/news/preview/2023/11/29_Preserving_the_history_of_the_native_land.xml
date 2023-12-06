@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Рассказываем о сохранении истории родного края.</docname>
+    <doctype>Text</doctype>
+    <docdate>29.11.2023</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>29.11.2023</h6><img src="/images/news/preview/20231129_Kuybyshev_58-2.jpg" alt="kuybyshev_58"/></div>
+<p>Рассказываем о сохранении истории родного края.</p>
+</page>
