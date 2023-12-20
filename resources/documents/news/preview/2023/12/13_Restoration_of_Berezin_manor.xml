@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Продолжается реставрация объектов на территории усадьбы Березиных в Кургане.</docname>
+    <doctype>Text</doctype>
+    <docdate>13.12.2023</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>13.12.2023</h6><img src="/images/news/preview/20231213_Kuybyshev-59_2.jpg" alt="The manor of Berezyn"/></div>
+<p>Продолжается реставрация объектов на&nbsp;территории усадьбы Березиных в&nbsp;Кургане.</p>
+</page>

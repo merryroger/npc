@@ -1,10 +1,10 @@
 <?xml version='1.0'?>
 <parameters>
     <docdtd>tyrion-xml-metadoc</docdtd>
-    <docuri>/</docuri>
-    <returi>/</returi>
-    <docref>m1</docref>
-    <doctopic>Lead article</doctopic>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m18</docref>
+    <doctopic>News message</doctopic>
     <docname>Продолжается реставрация объектов на территории усадьбы Березиных в Кургане.</docname>
     <doctype>Text</doctype>
     <docdate>13.12.2023</docdate>
@@ -43,7 +43,6 @@
     верхней части наружных стен, завершены работы по&nbsp;устройству стропильной односкатной крыши с&nbsp;кровлей из&nbsp;листовой
     кровельной стали с&nbsp;полимерным покрытием и&nbsp;деревянного перекрытия по&nbsp;деревянным балкам. К&nbsp;настоящему
     времени ведутся отделочные работы по&nbsp;фасадам здания, включая его главный фасад.</p>
-<!--div class="photo__frame pf__standard" style="--w-max: 360px; --h-max: 233px; --img-src: url('/images/news/20231206_Noble_Assembly_3.jpg');"></div-->
 <p>Уже в&nbsp;ближайшем будущем вместо заколоченных окон на&nbsp;улицу Куйбышева будет смотреть свежим взглядом отреставрированный
     объект культурного наследия, на&nbsp;который уже сейчас благосклонно взирает, расположившаяся на&nbsp;столбе соседствующих
     ворот фигурка вальяжного музейного кота.</p>
