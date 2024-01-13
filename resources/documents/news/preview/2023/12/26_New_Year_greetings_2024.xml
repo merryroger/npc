@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Поздравления с&nbsp;наступающим Новым 2024&nbsp;годом и&nbsp;Рождеством.</docname>
+    <doctype>Text</doctype>
+    <docdate>26.12.2023</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>26.12.2023</h6><img src="/images/news/preview/20231226_Happy_New_Year.jpg" alt="Happy New Year"/></div>
+<p>Коллективы ГКУ НПЦ и&nbsp;Управления по&nbsp;охране объектов культурного наследия Правительства Курганской области поздравляют
+    с&nbsp;наступающим Новым 2024&nbsp;годом и&nbsp;Рождеством!</p>
+</page>
