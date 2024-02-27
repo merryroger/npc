@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>В р. п. Каргаполье отремонтирован объект культурного наследия, в котором располагается «Комплексный центр социального обслуживания населения».</docname>
+    <doctype>Text</doctype>
+    <docdate>14.02.2024</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>14.02.2024</h6><img src="/images/news/preview/20240214_Kargapolye-2.jpg" alt="Комплексный центр социального обслуживания населения в р. п. Каргаполье"/></div>
+<p>В&nbsp;р.&nbsp;п.&nbsp;Каргаполье отремонтирован объект культурного наследия, в&nbsp;котором располагается «Комплексный
+    центр социального обслуживания населения».</p>
+</page>
