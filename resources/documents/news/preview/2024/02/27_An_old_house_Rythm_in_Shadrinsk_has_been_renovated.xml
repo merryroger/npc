@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>В рамках Государственной программы Курганской области в Шадринске отремонтирован старинный дом, где располагается «Дом детства и юношества «Ритм».</docname>
+    <doctype>Text</doctype>
+    <docdate>27.02.2024</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>27.02.2024</h6><img src="/images/news/preview/20240227_Rythm-2.jpg" alt="Дом детства и юношества «Ритм»"/></div>
+<p>В&nbsp;рамках Государственной программы Курганской области в&nbsp;Шадринске отремонтирован старинный дом, где располагается
+    «Дом детства и&nbsp;юношества «Ритм».</p>
+</page>

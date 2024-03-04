@@ -1,10 +1,10 @@
 <?xml version='1.0'?>
 <parameters>
     <docdtd>tyrion-xml-metadoc</docdtd>
-    <docuri>/</docuri>
-    <returi>/</returi>
-    <docref>m1</docref>
-    <doctopic>Lead article</doctopic>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
     <docname>В рамках Государственной программы Курганской области в Шадринске отремонтирован старинный дом, где располагается «Дом детства и юношества «Ритм».</docname>
     <doctype>Text</doctype>
     <docdate>27.02.2024</docdate>
@@ -17,7 +17,7 @@
     «Дом детства и&nbsp;юношества «Ритм»</h2>
 <div class="photo__frame pf__standard" style="--w-max: 360px; --h-max: 262px; --img-src: url('/images/news/20240227_Rythm-1.jpg');"></div>
 <p>Не&nbsp;каждый раз можно с&nbsp;абсолютной точностью указать момент постройки того или иного старинного особняка, но в&nbsp;случае
-    с&nbsp;домом «Магазин И.&nbsp;Е.&nbsp;Веретенникова», расположенном на&nbsp;улице Октябрьская,&nbsp;117 в&nbsp;Шадринске,
+    с&nbsp;домом «Магазин И.&nbsp;Е.&nbsp;Веретенникова», расположенном на&nbsp;улице Октябрьская,&nbsp;117, в&nbsp;Шадринске,
     этот факт известен&nbsp;— 1881&nbsp;год. Примечательно, что изначальным владельцем дома являлся мещанин из&nbsp;Великого
     Устюга&nbsp;— Илья Егорович Веретенников. Будучи образованным и&nbsp;предприимчивым человеком Илья Егорович сумел на&nbsp;торговле
     виноводочными и&nbsp;гастрономическими товарами в&nbsp;Шадринске, не&nbsp;только сколотить капитал, но и&nbsp;стать купцом
