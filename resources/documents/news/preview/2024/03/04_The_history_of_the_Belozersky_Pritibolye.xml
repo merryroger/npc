@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Белозерский муниципальный округ первым в Курганской области получил книгу по истории своей территории от древнейших времен до распада СССР.</docname>
+    <doctype>Text</doctype>
+    <docdate>04.03.2024</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>04.03.2024</h6><img src="/images/news/preview/20240304_Monography.jpg" alt="Монография"/></div>
+<p>Белозерский муниципальный округ первым в&nbsp;Курганской области получил книгу по&nbsp;истории своей территории от&nbsp;древнейших
+    времен до&nbsp;распада СССР.</p>
+</page>
