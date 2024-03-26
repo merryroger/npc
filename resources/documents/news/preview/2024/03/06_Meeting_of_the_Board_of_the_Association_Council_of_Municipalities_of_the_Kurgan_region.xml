@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>В Курганской области начата подготовка к ремонту памятников героям ВОВ и благоустройству прилегающих к ним территорий.</docname>
+    <doctype>Text</doctype>
+    <docdate>06.03.2024</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>06.03.2024</h6><img src="/images/news/preview/20240306_the_Board.jpg" alt="Совещание"/></div>
+<p>В&nbsp;Курганской области начата подготовка к&nbsp;ремонту памятников героям ВОВ и&nbsp;благоустройству прилегающих
+    к&nbsp;ним территорий</p>
+</page>
