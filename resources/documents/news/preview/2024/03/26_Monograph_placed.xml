@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Официальный сайт ГКУ НПЦ разместил электронную версию монографии «История Белозерского Притоболья».</docname>
+    <doctype>Text</doctype>
+    <docdate>26.03.2024</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>26.03.2024</h6><img src="/images/news/preview/20240326_Monography.jpg" alt="Монография «История Белозерского Притоболья»"/></div>
+<p>Официальный сайт ГКУ НПЦ разместил электронную версию монографии «История Белозерского Притоболья (с&nbsp;древнейших
+    времен до&nbsp;1991&nbsp;года)»</p>
+</page>

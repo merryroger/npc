@@ -45,6 +45,16 @@ div.photo__frame {
     height: calc(var(--frame-width) * 3 / 2);
 }
 
+.news-video-frame {
+    --frame-width: calc(78vw);
+    object-fit: cover;
+    max-width: var(--w-max);
+    max-height: var(--h-max);
+    width: var(--frame-width);
+    height: calc(var(--frame-width) / var(--frame-aspect));
+    margin-bottom: 30px
+}
+
 .photo__frame h6 {
     position: relative;
     top: var(--top);
