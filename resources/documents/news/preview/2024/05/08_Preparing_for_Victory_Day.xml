@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>В каждом округе, городе Курганской области идут работы по приведению в порядок памятников героям Великой Отечественной войны.</docname>
+    <doctype>Text</doctype>
+    <docdate>08.05.2024</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>08.05.2024</h6><img src="/files/videos/preview/2024-04-26_Sevostyanov.jpeg" alt="С. Севостьянов"/></div>
+<p>Курганская область готовится ко&nbsp;Дню Победы. В&nbsp;каждом округе, городе идут работы по&nbsp;приведению в&nbsp;порядок
+    памятников героям Великой Отечественной войны</p>
+</page>

@@ -1,13 +1,13 @@
 <?xml version='1.0'?>
 <parameters>
     <docdtd>tyrion-xml-metadoc</docdtd>
-    <docuri>/</docuri>
-    <returi>/</returi>
-    <docref>m1</docref>
-    <doctopic>Lead article</doctopic>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
     <docname>В каждом округе, городе Курганской области идут работы по приведению в порядок памятников героям Великой Отечественной войны.</docname>
     <doctype>Text</doctype>
-    <docdate>26.03.2024</docdate>
+    <docdate>08.05.2024</docdate>
     <encoding>utf-8</encoding>
     <pages>1</pages>
 </parameters>
@@ -16,7 +16,7 @@
 <h2>Курганская область готовится ко&nbsp;Дню Победы. В&nbsp;каждом округе, городе идут работы по&nbsp;приведению в&nbsp;порядок
     памятников героям Великой Отечественной войны.</h2>
 <video controls="" class="news-video-frame" style="--w-max: 780px; --h-max: 420px; --frame-aspect: 1.8">
-    <source src="/files/videos/2024-04-26_Sevastyanov.mp4" type="video/mp4"/>
+    <source src="/files/videos/2024-04-26_Sevostyanov.mp4" type="video/mp4"/>
 </video>
 <p>Пять лет назад по&nbsp;инициативе губернатора Курганской области Вадима Шумкова в&nbsp;регионе был создан реестр всех
     памятников, который позволяет в&nbsp;оперативном режиме отслеживать их состояние. А&nbsp;благодаря региональной программе
