@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>В Курганской области приведены в порядок все памятники и мемориалы, посвященные героям ВОВ.</docname>
+    <doctype>Text</doctype>
+    <docdate>28.05.2024</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>28.05.2024</h6><img src="/images/news/preview/20240528_Memorial.jpg" alt="Мемориал"/></div>
+<p>В&nbsp;Курганской области приведены в&nbsp;порядок все памятники и&nbsp;мемориалы, посвященные героям ВОВ</p>
+</page>
