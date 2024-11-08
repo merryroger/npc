@@ -1,13 +1,13 @@
 <?xml version='1.0'?>
 <parameters>
     <docdtd>tyrion-xml-metadoc</docdtd>
-    <docuri>/</docuri>
-    <returi>/</returi>
-    <docref>m1</docref>
-    <doctopic>Lead article</doctopic>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
     <docname>В День Народного Единства стартовала Всероссийская просветительская акция «Русское наследие».</docname>
     <doctype>Text</doctype>
-    <docdate>05.11.2024</docdate>
+    <docdate>07.11.2024</docdate>
     <encoding>utf-8</encoding>
     <pages>1</pages>
 </parameters>
