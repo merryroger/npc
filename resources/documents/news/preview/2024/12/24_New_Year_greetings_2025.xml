@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Поздравления с&nbsp;наступающим Новым 2025&nbsp;годом и&nbsp;Рождеством.</docname>
+    <doctype>Text</doctype>
+    <docdate>24.12.2024</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>24.12.2024</h6><img src="/images/news/preview/20241224_New_Year_2025.jpg" alt="Новогоднее поздравление"/></div>
+<p>Поздравления с&nbsp;наступающим Новым 2025&nbsp;годом и&nbsp;Рождеством.</p>
+</page>

@@ -10,7 +10,9 @@
 
     $videoBuilder = app($sets['videoprovider']);
 
-    if ($videoBuilder->checkVideos()) {
+    // Temporarily checking of the videos has been blocked
+    // till the problem the Youtube substitution is solved
+    if (!$videoBuilder->checkVideos()) /* ($videoBuilder->checkVideos()) */ {
         $video = $videoBuilder->getLatestVideo();
         if (isset($video['comment']) && $video['comment']) {
             $doc_path = preg_replace("%^{$bdr}%sU", '', $video['comment']);
