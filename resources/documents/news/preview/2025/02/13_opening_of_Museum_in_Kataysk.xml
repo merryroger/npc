@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>В Катайске открыли краеведческий музей.</docname>
+    <doctype>Text</doctype>
+    <docdate>13.02.2025</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>13.02.2025</h6><img src="/images/news/preview/20250213_Kataysk_museum_1.jpg" alt="Катайский краеведческий музей"/></div>
+<p>В&nbsp;Катайске после капитального ремонта открыли краеведческий музей.</p>
+</page>
