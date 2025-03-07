@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>В Курганской области по поручению губернатора восстанавливают объекты культурного и исторического наследия, храмы.</docname>
+    <doctype>Text</doctype>
+    <docdate>05.03.2025</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>05.03.2025</h6><img src="/images/news/preview/20250305_Cathedral_restoration_1.jpg" alt="Восстановленный храм"/></div>
+<p>В&nbsp;Курганской области по&nbsp;поручению губернатора Вадима Шумкова восстанавливают объекты культурного и&nbsp;исторического
+    наследия, храмы.</p>
+</page>
