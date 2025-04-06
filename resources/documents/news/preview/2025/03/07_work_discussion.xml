@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Обсуждение с главами муниципальных образований вопросов ремонта объектов культурного наследия и подготовку к празднованию 80-летия Победы в ВОВ.</docname>
+    <doctype>Text</doctype>
+    <docdate>07.03.2025</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>07.03.2025</h6><img src="/images/news/preview/20240528_Memorial.jpg" alt="Мемориал"/></div>
+<p>Обсуждены вопросы ремонта объектов культурного наследия и&nbsp;подготовки к&nbsp;празднованию 80-летия Победы в&nbsp;ВОВ
+    с&nbsp;главами муниципальных образований.</p>
+</page>
