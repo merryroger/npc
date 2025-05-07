@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>В Курганской области стартовали ремонт и благоустройство территорий мемориальных объектов, посвященных Победе в ВОВ.</docname>
+    <doctype>Text</doctype>
+    <docdate>04.04.2025</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>04.04.2025</h6><img src="/images/news/preview/20250404_repair_of_memorials.jpg" alt="Ремонт памятников"/></div>
+<p>В&nbsp;Курганской области стартовали ремонт и&nbsp;благоустройство территорий мемориальных объектов, посвященных Победе
+    в&nbsp;Великой Отечественной войне.</p>
+</page>
