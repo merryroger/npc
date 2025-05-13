@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<parameters>
+    <docdtd>tyrion-xml-metadoc</docdtd>
+    <docuri>/news</docuri>
+    <returi>/news</returi>
+    <docref>m8</docref>
+    <doctopic>News message</doctopic>
+    <docname>Губернатор Вадим Шумков принял участие в субботнике по приведению в порядок мемориала «Стена памяти» в курганском парке Победы.</docname>
+    <doctype>Text</doctype>
+    <docdate>06.05.2025</docdate>
+    <encoding>utf-8</encoding>
+    <pages>1</pages>
+</parameters>
+<docheader> </docheader>
+<page number="1">
+<div class="news__image"><h6>06.05.2025</h6><img src="/images/news/preview/20250506_repair_of_memorial-3.jpg" alt="Ремонт мемориала «Стена памяти»"/></div>
+<p>Губернатор Вадим Шумков принял участие в&nbsp;субботнике по&nbsp;приведению в&nbsp;порядок мемориала «Стена памяти»
+    в&nbsp;курганском парке Победы.</p>
+</page>
